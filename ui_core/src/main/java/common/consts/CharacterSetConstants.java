@@ -19,7 +19,7 @@ public final class CharacterSetConstants {
     public static final String INVALID_CODE = "Код не прошел проверку";
     public static final String IDENTITY_VERIFICATION_ERROR_TEXT = "Вы не прошли проверку подлинности личности";
 
-    public static final String CLIENT_ALREADY_EXIST = "Клиент с ИИН 900901300432 уже существует";
+    public static final String CLIENT_ALREADY_EXIST = "Клиент с ИИН 960327300186 уже существует";
     public static final String CLIENT_AGE_IS_NOT_SUITABLE = "Возраст клиента не подходит для продолжения операции по открытию счета НФД";
     public static final String INVALID_IIN_FORMAT = "ИИН имеет неверный формат";
     public static final String IIN_FILLED_INCORRECTLY = "Не правильно заполнен ИИН";
@@ -44,5 +44,6 @@ public final class CharacterSetConstants {
 
     public static final String PHONE_NUMBER_ALREADY_CURRENT = "Көрсетілген телефон нөмірі қазірдің өзінде ағымдағы. / Указанный телефон уже актуален.";
     public static final String CURRENT_ACCOUNT_OPEN_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
+    public static final String OPEN_DEPOSIT_REFUSED="Уважаемый клиент! Вам необходимо обратиться в отделение банка";
 
 }

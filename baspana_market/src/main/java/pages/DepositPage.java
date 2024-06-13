@@ -15,7 +15,7 @@ public class DepositPage extends BasePage {
     private static final By SHOW_DEPOSIT_DETAILS = By.id("text");
     private static final By CALCULATOR_OP_BUTTON = By.id("calculateOPButton");
     private static final By AVAILABLE_OPERATIONS = By.id("checBlock");
-    private static final By CHANGE_GOS_PREM_BUTTON = By.id("changeGosPremButton");
+    private static final By CHANGE_GOS_PREM_BUTTON = By.id("terminateDeposit");
     private static final By SELECT = By.id("next-step");
 
     private static final By NEW_DEPOSIT_BUTTON = By.id("OpenButtons");
@@ -23,7 +23,8 @@ public class DepositPage extends BasePage {
     private static final By OPEN_DEPOSIT = By.xpath("//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']");
     private static final By AGREEMENT_CHECKBOX = By.xpath("//form[@id='fatca-formm'] //input[@id='StandardConditionsAgreed']");
     private static final By SUBMIT = By.xpath("//button[@type='submit']");
-    private static final By CONFIRM = By.className("ValSums");
+    private static final By CONFIRM = By.xpath("//button[@class='ValSums']");
+    public static final By VISIT_BANK_NOTIFICATION = By.xpath("//div[@id='NextSteps'] //p");
     private static final By SMS_CODE = By.id("CodeSmsId");
     private static final By SEND = By.id("EndsSteps");
 
@@ -35,6 +36,7 @@ public class DepositPage extends BasePage {
     @Step("Select myBank menu")
     public DepositPage selectMyBankMenu() {
         button.btnClick(MY_BANK_MENU);
+        WaitUtils.wait(2);
         return this;
     }
 
@@ -73,7 +75,11 @@ public class DepositPage extends BasePage {
     public DepositPage selectChangeGosPremOperation() {
 //        drManager.getDriver().switchTo().defaultContent();
         button.btnClick(CHANGE_GOS_PREM_BUTTON);
-        WaitUtils.wait(2);
+        WaitUtils.wait(1);
+
+        button.btnClick(CHANGE_GOS_PREM_BUTTON);
+
+        WaitUtils.wait(5);
 
         return this;
     }

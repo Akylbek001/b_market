@@ -26,8 +26,8 @@ public class DepositSteps {
 
     public void changeGosPrem() {
         depositPage
-                .selectChangeGosPremOperation()
-                .clickSelectButton();
+                .selectChangeGosPremOperation();
+//                .clickSelectButton();
     }
 
     public void calculator() {
@@ -35,7 +35,6 @@ public class DepositSteps {
                 .showDepositDetails()
                 .openCalculator();
     }
-
 
     public void clickNewDepositButton() {
         depositPage.clickNewDepositButton();
@@ -45,11 +44,15 @@ public class DepositSteps {
         depositPage.clickOpenBaspanaDepositButton();
     }
 
-    public void openDeposit(String smsCode) {
+    public void openDeposit() {
         depositPage
                 .clickOpenDepositButton()
                 .clickAgreementCheckbox()
-                .clickContinue()
+                .clickContinue();
+    }
+
+    public void confirmBySms(String smsCode) {
+        depositPage
                 .clickConfirm()
                 .inputSmsCode(smsCode)
                 .clickSend();

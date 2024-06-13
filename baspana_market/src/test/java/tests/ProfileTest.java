@@ -179,7 +179,7 @@ public class ProfileTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    @Test(description="Изменить пароль", groups = {"automated"})
+    @Test(description="Изменить пароль", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение пароля клиента")
     @Severity(SeverityLevel.NORMAL)

@@ -47,7 +47,7 @@ public abstract class BaseTest{
     protected AppConfig config;
     protected EnvConfig envConfig;
     protected DepositSteps depositSteps;
-    protected AccountsSteps accountsSteps;
+    protected AccountSteps accountSteps;
 
     @BeforeSuite(alwaysRun = true, description = "Логирование старта комплекта тестов")
     public void setUp(ITestContext ctx) {
@@ -95,7 +95,7 @@ public abstract class BaseTest{
         headerSteps = new HeaderSteps(driver);
         feedbackSteps =new FeedbackSteps(driver);
         depositSteps = new DepositSteps(driver);
-        accountsSteps = new AccountsSteps(driver);
+        accountSteps = new AccountSteps(driver);
     }
 
     private void configInit() {

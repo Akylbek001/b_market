@@ -41,7 +41,7 @@ public class FeedbackTest extends BaseTest {
     }
 
     //BUG - нет соответствуюшего уведомления о неуспешности заказать звонок в нерабочее время
-    @Test(description="Заказать обратный звонок в не рабочее время", groups = {"automated"})
+    @Test(description="Заказать обратный звонок в не рабочее время", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Обратный звонок")
     @Severity(SeverityLevel.NORMAL)

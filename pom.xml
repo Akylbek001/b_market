@@ -12,7 +12,6 @@
     <modules>
         <module>ui_core</module>
         <module>baspana_market</module>
-        <module>baspana_market</module>
     </modules>
 
     <properties>

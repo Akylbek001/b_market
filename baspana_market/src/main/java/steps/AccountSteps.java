@@ -1,44 +1,44 @@
 package steps;
 
 import org.openqa.selenium.WebDriver;
-import pages.AccountsPage;
+import pages.AccountPage;
 
-public class AccountsSteps {
-    private final AccountsPage accountsPage;
-    public AccountsSteps(WebDriver driver) { accountsPage = new AccountsPage(driver); }
+public class AccountSteps {
+    private final AccountPage accountPage;
+    public AccountSteps(WebDriver driver) { accountPage = new AccountPage(driver); }
 
     public void selectAccountsMenu() {
-        accountsPage
+        accountPage
                 .selectAccountsMenu();
     }
 
     public void openAccountButton() {
-        accountsPage
+        accountPage
                 .clickOpenAccountButton();
     }
 
     public void openCurrentAccount() {
-        accountsPage
+        accountPage
                 .selectCurrentAccount()
                 .clickOpenCurrentAccountButton();
     }
 
     public void openAccountForEpvAcceptAgreement() {
-        accountsPage
+        accountPage
                 .selectAccountForEpv()
                 .clickAgreementCheckbox()
                 .clickConfirmButton();
     }
 
     public void openAccountForEpvSignAndConfirm(String code) {
-        accountsPage
+        accountPage
                 .clickSignButton()
                 .inputCode(code)
                 .clickSendButton();
     }
 
     public void clickFurtherButton() {
-        accountsPage
+        accountPage
                 .clickFurtherButton();
     }
 }

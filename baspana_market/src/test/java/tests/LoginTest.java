@@ -123,7 +123,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля по номеру документа", groups = {"automated"})
+    @Test(description="Восстановление пароля по номеру документа", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное восстановление пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -173,7 +173,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля. Валидация смс-кода", groups = {"automated"})
+    @Test(description="Восстановление пароля. Валидация смс-кода", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация смс-кода")
     @Severity(SeverityLevel.NORMAL)
@@ -199,7 +199,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля по номеру документа. Валидация пароля", groups = {"automated"})
+    @Test(description="Восстановление пароля по номеру документа. Валидация пароля", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация пароля подтверждения")
     @Severity(SeverityLevel.NORMAL)
@@ -230,7 +230,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out alternative code
-    @Test(description="Восстановление пароля по альтернативному коду", groups = {"automated"})
+    @Test(description="Восстановление пароля по альтернативному коду", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное восстановление пароля")
     @Severity(SeverityLevel.NORMAL)

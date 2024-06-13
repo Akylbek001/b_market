@@ -1,10 +1,11 @@
 package pages;
 
+import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class AccountsPage extends BasePage {
+public class AccountPage extends BasePage {
     private static final By ACCOUNTS = By.xpath(
             "//div[@class='menu-list']//*[contains(text(), 'Счета')]"
     );
@@ -29,73 +30,74 @@ public class AccountsPage extends BasePage {
     private static final By SEND_BUTTON = By.id("smsVerificationBtn");
 
 
-    public AccountsPage(WebDriver driver) {
+    public AccountPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("Select account menu")
-    public AccountsPage selectAccountsMenu() {
+    public AccountPage selectAccountsMenu() {
         button.btnClick(ACCOUNTS);
         return this;
     }
 
     @Step("Click open account button")
-    public AccountsPage clickOpenAccountButton() {
+    public AccountPage clickOpenAccountButton() {
         button.btnClick(OPEN_ACCOUNTS_BUTTON);
         return this;
     }
 
     @Step("Select current account")
-    public AccountsPage selectCurrentAccount() {
+    public AccountPage selectCurrentAccount() {
         button.btnClick(CURRENT_ACCOUNT);
         return this;
     }
 
     @Step("Select account for epv")
-    public AccountsPage selectAccountForEpv() {
+    public AccountPage selectAccountForEpv() {
         button.btnClick(ACCOUNT_FOR_EPV);
         return this;
     }
 
     @Step("Click agreement checkbox")
-    public AccountsPage clickAgreementCheckbox() {
+    public AccountPage clickAgreementCheckbox() {
         button.btnClick(AGREEMENT_CHECKBOX);
         return this;
     }
 
     @Step("Click confirm button")
-    public AccountsPage clickConfirmButton() {
+    public AccountPage clickConfirmButton() {
         button.btnClick(CONFIRM_BUTTON);
         return this;
     }
 
     @Step("Click sign button")
-    public AccountsPage clickSignButton() {
+    public AccountPage clickSignButton() {
         button.btnClick(SIGN_BUTTON);
         return this;
     }
 
     @Step("Input code")
-    public AccountsPage inputCode(String smsCode) {
+    public AccountPage inputCode(String smsCode) {
         input.inputWithClear(INPUT_CODE, smsCode);
         return this;
     }
 
     @Step("Click send button")
-    public AccountsPage clickSendButton() {
+    public AccountPage clickSendButton() {
         button.btnClick(SEND_BUTTON);
         return this;
     }
 
 
     @Step("Click open current account button")
-    public AccountsPage clickOpenCurrentAccountButton() {
+    public AccountPage clickOpenCurrentAccountButton() {
         button.btnClick(OPEN_CURRENT_ACCOUNT_BUTTON);
+        WaitUtils.wait(5);
         return this;
     }
 
     @Step("Click further button")
-    public AccountsPage clickFurtherButton() {
+    public AccountPage clickFurtherButton() {
         button.btnClick(FURTHER_BUTTON);
         return this;
     }

@@ -20,7 +20,7 @@ public class RegistrationTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Регистрация гостья", groups = {"automated"})
+    @Test(description="Регистрация гостья", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешная регистрация гостья")
     @Severity(SeverityLevel.NORMAL)

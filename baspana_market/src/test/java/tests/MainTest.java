@@ -33,7 +33,7 @@ public class MainTest extends BaseTest {
     @Test(description="Калькулятор ипотеки. Проверка рассчета первоначального взноса", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Проверка рассчета первоначального взноса")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     public void CheckInitialFee() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
@@ -53,7 +53,7 @@ public class MainTest extends BaseTest {
     @Test(description="Калькулятор ипотеки", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     public void calculateMortgage() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();

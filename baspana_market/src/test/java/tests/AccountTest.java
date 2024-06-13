@@ -9,11 +9,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.AccountsPage.NOTIFICATION_TEXT;
+import static pages.AccountPage.NOTIFICATION_TEXT;
 
 @Owner("Алибек Акылбеков")
 @Feature("Счета")
-public class AccountsTest extends BaseTest {
+public class AccountTest extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")
     public void setUpMethod() {
         brManager.clearCache();
@@ -24,7 +24,7 @@ public class AccountsTest extends BaseTest {
     @Test(description="Открыть текущий счет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Текущий счет")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     public void openCurrentAccount() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
@@ -41,16 +41,16 @@ public class AccountsTest extends BaseTest {
             depositSteps.selectMyBankMenu();
         });
         step("Перейти в меню Счета", () -> {
-            accountsSteps.selectAccountsMenu();
+            accountSteps.selectAccountsMenu();
         });
         step("Открыть счет", () -> {
-            accountsSteps.openAccountButton();
+            accountSteps.openAccountButton();
         });
         step("Открыть текущий счет", () -> {
-            accountsSteps.openCurrentAccount();
+            accountSteps.openCurrentAccount();
         });
         step("Подтвердить открытие текущего счета", () -> {
-            accountsSteps.clickFurtherButton();
+            accountSteps.clickFurtherButton();
         });
         Assert.assertTrue(true);
     }
@@ -58,7 +58,7 @@ public class AccountsTest extends BaseTest {
     @Test(description="Открыть текущий счет - Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     public void tryOpenCurrentAccount() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
@@ -75,13 +75,13 @@ public class AccountsTest extends BaseTest {
             depositSteps.selectMyBankMenu();
         });
         step("Перейти в меню Счета", () -> {
-            accountsSteps.selectAccountsMenu();
+            accountSteps.selectAccountsMenu();
         });
         step("Открыть счет", () -> {
-            accountsSteps.openAccountButton();
+            accountSteps.openAccountButton();
         });
         step("Открыть текущий счет", () -> {
-            accountsSteps.openCurrentAccount();
+            accountSteps.openCurrentAccount();
         });
         Assert.assertEquals(
                 CharacterSetConstants.CURRENT_ACCOUNT_OPEN_REFUSED, elementsAttributes.getValue(NOTIFICATION_TEXT)
@@ -91,7 +91,7 @@ public class AccountsTest extends BaseTest {
     @Test(description="Открыть счет для ЕПВ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Счет для ЕПВ")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     public void openAccountForEPV() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
@@ -108,14 +108,14 @@ public class AccountsTest extends BaseTest {
             depositSteps.selectMyBankMenu();
         });
         step("Перейти в меню Счета", () -> {
-            accountsSteps.selectAccountsMenu();
+            accountSteps.selectAccountsMenu();
         });
         step("Открыть счет", () -> {
-            accountsSteps.openAccountButton();
+            accountSteps.openAccountButton();
         });
         step("Открыть счет для ЕПВ", () -> {
-            accountsSteps.openAccountForEpvAcceptAgreement();
-            accountsSteps.openAccountForEpvSignAndConfirm(config.smsCode());
+            accountSteps.openAccountForEpvAcceptAgreement();
+            accountSteps.openAccountForEpvSignAndConfirm(config.smsCode());
         });
         Assert.assertTrue(true);
     }
@@ -123,7 +123,7 @@ public class AccountsTest extends BaseTest {
     @Test(description="Открыть счет для ЕПВ - Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.NORMAL)
     public void tryOpenAccountForEPV() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
@@ -140,13 +140,13 @@ public class AccountsTest extends BaseTest {
             depositSteps.selectMyBankMenu();
         });
         step("Перейти в меню Счета", () -> {
-            accountsSteps.selectAccountsMenu();
+            accountSteps.selectAccountsMenu();
         });
         step("Открыть счет", () -> {
-            accountsSteps.openAccountButton();
+            accountSteps.openAccountButton();
         });
         step("Открыть счет для ЕПВ", () -> {
-            accountsSteps.openAccountForEpvAcceptAgreement();
+            accountSteps.openAccountForEpvAcceptAgreement();
         });
         Assert.assertEquals(
                 CharacterSetConstants.CURRENT_ACCOUNT_OPEN_REFUSED, elementsAttributes.getValue(NOTIFICATION_TEXT)

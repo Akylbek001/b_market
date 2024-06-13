@@ -66,8 +66,6 @@ public class BecomeClientPage extends BasePage {
     @Step("Input Auth phone")
     public BecomeClientPage inputAuthPhone(String authPhone) {
         input.inputWithClear(AUTH_PHONE, authPhone);
-        WaitUtils.wait(5);
-
         return this;
     }
 
@@ -81,7 +79,7 @@ public class BecomeClientPage extends BasePage {
     public BecomeClientPage clickVerifyButton() {
         button.btnClick(VERIFY_BUTTON);
         elementsAttributes.waitUntilExist(REFUSE_TEXT);
-        WaitUtils.wait(1);
+        WaitUtils.wait(2);
         return this;
     }
 }
