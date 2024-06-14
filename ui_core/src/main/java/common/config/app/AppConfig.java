@@ -5,6 +5,8 @@ import org.aeonbits.owner.Config;
 public interface AppConfig extends Config {
 
 
+    @Key("client.fullName")
+    String clientFullName();
 
     @Key("client.login")
     String clientLogin();
@@ -159,6 +161,11 @@ public interface AppConfig extends Config {
 
     @Key("mortgage.amount")
     String mortgageAmount();
+
+    @Key("familyDeposit.name")
+    String familyDepositName();
+
+
 
     @Key("guest.name")
     String guestName();

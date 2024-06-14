@@ -74,7 +74,7 @@ public class FeedbackPage extends BasePage {
     @Step("Select service type")
     public FeedbackPage selectServiceType() {
         dropDown.selectByIndex(SERVICE_TYPE, 3);
-        button.btnClick(SERVICE_TYPE);
+        button.btnClick(SERVICE_TYPE);  //попробовать без этого клика
         WaitUtils.wait(1);
         return this;
     }

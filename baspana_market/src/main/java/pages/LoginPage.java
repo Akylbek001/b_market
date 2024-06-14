@@ -23,8 +23,6 @@ public class LoginPage extends BasePage {
     private static final By FORGET_PASSWORD_LOCATOR = By.id("forgetPass");
     private static final By DOCUMENT_DATA_LOCATOR = By.id("documentData");
     public static final By USER_NOT_FOUND = By.xpath("//span[@class='text-danger mt-3']");
-
-
     private static final By USER_NAME_LOCATOR = By.id("UserNameName");
     private static final By SMS_CODE_LOCATOR = By.id("smsForget");
     private static final By CONTINUE_SMS_FORGET_BUTTON = By.id("checkPassForgetPass");
@@ -33,7 +31,6 @@ public class LoginPage extends BasePage {
     private static final By SAVE_AND_LOGIN_BUTTON = By.id("saveAndLogin");
     private static final By SEND_SMS_BUTTON_LOCATOR = By.id("sendSmsBtnForget");
     public static final By WRONG_SMS_CODE_TEXT = By.id("otpResult");
-
     private static final By CHANGE_PHONE_NUMBER_LOCATOR = By.xpath(
             "//*[contains(text(), 'Изменить номер телефона')]"
     );
