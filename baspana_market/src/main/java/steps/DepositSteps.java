@@ -75,11 +75,23 @@ public class DepositSteps {
     public void addMemberToFamilyPackage(String invitedIin, String invitedAlternativeCode) {
         depositPage
                 .clickInviteFamilyPackageMemberButton()
-                .selectRelationDegree()
+                .openRelationDegreeList()
+                .selectRelationDegreeValue()
                 .inputInvitedIin(invitedIin)
                 .inputInvitedAlternativeCode(invitedAlternativeCode)
                 .clickAddMemberButton();
+    }
 
+    public void removeFamilyPackageMember() {
+        depositPage
+                .clickCancelInviteIcon()
+                .clickConfirmCancelInviteButton();
+    }
+
+    public void disbandFamilyPackage() {
+        depositPage
+                .clickDisbandFamilyPackageButton()
+                .clickConfirmDisbandFamilyPackageButton();
     }
 
     public void calculator() {

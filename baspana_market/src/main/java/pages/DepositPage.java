@@ -50,21 +50,18 @@ public class DepositPage extends BasePage {
     private static final By FAMILY_PACKAGE_NAME = By.id("inptFPName");
     private static final By CREATE_FAMILY_PACKAGE_BUTTON = By.id("btnCreate");
     public static final By CREATED_FAMILY_PACKAGE_NAME = By.xpath("//h2");
-
-//    private static final By INVITE_FAMILY_PACKAGE_MEMBER_BUTTON = By.xpath("//span[@data-target='#modalInvite'");
     private static final By INVITE_FAMILY_PACKAGE_MEMBER_BUTTON = By.xpath("//div[@class='family-members-add'] /span");
-
-
-    private static final By  RELATION_DEGREE_LIST = By.id("selectRelation");
-//    private static final By  RELATION_DEGREE_LIST = By.xpath("//select[@id='selectRelation']");
+    private static final By  RELATION_DEGREE_LIST = By.xpath("//div[@class='col-4']/div[@class='select']");
+    private static final By  RELATION_DEGREE_VALUE = By.xpath("//ul[@class='select-options'] /li[@rel='SPOS']");
     private static final By  INVITED_IIN = By.id("inputInviteIIN");
     private static final By  INVITED_ALTERNATIVE_CODE = By.id("inputInviteAlterCode");
     private static final By  ADD_MEMBER_BUTTON = By.id("btnAddMember");
     public static final By ADDED_FAMILY_MEMBER_FIO = By.xpath("//div[@class='family-members'][2] //div[@class='col-sm-4'] /h6");
+    private static final By  CANCEL_INVITE_ICON = By.id("cancelInvite");
+    private static final By  CONFIRM_CANCEL_INVITE_BUTTON = By.xpath("//button[@id='btnCancelInvite'][2]");
 
-    public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.xpath("//button[@data-target='#modalDisbandFP'");
-    private static final By DISBAND_FAMILY_PACKAGE_CONFIRM_BUTTON = By.id("btnCreateFP");
-
+    public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.xpath("//button[@data-target='#modalDisbandFP']");
+    private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
 
 
 
@@ -187,14 +184,22 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-    @Step("Select relation degree")
-    public DepositPage selectRelationDegree() {
-//        dropDown.selectByIndex(RELATION_DEGREE_LIST, 2);
+    @Step("Open relation degree list")
+    public DepositPage openRelationDegreeList() {
+//        dropDown.selectByIndex(RELATION_DEGREE_LIST, 2);  select is not available even by id
         button.btnClick(RELATION_DEGREE_LIST);
-
-        WaitUtils.wait(6);
+        WaitUtils.wait(1);
         return this;
     }
+
+    @Step("Select relation degree")
+    public DepositPage selectRelationDegreeValue() {
+        button.btnClick(RELATION_DEGREE_VALUE);
+        return this;
+    }
+
+
+
 
     @Step("Input invited iin")
     public DepositPage inputInvitedIin(String invitedIin) {
@@ -211,6 +216,30 @@ public class DepositPage extends BasePage {
     @Step("Click add member button")
     public DepositPage clickAddMemberButton() {
         button.btnClick(ADD_MEMBER_BUTTON);
+        return this;
+    }
+
+    @Step("Click cancel invite icon")
+    public DepositPage clickCancelInviteIcon() {
+        button.btnClick(CANCEL_INVITE_ICON);
+        return this;
+    }
+
+    @Step("Click confirm cancel invite button")
+    public DepositPage clickConfirmCancelInviteButton() {
+        button.btnClick(CONFIRM_CANCEL_INVITE_BUTTON);
+        return this;
+    }
+
+    @Step("Click disband family package button")
+    public DepositPage clickDisbandFamilyPackageButton() {
+        button.btnClick(DISBAND_FAMILY_PACKAGE_BUTTON);
+        return this;
+    }
+
+    @Step("Click confirm disband family package button")
+    public DepositPage clickConfirmDisbandFamilyPackageButton() {
+        button.btnClick(CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON);
         return this;
     }
 

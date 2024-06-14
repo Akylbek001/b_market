@@ -139,7 +139,33 @@ public class DepositTest extends BaseTest {
         step("Добавить учестника", () -> {
             depositSteps.addMemberToFamilyPackage(config.clientIin(), config.clientAlternativeCode());
         });
-        Assert.assertEquals(config.clientFullName(), elementsAttributes.getValue(ADDED_FAMILY_MEMBER_FIO));
+        Assert.assertEquals("Мамиев С. А.", elementsAttributes.getValue(ADDED_FAMILY_MEMBER_FIO));
+    }
+
+    @Test(description="Удалить участника семейного пакета", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Создать семейный пакет")
+    @Severity(SeverityLevel.NORMAL)
+    public void removeFamilyPackageMember() {
+        step("Выбрать открытый депозит {}", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Удалить учестника", () -> {
+            depositSteps.removeFamilyPackageMember();
+        });
+    }
+
+    @Test(description="Расформировать семейный пакет", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Создать семейный пакет")
+    @Severity(SeverityLevel.NORMAL)
+    public void disbandFamilyPackage() {
+        step("Выбрать открытый депозит {}", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Удалить семейный пакет", () -> {
+            depositSteps.disbandFamilyPackage();
+        });
     }
 
     @Test(description="Калькулятор депозита", groups = {"automated"})
