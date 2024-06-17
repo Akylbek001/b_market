@@ -28,11 +28,17 @@ public class DepositSteps {
         depositPage.clickOpenBaspanaDepositButton();
     }
 
-    public void openDeposit() {
+    public void openBaspanaDeposit() {
         depositPage
                 .clickOpenDepositButton()
                 .clickAgreementCheckbox()
-                .clickContinue();
+                .clickSubmit();
+    }
+
+    public void openAqyl() {
+        depositPage
+                .clickOpenAqylButton()
+                .clickOpenAqylContinueButton();
     }
 
     public void confirmBySms(String smsCode) {
@@ -77,6 +83,14 @@ public class DepositSteps {
                 .clickInviteFamilyPackageMemberButton()
                 .openRelationDegreeList()
                 .selectRelationDegreeValue()
+                .inputInvitedIin(invitedIin)
+                .inputInvitedAlternativeCode(invitedAlternativeCode)
+                .clickAddMemberButton();
+    }
+
+    public void relationDegreeValidation(String invitedIin, String invitedAlternativeCode) {
+        depositPage
+                .clickInviteFamilyPackageMemberButton()
                 .inputInvitedIin(invitedIin)
                 .inputInvitedAlternativeCode(invitedAlternativeCode)
                 .clickAddMemberButton();

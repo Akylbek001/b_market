@@ -16,7 +16,14 @@ public class DepositPage extends BasePage {
     private static final By OPEN_BASPANA_DEPOSIT = By.xpath(
             "//div[@id='baspana'] //span[@class='ob-bodyM']"
     );
-    private static final By OPEN_DEPOSIT = By.xpath(
+
+    private static final By OPEN_CONTRIBUTION_AQYL = By.id("openAqylDeposit");
+    private static final By CONTINUE_OPEN_CONTRIBUTION_AQYL_BUTTON = By.xpath("//div[@class='modal fade show'] //button[@id='continueOpenChildDeposit']");
+    public static final By NEED_ACCOUNT_NOTIFICATION = By.id("reasonAqyl");
+
+
+
+    private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.xpath(
             "//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']"
     );
     private static final By AGREEMENT_CHECKBOX = By.xpath(
@@ -55,6 +62,9 @@ public class DepositPage extends BasePage {
     private static final By  RELATION_DEGREE_VALUE = By.xpath("//ul[@class='select-options'] /li[@rel='SPOS']");
     private static final By  INVITED_IIN = By.id("inputInviteIIN");
     private static final By  INVITED_ALTERNATIVE_CODE = By.id("inputInviteAlterCode");
+    public static final By INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION = By.id("modalNotificationBody");
+
+
     private static final By  ADD_MEMBER_BUTTON = By.id("btnAddMember");
     public static final By ADDED_FAMILY_MEMBER_FIO = By.xpath("//div[@class='family-members'][2] //div[@class='col-sm-4'] /h6");
     private static final By  CANCEL_INVITE_ICON = By.id("cancelInvite");
@@ -62,8 +72,6 @@ public class DepositPage extends BasePage {
 
     public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.xpath("//button[@data-target='#modalDisbandFP']");
     private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
-
-
 
 
     public DepositPage(WebDriver driver) {
@@ -198,9 +206,6 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-
-
-
     @Step("Input invited iin")
     public DepositPage inputInvitedIin(String invitedIin) {
         input.inputWithClear(INVITED_IIN, invitedIin);
@@ -243,10 +248,6 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-
-
-
-
     @Step("Click new deposit button")
     public DepositPage clickNewDepositButton() {
         button.btnClick(NEW_DEPOSIT_BUTTON);
@@ -260,9 +261,24 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Click open educational contribution Aqyl button")
+    public DepositPage clickOpenAqylButton() {
+        move.scrollToElement(OPEN_CONTRIBUTION_AQYL);
+        button.btnClick(OPEN_CONTRIBUTION_AQYL);
+        WaitUtils.wait(2);
+        return this;
+    }
+
+    @Step("Click continue open educational contribution Aqyl button")
+    public DepositPage clickOpenAqylContinueButton() {
+        button.btnClick(CONTINUE_OPEN_CONTRIBUTION_AQYL_BUTTON);
+        WaitUtils.wait(2);
+        return this;
+    }
+
     @Step("Click open deposit button")
     public DepositPage clickOpenDepositButton() {
-        button.btnClick(OPEN_DEPOSIT);
+        button.btnClick(OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON);
         WaitUtils.wait(3);
         return this;
     }
@@ -274,8 +290,9 @@ public class DepositPage extends BasePage {
     }
 
     @Step("Click continue")
-    public DepositPage clickContinue() {
+    public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
+        WaitUtils.wait(2);
         return this;
     }
 

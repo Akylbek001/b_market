@@ -44,6 +44,9 @@ public final class CharacterSetConstants {
 
     public static final String PHONE_NUMBER_ALREADY_CURRENT = "Көрсетілген телефон нөмірі қазірдің өзінде ағымдағы. / Указанный телефон уже актуален.";
     public static final String CURRENT_ACCOUNT_OPEN_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
-    public static final String OPEN_DEPOSIT_REFUSED="Уважаемый клиент! Вам необходимо обратиться в отделение банка";
-
+    public static final String OPEN_DEPOSIT_REFUSED = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
+    public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Уважаемый клиент! Введенный Вами альтернативный код некорректный, просим проверить данные.";
+    public static final String VALIDATION_OF_REGISTRATION = "Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Интернет банкинге/мобильном приложений, необходимо проверить наличие регистрации.";
+    public static final String RELATION_DEGREE_NOT_SELECTED_TEXT = "Уважаемый клиент! Выберите степень родства";
+    public static final String NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT = "Для продолжения операции Вам необходимо открыть текущий счет, далее необходимо обеспечить наличии минимального взноса в размере 3 МРП.";
 }

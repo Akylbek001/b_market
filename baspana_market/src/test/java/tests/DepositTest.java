@@ -20,60 +20,75 @@ public class DepositTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
-        step("Перейти в меню Мой банк", () -> {
-            depositSteps.selectMyBankMenu();
-        });
+        mainSteps.loginButton();
+        loginSteps.login(
+                config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+        profileSteps.navigateToProfile();
+        depositSteps.selectMyBankMenu();
+    }
+
+    @Test(description="Открыть депозит Баспана", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Открыть депозит Баспана")
+    @Severity(SeverityLevel.NORMAL)
+    public void openBaspanaDeposit() {
         step("Перейти в меню Депозиты", () -> {
             depositSteps.selectDepositsMenu();
         });
-    }
-
-    @Test(description="Открыть депозит", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Открыть депозит")
-    @Severity(SeverityLevel.NORMAL)
-    public void openDeposit() {
         step("Открыть депозит {}", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.clickOpenBaspanaDepositButton();
-            depositSteps.openDeposit();
+            depositSteps.openBaspanaDeposit();
         });
         step("Подтвердить открытие депозита", () -> {
             depositSteps.confirmBySms(config.smsCode());
         });
     }
 
-    @Test(description="Открыть депозит. Обратитесь в отделение", groups = {"automated"})
+    @Test(description="Открыть депозит Баспана. Обратитесь в отделение", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - Обратитесь в отделение")
     @Severity(SeverityLevel.NORMAL)
-    public void tryOpenDeposit() {
+    public void tryOpenBaspanaDeposit() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Открыть депозит {}", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.clickOpenBaspanaDepositButton();
-            depositSteps.openDeposit();
+            depositSteps.openBaspanaDeposit();
         });
         Assert.assertEquals(
                 CharacterSetConstants.OPEN_DEPOSIT_REFUSED, elementsAttributes.getValue(NOTIFICATION_VISIT_THE_BANK)
         );
     }
 
+    @Test(description="Открыть образовательный вклад «AQYL». Валидация счета", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отказ - отсутствует текущий счет")
+    @Severity(SeverityLevel.NORMAL)
+    public void tryOpenAqyl() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
+        step("Открыть депозит {}", () -> {
+            depositSteps.clickNewDepositButton();
+            depositSteps.openAqyl();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT, elementsAttributes.getValue(NEED_ACCOUNT_NOTIFICATION)
+        );
+    }
+
+    //Add case - нужна учетка для реализации кейса по изменению гос.премии
     @Test(description="Изменить гос.премию текущего депозита. Валидация имеющейся премии", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить гос.премию - Премия пристуствует")
     @Severity(SeverityLevel.NORMAL)
     public void tryChangeGosPrem() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Выбрать открытый депозит {}", () -> {
             depositSteps.selectOpenedDeposit();
         });
@@ -95,6 +110,9 @@ public class DepositTest extends BaseTest {
     @Description("Расторжение депозита")
     @Severity(SeverityLevel.NORMAL)
     public void terminateDeposit() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Выбрать открытый депозит {}", () -> {
             depositSteps.selectOpenedDeposit();
         });
@@ -107,12 +125,14 @@ public class DepositTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-
     @Test(description="Создать семейный пакет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Создать семейный пакет")
     @Severity(SeverityLevel.NORMAL)
     public void createFamilyPackage() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Выбрать открытый депозит {}", () -> {
             depositSteps.selectOpenedDeposit();
         });
@@ -128,11 +148,76 @@ public class DepositTest extends BaseTest {
         Assert.assertEquals(config.familyDepositName(), elementsAttributes.getValue(CREATED_FAMILY_PACKAGE_NAME));
     }
 
+    @Test(description="Добавить участника семейного пакета. Валидация степени родства", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация степени родства")
+    @Severity(SeverityLevel.NORMAL)
+    public void tryAddMemberWithoutSelectRelationDegree() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
+        step("Выбрать открытый депозит {}", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Добавить учестника", () -> {
+            depositSteps.relationDegreeValidation(config.clientInvalidIin(), config.clientAlternativeCode());
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.RELATION_DEGREE_NOT_SELECTED_TEXT,
+                elementsAttributes.getValue(INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION)
+        );
+    }
+
+
+    //BUG: ввести валидный левый ИИН => ошибка альтКода, ввести не валидный ИИН => валидация регистрации ?!
+    @Test(description="Добавить участника семейного пакета. Валидация ИИН", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация ИИН")
+    @Severity(SeverityLevel.NORMAL)
+    public void tryAddFamilyPackageMemberWithInvalidIin() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
+        step("Выбрать открытый депозит {}", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Добавить учестника", () -> {
+            depositSteps.addMemberToFamilyPackage(config.clientInvalidIin(), config.clientAlternativeCode());
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.VALIDATION_OF_REGISTRATION,
+                elementsAttributes.getValue(INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION)
+        );
+    }
+
+    @Test(description="Добавить участника семейного пакета. Валидация алтернативного кода", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация алтернативного кода")
+    @Severity(SeverityLevel.NORMAL)
+    public void tryAddFamilyPackageMemberWithInvalidAltCode() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
+        step("Выбрать открытый депозит {}", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Добавить учестника", () -> {
+            depositSteps.addMemberToFamilyPackage(config.clientIin(), config.clientIin());
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.INVALID_INVITED_MEMBER_ALTERNATIVE_CODE,
+                elementsAttributes.getValue(INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION)
+        );
+    }
+
     @Test(description="Добавить участника семейного пакета", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Создать семейный пакет")
+    @Description("Добавить участника")
     @Severity(SeverityLevel.NORMAL)
     public void addFamilyPackageMember() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Выбрать открытый депозит {}", () -> {
             depositSteps.selectOpenedDeposit();
         });
@@ -144,9 +229,12 @@ public class DepositTest extends BaseTest {
 
     @Test(description="Удалить участника семейного пакета", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Создать семейный пакет")
+    @Description("Удалить участника")
     @Severity(SeverityLevel.NORMAL)
     public void removeFamilyPackageMember() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Выбрать открытый депозит {}", () -> {
             depositSteps.selectOpenedDeposit();
         });
@@ -157,9 +245,12 @@ public class DepositTest extends BaseTest {
 
     @Test(description="Расформировать семейный пакет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Создать семейный пакет")
+    @Description("Расформировать семейный пакет")
     @Severity(SeverityLevel.NORMAL)
     public void disbandFamilyPackage() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Выбрать открытый депозит {}", () -> {
             depositSteps.selectOpenedDeposit();
         });
@@ -173,6 +264,9 @@ public class DepositTest extends BaseTest {
     @Description("Калькулятор депозита")
     @Severity(SeverityLevel.NORMAL)
     public void calculatorOP() {
+        step("Перейти в меню Депозиты", () -> {
+            depositSteps.selectDepositsMenu();
+        });
         step("Выбрать открытый депозит {}", () -> {
             depositSteps.selectOpenedDeposit();
         });

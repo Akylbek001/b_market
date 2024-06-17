@@ -20,7 +20,19 @@ public class AccountSteps {
     public void openCurrentAccount() {
         accountPage
                 .selectCurrentAccount()
-                .clickOpenCurrentAccountButton();
+                .clickOpenCurrentAccountButton()
+                .clickFurtherButton();
+    }
+
+    public void openCurrentAccountContinue(String otp) {
+        accountPage
+                .selectAccountType()
+                .clickContinueButton()
+                .clickAgreement()
+                .clickConfirm()
+                .inputOTP(otp)
+                .clickContinue()
+                .clickSend();
     }
 
     public void openAccountForEpvAcceptAgreement() {
@@ -37,8 +49,11 @@ public class AccountSteps {
                 .clickSendButton();
     }
 
-    public void clickFurtherButton() {
+    public void addOtherBankAccount() {
         accountPage
-                .clickFurtherButton();
+                .clickOtherBank()
+                .clickContinueOtherBank()
+                .clickOtherBankName()
+                .clickContinueOtherBank_();
     }
 }
