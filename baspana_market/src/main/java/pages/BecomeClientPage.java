@@ -8,18 +8,11 @@ import org.openqa.selenium.WebDriver;
 
 @Slf4j
 public class BecomeClientPage extends BasePage {
-
-//    private static final By BECOME_CLIENT_BUTTON = By.xpath(
-//            "//*[@class='general-info-about-accession'] //*[@class='btn-submit text-center'] / button"
-//    );
     private static final By BECOME_CLIENT_BUTTON = By.xpath(
             "//div[@class='general-info-about-accession'] //button[contains(text(), 'Стать клиентом ')]"
     );
-//    private static final By DEPOSIT_BLOCK = By.xpath("//a[@onclick='StartDepositOpen()']");
-//    private static final By CHILD_FUND_BLOCK = By.xpath("//a[@onclick='StartOpenChildFund()']");
-//    private static final By PENSION_BLOCK = By.xpath("//a[@onclick='StartOpenPensionAccount()']");
-    private static final By DEPOSIT_BLOCK = By.cssSelector("[@onclick='StartDepositOpen()']");
-    private static final By CHILD_FUND_BLOCK = By.cssSelector("[@onclick='StartOpenChildFund()']");
+    private static final By DEPOSIT_BLOCK = By.cssSelector("[onclick='StartDepositOpen()']");
+    private static final By CHILD_FUND_BLOCK = By.cssSelector("[onclick='StartOpenChildFund()']");
     private static final By PENSION_BLOCK = By.cssSelector("[onclick='StartOpenPensionAccount()']");
 
     private static final By AUTH_PHONE = By.id("AutorizationPhone");
@@ -27,17 +20,12 @@ public class BecomeClientPage extends BasePage {
     private static final By VERIFY_BUTTON = By.id("PhoneVerifyButton");
     private static final By OTP = By.id("CodeSmsId");
     private static final By SEND_BUTTON = By.id("VerifyPhone");
-//    private static final By AGREEMENT_CHECKBOX = By.xpath(
-//            "//label[@class='form-check-label']"
-//    );
     private static final By AGREEMENT_CHECKBOX = By.cssSelector(".form-check-label");
-
 
     private static final By START_BIOMETRY_BUTTON = By.id("startBiometry");
     private static final By WORK_PLACE = By.id("WorkPlace");
     private static final By WORK_POSITION = By.id("WorkPosition");
     private static final By SOURCE_OF_INCOME = By.id("IncomeSourceCode");
-//    private static final By EMAIL = By.xpath("//div[@class='info_personal'] //input[@id='Email']");
     private static final By EMAIL = By.cssSelector("#Email");
 
     public static final By REGISTRATION_ADDRESS = By.id("EgovRegFullAddress");
@@ -60,16 +48,11 @@ public class BecomeClientPage extends BasePage {
     private static final By BIRTH_SURNAME = By.id("BirthSurname");
     private static final By CODE_WORD = By.id("Codeword");
     private static final By AGREE_TO_RECEIVE_NEWSLETTERS = By.cssSelector(".container-bank");
-//    private static final By CONTINUE_BUTTON = By.xpath("//div[@class='agreement_and_cont'] //button");
     private static final By CONTINUE_BUTTON = By.cssSelector(".agreement_and_cont button");
 
-
-
     public static final By REFUSE_TEXT = By.xpath("//div[@id='NextSteps'] //p");
-    public static final By INVALID_IIN_TEXT = By.cssSelector("p[class='errtexts']");
-//    public static final By OPEN_DEPOSIT_BUTTON = By.xpath("//button[@onclick='PhoneVerification()']");
-    public static final By OPEN_DEPOSIT_BUTTON = By.cssSelector("[@onclick='PhoneVerification()']");
-
+    public static final By INVALID_IIN_TEXT = By.cssSelector("[class='errtexts']");
+    public static final By OPEN_DEPOSIT_BUTTON = By.cssSelector("[onclick='PhoneVerification()']");
 
 
     public BecomeClientPage(WebDriver driver) {

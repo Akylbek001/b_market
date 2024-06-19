@@ -18,6 +18,9 @@ public class RegistrationTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.loginButton();
+        registrationSteps.startRegister();
     }
 
     @Test(description="Регистрация гостья", groups = {"automated"}, enabled = false)
@@ -25,12 +28,6 @@ public class RegistrationTest extends BaseTest {
     @Description("Успешная регистрация гостья")
     @Severity(SeverityLevel.NORMAL)
     public void registerGuest() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Заполнить имя гостя", () -> {
             registrationSteps.registrationGuest(config.guestName());
         });
@@ -46,17 +43,11 @@ public class RegistrationTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Регистрация гостья. Валидация существующего логина гостья", groups = {"automated"})
+    @Test(description="Регистрация гостья => Валидация существующего логина гостья", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего логина гостья")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterExistedGuestLogin() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Заполнить имя гостя", () -> {
             registrationSteps.registrationGuest(config.guestName());
         });
@@ -71,17 +62,11 @@ public class RegistrationTest extends BaseTest {
         );
     }
 
-    @Test(description="Регистрация гостья. Валидация существующего email гостья", groups = {"automated"})
+    @Test(description="Регистрация гостья => Валидация существующего email гостья", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего email гостья")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterExistedGuestEmail() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Заполнить имя гостя", () -> {
             registrationSteps.registrationGuest(config.guestName());
         });
@@ -96,17 +81,11 @@ public class RegistrationTest extends BaseTest {
         );
     }
 
-    @Test(description="Регистрация гостья. Валидация ФИО ", groups = {"automated"})
+    @Test(description="Регистрация гостья => Валидация ФИО ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего пользователя")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterGuestWithInvalidName() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Заполнить имя гостя", () -> {
             registrationSteps.registrationGuest(config.guestFakeName());
         });
@@ -119,17 +98,11 @@ public class RegistrationTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.INVALID_FIO, elementsAttributes.getValue(REGISTRATION_RESULT));
     }
 
-    @Test(description="Регистрация гостья. Валидация подтверждения пароля", groups = {"automated"})
+    @Test(description="Регистрация гостья => Валидация подтверждения пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего пользователя")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterGuestWithInvalidPassConfirmation() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Заполнить имя гостя", () -> {
             registrationSteps.registrationGuest(config.guestName());
         });
@@ -153,12 +126,6 @@ public class RegistrationTest extends BaseTest {
     @Description("Успешная регистрация клиента")
     @Severity(SeverityLevel.NORMAL)
     public void clientRegistrationByDocument() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Выбор регистрации по номеру документа", () -> {
             registrationSteps.registrationByDocumentCode("037916624");
         });
@@ -174,17 +141,11 @@ public class RegistrationTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Регистрация клиента по номеру документа. Валидация существующего логина клиента", groups = {"automated"})
+    @Test(description="Регистрация клиента по номеру документа => Валидация существующего логина клиента", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего логина клиента")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterExistedClientLoginByDocumentCode() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Выбор регистрации по номеру документа", () -> {
             registrationSteps.registrationByDocumentCode(config.clientDocumentNumber());
         });
@@ -201,17 +162,11 @@ public class RegistrationTest extends BaseTest {
     }
 
     //BUG=> ФР->Пользователь по номеру документа не найден, ОР-> Неверный формат email
-    @Test(description="Регистрация клиента по номеру документа. Валидация существующего email клиента", groups = {"automated"})
+    @Test(description="Регистрация клиента по номеру документа => Валидация существующего email клиента", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего email клиента")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterExistedClientEmailByDocumentCode() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Выбор регистрации по номеру документа", () -> {
             registrationSteps.registrationByDocumentCode(config.clientDocumentNumber());
         });
@@ -227,17 +182,11 @@ public class RegistrationTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_EMAIL_ALREADY_EXIST, elementsAttributes.getValue(REGISTRATION_RESULT));
     }
 
-    @Test(description="Регистрация клиента по номеру документа. Валидация подтверждения пароля", groups = {"automated"})
+    @Test(description="Регистрация клиента по номеру документа => Валидация подтверждения пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация подтверждения пароля")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterClientWithInvalidPassConfirmation() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Выбор регистрации по номеру документа", () -> {
             registrationSteps.registrationByDocumentCode(config.clientDocumentNumber());
         });
@@ -253,17 +202,11 @@ public class RegistrationTest extends BaseTest {
     }
 
     //BUG => ФР->Пользователь по номеру документа не найден, ОР->Неверный формат номера телефона
-    @Test(description="Регистрация клиента по номеру документа. Валидация номера телефона", groups = {"automated"})
+    @Test(description="Регистрация клиента по номеру документа => Валидация номера телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего телефона")
     @Severity(SeverityLevel.NORMAL)
     public void validateRegistrationByCodePhone(){
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Выбор регистрации по номеру документа", () -> {
             registrationSteps.registrationByDocumentCode("037916624");
         });
@@ -282,12 +225,6 @@ public class RegistrationTest extends BaseTest {
     @Description("Успешная регистрация")
     @Severity(SeverityLevel.NORMAL)
     public void clientRegistrationByAlternativeCode() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Выбор регистрации по альтернативному коду", () -> {
             registrationSteps.registrationByAlternativeCode(config.clientAlternativeCode());
         });
@@ -303,17 +240,11 @@ public class RegistrationTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Регистрация клиента по альтернативному коду.Валидация", groups = {"automated"})
+    @Test(description="Регистрация клиента по альтернативному коду => Валидация", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterExistedClientByAlternativeCode() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Перейти на страницу регистрации", () -> {
-            registrationSteps.startRegister();
-        });
         step("Выбор регистрации по альтернативному коду", () -> {
             registrationSteps.registrationByAlternativeCode(config.clientAlternativeCode());
         });

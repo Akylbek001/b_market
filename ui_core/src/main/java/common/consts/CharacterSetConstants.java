@@ -23,6 +23,8 @@ public final class CharacterSetConstants {
     public static final String CLIENT_AGE_IS_NOT_SUITABLE = "Возраст клиента не подходит для продолжения операции по открытию счета НФД";
     public static final String INVALID_IIN_FORMAT = "ИИН имеет неверный формат";
     public static final String IIN_FILLED_INCORRECTLY = "Не правильно заполнен ИИН";
+    public static final String NOT_IN_TAX_AUTHORITY_DATABASE_TEXT= "Указанный Вами ИИН 960327300180 отсутствует в базе налогового органа. Проверьте корректность ИИН и повторите попытку или обратитесь в налоговый орган по месту регистрации";
+
     public static final String EMAIL_UPDATED_TEXT = "Ваш e-mail успешно обновлен";
     public static final String PASSWORD_UPDATED = "Ваш пароль успешно обновлен";
     public static final String NEW_PASSWORD_SAME_WITH_CURRENT = "Новый пароль совпадает с текущим";
