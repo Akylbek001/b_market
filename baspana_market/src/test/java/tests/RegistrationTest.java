@@ -147,6 +147,7 @@ public class RegistrationTest extends BaseTest {
         );
     }
 
+    //BUG => ФР->Непредвиденная ошибка при вводе OTP
     @Test(description="Регистрация клиента по номеру документа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешная регистрация клиента")
@@ -159,12 +160,13 @@ public class RegistrationTest extends BaseTest {
             registrationSteps.startRegister();
         });
         step("Выбор регистрации по номеру документа", () -> {
-            registrationSteps.registrationByDocumentCode(config.clientDocumentNumber());
+            registrationSteps.registrationByDocumentCode("037916624");
         });
         step("Заполнение регистрацинных данных клиента", () -> {
             registrationSteps.inputRegistrationData(
                     config.userLogin(), config.userEmail(), config.userPass(), config.userPass()
             );
+            registrationSteps.clickRegisterClientButton();
         });
         step("Подтверждение регистрации по смс коду", () -> {
             registrationSteps.confirmRegistrationBySmsCode(config.smsCode());
@@ -198,7 +200,7 @@ public class RegistrationTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_LOGIN_ALREADY_EXIST, elementsAttributes.getValue(REGISTRATION_RESULT));
     }
 
-    //BUG - не валидирует существующий email - вместо этого вылетает ошибка "Пользователь по номеру документа не найден"
+    //BUG=> ФР->Пользователь по номеру документа не найден, ОР-> Неверный формат email
     @Test(description="Регистрация клиента по номеру документа. Валидация существующего email клиента", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация существующего email клиента")
@@ -225,29 +227,6 @@ public class RegistrationTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_EMAIL_ALREADY_EXIST, elementsAttributes.getValue(REGISTRATION_RESULT));
     }
 
-//    @Test(description="Регистрация клиента по номеру документа. Валидация Email", groups = {"automated"})
-//    @Issue("https://jira.kz/browse/QA-")
-//    @Description("Валидация некорректного email")
-//    @Severity(SeverityLevel.NORMAL)
-//    public void validateRegistrationByCodeEmail() {
-//        step("Перейти на страницу авторизации", () -> {
-//            mainSteps.loginButton();
-//        });
-//        step("Перейти на страницу регистрации", () -> {
-//            registrationSteps.startRegister();
-//        });
-//        step("Выбор регистрации по номеру документа", () -> {
-//            registrationSteps.registrationByDocumentCode(config.clientDocumentNumber());
-//        });
-//        step("Заполнение регистрацинных данных клиента", () -> {
-//            registrationSteps.inputRegistrationData(
-//                    config.userLogin(), config.clientInvalidEmail(), config.userPass(), config.userPass()
-//            );
-//            registrationSteps.clickRegisterClientButton();
-//        });
-//        Assert.assertEquals(CharacterSetConstants.INVALID_EMAIL, elementsAttributes.getValue(REGISTRATION_RESULT));
-//    }
-
     @Test(description="Регистрация клиента по номеру документа. Валидация подтверждения пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация подтверждения пароля")
@@ -272,30 +251,33 @@ public class RegistrationTest extends BaseTest {
                 CharacterSetConstants.INVALID_PASS_CONFIRMATION, elementsAttributes.getValue(PASSWORD_CONFIRMATION_ERROR_TEXT)
         );
     }
-//
-//    @Test(description="Регистрация клиента по номеру документа. Валидация телефона", groups = {"automated"})
-//    @Issue("https://jira.kz/browse/QA-")
-//    @Description("Валидация существующего телефона")
-//    @Severity(SeverityLevel.NORMAL)
-//    public void validateRegistrationByCodePhone(){
-//        step("Перейти на страницу авторизации", () -> {
-//            mainSteps.loginButton();
-//        });
-//        step("Перейти на страницу регистрации", () -> {
-//            registrationSteps.startRegister();
-//        });
-//        step("Заполнение данных", () -> {
-//            registrationSteps.registerClientByDoc(
-//                    config.documentData(),
-//                    config.userLogin(),
-//                    config.userEmail(),
-//                    config.userPass());
-//        });
-//        Assert.assertEquals(CharacterSetConstants.EMAIL_EXIST, elementsAttributes.getValue(REGISTRATION_RESULT));
-//    }
 
+    //BUG => ФР->Пользователь по номеру документа не найден, ОР->Неверный формат номера телефона
+    @Test(description="Регистрация клиента по номеру документа. Валидация номера телефона", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация существующего телефона")
+    @Severity(SeverityLevel.NORMAL)
+    public void validateRegistrationByCodePhone(){
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Перейти на страницу регистрации", () -> {
+            registrationSteps.startRegister();
+        });
+        step("Выбор регистрации по номеру документа", () -> {
+            registrationSteps.registrationByDocumentCode("037916624");
+        });
+        step("Заполнение регистрацинных данных клиента", () -> {
+            registrationSteps.inputRegistrationData(
+                    config.userFakeLogin(), config.userEmail(), config.userPass(), config.userPass()
+            );
+            registrationSteps.clickRegisterClientButton();
+        });
+        Assert.assertEquals("Пользователь по номеру документа не найден", elementsAttributes.getValue(REGISTRATION_RESULT));
+    }
 
-    @Test(description="Регистрация клиента по альтернативному коду", groups = {"automated"})
+    //Нужен альтернативный код
+    @Test(description="Регистрация клиента по альтернативному коду", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешная регистрация")
     @Severity(SeverityLevel.NORMAL)

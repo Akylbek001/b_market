@@ -25,6 +25,9 @@ import org.openqa.selenium.WebDriver;
     private static final By VK_LINK = By.cssSelector("a[href='https://vk.com/otbasybankkz']");
     private static final By INSTAGRAM_LINK = By.cssSelector("a[href='https://www.instagram.com/otbasy_bank_kz/']");
     private static final By YOUTUBE_LINK = By.cssSelector("a[href='https://www.youtube.com/channel/UCEehsItjnHv_XEVDvwKadtA/feed?view_as=public']");
+    private static final By APPSTORE_LINK = By.cssSelector("a[href='https://apps.apple.com/us/app/zssb-24/id1148478653']");
+    private static final By GOOGLEPLAY_LINK = By.cssSelector("a[href='https://play.google.com/store/apps/details?id=kz.sdk.hcsbk']");
+
 
     public FooterPage(WebDriver driver) {
         super(driver);
@@ -131,6 +134,20 @@ import org.openqa.selenium.WebDriver;
     @Step("Click youtube link")
     public FooterPage clickYoutubeLink() {
         move.moveToElemAndClick(YOUTUBE_LINK);
+        WaitUtils.wait(3);
+        return this;
+    }
+
+    @Step("Click appStore link")
+    public FooterPage clickAppStoreLink() {
+        move.moveToElemAndClick(APPSTORE_LINK);
+        WaitUtils.wait(3);
+        return this;
+    }
+
+    @Step("Click google play link")
+    public FooterPage clickGooglePlayLink() {
+        move.moveToElemAndClick(GOOGLEPLAY_LINK);
         WaitUtils.wait(3);
         return this;
     }

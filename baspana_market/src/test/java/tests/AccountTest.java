@@ -106,6 +106,8 @@ public class AccountTest extends BaseTest {
     }
     // Add two validation sms_code test cases
 
+
+    //BUG -Произошла непредвиденная ошибка!
     @Test(description="Подключить счет из другого банка", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("счет другого банка")

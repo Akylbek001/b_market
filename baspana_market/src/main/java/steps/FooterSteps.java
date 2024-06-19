@@ -84,4 +84,14 @@ public class FooterSteps {
         footerPage
                 .clickYoutubeLink();
     }
+
+    public void navigateToAppStorePage() {
+        footerPage
+                .clickAppStoreLink();
+    }
+
+    public void navigateToGooglePlayPage() {
+        footerPage
+                .clickGooglePlayLink();
+    }
 }

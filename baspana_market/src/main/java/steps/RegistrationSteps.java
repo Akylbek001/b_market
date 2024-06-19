@@ -42,7 +42,6 @@ public class RegistrationSteps {
                 .inputGuestEmail(email)
                 .inputGuestPass(password)
                 .confirmGuestPass(confirmPassword);
-//                .clickRegisterButton();
     }
 
     public void clickRegisterGuestButton() {

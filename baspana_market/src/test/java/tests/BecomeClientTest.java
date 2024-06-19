@@ -9,8 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.BecomeClientPage.INVALID_IIN_TEXT;
-import static pages.BecomeClientPage.REFUSE_TEXT;
+import static pages.BecomeClientPage.*;
 
 @Owner("Алибек Акылбеков")
 @Feature("Стать клиентом")
@@ -22,21 +21,48 @@ public class BecomeClientTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Стать клиентом.Открыть депозит.Валидация существующего клиента", groups = {"automated"})
+    @Test(description="Стать клиентом.Открыть депозит", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация существующего клиента")
+    @Description("")
     @Severity(SeverityLevel.NORMAL)
     public void becomeClientByDeposit() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Заполнение данных", () -> {
-            becomeClientSteps.becomeClientByOpenDeposit(config.clientLogin(), config.clientIin());
+        step("Стать клиентом", () -> {
+            becomeClientSteps.becomeClient();;
+        });
+        step("Открыть депозит", () -> {
+            becomeClientSteps.openDeposit();;
+        });
+        step("Заполнить данные и подтвердить", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
+            becomeClientSteps.confirmByOtp(config.smsCode());
+        });
+        Assert.assertTrue(true);
+    }
+
+    @Test(description="Стать клиентом_Депозит => Валидация существующего клиента", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация существующего клиента")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByDepositWithExistedLogin() {
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Стать клиентом", () -> {
+            becomeClientSteps.becomeClient();;
+        });
+        step("Открыть депозит", () -> {
+            becomeClientSteps.openDeposit();;
+        });
+        step("Заполнить данные и подтвердить", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), config.clientIin());
         });
         Assert.assertEquals(CharacterSetConstants.CLIENT_ALREADY_EXIST, elementsAttributes.getValue(REFUSE_TEXT));
     }
 
-    @Test(description="Стать клиентом.Счет для НФД.Валидация возраста по ИИН", groups = {"automated"})
+    @Test(description="Стать клиентом_НФД => Валидация возраста по ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация возраста по ИИН")
     @Severity(SeverityLevel.NORMAL)
@@ -51,7 +77,7 @@ public class BecomeClientTest extends BaseTest {
                 CharacterSetConstants.CLIENT_AGE_IS_NOT_SUITABLE, elementsAttributes.getValue(REFUSE_TEXT));
     }
 
-    @Test(description="Стать клиентом.Счет для НФД.Валидация формата ИИН", groups = {"automated"})
+    @Test(description="Стать клиентом_НФД => Валидация формата ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация формата ИИН")
     @Severity(SeverityLevel.NORMAL)
@@ -65,7 +91,58 @@ public class BecomeClientTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.INVALID_IIN_FORMAT, elementsAttributes.getValue(INVALID_IIN_TEXT));
     }
 
-    @Test(description="Стать клиентом.Счет для ЕПВ.Валидация существующего клиента", groups = {"automated"})
+    //BUG -> ЕПВ (ОР: График совершения данной операции: до 18-00, ФР: валидация срабатывает раньше: ~17-30)
+    @Test(description="Стать клиентом_ЕПВ. Адресс регистрации==Адрес проживания", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Открыть счет для ЕПВ")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByEPVSameAddress() {
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Стать клиентом", () -> {
+            becomeClientSteps.becomeClient();;
+        });
+        step("Счет для ЕПВ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForEPV();
+        });
+        step("Верификация", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
+            becomeClientSteps.confirmByOtp(config.smsCode());
+            becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
+            becomeClientSteps.selectRegAddress("91", "91");
+            becomeClientSteps.selectSameAddressCheckbox();
+            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", "codeWord");
+        });
+        Assert.assertTrue(true);
+    }
+
+    @Test(description="Стать клиентом_ЕПВ", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Открыть счет для ЕПВ")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByEPV() {
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Стать клиентом", () -> {
+            becomeClientSteps.becomeClient();;
+        });
+        step("Счет для ЕПВ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForEPV();
+        });
+        step("Верификация", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
+            becomeClientSteps.confirmByOtp(config.smsCode());
+            becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
+            becomeClientSteps.selectRegAddress("91", "91");
+            becomeClientSteps.selectLivingAddress("21", "21");
+            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", "codeWord");
+        });
+        Assert.assertTrue(true);
+    }
+
+    @Test(description="Стать клиентом_ЕПВ => Валидация существующего клиента", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Счет для ЕПВ.Валидация существующего клиента")
     @Severity(SeverityLevel.NORMAL)
@@ -73,13 +150,19 @@ public class BecomeClientTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Заполнение данных", () -> {
-            becomeClientSteps.becomeClientByOpenAccountForEPV(config.clientLogin(), config.clientIin());
+        step("Стать клиентом", () -> {
+            becomeClientSteps.becomeClient();;
+        });
+        step("Счет для ЕПВ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForEPV();
+        });
+        step("Заполнить данные и подтвердить", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
         });
         Assert.assertEquals(CharacterSetConstants.CLIENT_ALREADY_EXIST, elementsAttributes.getValue(REFUSE_TEXT));
     }
 
-    @Test(description="Стать клиентом.Счет для ЕПВ.Валидация формата ИИН", groups = {"automated"})
+    @Test(description="Стать клиентом_ЕПВ => Валидация формата ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация формата ИИН")
     @Severity(SeverityLevel.NORMAL)
@@ -87,8 +170,14 @@ public class BecomeClientTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Заполнение данных", () -> {
-            becomeClientSteps.becomeClientByOpenAccountForEPV(config.clientLogin(), config.clientInvalidIin());
+        step("Стать клиентом", () -> {
+            becomeClientSteps.becomeClient();;
+        });
+        step("Счет для ЕПВ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForEPV();
+        });
+        step("Заполнить данные и подтвердить", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
         });
         Assert.assertEquals(CharacterSetConstants.IIN_FILLED_INCORRECTLY, elementsAttributes.getValue(REFUSE_TEXT));
     }

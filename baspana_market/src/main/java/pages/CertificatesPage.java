@@ -12,8 +12,6 @@ public class CertificatesPage extends BasePage {
     private static final By CERTIFICATE_OF_ACCOUNT_AVAILABILITY = By.id("GetForm");
     private static final By CERTIFICATE_OF_LOAN_DEBT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Справка о ссудной задолженности']");
 
-
-
     private static final By ACCOUNTS_DROPDOWN_LIST = By.xpath("//div[@class='custom-select--for--counts']");
     private static final By ACCOUNT = By.xpath("//div[@class='select-items'] /div[2]");
     private static final By LANGUAGE_DROPDOWN_LIST = By.xpath("//div[@class='custom-select']");
@@ -21,13 +19,6 @@ public class CertificatesPage extends BasePage {
     private static final By GET_CERTIFICATE_BUTTON = By.xpath("//button[@class='btn-form_app']");
     public static final By CERTIFICATE_GENERATED_NOTIFICATION = By.xpath("//div[@id='GetToCertificateFinale'] //b");
     private static final By LOAN_DEBT_LANGUAGE_DROPDOWN_LIST = By.xpath("//div[@class='select-selected']");
-
-
-
-
-
-
-
 
     public CertificatesPage(WebDriver driver) {
         super(driver);
@@ -53,8 +44,6 @@ public class CertificatesPage extends BasePage {
         button.btnClick(CERTIFICATE_OF_LOAN_DEBT);
         return this;
     }
-
-
 
     @Step("Click accounts list dropdown")
     public CertificatesPage clickAccountsListsDropdown() {
@@ -89,12 +78,10 @@ public class CertificatesPage extends BasePage {
         return this;
     }
 
-
     @Step("Click loan debt languages list dropdown")
     public CertificatesPage clickLoanDebtLanguagesListsDropdown() {
         button.btnClick(LOAN_DEBT_LANGUAGE_DROPDOWN_LIST);
         WaitUtils.wait(1);
         return this;
     }
-
 }

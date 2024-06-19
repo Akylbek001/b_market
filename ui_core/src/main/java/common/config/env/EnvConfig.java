@@ -67,6 +67,12 @@ public interface EnvConfig extends Config{
     String youtubeUrl();
 
 
+    @Key("googlePlay.url")
+    String googlePlayUrl();
+
+    @Key("appStore.url")
+    String appStoreUrl();
+
     @Key("baspanaNews.path")
     String baspanaNewsPath();
 

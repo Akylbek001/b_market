@@ -8,29 +8,86 @@ public class BecomeClientSteps {
 
     public BecomeClientSteps(WebDriver driver) { becomeClientPage = new BecomeClientPage(driver); }
 
-    public void becomeClientByOpenDeposit(String authPhone, String authIin) {
+    public void becomeClient() {
         becomeClientPage
-                .becomeClientButton()
+                .clickBecomeClientButton();
+    }
+
+    public void openDeposit() {
+        becomeClientPage
                 .clickOpenDepositBlock()
-                .clickOpenDepositButton()
-                .inputAuthPhone(authPhone)
-                .inputAuthIin(authIin)
+                .clickOpenDepositButton();
+    }
+
+    public void becomeClientByOpenAccountForEPV() {
+        becomeClientPage
+                .clickAccountForEPVBlock();
+    }
+
+    public void verifyPhoneNumberAndIin(String phoneNumber, String iin) {
+        becomeClientPage
+                .inputAuthPhone(phoneNumber)
+                .inputAuthIin(iin)
                 .clickVerifyButton();
+    }
+
+    public void confirmByOtp(String otp) {
+        becomeClientPage
+                .inputOtp(otp)
+                .clickSendButton()
+                .clickAgreementCheckbox()
+                .clickStartBiometryButton();
+    }
+
+    public void inputPersonalDataFirstPart(String workPlace, String workPosition, String email) {
+        becomeClientPage
+                .inputWorkPlace(workPlace)
+                .inputWorkPosition(workPosition)
+                .selectSourceOfIncome()
+                .inputEmail(email);
+    }
+
+    public void selectRegAddress(String regHouse, String regApartment) {
+        becomeClientPage
+                .clickRegistrationAddress()
+                .selectRegRegion()
+                .selectRegDistrict()
+                .selectRegStreet()
+                .inputRegHouse(regHouse)
+                .inputRegApartment(regApartment)
+                .clickAddRegAddressButton();
+    }
+
+    public void selectLivingAddress(String livingHouse, String livingApartment) {
+        becomeClientPage
+                .clickLivingAddress()
+                .selectLivingRegion()
+                .selectLivingDistrict()
+                .selectLivingStreet()
+                .inputLivingHouse(livingHouse)
+                .inputLivingApartment(livingApartment)
+                .clickAddLivingAddressButton();
+    }
+
+    public void selectSameAddressCheckbox() {
+        becomeClientPage
+                .selectSameAddressCheckbox();
+    }
+
+    public void inputPersonalDataSecondPart(
+            String birthSurname,
+            String codeWord
+    ) {
+        becomeClientPage
+                .inputBirthSurname(birthSurname)
+                .inputCodeWord(codeWord)
+                .clickAgreeToGetNewslettersCheckbox()
+                .clickContinueButton();
     }
 
     public void becomeClientByOpenAccountForNFD(String authPhone, String authIin) {
         becomeClientPage
-                .becomeClientButton()
                 .clickAccountForNFDBlock()
-                .inputAuthPhone(authPhone)
-                .inputAuthIin(authIin)
-                .clickVerifyButton();
-    }
-
-    public void becomeClientByOpenAccountForEPV(String authPhone, String authIin) {
-        becomeClientPage
-                .becomeClientButton()
-                .clickAccountForEPVBlock()
                 .inputAuthPhone(authPhone)
                 .inputAuthIin(authIin)
                 .clickVerifyButton();

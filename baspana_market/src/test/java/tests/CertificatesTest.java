@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -36,7 +37,8 @@ public class CertificatesTest extends BaseTest {
             certificatesSteps.getAccountCertificate();
         });
         Assert.assertEquals(
-                "Справка сформирована", elementsAttributes.getValue(CERTIFICATE_GENERATED_NOTIFICATION)
+                CharacterSetConstants.CERTIFICATE_GENERATED_TEXT,
+                elementsAttributes.getValue(CERTIFICATE_GENERATED_NOTIFICATION)
         );
     }
 
@@ -50,7 +52,8 @@ public class CertificatesTest extends BaseTest {
             certificatesSteps.getLoanDebtCertificate();
         });
         Assert.assertEquals(
-                "Справка сформирована", elementsAttributes.getValue(CERTIFICATE_GENERATED_NOTIFICATION)
+                CharacterSetConstants.CERTIFICATE_GENERATED_TEXT,
+                elementsAttributes.getValue(CERTIFICATE_GENERATED_NOTIFICATION)
         );
     }
 }

@@ -19,6 +19,10 @@ public class ProfileTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.loginButton();
+        loginSteps.login(config.client_for_login(), config.client_for_password());
+        profileSteps.navigateToProfile();
     }
 
     @Test(description="Изменить номер телефона", groups = {"automated"})
@@ -26,15 +30,6 @@ public class ProfileTest extends BaseTest {
     @Description("")
     @Severity(SeverityLevel.NORMAL)
     public void editPhoneNumber() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Установить новый номер телефона", () -> {
             profileSteps.editPhoneNumber(config.client_for_login());
         });
@@ -46,15 +41,6 @@ public class ProfileTest extends BaseTest {
     @Description("")
     @Severity(SeverityLevel.NORMAL)
     public void editIdentificationData() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Удостоверение личности", () -> {
             profileSteps.editIdentification();
         });
@@ -66,15 +52,6 @@ public class ProfileTest extends BaseTest {
     @Description("")
     @Severity(SeverityLevel.NORMAL)
     public void editPersonalData() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Личные данные", () -> {
             profileSteps.editPersonalData("QA");
         });
@@ -86,15 +63,6 @@ public class ProfileTest extends BaseTest {
     @Description("Редактирование email клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changeEmail() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Установка нового email", () -> {
             profileSteps.setNewEmail(config.client_for_newEmail());
         });
@@ -108,15 +76,6 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация некорректного формата email")
     @Severity(SeverityLevel.NORMAL)
     public void validateInvalidNewEmail() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Установка нового email", () -> {
             profileSteps.setNewEmail("invalidEmail");
         });
@@ -130,15 +89,6 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация подтверждения пароля")
     @Severity(SeverityLevel.NORMAL)
     public void validateNewPasswordConfirmation() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Ввод текущего и нового пароля", () -> {
             profileSteps.inputCurrentAndNewPassword(
                     config.client_for_password(),
@@ -157,15 +107,6 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация текущего пароля")
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Ввод текущего и нового пароля", () -> {
             profileSteps.inputCurrentAndNewPassword(
                     config.client_for_password(), config.client_for_password(), config.client_for_password()
@@ -184,15 +125,6 @@ public class ProfileTest extends BaseTest {
     @Description("Успешное изменение пароля клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changePassword() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Авторизация", () -> {
-            loginSteps.login(config.client_for_login(), config.client_for_password());
-        });
-        step("Перейти в профиль", () -> {
-            profileSteps.navigateToProfile();
-        });
         step("Ввод текущего и нового пароля", () -> {
             profileSteps.inputCurrentAndNewPassword(
                     config.client_for_password(), config.client_for_password(), config.client_for_password()

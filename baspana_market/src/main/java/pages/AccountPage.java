@@ -42,10 +42,6 @@ public class AccountPage extends BasePage {
     private static final By OTHER_BANK_NAME = By.xpath("//div[@class='checkBox-Banks'] /div[2]");
     private static final By OTHER_BANK_CONTINUE_BUTTON_ = By.xpath("//div[@class='Button-SMS'] /button");
 
-
-
-
-
     public AccountPage(WebDriver driver) {
         super(driver);
     }

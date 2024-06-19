@@ -192,4 +192,28 @@ public class FooterTest extends BaseTest {
         brManager.switchToLastTab();
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.youtubeUrl());
     }
+
+    @Test(description="Ссылка AppStore", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Редирект на страницу AppStore")
+    @Severity(SeverityLevel.MINOR)
+    public void navigateToAppStore() {
+        step("Навигация на страницу AppStore", () -> {
+            footerSteps.navigateToAppStorePage();
+        });
+        brManager.switchToLastTab();
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.appStoreUrl());
+    }
+
+    @Test(description="Ссылка GooglePlay", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Редирект на страницу GooglePlay")
+    @Severity(SeverityLevel.MINOR)
+    public void navigateToGooglePlay() {
+        step("Навигация на страницу GooglePlay", () -> {
+            footerSteps.navigateToGooglePlayPage();
+        });
+        brManager.switchToLastTab();
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.googlePlayUrl());
+    }
 }
