@@ -10,7 +10,7 @@ import static io.qameta.allure.Allure.step;
 import static pages.MainPage.*;
 
 @Owner("Алибек Акылбеков")
-@Feature("Функционал главной страницы")
+@Feature("Главная страница")
 public class MainTest extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")
     public void setUpMethod() {

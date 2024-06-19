@@ -27,6 +27,7 @@ public class DepositTest extends BaseTest {
         depositSteps.selectMyBankMenu();
     }
 
+    //нужна учетка
     @Test(description="Открыть депозит Баспана", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Открыть депозит Баспана")
@@ -45,7 +46,7 @@ public class DepositTest extends BaseTest {
         });
     }
 
-    @Test(description="Открыть депозит Баспана. Обратитесь в отделение", groups = {"automated"})
+    @Test(description="Открыть депозит Баспана => Обратитесь в отделение", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - Обратитесь в отделение")
     @Severity(SeverityLevel.NORMAL)
@@ -63,7 +64,7 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Открыть образовательный вклад «AQYL». Валидация счета", groups = {"automated"})
+    @Test(description="Открыть образовательный вклад «AQYL» => Валидация счета", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - отсутствует текущий счет")
     @Severity(SeverityLevel.NORMAL)
@@ -81,7 +82,7 @@ public class DepositTest extends BaseTest {
     }
 
     //Add case - нужна учетка для реализации кейса по изменению гос.премии
-    @Test(description="Изменить гос.премию текущего депозита. Валидация имеющейся премии", groups = {"automated"})
+    @Test(description="Изменить гос.премию текущего депозита => Валидация имеющейся премии", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить гос.премию - Премия пристуствует")
     @Severity(SeverityLevel.NORMAL)
@@ -148,11 +149,11 @@ public class DepositTest extends BaseTest {
         Assert.assertEquals(config.familyDepositName(), elementsAttributes.getValue(CREATED_FAMILY_PACKAGE_NAME));
     }
 
-    @Test(description="Добавить участника семейного пакета. Валидация степени родства", groups = {"automated"})
+    @Test(description="Добавить участника семейного пакета => Валидация степени родства", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация степени родства")
     @Severity(SeverityLevel.NORMAL)
-    public void tryAddMemberWithoutSelectRelationDegree() {
+    public void tryAddMember_WithoutSelectRelationDegree() {
         step("Перейти в меню Депозиты", () -> {
             depositSteps.selectDepositsMenu();
         });
@@ -170,11 +171,11 @@ public class DepositTest extends BaseTest {
 
 
     //BUG: ввести валидный левый ИИН => ошибка альтКода, ввести не валидный ИИН => валидация регистрации ?!
-    @Test(description="Добавить участника семейного пакета. Валидация ИИН", groups = {"automated"})
+    @Test(description="Добавить участника семейного пакета => Валидация ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация ИИН")
     @Severity(SeverityLevel.NORMAL)
-    public void tryAddFamilyPackageMemberWithInvalidIin() {
+    public void tryAddFamilyPackageMember_WithInvalidIin() {
         step("Перейти в меню Депозиты", () -> {
             depositSteps.selectDepositsMenu();
         });
@@ -190,11 +191,11 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Добавить участника семейного пакета. Валидация алтернативного кода", groups = {"automated"})
+    @Test(description="Добавить участника семейного пакета => Валидация алтернативного кода", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация алтернативного кода")
     @Severity(SeverityLevel.NORMAL)
-    public void tryAddFamilyPackageMemberWithInvalidAltCode() {
+    public void tryAddFamilyPackageMember_WithInvalidAltCode() {
         step("Перейти в меню Депозиты", () -> {
             depositSteps.selectDepositsMenu();
         });

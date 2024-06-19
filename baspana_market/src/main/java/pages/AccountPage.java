@@ -21,16 +21,22 @@ public class AccountPage extends BasePage {
 
     private static final By OPEN_CURRENT_ACCOUNT_BUTTON = By.id("btnOpenCurAccount");
     private static final By FURTHER_BUTTON = By.id("btnOnboardingNext");
-    private static final By SELECT_ACCOUNT_TYPE = By.id("//div[@id='account1']//label[2]");
+    private static final By SELECT_ACCOUNT_TYPE = By.id("//span[text()='Платежи за аренду жилища']");
     private static final By CURRENT_ACCOUNT_CONTINUE_BUTTON = By.id("btnOpenNewCurAccountNext");
     private static final By CURRENT_ACCOUNT_AGREEMENT_CHECKBOX = By.id("fatca-check");
     private static final By CURRENT_ACCOUNT_CONFIRM = By.id("fatca-button");
-    private static final By CURRENT_ACCOUNT_OTP = By.id("inputOtpCode");
-    private static final By CURRENT_ACCOUNT_CONTINUE_BUTTON_ = By.id("//div[@class='deposit_check_submit'] /button");
-    private static final By CURRENT_ACCOUNT_SEND_BUTTON = By.id("//div[@id='RateStar'] //div[@class='modal-footer']/button[1]");
-    public static final By CURRENT_ACCOUNT_SUCCESS = By.id("//div[@id='account4']//h2");//операция успешно завершена!
+    private static final By NOTIFICATION_BUTTON = By.cssSelector(".modal-footer [onclick='modalNotificationCloseClick()']");
+    private static final By STATEMENT_OTP = By.id("inputOtpCode");
+    private static final By STATEMENT_CONTINUE_BUTTON = By.cssSelector(".deposit_check_submit button");
+    private static final By SEND_RATE_BUTTON = By.cssSelector("[onclick='SendRate()']");
+    public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".part-pay_complete_content h2");
+    public static final By NOTIFICATION_TEXT = By.cssSelector("label#modalNotificationBody");
 
-    public static final By NOTIFICATION_TEXT = By.id("modalNotificationBody");
+    public static final By EXISTED_CURRENT_ACCOUNT = By.cssSelector(".card.account");
+
+
+
+
     private static final By AGREEMENT_CHECKBOX = By.id("formCheckOne");
     private static final By CONFIRM_BUTTON = By.id("formButtonOne");
     private static final By SIGN_BUTTON = By.id("firstSendCode");
@@ -100,7 +106,6 @@ public class AccountPage extends BasePage {
         return this;
     }
 
-
     @Step("Click open current account button")
     public AccountPage clickOpenCurrentAccountButton() {
         button.btnClick(OPEN_CURRENT_ACCOUNT_BUTTON);
@@ -139,21 +144,21 @@ public class AccountPage extends BasePage {
         return this;
     }
 
-    @Step("Input otp")
-    public AccountPage inputOTP(String otp) {
-        input.inputWithClear(CURRENT_ACCOUNT_OTP, otp);
+    @Step("Click close modal notification button")
+    public AccountPage clickCloseModalNotificationButton() {
+        button.btnClick(NOTIFICATION_BUTTON);
         return this;
     }
 
-    @Step("Click continue")
-    public AccountPage clickContinue() {
-        button.btnClick(CURRENT_ACCOUNT_CONTINUE_BUTTON_);
+    @Step("Input statement otp")
+    public AccountPage inputStatementOTP(String otp) {
+        input.inputWithClear(STATEMENT_OTP, otp);
         return this;
     }
 
-    @Step("Click send")
-    public AccountPage clickSend() {
-        button.btnClick(CURRENT_ACCOUNT_SEND_BUTTON);
+    @Step("Click statement continue button")
+    public AccountPage clickStatementContinueButton() {
+        button.btnClick(STATEMENT_CONTINUE_BUTTON);
         return this;
     }
 

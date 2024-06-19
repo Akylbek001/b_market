@@ -9,11 +9,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.FeedbackPage.CALLBACK_SUCCESSFUL_SENT;
-import static pages.FeedbackPage.CAPTCHA;
+import static pages.FeedbackPage.*;
 
 @Owner("Алибек Акылбеков")
-@Feature("Функционал обратной связи")
+@Feature("Обратная связь")
 public class FeedbackTest extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")
     public void setUpMethod() {
@@ -84,45 +83,18 @@ public class FeedbackTest extends BaseTest {
 
 
     //BUG - данные страницы на казахском, хотя локаль не менялась с русского на осн.странице
-    @Test(description="Оставить отзыв. Вопрос", groups = {"automated"}, enabled = false)
+    @Test(description="Оставить отзыв => Вопрос", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Вопрос")
     @Severity(SeverityLevel.NORMAL)
-    public void leaveFeedbackQuestion() {
+    public void leaveFeedback_question() {
         step("Вызвать меню Связаться", () -> {
             feedbackSteps.clickContactIcon();
         });
         step("Перейти на страницу отзыва", () -> {
             feedbackSteps.clickLeaveFeedbackIcon();
         });
-        step("Заполнение формы обратной связи", () -> {
-            brManager.switchToLastTab();
-            feedbackSteps.leaveFeedback(
-                    config.guestLastName(),
-                    config.guestName(),
-                    config.guestSureName(),
-                    config.guestPhone(),
-                    config.guestEmail(),
-                    config.guestIin(),
-                    config.guestName(),
-                    elementsAttributes.getValue(CAPTCHA));
-        });
-        Assert.assertTrue(true);
-    }
-
-    //разделены steps по заполнению данных, второй step - выбор вида отзыва
-    @Test(description="Оставить отзыв. Предложение", groups = {"automated"}, enabled = false)
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Предложение")
-    @Severity(SeverityLevel.NORMAL)
-    public void leaveFeedbackOffer() {
-        step("Вызвать меню Связаться", () -> {
-            feedbackSteps.clickContactIcon();
-        });
-        step("Перейти на страницу отзыва", () -> {
-            feedbackSteps.clickLeaveFeedbackIcon();
-        });
-        step("Заполнение персональных данных", () -> {
+        step("Заполненить персональные данные", () -> {
             brManager.switchToLastTab();
             feedbackSteps.fillPersonalData(
                     config.guestLastName(),
@@ -132,62 +104,111 @@ public class FeedbackTest extends BaseTest {
                     config.guestEmail(),
                     config.guestIin());
         });
-        step("Выбор вида отзыва", () -> {
-            feedbackSteps.feedbackType(config.guestName(), elementsAttributes.getValue(CAPTCHA));
+        step("Выбрать вид обращения", () -> {
+            feedbackSteps.selectFeedbackType_question();
         });
-        Assert.assertTrue(true);
+        step("Заполнить текст обращения(capture) и отправить", () -> {
+            feedbackSteps.setCaptureTextAndSend(config.guestName(), elementsAttributes.getValue(CAPTCHA));
+        });
+        Assert.assertEquals(
+                elementsAttributes.getValue(REQUEST_NOTIFICATION), CharacterSetConstants.REQUEST_BEEN_ACCEPTED_TEXT
+        );
     }
 
-    @Test(description="Оставить отзыв", groups = {"automated"}, enabled = false)
+    @Test(description="Оставить отзыв => Предложение", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Предложение")
+    @Severity(SeverityLevel.NORMAL)
+    public void leaveFeedback_proposal() {
+        step("Вызвать меню Связаться", () -> {
+            feedbackSteps.clickContactIcon();
+        });
+        step("Перейти на страницу отзыва", () -> {
+            feedbackSteps.clickLeaveFeedbackIcon();
+        });
+        step("Заполненить персональные данные", () -> {
+            brManager.switchToLastTab();
+            feedbackSteps.fillPersonalData(
+                    config.guestLastName(),
+                    config.guestName(),
+                    config.guestSureName(),
+                    config.guestPhone(),
+                    config.guestEmail(),
+                    config.guestIin());
+        });
+        step("Выбрать вид обращения", () -> {
+            feedbackSteps.selectFeedbackType_proposal();
+        });
+        step("Заполнить текст обращения(capture) и отправить", () -> {
+            feedbackSteps.setCaptureTextAndSend(config.guestName(), elementsAttributes.getValue(CAPTCHA));
+        });
+        Assert.assertEquals(
+                elementsAttributes.getValue(REQUEST_NOTIFICATION), CharacterSetConstants.REQUEST_BEEN_ACCEPTED_TEXT
+        );
+    }
+
+    @Test(description="Оставить отзыв => Жалоба", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Жалоба")
     @Severity(SeverityLevel.NORMAL)
-    public void leaveFeedbackComplaint() {
+    public void leaveFeedback_complaint() {
         step("Вызвать меню Связаться", () -> {
             feedbackSteps.clickContactIcon();
         });
         step("Перейти на страницу отзыва", () -> {
             feedbackSteps.clickLeaveFeedbackIcon();
         });
-        step("Заполнение формы обратной связи", () -> {
+        step("Заполненить персональные данные", () -> {
             brManager.switchToLastTab();
-            feedbackSteps.leaveFeedback(
+            feedbackSteps.fillPersonalData(
                     config.guestLastName(),
                     config.guestName(),
                     config.guestSureName(),
                     config.guestPhone(),
                     config.guestEmail(),
-                    config.guestIin(),
-                    config.guestName(),
-                    elementsAttributes.getValue(CAPTCHA));
+                    config.guestIin());
         });
-        Assert.assertTrue(true);
+        step("Выбрать вид обращения", () -> {
+            feedbackSteps.selectFeedbackType_complaint();
+        });
+        step("Заполнить текст обращения(capture) и отправить", () -> {
+            feedbackSteps.setCaptureTextAndSend(config.guestName(), elementsAttributes.getValue(CAPTCHA));
+        });
+        Assert.assertEquals(
+                elementsAttributes.getValue(REQUEST_NOTIFICATION), CharacterSetConstants.REQUEST_BEEN_ACCEPTED_TEXT
+        );
     }
 
-    @Test(description="Оставить отзыв", groups = {"automated"}, enabled = false)
+    @Test(description="Оставить отзыв => Благодарность", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Благодарность")
     @Severity(SeverityLevel.NORMAL)
-    public void leaveFeedbackGratitude() {
+    public void leaveFeedback_gratitude() {
         step("Вызвать меню Связаться", () -> {
             feedbackSteps.clickContactIcon();
         });
         step("Перейти на страницу отзыва", () -> {
             feedbackSteps.clickLeaveFeedbackIcon();
         });
-        step("Заполнение формы обратной связи", () -> {
+        step("Заполненить персональные данные", () -> {
             brManager.switchToLastTab();
-            feedbackSteps.leaveFeedback(
+            feedbackSteps.fillPersonalData(
                     config.guestLastName(),
                     config.guestName(),
                     config.guestSureName(),
                     config.guestPhone(),
                     config.guestEmail(),
-                    config.guestIin(),
-                    config.guestName(),
-                    elementsAttributes.getValue(CAPTCHA));
+                    config.guestIin());
         });
-        Assert.assertTrue(true);
+        step("Выбрать вид обращения", () -> {
+            feedbackSteps.selectFeedbackType_gratitude();
+        });
+        step("Заполнить текст обращения(capture) и отправить", () -> {
+            feedbackSteps.setCaptureTextAndSend(config.guestName(), elementsAttributes.getValue(CAPTCHA));
+        });
+        Assert.assertEquals(
+                elementsAttributes.getValue(REQUEST_NOTIFICATION), CharacterSetConstants.REQUEST_BEEN_ACCEPTED_TEXT
+        );
     }
 
     @Test(description="WhatsApp", groups = {"automated"})

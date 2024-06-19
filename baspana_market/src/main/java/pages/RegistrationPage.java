@@ -36,7 +36,9 @@ public class RegistrationPage extends BasePage {
 
     @Step("Click resister link")
     public RegistrationPage clickRegister() {
-        elementsAttributes.waitUntilTextPresent(REGISTRATION_LINK_LOCATOR, "Зарегистрироваться");
+        WaitUtils.wait(2);
+
+//        elementsAttributes.waitUntilTextPresent(REGISTRATION_LINK_LOCATOR, "Зарегистрироваться");
         button.btnClick(REGISTRATION_LINK_LOCATOR);
         return this;
     }

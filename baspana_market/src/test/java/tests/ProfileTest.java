@@ -25,6 +25,7 @@ public class ProfileTest extends BaseTest {
         profileSteps.navigateToProfile();
     }
 
+    //изменить можно раз в 90 дней
     @Test(description="Изменить номер телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
@@ -36,6 +37,7 @@ public class ProfileTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
+    //нужна учетка
     @Test(description="Удостоверение личности", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
@@ -47,6 +49,7 @@ public class ProfileTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
+    //нужна учетка
     @Test(description="Изменить личные данные", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
@@ -58,6 +61,7 @@ public class ProfileTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
+    //нужна учетка
     @Test(description="Изменить email", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редактирование email клиента")
@@ -71,7 +75,7 @@ public class ProfileTest extends BaseTest {
         );
     }
 
-    @Test(description="Изменить email. Валидация формата email", groups = {"automated"})
+    @Test(description="Изменить email => Валидация формата email", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного формата email")
     @Severity(SeverityLevel.NORMAL)
@@ -84,7 +88,7 @@ public class ProfileTest extends BaseTest {
         );
     }
 
-    @Test(description="Изменить пароль. Валидация подтверждения пароля", groups = {"automated"})
+    @Test(description="Изменить пароль => Валидация подтверждения пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация подтверждения пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -102,7 +106,7 @@ public class ProfileTest extends BaseTest {
         );
     }
 
-    @Test(description="Изменить пароль. Валидация текущего пароля", groups = {"automated"})
+    @Test(description="Изменить пароль => Валидация текущего пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация текущего пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -120,14 +124,15 @@ public class ProfileTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    @Test(description="Изменить пароль", groups = {"automated"}, enabled = false)
+    //нужна учетка - повторно изменить пороль после запуска теста
+    @Test(description="Изменить пароль", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение пароля клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changePassword() {
         step("Ввод текущего и нового пароля", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.client_for_password(), config.client_for_password(), config.client_for_password()
+                    config.client_for_password(), config.client_for_newPassword(), config.client_for_newPassword()
             );
             profileSteps.confirmPasswordChange();
         });

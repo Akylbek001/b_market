@@ -30,16 +30,16 @@ public class ProfilePage extends BasePage {
     public static final By INVALID_EMAIL_TEXT_LOCATOR = By.id("emailError");
     private static final By NEW_EMAIL_INPUT = By.id("inputEmail");
     private static final By CHANGE_EMAIL_BUTTON = By.id("changeEmailButton");
-    public static final By EMAIL_SUCCESSFULLY_CHANGED = By.xpath("//span[@class='ob-bodyL']");
+    public static final By EMAIL_SUCCESSFULLY_CHANGED = By.cssSelector(".ob__bodyL");
     private static final By CHANGE_PASSWORD_LOCATOR = By.xpath(
             "//*[contains(text(), 'Изменить пароль')]"
     );
     private static final By OLD_PASSWORD = By.id("passwordOld");
     private static final By NEW_PASSWORD = By.id("passwordNew");
     private static final By REPEAT_NEW_PASSWORD_ = By.id("passwordRepeat");
-    private static final By CHANGE_PASSWORD_BUTTON = By.id("changePasswordButton");
-    public static final By PASSWORD_CONFIRMATION_ERROR_LOCATOR = By.xpath(
-            "//span[@class='ob-bodyM ob-error hidden passwordError']"
+    public static final By CHANGE_PASSWORD_BUTTON = By.id("changePasswordButton");
+    public static final By PASSWORD_CONFIRMATION_ERROR_LOCATOR = By.cssSelector(
+            ".ob__bodyM.ob__error.hidden.passwordError"
     );
     private static final By MY_BANK_MENU = By.id("menu2");
 

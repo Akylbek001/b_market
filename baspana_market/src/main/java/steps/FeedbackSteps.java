@@ -86,13 +86,35 @@ public class FeedbackSteps {
                 .inputFeedbackIin(iin);
     }
 
-    public void feedbackType(String text, String captcha) {
+    public void selectFeedbackType_question() {
         feedbackPage
                 .clickAppealType()
-                .selectProposal() // выбирается вид обращения - в данной случае - "предложение"
+                .selectQuestion();
+    }
+
+    public void selectFeedbackType_proposal() {
+        feedbackPage
+                .clickAppealType()
+                .selectProposal();
+    }
+
+    public void selectFeedbackType_complaint() {
+        feedbackPage
+                .clickAppealType()
+                .selectComplaint();
+    }
+
+    public void selectFeedbackType_gratitude() {
+        feedbackPage
+                .clickAppealType()
+                .selectGratitude();
+    }
+
+    public void setCaptureTextAndSend(String text, String captcha) {
+        feedbackPage
                 .inputQuestionText(text)
-                .inputCaptchaValue(captcha);
-//                .clickSendButton();
+                .inputCaptchaValue(captcha)
+                .clickFeedbackSendButton();
     }
 
     public void navigateToWhatsApp() {

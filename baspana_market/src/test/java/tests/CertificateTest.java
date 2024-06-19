@@ -13,7 +13,7 @@ import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
 
 @Owner("Алибек Акылбеков")
 @Feature("Справки")
-public class CertificatesTest extends BaseTest {
+public class CertificateTest extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")
     public void setUpMethod() {
         brManager.clearCache();

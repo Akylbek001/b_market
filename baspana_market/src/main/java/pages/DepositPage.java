@@ -11,7 +11,7 @@ public class DepositPage extends BasePage {
     private static final By DEPOSITS = By.xpath(
             "//div[@class='menu-list']//*[contains(text(), 'Депозиты')]"
     );
-    private static final By MY_DEPOSIT_LABEL = By.xpath("//label[@role='option']");
+    private static final By MY_DEPOSIT_LABEL = By.cssSelector("[role='option']");
     private static final By NEW_DEPOSIT_BUTTON = By.id("OpenButtons");
     private static final By OPEN_BASPANA_DEPOSIT = By.xpath(
             "//div[@id='baspana'] //span[@class='ob-bodyM']"
@@ -20,8 +20,6 @@ public class DepositPage extends BasePage {
     private static final By OPEN_CONTRIBUTION_AQYL = By.id("openAqylDeposit");
     private static final By CONTINUE_OPEN_CONTRIBUTION_AQYL_BUTTON = By.xpath("//div[@class='modal fade show'] //button[@id='continueOpenChildDeposit']");
     public static final By NEED_ACCOUNT_NOTIFICATION = By.id("reasonAqyl");
-
-
 
     private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.xpath(
             "//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']"
@@ -39,6 +37,9 @@ public class DepositPage extends BasePage {
 
     private static final By AVAILABLE_OPERATIONS = By.id("checBlock");
     private static final By CHANGE_GOS_PREM_OPERATION = By.id("changeGosPremButton");
+    private static final By DEPOSIT_LIST_FOR_GOS_PREM = By.cssSelector(".body-block");
+
+
     private static final By SELECT = By.id("next-step");
 
     private static final By TERMINATE_DEPOSIT_OPERATION = By.id("terminateDeposit");
@@ -62,8 +63,7 @@ public class DepositPage extends BasePage {
     private static final By  RELATION_DEGREE_VALUE = By.xpath("//ul[@class='select-options'] /li[@rel='SPOS']");
     private static final By  INVITED_IIN = By.id("inputInviteIIN");
     private static final By  INVITED_ALTERNATIVE_CODE = By.id("inputInviteAlterCode");
-    public static final By INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION = By.id("modalNotificationBody");
-
+    public static final By INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION = By.cssSelector("label#modalNotificationBody");
 
     private static final By  ADD_MEMBER_BUTTON = By.id("btnAddMember");
     public static final By ADDED_FAMILY_MEMBER_FIO = By.xpath("//div[@class='family-members'][2] //div[@class='col-sm-4'] /h6");

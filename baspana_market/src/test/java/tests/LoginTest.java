@@ -21,7 +21,7 @@ public class LoginTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Клиент. Авторизация с помощью логина и пароля", groups = {"automated"})
+    @Test(description="Клиент => Авторизация {логин & пароль}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Клиент. Успешная авторизация")
     @Severity(SeverityLevel.NORMAL)
@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Клиент. Авторизация.Не корректный логин {номер телефона}", groups = {"automated"})
+    @Test(description="Клиент_Авторизация => Не корректный логин {номер телефона}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного логина ")
     @Severity(SeverityLevel.NORMAL)
@@ -50,7 +50,7 @@ public class LoginTest extends BaseTest {
                 CharacterSetConstants.UNEXPECTED_ERROR,elementsAttributes.getValue(WRONG_CREDENTIALS_TEXT));
     }
 
-    @Test(description="Клиент. Авторизация. Не корректный пароль", groups = {"automated"})
+    @Test(description="Клиент_ Авторизация => Не корректный пароль", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -67,7 +67,7 @@ public class LoginTest extends BaseTest {
         );
     }
 
-    @Test(description="Гость. Авторизация с помощью логина и пароля", groups = {"automated"})
+    @Test(description="Гость => Авторизация {логин & пароль}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Гость. Успешная авторизация")
     @Severity(SeverityLevel.NORMAL)
@@ -84,7 +84,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.GUEST_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Гость. Авторизация.Не корректный логин {номер телефона}", groups = {"automated"})
+    @Test(description="Гость_Авторизация => Не корректный логин {номер телефона}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного логина ")
     @Severity(SeverityLevel.NORMAL)
@@ -102,7 +102,7 @@ public class LoginTest extends BaseTest {
                 CharacterSetConstants.INVALID_GUEST_NAME_OR_PASSWORD,elementsAttributes.getValue(WRONG_CREDENTIALS_TEXT));
     }
 
-    @Test(description="Гость. Авторизация. Не корректный пароль", groups = {"automated"})
+    @Test(description="Гость_Авторизация => Не корректный пароль", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -151,7 +151,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Восстановление пароля. Валидация данных", groups = {"automated"})
+    @Test(description="Восстановление пароля => Валидация данных", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Проверка валидации при установке существующего пароля в виде нового пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -173,7 +173,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля. Валидация смс-кода", groups = {"automated"}, enabled = false)
+    @Test(description="Восстановление пароля => Валидация смс-кода", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация смс-кода")
     @Severity(SeverityLevel.NORMAL)
@@ -199,7 +199,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля по номеру документа. Валидация пароля", groups = {"automated"}, enabled = false)
+    @Test(description="Восстановление пароля по номеру документа => Валидация пароля", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация пароля подтверждения")
     @Severity(SeverityLevel.NORMAL)
@@ -261,7 +261,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Восстановление пароля по альтернативному коду. Пользователь не найден", groups = {"automated"})
+    @Test(description="Восстановление пароля по альтернативному коду => Пользователь не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Пользователь не найден")
     @Severity(SeverityLevel.NORMAL)
@@ -285,7 +285,7 @@ public class LoginTest extends BaseTest {
         );
     }
 
-    @Test(description="Изменение номера телефона. Валидация текущего логина", groups = {"automated"})
+    @Test(description="Изменение номера телефона => Валидация текущего логина", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация текущего логина")
     @Severity(SeverityLevel.NORMAL)
@@ -293,7 +293,7 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть Измеить номер телефона", () -> {
+        step("Кликнуть Изменить номер телефона", () -> {
             loginSteps.clickChangePhoneNumberLink();
         });
         step("Заполненить инн и логин", () -> {
@@ -316,7 +316,7 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть Измеить номер телефона", () -> {
+        step("Кликнуть Изменить номер телефона", () -> {
             loginSteps.clickChangePhoneNumberLink();
         });
         step("Заполненить инн и логин", () -> {
@@ -330,7 +330,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Изменение номера телефона. Ошибка биометрии", groups = {"automated"})
+    @Test(description="Изменение номера телефона => Ошибка биометрии", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Ошибка биометрии")
     @Severity(SeverityLevel.NORMAL)
@@ -338,7 +338,7 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть Измеить номер телефона", () -> {
+        step("Кликнуть Изменить номер телефона", () -> {
             loginSteps.clickChangePhoneNumberLink();
         });
         step("Заполненить инн и логин", () -> {

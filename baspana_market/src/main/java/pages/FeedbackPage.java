@@ -41,10 +41,15 @@ public class FeedbackPage extends BasePage {
     private static final By FEEDBACK_QUESTION = By.xpath("//*[label='Сіздің сұрағыңыз']/textarea");
 
     private static final By APPEAL_TYPE_LIST = By.xpath("//span[@class='p-dropdown-label p-inputtext' and text()='Сұрақ']");
+    private static final By QUESTION = By.xpath("//*[text()='Сұрақ']");
     private static final By PROPOSAL = By.xpath("//*[text()='Ұсыныс']");
+    private static final By COMPLAINT = By.xpath("//*[text()='Шағым']");
+    private static final By GRATITUDE = By.xpath("//*[text()='Алғыс']");
 
     public static final By CAPTCHA = By.xpath("//span[@class='captcha']");
     private static final By CAPTCHA_VALUE_INPUT = By.xpath("//*[label='Мәтінді енгізіңіз']/input");
+    public static final By REQUEST_NOTIFICATION = By.cssSelector(".tw-text-center");
+
 
     public FeedbackPage(WebDriver driver) {
         super(driver);
@@ -224,9 +229,30 @@ public class FeedbackPage extends BasePage {
         return this;
     }
 
+    @Step("Select question")
+    public FeedbackPage selectQuestion() {
+        button.btnClick(QUESTION);
+        WaitUtils.wait(1);
+        return this;
+    }
+
     @Step("Select proposal")
     public FeedbackPage selectProposal() {
         button.btnClick(PROPOSAL);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select complaint")
+    public FeedbackPage selectComplaint() {
+        button.btnClick(COMPLAINT);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select gratitude")
+    public FeedbackPage selectGratitude() {
+        button.btnClick(GRATITUDE);
         WaitUtils.wait(1);
         return this;
     }
@@ -240,6 +266,7 @@ public class FeedbackPage extends BasePage {
     @Step("Input captcha value")
     public FeedbackPage inputCaptchaValue(String captcha) {
         input.inputWithClear(CAPTCHA_VALUE_INPUT, captcha);
+        WaitUtils.wait(1);
         return this;
     }
 }

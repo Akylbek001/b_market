@@ -9,8 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.AccountPage.CURRENT_ACCOUNT_SUCCESS;
-import static pages.AccountPage.NOTIFICATION_TEXT;
+import static pages.AccountPage.*;
 
 @Owner("Алибек Акылбеков")
 @Feature("Счета")
@@ -21,11 +20,11 @@ public class AccountTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
-        mainSteps.loginButton();
-        loginSteps.login(
-                config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-        profileSteps.navigateToProfile();
-        depositSteps.selectMyBankMenu();
+//        mainSteps.loginButton();
+//        loginSteps.login(
+//                config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+//        profileSteps.navigateToProfile();
+//        depositSteps.selectMyBankMenu();
     }
 
     @Test(description="Открыть текущий счет", groups = {"automated"})
@@ -33,6 +32,13 @@ public class AccountTest extends BaseTest {
     @Description("Текущий счет")
     @Severity(SeverityLevel.NORMAL)
     public void openCurrentAccount() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
         step("Перейти в меню Счета", () -> {
             accountSteps.selectAccountsMenu();
         });
@@ -44,15 +50,23 @@ public class AccountTest extends BaseTest {
             accountSteps.openCurrentAccountContinue(config.smsCode());
         });
         Assert.assertEquals(
-                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_REFUSED, elementsAttributes.getValue(CURRENT_ACCOUNT_SUCCESS)
+                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_REFUSED,
+                elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
         );
     }
 
-    @Test(description="Открыть текущий счет - Валидация налогоплательщика", groups = {"automated"})
+    @Test(description="Открыть текущий счет => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.NORMAL)
     public void tryOpenCurrentAccount() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
         step("Перейти в меню Счета", () -> {
             accountSteps.selectAccountsMenu();
         });
@@ -73,6 +87,13 @@ public class AccountTest extends BaseTest {
     @Description("Счет для ЕПВ")
     @Severity(SeverityLevel.NORMAL)
     public void openAccountForEPV() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
         step("Перейти в меню Счета", () -> {
             accountSteps.selectAccountsMenu();
         });
@@ -86,11 +107,18 @@ public class AccountTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Открыть счет для ЕПВ - Валидация налогоплательщика", groups = {"automated"})
+    @Test(description="Открыть счет для ЕПВ => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.NORMAL)
     public void tryOpenAccountForEPV() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
         step("Перейти в меню Счета", () -> {
             accountSteps.selectAccountsMenu();
         });
@@ -113,6 +141,13 @@ public class AccountTest extends BaseTest {
     @Description("счет другого банка")
     @Severity(SeverityLevel.NORMAL)
     public void addOtherBankAccount() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
         step("Перейти в меню Счета", () -> {
             accountSteps.selectAccountsMenu();
         });

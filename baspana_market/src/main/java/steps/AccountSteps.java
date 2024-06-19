@@ -30,9 +30,10 @@ public class AccountSteps {
                 .clickContinueButton()
                 .clickAgreement()
                 .clickConfirm()
-                .inputOTP(otp)
-                .clickContinue()
-                .clickSend();
+                .clickCloseModalNotificationButton()
+                .inputStatementOTP(otp)
+                .clickStatementContinueButton();
+//                .clickSendRateButton();
     }
 
     public void openAccountForEpvAcceptAgreement() {
