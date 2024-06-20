@@ -31,7 +31,6 @@ public final class CharacterSetConstants {
     public static final String PASSWORD_CONFIRM_ERROR_TEXT = "Пароли не совпадают";
     public static final String INVALID_EMAIL_FORMAT_TEXT = "Вы ввели некорректный e-mail";
 
-    public static final String FEEDBACK_SENT_SUCCESSFULLY = "";
     public static final String CALLBACK_SUCCESS_TEXT = "Заявка успешно отправлена";
     public static final String CALLBACK_REFUSED_TEXT = "Оставьте свои данные, и мы перезвоним вам в рабочее время";
     public static final String GUEST_LOGIN_ALREADY_EXIST = "Пользователь с номером +77014640909 уже зарегистрирован";
@@ -45,7 +44,8 @@ public final class CharacterSetConstants {
     public static final String SELECTED_LOCATION = "ВКО";
 
     public static final String PHONE_NUMBER_ALREADY_CURRENT = "Көрсетілген телефон нөмірі қазірдің өзінде ағымдағы. / Указанный телефон уже актуален.";
-    public static final String CURRENT_ACCOUNT_OPEN_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
+    public static final String OPERATION_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
+    public static final String CURRENT_ACCOUNT_OPEN_SUCCESSFULLY ="Операция успешно завершена";
     public static final String OPEN_DEPOSIT_REFUSED = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
     public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Уважаемый клиент! Введенный Вами альтернативный код некорректный, просим проверить данные.";
     public static final String VALIDATION_OF_REGISTRATION = "Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Интернет банкинге/мобильном приложений, необходимо проверить наличие регистрации.";

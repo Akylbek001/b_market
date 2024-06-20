@@ -35,7 +35,7 @@ public class DepositPage extends BasePage {
     private static final By SHOW_DEPOSIT_DETAILS = By.id("text");
     private static final By CALCULATOR_OP_BUTTON = By.id("calculateOPButton");
 
-    private static final By AVAILABLE_OPERATIONS = By.id("checBlock");
+    private static final By AVAILABLE_OPERATIONS_WITH_DEPOSIT = By.id("checBlock");
     private static final By CHANGE_GOS_PREM_OPERATION = By.id("changeGosPremButton");
     private static final By DEPOSIT_LIST_FOR_GOS_PREM = By.cssSelector(".body-block");
 
@@ -112,7 +112,7 @@ public class DepositPage extends BasePage {
 
     @Step("Show available operations")
     public DepositPage showAvailableOperations() {
-        button.btnDoubleClick(AVAILABLE_OPERATIONS);
+        button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
         WaitUtils.wait(3);
         return this;
     }

@@ -135,6 +135,9 @@ public interface AppConfig extends Config {
     @Key("client.alternativeCode")
     String clientAlternativeCode();
 
+    @Key("client.iban")
+    String clientIban();
+
     @Key("user.iin")
     String userIin();
 
@@ -164,6 +167,9 @@ public interface AppConfig extends Config {
 
     @Key("familyDeposit.name")
     String familyDepositName();
+
+    @Key("sum.ToTransfer")
+    String sumToTransfer();
 
 
 

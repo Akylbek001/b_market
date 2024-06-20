@@ -20,20 +20,74 @@ public class AccountSteps {
     public void openCurrentAccount() {
         accountPage
                 .selectCurrentAccount()
-                .clickOpenCurrentAccountButton()
-                .clickFurtherButton();
+                .clickOpenCurrentAccountButton();
     }
 
     public void openCurrentAccountContinue(String otp) {
         accountPage
+                .clickFurtherButton()
                 .selectAccountType()
                 .clickContinueButton()
                 .clickAgreement()
                 .clickConfirm()
                 .clickCloseModalNotificationButton()
                 .inputStatementOTP(otp)
-                .clickStatementContinueButton();
-//                .clickSendRateButton();
+                .clickStatementContinueButton()
+                .clickSendRateButton();
+    }
+
+    public void openAvailableOperationsList() {
+        accountPage
+                .selectExistedCurrentAccount()
+                .openAvailableOperations();
+    }
+
+    public void transferToDebt() {
+        accountPage
+                .transferToDebt();
+    }
+
+    public void transferToOtbasyBankClient() {
+        accountPage
+                .transferToOtbasyBankClient();
+    }
+
+    public void searchOtbasyBankClient_byPhoneNumber(String number) {
+        accountPage
+                .inputPhoneNumber(number);
+    }
+
+    public void searchOtbasyBankClient_byAltCode(String code) {
+        accountPage
+                .selectAltCodeTab()
+                .inputAltCode(code);
+    }
+
+    public void validateOtbasyBankClient_byAltCode(String code) {
+        accountPage
+                .selectAltCodeTab()
+                .inputAltCodeForValidation(code);
+    }
+
+
+
+    public void transferToOtherBank() {
+        accountPage
+                .transferToOtherBank();
+    }
+
+    public void searchOtherBankIban(String iban) {
+        accountPage
+                .inputIban(iban);
+    }
+
+    public void transfer(String sum, String otp) {
+        accountPage
+                .inputSumToTransfer(sum)
+                .clickSendTransferButton()
+                .clickConfirmTransferButton()
+                .inputTransferOtp(otp)
+                .clickSendOtpButton();
     }
 
     public void openAccountForEpvAcceptAgreement() {
