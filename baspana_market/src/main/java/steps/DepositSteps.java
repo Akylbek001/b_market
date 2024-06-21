@@ -126,6 +126,27 @@ public class DepositSteps {
                 .clickDivideButton();
     }
 
+    public void selectUniteDepositOperation() {
+        depositPage
+                .selectUniteDepositOperation();
+    }
+
+
+    public void selectAssignmentGratuitousOperation(String iin, String otp) {
+        depositPage
+                .selectAssignmentGratuitousOperation()
+                .clickAssignmentGratuitousContinueButton()
+                .selectRelationDegree()
+                .inputIin(iin)
+                .clickAssignmentGratuitousContinueButton_()
+                .clickAssignmentGratuitousBiometryAgreement()
+                .clickStartBiometryButton()
+                .clickAssignmentGratuitousContinueButton_()
+                .inputSmsCode(otp)
+                .clickOtpConfirmButton();
+
+    }
+
     public void calculator() {
         depositPage
                 .showDepositDetails()

@@ -58,4 +58,5 @@ public final class CharacterSetConstants {
     public static final String CERTIFICATE_GENERATED_TEXT = "Справка сформирована";
     public static final String REQUEST_BEEN_ACCEPTED_TEXT = "Рахмет! Сіздің өтінішіңіз қабылданды. Поштаңызға өтініш туралы хабарлама жіберілді.";
     public static final String DEPOSIT_DIVISION_ACCEPTED = "Ваша заявка на деление депозита принята";
+    public static final String ONLY_ONE_DEPOSIT = "У вас недостаточное количество депозитов для совершения операции объединения";
 }

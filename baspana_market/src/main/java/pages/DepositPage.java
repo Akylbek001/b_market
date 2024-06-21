@@ -85,6 +85,14 @@ public class DepositPage extends BasePage {
 
     private static final By UNITE_DEPOSIT_OPERATION = By.id("UniteDepositsButton");
 
+    public static final By ASSIGNMENT_GRATUITOUS = By.cssSelector(".operBtn.deposit-relatives-cession");
+    public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON = By.cssSelector(".right_button button");
+    private static final By ASSIGNMENT_GRATUITOUS_RELATION_DEGREE = By.id("selectKinship");
+    private static final By USER_IIN = By.id("iin-input");
+    public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_ = By.cssSelector(".right_button.ob-mt-20px.web-block button");
+    public static final By BIOMETRY_AGREEMENT_CHECKBOX_ = By.cssSelector(".form-check-label");
+    private static final By START_BIOMETRY_BUTTON = By.id("startBiometry");
+    private static final By CONFIRM_SMS_BUTTON = By.id("continue-sms-cession");
 
 
 
@@ -306,6 +314,68 @@ public class DepositPage extends BasePage {
     public DepositPage clickDivideButton() {
         button.btnClick(DIVIDE_BUTTON);
         WaitUtils.wait(3);
+        return this;
+    }
+
+    @Step("Select unite deposit operation")
+    public DepositPage selectUniteDepositOperation() {
+        button.hoverAndClick(UNITE_DEPOSIT_OPERATION);
+        WaitUtils.wait(1);
+        button.btnClick(UNITE_DEPOSIT_OPERATION);
+        WaitUtils.wait(5);
+        return this;
+    }
+
+    @Step("Select assignment gratuitous operation")
+    public DepositPage selectAssignmentGratuitousOperation() {
+        button.hoverAndClick(ASSIGNMENT_GRATUITOUS);
+        WaitUtils.wait(1);
+        button.btnClick(ASSIGNMENT_GRATUITOUS);
+        WaitUtils.wait(3);
+        return this;
+    }
+
+    @Step("Click assignment gratuitous continue button")
+    public DepositPage clickAssignmentGratuitousContinueButton() {
+        button.btnClick(ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select relation degree")
+    public DepositPage selectRelationDegree() {
+        dropDown.selectByIndex(ASSIGNMENT_GRATUITOUS_RELATION_DEGREE, 1);
+        return this;
+    }
+
+    @Step("Input iin")
+    public DepositPage inputIin(String iin) {
+        input.inputWithClear(USER_IIN, iin);
+        return this;
+    }
+
+    @Step("Click assignment gratuitous continue button")
+    public DepositPage clickAssignmentGratuitousContinueButton_() {
+        button.btnClick(ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Click assignment gratuitous biometry agreement")
+    public DepositPage clickAssignmentGratuitousBiometryAgreement() {
+        button.btnClick(BIOMETRY_AGREEMENT_CHECKBOX_);
+        return this;
+    }
+
+    @Step("Click start biometry button")
+    public DepositPage clickStartBiometryButton() {
+        button.btnClick(START_BIOMETRY_BUTTON);
+        return this;
+    }
+
+    @Step("Click otp confirm button")
+    public DepositPage clickOtpConfirmButton() {
+        button.btnClick(CONFIRM_SMS_BUTTON);
         return this;
     }
 

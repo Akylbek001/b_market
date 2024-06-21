@@ -415,7 +415,7 @@ public class DepositTest extends BaseTest {
         step("Авторизация и навигация в Мои депозиты {}", () -> {
             mainSteps.loginButton();
             loginSteps.login(
-                    config.clientLogin(), config.clientPassword());
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
@@ -432,7 +432,58 @@ public class DepositTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.DEPOSIT_DIVISION_ACCEPTED, elementsAttributes.getValue(DIVIDE_DEPOSIT_ACCEPTED));
     }
 
+    @Test(description="Объединение депозита", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Объединение депозита")
+    @Severity(SeverityLevel.CRITICAL)
+    public void depositPooling() {
+        step("Авторизация и навигация в Мои депозиты {}", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+            depositSteps.selectDepositsMenu();
+        });
+        step("Выбрать открытый депозит {}", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции {}", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Объединение депозита", () -> {
+            depositSteps.selectUniteDepositOperation();
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.ONLY_ONE_DEPOSIT
+        );
+        drManager.getDriver().switchTo().alert().accept();
+    }
 
+    @Test(description="Уступка безвозмездная", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Уступка безвозмездная")
+    @Severity(SeverityLevel.CRITICAL)
+    public void assignmentGratuitous() {
+        step("Авторизация и навигация в Мои депозиты {}", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+            depositSteps.selectDepositsMenu();
+        });
+        step("Выбрать открытый депозит {}", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции {}", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Уступка безвозмездная", () -> {
+            depositSteps.selectAssignmentGratuitousOperation(config.clientIin(), config.smsCode());
+        });
+    }
 
     @Test(description="Калькулятор депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
