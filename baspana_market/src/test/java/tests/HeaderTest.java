@@ -24,7 +24,7 @@ public class HeaderTest extends BaseTest {
     @Test(description="Программа банка", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("программа - Свой дом")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToBankProgram() {
         step("Перейти на страницу программы Свой дом", () -> {
             headerSteps.navigateToBankProgram();
@@ -36,7 +36,7 @@ public class HeaderTest extends BaseTest {
     @Test(description="Новости", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Новости")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToNews() {
         step("Перейти на страницу Новости", () -> {
             headerSteps.navigateToNews();
@@ -48,7 +48,7 @@ public class HeaderTest extends BaseTest {
     @Test(description="Контакты", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Контакты")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToContacts() {
         step("Перейти на страницу Контакты", () -> {
             headerSteps.navigateToContacts();
@@ -59,7 +59,7 @@ public class HeaderTest extends BaseTest {
     @Test(description="FAQ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("FAQ")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToFAQ() {
         step("Перейти на страницу FAQ", () -> {
             headerSteps.navigateToFAQ();
@@ -82,7 +82,7 @@ public class HeaderTest extends BaseTest {
     @Test(description="Разместить объявление. Пользователь не авторизован", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Разместить объявление")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void postAd() {
         step("Проверить редирект на форму авторизации", () -> {
             headerSteps.postAd();
@@ -94,7 +94,7 @@ public class HeaderTest extends BaseTest {
     @Test(description="Избранные объявления. Пользователь не авторизован", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Избранное")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToFavorite() {
         step("Перейти на страницу избранных объявлении", () -> {
             headerSteps.navigateToFavorite();

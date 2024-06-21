@@ -19,7 +19,7 @@ public class DepositPage extends BasePage {
 
     private static final By OPEN_CONTRIBUTION_AQYL = By.id("openAqylDeposit");
     private static final By CONTINUE_OPEN_CONTRIBUTION_AQYL_BUTTON = By.xpath("//div[@class='modal fade show'] //button[@id='continueOpenChildDeposit']");
-    public static final By NEED_ACCOUNT_NOTIFICATION = By.id("reasonAqyl");
+    public static final By REFUSED_NOTIFICATION = By.id("reasonAqyl");
 
     private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.xpath(
             "//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']"
@@ -28,7 +28,11 @@ public class DepositPage extends BasePage {
             "//form[@id='fatca-formm'] //input[@id='StandardConditionsAgreed']"
     );
     private static final By SUBMIT = By.xpath("//button[@type='submit']");
+    private static final By AGREED_SUM = By.id("dep_agree_sum");
+    private static final By DEPOSIT_TERM = By.id("calc_l_m_range--g");
     private static final By CONFIRM = By.xpath("//button[@class='ValSums']");
+
+
     public static final By NOTIFICATION_VISIT_THE_BANK = By.xpath("//div[@id='NextSteps'] //p");
     private static final By SMS_CODE = By.id("CodeSmsId");
     private static final By SEND = By.id("EndsSteps");
@@ -51,9 +55,12 @@ public class DepositPage extends BasePage {
     );
 
     private static final By CHANGE_DEPOSIT_CONDITIONS_OPERATION = By.id("ChangeDeposConditionsButton");
-
+    private static final By NEGOTIATED_AMOUNT = By.cssSelector("[name='NewAgreementSumm']");
+    private static final By CHANGE_DETAILS_BUTTON = By.id("changeDetailsButton");
+    private static final By SIGN_CHANGE_DETAILS_BUTTON = By.id("signChangeDetailsButton");
+    public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".finishHead .title");
     private static final By CREATE_FAMILY_PACKAGE_OPERATION = By.xpath("//div[@onclick='onGetDeposits()']");
-    private static final By SELECT_DEPOSIT = By.xpath("//div[@class='deposit_consolidation_step1_list_item']");
+    private static final By SELECT_DEPOSIT = By.cssSelector(".deposit_consolidation_step1_list_item");
     private static final By CONTINUE_BUTTON = By.id("btnNext");
     private static final By FAMILY_PACKAGE_NAME = By.id("inptFPName");
     private static final By CREATE_FAMILY_PACKAGE_BUTTON = By.id("btnCreate");
@@ -72,6 +79,13 @@ public class DepositPage extends BasePage {
 
     public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.xpath("//button[@data-target='#modalDisbandFP']");
     private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
+    private static final By DEPOSIT_DIVISION_OPERATION = By.xpath(" //div[@class='operTxt' and text()='Деление депозита']");
+    private static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");
+    public static final By DIVIDE_DEPOSIT_ACCEPTED = By.cssSelector(".h5_22");
+
+    private static final By UNITE_DEPOSIT_OPERATION = By.id("UniteDepositsButton");
+
+
 
 
     public DepositPage(WebDriver driver) {
@@ -153,6 +167,37 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Select change deposit conditions operation")
+    public DepositPage changeDepositConditionsOperation() {
+        button.hoverAndClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
+        WaitUtils.wait(1);
+        button.btnClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input negotiated amount")
+    public DepositPage inputNegotiatedAmount(String amount) {
+        input.inputWithClear(NEGOTIATED_AMOUNT, amount);
+        return this;
+    }
+
+    //BUG - кнопка изменить не срабатывает с первого раза
+    @Step("Click change detail button")
+    public DepositPage clickChangeDetailButton() {
+        move.scrollToElement(CHANGE_DETAILS_BUTTON);
+        button.btnClick(CHANGE_DETAILS_BUTTON);
+        button.btnClick(CHANGE_DETAILS_BUTTON);
+
+        return this;
+    }
+
+    @Step("Click sign change detail button")
+    public DepositPage clickSignChangeDetailButton() {
+        button.btnClick(SIGN_CHANGE_DETAILS_BUTTON);
+        return this;
+    }
+
     @Step("Select create family package operation")
     public DepositPage createFamilyPackageOperation() {
         button.hoverAndClick(CREATE_FAMILY_PACKAGE_OPERATION);
@@ -162,8 +207,8 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-    @Step("Select deposit")
-    public DepositPage selectDeposit() {
+    @Step("Select deposit for package")
+    public DepositPage selectDepositForPackage() {
         button.btnClick(SELECT_DEPOSIT);
         return this;
     }
@@ -175,8 +220,8 @@ public class DepositPage extends BasePage {
     }
 
     @Step("Input family package name")
-    public DepositPage inputFamilyPackageName(String familyPackageName) {
-        input.inputWithClear(FAMILY_PACKAGE_NAME, familyPackageName);
+    public DepositPage inputFamilyPackageName(String name) {
+        input.inputWithClear(FAMILY_PACKAGE_NAME, name);
         return this;
     }
 
@@ -248,6 +293,22 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Select deposit division operation")
+    public DepositPage createDepositDivisionOperation() {
+        button.hoverAndClick(DEPOSIT_DIVISION_OPERATION);
+        WaitUtils.wait(1);
+        button.btnClick(DEPOSIT_DIVISION_OPERATION);
+        WaitUtils.wait(5);
+        return this;
+    }
+
+    @Step("Click divide button")
+    public DepositPage clickDivideButton() {
+        button.btnClick(DIVIDE_BUTTON);
+        WaitUtils.wait(3);
+        return this;
+    }
+
     @Step("Click new deposit button")
     public DepositPage clickNewDepositButton() {
         button.btnClick(NEW_DEPOSIT_BUTTON);
@@ -257,7 +318,7 @@ public class DepositPage extends BasePage {
     @Step("Click open baspana deposit button")
     public DepositPage clickOpenBaspanaDepositButton() {
         button.btnClick(OPEN_BASPANA_DEPOSIT);
-        WaitUtils.wait(2);
+        WaitUtils.wait(1);
         return this;
     }
 
@@ -279,7 +340,7 @@ public class DepositPage extends BasePage {
     @Step("Click open deposit button")
     public DepositPage clickOpenDepositButton() {
         button.btnClick(OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON);
-        WaitUtils.wait(3);
+        WaitUtils.wait(1);
         return this;
     }
 
@@ -292,9 +353,23 @@ public class DepositPage extends BasePage {
     @Step("Click continue")
     public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
-        WaitUtils.wait(2);
+        WaitUtils.wait(1);
         return this;
     }
+
+    @Step("Input agreed sum")
+    public DepositPage inputAgreedSum(String sum) {
+        input.inputWithClear(AGREED_SUM, sum);
+        return this;
+    }
+
+    @Step("Select deposit term")
+    public DepositPage selectDepositTerm() {
+        button.btnClick(DEPOSIT_TERM);
+        return this;
+    }
+
+
 
     @Step("Click confirm")
     public DepositPage clickConfirm() {

@@ -21,7 +21,7 @@ public class BecomeClientTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Стать клиентом.Открыть депозит", groups = {"automated"})
+    @Test(description="Стать клиентом => Открыть депозит", groups = {"automated"})//
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.NORMAL)
@@ -36,8 +36,10 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.openDeposit();;
         });
         step("Заполнить данные и подтвердить", () -> {
-            becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
+            becomeClientSteps.verifyPhoneNumberAndIin("77007777777", "860709300429");
             becomeClientSteps.confirmByOtp(config.smsCode());
+            becomeClientSteps.inputEmail("bin@bk.ru");
+
         });
         Assert.assertTrue(true);
     }
@@ -61,6 +63,27 @@ public class BecomeClientTest extends BaseTest {
         });
         Assert.assertEquals(CharacterSetConstants.CLIENT_ALREADY_EXIST, elementsAttributes.getValue(REFUSE_TEXT));
     }
+
+    @Test(description="Стать клиентом_Депозит => < 18", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Вам нет 18 лет")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByDeposit_under18YearsOld() {
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Стать клиентом", () -> {
+            becomeClientSteps.becomeClient();;
+        });
+        step("Открыть депозит", () -> {
+            becomeClientSteps.openDeposit();;
+        });
+        step("Заполнить данные и подтвердить", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), "200903502862");
+        });
+        Assert.assertEquals(elementsAttributes.getValue(REFUSE_TEXT), CharacterSetConstants.UNDER_18_YEARS_OLD_TEXT);
+    }
+
 
     @Test(description="Стать клиентом_НФД => Валидация возраста", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")

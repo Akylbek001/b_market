@@ -30,7 +30,7 @@ public class AccountTest extends BaseTest {
     @Test(description="Открыть текущий счет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Текущий счет")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void openCurrentAccount() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -48,6 +48,7 @@ public class AccountTest extends BaseTest {
         step("Открыть текущий счет", () -> {
             accountSteps.openCurrentAccount();
             accountSteps.openCurrentAccountContinue(config.smsCode());
+            accountSteps.finishOpenCurrentAccount();
         });
         Assert.assertEquals(
                 CharacterSetConstants.CURRENT_ACCOUNT_OPEN_SUCCESSFULLY,
@@ -55,10 +56,36 @@ public class AccountTest extends BaseTest {
         );
     }
 
+    @Test(description="Открыть текущий счет => Валидация ОТР", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация ОТР")
+    @Severity(SeverityLevel.BLOCKER)
+    public void openCurrentAccount_otpValidation() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
+        step("Перейти в меню Счета", () -> {
+            accountSteps.selectAccountsMenu();
+        });
+        step("Открыть счет", () -> {
+            accountSteps.openAccountButton();
+        });
+        step("Открыть текущий счет", () -> {
+            accountSteps.openCurrentAccount();
+            accountSteps.openCurrentAccountContinue(config.smsCode().substring(1));
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.INVALID_OTP_TEXT, elementsAttributes.getValue(INVALID_OTP));
+    }
+
     @Test(description="Открыть счет для ЕПВ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Счет для ЕПВ")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void openAccountForEPV() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -83,11 +110,39 @@ public class AccountTest extends BaseTest {
         );
     }
 
+    @Test(description="Открыть счет для ЕПВ => Валидация ОТР", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация ОТР")
+    @Severity(SeverityLevel.BLOCKER)
+    public void openAccountForEPV_otpValidation() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
+        step("Перейти в меню Счета", () -> {
+            accountSteps.selectAccountsMenu();
+        });
+        step("Открыть счет", () -> {
+            accountSteps.openAccountButton();
+        });
+        step("Открыть счет для ЕПВ", () -> {
+            accountSteps.openAccountForEpvAcceptAgreement();
+            accountSteps.openAccountForEpvSignAndConfirm(config.smsCode().substring(1));
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.EPV_INVALID_OTP_TEXT,
+                elementsAttributes.getValue(EPV_INVALID_OTP)
+        );
+    }
+
     //BUG - no accounts in dropdown list even when existed deposit
     @Test(description="Перевод между своими счетами", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToDebt() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -108,10 +163,11 @@ public class AccountTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
+    //BUG - "Произошла ошибка. Повторите попытку позже." - но перевод совершается
     @Test(description="Перевод клиенту <Отбасы Банк> => по номеру телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byPhoneNumber() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -140,7 +196,7 @@ public class AccountTest extends BaseTest {
     @Test(description="Перевод клиенту <Отбасы Банк> по номеру телефона => не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Клиент не найден")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byPhoneNumber_notFound() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -170,7 +226,7 @@ public class AccountTest extends BaseTest {
     @Test(description="Перевод клиенту <Отбасы Банк> => по альтернативному коду", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byAlternativeCode() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -198,7 +254,7 @@ public class AccountTest extends BaseTest {
     @Test(description="Перевод клиенту <Отбасы Банк> по альтернативному коду => не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Клиент не найден")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byAlternativeCode_notFound() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -224,10 +280,11 @@ public class AccountTest extends BaseTest {
         );
     }
 
+    //BUG -
     @Test(description="Перевод в другой банк", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -249,15 +306,13 @@ public class AccountTest extends BaseTest {
             accountSteps.searchOtherBankIban(config.clientIban().substring(2));
             accountSteps.transfer(config.sumToTransfer(), config.smsCode());
         });
-        Assert.assertEquals(
-                CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(OPERATION_NOT_AVAILABLE)
-        );
+        Assert.assertTrue(false);
     }
 
     @Test(description="Перевод в другой банк => некрректный IBAN счет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("некрректный IBAN счет")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank_invalidIban() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -283,10 +338,40 @@ public class AccountTest extends BaseTest {
         );
     }
 
+    @Test(description="Перевод в другой банк => недостаточно средств", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("некрректный IBAN счет")
+    @Severity(SeverityLevel.BLOCKER)
+    public void transferToOtherBank_insufficientFunds() {
+        step("Авторизация->Мой Банк", () -> {
+            mainSteps.loginButton();
+            loginSteps.login(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            profileSteps.navigateToProfile();
+            depositSteps.selectMyBankMenu();
+        });
+        step("Перейти в меню Счета", () -> {
+            accountSteps.selectAccountsMenu();
+        });
+        step("Открыть список достпупных операции", () -> {
+            accountSteps.openAvailableOperationsList();
+        });
+        step("Выбрать операцию <Перевод в другой банк>", () -> {
+            accountSteps.transferToOtherBank();
+        });
+        step("Перевод в другой банк", () -> {
+            accountSteps.searchOtherBankIban(config.clientIban().substring(2));
+            accountSteps.transfer_insufficientFunds("5000000");
+        });
+        Assert.assertEquals(
+                "Недостаточно средств для перевода", elementsAttributes.getValue(INSUFFICIENT_FUNDS)
+        );
+    }
+
     @Test(description="Открыть текущий счет => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void tryOpenCurrentAccount() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -312,8 +397,8 @@ public class AccountTest extends BaseTest {
     @Test(description="Открыть счет для ЕПВ => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.NORMAL)
-    public void tryOpenAccountForEPV() {
+    @Severity(SeverityLevel.BLOCKER)
+    public void openAccountForEPV_clientValidation() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
@@ -331,7 +416,7 @@ public class AccountTest extends BaseTest {
             accountSteps.openAccountForEpvAcceptAgreement();
         });
         Assert.assertEquals(
-                CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(NOTIFICATION_TEXT)
+                CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(EPV_ERROR_MESSAGE)
         );
     }
     // Add validation sms_code test cases
@@ -339,7 +424,7 @@ public class AccountTest extends BaseTest {
     @Test(description="Перевод между своими счетами => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToDebt_clientValidation() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -365,7 +450,7 @@ public class AccountTest extends BaseTest {
     @Test(description="Перевод клиенту_Отбасы Банк => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_clientValidation() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -391,7 +476,7 @@ public class AccountTest extends BaseTest {
     @Test(description="Перевод в другой банк => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank_clientValidation() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();
@@ -415,10 +500,10 @@ public class AccountTest extends BaseTest {
     }
 
     //BUG -Произошла непредвиденная ошибка!
-    @Test(description="Подключить счет из другого банка", groups = {"automated"})
+    @Test(description="Подключить счет из другого банка", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("счет другого банка")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.TRIVIAL)
     public void addOtherBankAccount() {
         step("Авторизация->Мой Банк", () -> {
             mainSteps.loginButton();

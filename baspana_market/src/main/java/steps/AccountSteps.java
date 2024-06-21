@@ -32,7 +32,11 @@ public class AccountSteps {
                 .clickConfirm()
                 .clickCloseModalNotificationButton()
                 .inputStatementOTP(otp)
-                .clickStatementContinueButton()
+                .clickStatementContinueButton();
+    }
+
+    public void finishOpenCurrentAccount() {
+        accountPage
                 .clickSendRateButton();
     }
 
@@ -69,8 +73,6 @@ public class AccountSteps {
                 .inputAltCodeForValidation(code);
     }
 
-
-
     public void transferToOtherBank() {
         accountPage
                 .transferToOtherBank();
@@ -88,6 +90,12 @@ public class AccountSteps {
                 .clickConfirmTransferButton()
                 .inputTransferOtp(otp)
                 .clickSendOtpButton();
+    }
+
+    public void transfer_insufficientFunds(String sum) {
+        accountPage
+                .inputSumToTransfer(sum)
+                .clickSendTransferButton();
     }
 
     public void openAccountForEpvAcceptAgreement() {

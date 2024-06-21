@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import common.consts.CharacterSetConstants;
+import common.utils.RandomUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -190,7 +191,7 @@ public class LoginTest extends BaseTest {
                     config.client_for_password_recovery_login());
         });
         step("Подтверждение пользователя по смс", () -> {
-            loginSteps.inputSmsCode(config.smsInvalidCode());
+            loginSteps.inputSmsCode(RandomUtils.randomNumeric(6));
         });
         Assert.assertEquals(
                 CharacterSetConstants.INVALID_CODE, elementsAttributes.getValue(WRONG_SMS_CODE_TEXT)

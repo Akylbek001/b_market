@@ -22,7 +22,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка Интернет-Банкинг", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Интернет-Банкинга")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToInternetBanking() {
         step("Навигация на страницу интернет банкинга", () -> {
             footerSteps.navigateToInternetBankingPage();
@@ -34,7 +34,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка ипотека", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Ипотека")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToMortgage() {
         step("Навигация на страницу ипотеки", () -> {
             footerSteps.navigateToMortgagePage();
@@ -46,7 +46,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка калькулятора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу калькулятора")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToCalc() {
         step("Навигация на страницу калькулятора", () -> {
             footerSteps.navigateToCalcPage();
@@ -58,7 +58,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка новостей", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу новости")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToNews() {
         step("Навигация на страницу новостей", () -> {
             footerSteps.navigateToNewsPage();
@@ -69,7 +69,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка программ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу программы")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToPrograms() {
         step("Навигация на страницу програм", () -> {
             footerSteps.navigateToProgramsPage();
@@ -80,7 +80,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка карта сайта", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу карта сайта")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToSiteMap() {
         step("Навигация на страницу карта сайта", () -> {
             footerSteps.navigateToSiteMapPage();
@@ -91,7 +91,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка новостройки", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу новостройки")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToNewBuildings() {
         step("Навигация на страницу новостройки", () -> {
             footerSteps.navigateToNewBuildingsPage();
@@ -102,7 +102,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка о Baspana.kz", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу о Baspana.kz")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToAboutBaspanaKz() {
         step("Навигация на страницу о Baspana.kz", () -> {
             footerSteps.navigateToBaspanaInfoPage();
@@ -113,7 +113,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка Baiterek", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Baiterek")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToBaiterek() {
         step("Навигация на страницу о Baspana.kz", () -> {
             footerSteps.navigateToBaiterekPage();
@@ -124,7 +124,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка Памятка по информационной безопасности", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Памятка по информационной безопасности")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToInformationSecurity() {
         step("Навигация на страницу Памятка по информационной безопасности", () -> {
             footerSteps.navigateToInformationSecurityPage();
@@ -136,7 +136,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка Депозитный портфель", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Депозитный портфель")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToDepositPortfolio() {
         step("Навигация на страницу Депозитный портфель", () -> {
             footerSteps.navigateToDepositPortfolioPage();
@@ -148,7 +148,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка Facebook", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Facebook")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToFacebook() {
         step("Навигация на страницу Facebook", () -> {
             footerSteps.navigateToFacebookPage();
@@ -160,7 +160,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка VK", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу vk")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToVk() {
         step("Навигация на страницу vk", () -> {
             footerSteps.navigateToVkPage();
@@ -172,7 +172,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка Instagram", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Instagram")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToInstagram() {
         step("Навигация на страницу Instagram", () -> {
             footerSteps.navigateToInstagramPage();
@@ -184,7 +184,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка Youtube", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Youtube")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToYoutube() {
         step("Навигация на страницу Youtube", () -> {
             footerSteps.navigateToYoutubePage();
@@ -196,7 +196,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка AppStore", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу AppStore")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToAppStore() {
         step("Навигация на страницу AppStore", () -> {
             footerSteps.navigateToAppStorePage();
@@ -208,7 +208,7 @@ public class FooterTest extends BaseTest {
     @Test(description="Ссылка GooglePlay", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу GooglePlay")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.TRIVIAL)
     public void navigateToGooglePlay() {
         step("Навигация на страницу GooglePlay", () -> {
             footerSteps.navigateToGooglePlayPage();

@@ -31,6 +31,14 @@ public class BecomeClientSteps {
                 .clickVerifyButton();
     }
 
+    public void inputEmail(String email) {
+        becomeClientPage
+                .inputEmail(email)
+                .clickAgreeToGetNewslettersCheckbox()
+                .clickContinueButton();
+    }
+
+
     public void confirmByOtp(String otp) {
         becomeClientPage
                 .inputOtp(otp)

@@ -41,8 +41,10 @@ public class DepositSteps {
                 .clickOpenAqylContinueButton();
     }
 
-    public void confirmBySms(String smsCode) {
+    public void confirmBySms(String smsCode, String sum) {
         depositPage
+                .inputAgreedSum(sum)
+                .selectDepositTerm()
                 .clickConfirm()
                 .inputSmsCode(smsCode)
                 .clickSend();
@@ -65,6 +67,16 @@ public class DepositSteps {
                 .clickContinueTerminateButton();
     }
 
+    public void changeDepositConditions(String amount, String smsCode) {
+        depositPage
+                .changeDepositConditionsOperation()
+                .inputNegotiatedAmount(amount)
+                .clickChangeDetailButton()
+                .clickSignChangeDetailButton()
+                .inputSmsCode(smsCode)
+                .clickSend();
+    }
+
     public void selectCreateFamilyPackageOperation() {
         depositPage
                 .createFamilyPackageOperation();
@@ -72,7 +84,7 @@ public class DepositSteps {
 
     public void createFamilyPackage(String familyPackageName) {
         depositPage
-                .selectDeposit()
+                .selectDepositForPackage()
                 .clickContinueButton()
                 .inputFamilyPackageName(familyPackageName)
                 .clickCreateFamilyPackageButton();
@@ -106,6 +118,12 @@ public class DepositSteps {
         depositPage
                 .clickDisbandFamilyPackageButton()
                 .clickConfirmDisbandFamilyPackageButton();
+    }
+
+    public void selectDepositDivisionOperation() {
+        depositPage
+                .createDepositDivisionOperation()
+                .clickDivideButton();
     }
 
     public void calculator() {

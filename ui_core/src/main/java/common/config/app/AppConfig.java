@@ -110,13 +110,6 @@ public interface AppConfig extends Config {
     @Key("sms.code")
     String smsCode();
 
-    @Key("sms.invalidCode")
-    String smsInvalidCode();
-
-
-
-
-
     @Key("user.login")
     String userLogin();
 

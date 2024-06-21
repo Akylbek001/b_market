@@ -50,7 +50,7 @@ public class BecomeClientPage extends BasePage {
     private static final By AGREE_TO_RECEIVE_NEWSLETTERS = By.cssSelector(".container-bank");
     private static final By CONTINUE_BUTTON = By.cssSelector(".agreement_and_cont button");
 
-    public static final By REFUSE_TEXT = By.xpath("//div[@id='NextSteps'] //p");
+    public static final By REFUSE_TEXT = By.cssSelector("#NextSteps p");
     public static final By INVALID_IIN_TEXT = By.cssSelector("[class='errtexts']");
     public static final By OPEN_DEPOSIT_BUTTON = By.cssSelector("[onclick='PhoneVerification()']");
 

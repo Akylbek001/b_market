@@ -20,6 +20,7 @@ public final class CharacterSetConstants {
     public static final String IDENTITY_VERIFICATION_ERROR_TEXT = "Вы не прошли проверку подлинности личности";
 
     public static final String CLIENT_ALREADY_EXIST = "Клиент с ИИН 960327300186 уже существует";
+    public static final String UNDER_18_YEARS_OLD_TEXT = "Вам нет 18 лет";
     public static final String CLIENT_AGE_IS_NOT_SUITABLE = "Возраст клиента не подходит для продолжения операции по открытию счета НФД";
     public static final String INVALID_IIN_FORMAT = "ИИН имеет неверный формат";
     public static final String IIN_FILLED_INCORRECTLY = "Не правильно заполнен ИИН";
@@ -45,6 +46,9 @@ public final class CharacterSetConstants {
 
     public static final String PHONE_NUMBER_ALREADY_CURRENT = "Көрсетілген телефон нөмірі қазірдің өзінде ағымдағы. / Указанный телефон уже актуален.";
     public static final String OPERATION_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
+    public static final String INVALID_OTP_TEXT = "Уважаемый клиент! Убедитесь в правильности ввода кода из SMS";
+    public static final String EPV_INVALID_OTP_TEXT = "Введенный вами код из СМС неправильный.";
+
     public static final String CURRENT_ACCOUNT_OPEN_SUCCESSFULLY ="Операция успешно завершена";
     public static final String OPEN_DEPOSIT_REFUSED = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
     public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Уважаемый клиент! Введенный Вами альтернативный код некорректный, просим проверить данные.";
@@ -53,4 +57,5 @@ public final class CharacterSetConstants {
     public static final String NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT = "Для продолжения операции Вам необходимо открыть текущий счет, далее необходимо обеспечить наличии минимального взноса в размере 3 МРП.";
     public static final String CERTIFICATE_GENERATED_TEXT = "Справка сформирована";
     public static final String REQUEST_BEEN_ACCEPTED_TEXT = "Рахмет! Сіздің өтінішіңіз қабылданды. Поштаңызға өтініш туралы хабарлама жіберілді.";
+    public static final String DEPOSIT_DIVISION_ACCEPTED = "Ваша заявка на деление депозита принята";
 }

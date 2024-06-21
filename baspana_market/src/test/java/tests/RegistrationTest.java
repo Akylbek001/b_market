@@ -179,7 +179,7 @@ public class RegistrationTest extends BaseTest {
             );
             registrationSteps.clickRegisterClientButton();
         });
-        Assert.assertEquals(CharacterSetConstants.CLIENT_EMAIL_ALREADY_EXIST, elementsAttributes.getValue(REGISTRATION_RESULT));
+        Assert.assertEquals(elementsAttributes.getValue(REGISTRATION_RESULT), CharacterSetConstants.CLIENT_EMAIL_ALREADY_EXIST);
     }
 
     @Test(description="Регистрация клиента по номеру документа => Валидация подтверждения пароля", groups = {"automated"})

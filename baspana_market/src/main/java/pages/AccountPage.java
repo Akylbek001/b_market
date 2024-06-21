@@ -27,6 +27,7 @@ public class AccountPage extends BasePage {
     private static final By CURRENT_ACCOUNT_CONFIRM = By.id("fatca-button");
     private static final By NOTIFICATION_BUTTON = By.cssSelector(".modal-footer [onclick='modalNotificationCloseClick()']");
     private static final By STATEMENT_OTP = By.id("inputOtpCode");
+    public static final By INVALID_OTP = By.id("modalNotificationBody");
     private static final By STATEMENT_CONTINUE_BUTTON = By.cssSelector(".deposit_check_submit button");
     private static final By SEND_RATE_BUTTON = By.cssSelector("[onclick='SendRate()']");
     public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".part-pay_complete_content h2");
@@ -48,6 +49,8 @@ public class AccountPage extends BasePage {
     private static final By IBAN = By.id("ibanCode");
     public static final By IBAN_ERROR = By.id("ibanError");
     private static final By SUM_TO_TRANSFER = By.id("sumToTransfer");
+    public static final By INSUFFICIENT_FUNDS = By.cssSelector(".transferError.bodyM");
+
     private static final By SEND_TRANSFER_BUTTON = By.id("sendTransferButton");
     private static final By CONFIRM_TRANSFER_BUTTON = By.id("confirmTransfer");
     private static final By TRANSFER_OTP = By.id("smsVerificationCodeInput");
@@ -57,7 +60,9 @@ public class AccountPage extends BasePage {
     private static final By EPV_CONFIRM_BUTTON = By.id("formButtonOne");
     private static final By EPV_SIGN_BUTTON = By.id("firstSendCode");
     private static final By EPV_OTP = By.id("smsVerificationCodeInput");
+    public static final By EPV_INVALID_OTP = By.id("errorSmsVerificationCode");
     private static final By EPV_SEND_BUTTON = By.id("smsVerificationBtn");
+    public static final By EPV_ERROR_MESSAGE = By.id("errorMessage");
 
     private static final By OTHER_BANK_LABEL = By.xpath("//div[@class='others-bank'] /a");
     private static final By OTHER_BANK_CONTINUE_BUTTON = By.xpath("//button[@class='button-mybank green']");
@@ -148,6 +153,7 @@ public class AccountPage extends BasePage {
     @Step("Input iban")
     public AccountPage inputIban(String iban) {
         input.inputWithClear(IBAN, iban);
+        WaitUtils.wait(1);
         return this;
     }
 
