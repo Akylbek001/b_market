@@ -79,7 +79,7 @@ public class HeaderTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.SELECTED_LOCATION, elementsAttributes.getValue(LOCATION_NAME));
     }
 
-    @Test(description="Разместить объявление. Пользователь не авторизован", groups = {"automated"})
+    @Test(description="Разместить объявление => Пользователь не авторизован", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Разместить объявление")
     @Severity(SeverityLevel.TRIVIAL)
@@ -91,7 +91,7 @@ public class HeaderTest extends BaseTest {
         // добавить более конкретную проверку
     }
 
-    @Test(description="Избранные объявления. Пользователь не авторизован", groups = {"automated"})
+    @Test(description="Избранные объявления => Пользователь не авторизован", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Избранное")
     @Severity(SeverityLevel.TRIVIAL)
@@ -103,7 +103,7 @@ public class HeaderTest extends BaseTest {
         //ошибка - ОР - форма авторизации
     }
 
-    @Test(description="Включить режим Для слабовидящих", groups = {"automated"})
+    @Test(description="Включить режим <Для слабовидящих>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Для слабовидящих")
     @Severity(SeverityLevel.MINOR)

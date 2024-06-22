@@ -8,9 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 @Slf4j
 public class BecomeClientPage extends BasePage {
-    private static final By BECOME_CLIENT_BUTTON = By.xpath(
-            "//div[@class='general-info-about-accession'] //button[contains(text(), 'Стать клиентом ')]"
-    );
     private static final By DEPOSIT_BLOCK = By.cssSelector("[onclick='StartDepositOpen()']");
     private static final By CHILD_FUND_BLOCK = By.cssSelector("[onclick='StartOpenChildFund()']");
     private static final By PENSION_BLOCK = By.cssSelector("[onclick='StartOpenPensionAccount()']");
@@ -57,13 +54,6 @@ public class BecomeClientPage extends BasePage {
 
     public BecomeClientPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Step("Click become client button")
-    public BecomeClientPage clickBecomeClientButton() {
-        WaitUtils.wait(1);
-        button.btnClick(BECOME_CLIENT_BUTTON);
-        return this;
     }
 
     @Step("Click open deposit block")

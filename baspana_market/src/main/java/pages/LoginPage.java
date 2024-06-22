@@ -13,7 +13,6 @@ public class LoginPage extends BasePage {
     private static final By BASPANA_BUSINESS_BUTTON = By.xpath("//div[@class='btn-group'] /a");
     private static final By BIN = By.id("binTextBox");
     private static final By BIN_PASS= By.id("passwordTextBox");
-    private static final By LOGIN_BUTTON= By.id("loginButton");
     private static final By USER_PHONE_NUMBER_LOCATOR = By.id("UserNameLogin");
     private static final By USER_PASSWORD_LOCATOR = By.id("PasswordLogin");
     private static final By SUBMIT_BUTTON_LOCATOR = By.xpath(
@@ -47,6 +46,13 @@ public class LoginPage extends BasePage {
     private static final By BY_ALTERNATIVE_CODE_LOCATOR = By.xpath("//span[.='По альтернативному коду']");
     public static final By WRONG_CREDENTIALS_TEXT = By.id("LoginMSG");
     public static final By USER_NOT_FOUND_TEXT = By.xpath("//div[@id='beforeCodeconfirmed']/ span[3]");
+
+    private static final By REGISTRATION_LINK_LOCATOR = By.xpath(
+            "//div[@class='btn-submit text-center regs'] /button[contains(text(), 'Зарегистрироваться ')]"
+    );
+    private static final By BECOME_CLIENT_BUTTON = By.xpath(
+            "//div[@class='general-info-about-accession'] //button[contains(text(), 'Стать клиентом ')]"
+    );
 
 
     public LoginPage(WebDriver driver) {
@@ -99,9 +105,9 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Input document data")
-    public LoginPage inputDocumentData(String documentData) {
-        input.inputWithClear(DOCUMENT_DATA_LOCATOR, documentData);
+    @Step("Input document number")
+    public LoginPage inputDocumentNumber(String docNumber) {
+        input.inputWithClear(DOCUMENT_DATA_LOCATOR, docNumber);
         return this;
     }
 
@@ -213,10 +219,17 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Click login button")
-    public LoginPage clickLoginButton() {
-        button.btnClick(LOGIN_BUTTON);
+    @Step("Click resister link")
+    public LoginPage clickRegisterLink() {
+        WaitUtils.wait(2);
+        button.btnClick(REGISTRATION_LINK_LOCATOR);
+        return this;
+    }
+
+    @Step("Click become client button")
+    public LoginPage clickBecomeClientButton() {
         WaitUtils.wait(1);
+        button.btnClick(BECOME_CLIENT_BUTTON);
         return this;
     }
 }

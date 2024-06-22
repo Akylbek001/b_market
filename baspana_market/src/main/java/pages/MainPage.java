@@ -8,7 +8,8 @@ import org.openqa.selenium.WebDriver;
 
 @Slf4j
 public class MainPage extends BasePage {
-    private static final By LOGIN_LOCATOR = By.id("OBLoginButtDiv");
+    private static final By LOGIN_BUTTON = By.id("OBLoginButtDiv");
+    private static final By CLIENT_PROFILE_NAME = By.id("ClientName");
     private static final By READ_BUTTON = By.xpath("//div[@class='news-box']//p[text()='Читать']");
     private static final By CALCULATE_BUTTON = By.xpath("//div[@class='news-box']//p[text()='Рассчитать']");
     private static final By REALITY_TYPE_TAB = By.id("RealtyType");
@@ -26,9 +27,16 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
-    @Step("Click Login button")
+    @Step("Click login button")
     public MainPage clickLoginButton() {
-        button.btnClick(LOGIN_LOCATOR);
+        button.btnClick(LOGIN_BUTTON);
+        return this;
+    }
+
+    @Step("Click profile icon")
+    public MainPage clickProfileIcon() {
+        button.btnClick(CLIENT_PROFILE_NAME);
+        WaitUtils.wait(2);
         return this;
     }
 

@@ -10,10 +10,19 @@ public class RegistrationSteps {
         registrationPage = new RegistrationPage(driver);
     }
 
-    public void startRegister() {
+    public void acceptAgreement() {
         registrationPage
-                .clickRegister()
-                .clickAcceptContinue();
+                .clickAcceptAndContinueButton();
+    }
+
+    public void clickRegisterGuestButton() {
+        registrationPage
+                .clickRegisterGuestButton();
+    }
+
+    public void clickRegisterClientButton() {
+        registrationPage
+                .clickRegisterClientButton();
     }
 
     public void registrationGuest(String guestName) {
@@ -42,16 +51,6 @@ public class RegistrationSteps {
                 .inputGuestEmail(email)
                 .inputGuestPass(password)
                 .confirmGuestPass(confirmPassword);
-    }
-
-    public void clickRegisterGuestButton() {
-        registrationPage
-                .clickRegisterGuestButton();
-    }
-
-    public void clickRegisterClientButton() {
-        registrationPage
-                .clickRegisterClientButton();
     }
 
     public void confirmRegistrationBySmsCode(String smsCode) {

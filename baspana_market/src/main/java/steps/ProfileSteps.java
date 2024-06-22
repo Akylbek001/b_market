@@ -12,7 +12,6 @@ public class ProfileSteps {
 
     public void navigateToProfile() {
         profilePage
-                .clickProfileIcon()
                 .clickProfileMenu();
     }
 

@@ -23,6 +23,7 @@ public class CertificateTest extends BaseTest {
         mainSteps.loginButton();
         loginSteps.login(
                 config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+        mainSteps.openProfileMenu();
         profileSteps.navigateToProfile();
         depositSteps.selectMyBankMenu();
     }

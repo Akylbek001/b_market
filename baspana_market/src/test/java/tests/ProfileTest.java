@@ -22,6 +22,7 @@ public class ProfileTest extends BaseTest {
 
         mainSteps.loginButton();
         loginSteps.login(config.client_for_login(), config.client_for_password());
+        mainSteps.openProfileMenu();
         profileSteps.navigateToProfile();
     }
 
@@ -67,7 +68,7 @@ public class ProfileTest extends BaseTest {
     @Description("Редактирование email клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changeEmail() {
-        step("Установка нового email", () -> {
+        step("Установить новый email", () -> {
             profileSteps.setNewEmail(config.client_for_newEmail());
         });
         Assert.assertEquals(
@@ -80,11 +81,12 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация некорректного формата email")
     @Severity(SeverityLevel.NORMAL)
     public void validateInvalidNewEmail() {
-        step("Установка нового email", () -> {
+        step("Установить новый email", () -> {
             profileSteps.setNewEmail("invalidEmail");
         });
         Assert.assertEquals(
-                CharacterSetConstants.INVALID_EMAIL_FORMAT_TEXT, elementsAttributes.getValue(INVALID_EMAIL_TEXT_LOCATOR)
+                CharacterSetConstants.INVALID_EMAIL_FORMAT_TEXT,
+                elementsAttributes.getValue(INVALID_EMAIL_TEXT_LOCATOR)
         );
     }
 
@@ -93,7 +95,7 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация подтверждения пароля")
     @Severity(SeverityLevel.NORMAL)
     public void validateNewPasswordConfirmation() {
-        step("Ввод текущего и нового пароля", () -> {
+        step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
                     config.client_for_password(),
                     config.client_for_password(),
@@ -111,7 +113,7 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация текущего пароля")
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword() {
-        step("Ввод текущего и нового пароля", () -> {
+        step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
                     config.client_for_password(), config.client_for_password(), config.client_for_password()
             );
@@ -130,7 +132,7 @@ public class ProfileTest extends BaseTest {
     @Description("Успешное изменение пароля клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changePassword() {
-        step("Ввод текущего и нового пароля", () -> {
+        step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
                     config.client_for_password(), config.client_for_newPassword(), config.client_for_newPassword()
             );

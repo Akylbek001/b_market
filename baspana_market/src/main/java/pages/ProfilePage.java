@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 @Slf4j
 public class ProfilePage extends BasePage {
-    private static final By CLIENT_PROFILE_NAME = By.id("ClientName");
     private static final By PROFILE_MENU = By.xpath("//img[@src='/Images-baspana/profile.svg']");
     private static final By PHONE_NUMBER = By.xpath(
             "//img[@src='/Images-baspana/phone-call-3.svg']"
@@ -43,17 +42,8 @@ public class ProfilePage extends BasePage {
     );
     private static final By MY_BANK_MENU = By.id("menu2");
 
-
     public ProfilePage(WebDriver driver) {
         super(driver);
-    }
-
-
-    @Step("Click profile icon")
-    public ProfilePage clickProfileIcon() {
-        button.btnClick(CLIENT_PROFILE_NAME);
-        WaitUtils.wait(2);
-        return this;
     }
 
     @Step("Click profile menu")

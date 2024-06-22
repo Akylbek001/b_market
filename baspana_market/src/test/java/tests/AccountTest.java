@@ -19,12 +19,6 @@ public class AccountTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
-
-//        mainSteps.loginButton();
-//        loginSteps.login(
-//                config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-//        profileSteps.navigateToProfile();
-//        depositSteps.selectMyBankMenu();
     }
 
     @Test(description="Открыть текущий счет", groups = {"automated"})
@@ -32,10 +26,11 @@ public class AccountTest extends BaseTest {
     @Description("Текущий счет")
     @Severity(SeverityLevel.BLOCKER)
     public void openCurrentAccount() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -61,10 +56,11 @@ public class AccountTest extends BaseTest {
     @Description("Валидация ОТР")
     @Severity(SeverityLevel.BLOCKER)
     public void openCurrentAccount_otpValidation() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -87,10 +83,11 @@ public class AccountTest extends BaseTest {
     @Description("Счет для ЕПВ")
     @Severity(SeverityLevel.BLOCKER)
     public void openAccountForEPV() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -115,10 +112,11 @@ public class AccountTest extends BaseTest {
     @Description("Валидация ОТР")
     @Severity(SeverityLevel.BLOCKER)
     public void openAccountForEPV_otpValidation() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -144,10 +142,11 @@ public class AccountTest extends BaseTest {
     @Description("Успешный перевод")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToDebt() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -169,11 +168,11 @@ public class AccountTest extends BaseTest {
     @Description("Успешный перевод")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byPhoneNumber() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
-                    config.client_for_password_recovery_login(),
-                    config.client_for_password_recovery_newPassword());
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -198,11 +197,11 @@ public class AccountTest extends BaseTest {
     @Description("Клиент не найден")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byPhoneNumber_notFound() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
-                    config.client_for_password_recovery_login(),
-                    config.client_for_password_recovery_newPassword());
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -228,10 +227,11 @@ public class AccountTest extends BaseTest {
     @Description("Успешный перевод")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byAlternativeCode() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -256,10 +256,11 @@ public class AccountTest extends BaseTest {
     @Description("Клиент не найден")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byAlternativeCode_notFound() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -286,10 +287,11 @@ public class AccountTest extends BaseTest {
     @Description("Успешный перевод")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -314,10 +316,11 @@ public class AccountTest extends BaseTest {
     @Description("некрректный IBAN счет")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank_invalidIban() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -343,10 +346,11 @@ public class AccountTest extends BaseTest {
     @Description("некрректный IBAN счет")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank_insufficientFunds() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -373,10 +377,11 @@ public class AccountTest extends BaseTest {
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
     public void tryOpenCurrentAccount() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -399,10 +404,11 @@ public class AccountTest extends BaseTest {
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
     public void openAccountForEPV_clientValidation() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -426,10 +432,11 @@ public class AccountTest extends BaseTest {
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToDebt_clientValidation() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -447,15 +454,16 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    @Test(description="Перевод клиенту_Отбасы Банк => Валидация налогоплательщика", groups = {"automated"})
+    @Test(description="Перевод клиенту <Отбасы Банк> => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_clientValidation() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -478,10 +486,11 @@ public class AccountTest extends BaseTest {
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank_clientValidation() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });
@@ -505,10 +514,11 @@ public class AccountTest extends BaseTest {
     @Description("счет другого банка")
     @Severity(SeverityLevel.TRIVIAL)
     public void addOtherBankAccount() {
-        step("Авторизация->Мой Банк", () -> {
+        step("Авторизация -> Мой Банк", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
         });

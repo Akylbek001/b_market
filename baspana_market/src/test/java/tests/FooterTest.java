@@ -19,7 +19,7 @@ public class FooterTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Ссылка Интернет-Банкинг", groups = {"automated"})
+    @Test(description="Ссылка <Интернет-Банкинг>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Интернет-Банкинга")
     @Severity(SeverityLevel.TRIVIAL)
@@ -31,7 +31,7 @@ public class FooterTest extends BaseTest {
         Assert.assertTrue(brManager.getCurrUrl().contains(envConfig.internetBankingUrl()));
     }
 
-    @Test(description="Ссылка ипотека", groups = {"automated"})
+    @Test(description="Ссылка <Ипотека>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Ипотека")
     @Severity(SeverityLevel.TRIVIAL)
@@ -43,9 +43,9 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.mortgagePath()));
     }
 
-    @Test(description="Ссылка калькулятора", groups = {"automated"})
+    @Test(description="Ссылка <Калькулятор>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Редирект на страницу калькулятора")
+    @Description("Редирект на страницу Калькулятор")
     @Severity(SeverityLevel.TRIVIAL)
     public void navigateToCalc() {
         step("Навигация на страницу калькулятора", () -> {
@@ -55,9 +55,9 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.calcUrl());
     }
 
-    @Test(description="Ссылка новостей", groups = {"automated"})
+    @Test(description="Ссылка <Новости>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Редирект на страницу новости")
+    @Description("Редирект на страницу Новости")
     @Severity(SeverityLevel.TRIVIAL)
     public void navigateToNews() {
         step("Навигация на страницу новостей", () -> {
@@ -66,20 +66,20 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.newsPath()));
     }
 
-    @Test(description="Ссылка программ", groups = {"automated"})
+    @Test(description="Ссылка <Программы>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Редирект на страницу программы")
+    @Description("Редирект на страницу Программы")
     @Severity(SeverityLevel.TRIVIAL)
     public void navigateToPrograms() {
-        step("Навигация на страницу програм", () -> {
+        step("Навигация на страницу Программы", () -> {
             footerSteps.navigateToProgramsPage();
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.programsPath()));
     }
 
-    @Test(description="Ссылка карта сайта", groups = {"automated"})
+    @Test(description="Ссылка <Карта сайта>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Редирект на страницу карта сайта")
+    @Description("Редирект на страницу Карта сайта")
     @Severity(SeverityLevel.TRIVIAL)
     public void navigateToSiteMap() {
         step("Навигация на страницу карта сайта", () -> {
@@ -88,9 +88,9 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.siteMapPath()));
     }
 
-    @Test(description="Ссылка новостройки", groups = {"automated"})
+    @Test(description="Ссылка <Новостройки>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Редирект на страницу новостройки")
+    @Description("Редирект на страницу Новостройки")
     @Severity(SeverityLevel.TRIVIAL)
     public void navigateToNewBuildings() {
         step("Навигация на страницу новостройки", () -> {
@@ -99,7 +99,7 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.newBuildingsPath()));
     }
 
-    @Test(description="Ссылка о Baspana.kz", groups = {"automated"})
+    @Test(description="Ссылка <о Baspana.kz>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу о Baspana.kz")
     @Severity(SeverityLevel.TRIVIAL)
@@ -110,18 +110,18 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.baspanaInfoPath()));
     }
 
-    @Test(description="Ссылка Baiterek", groups = {"automated"})
+    @Test(description="Ссылка <Baiterek>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Редирект на страницу Baiterek")
+    @Description("Редирект на страницу <Baiterek>")
     @Severity(SeverityLevel.TRIVIAL)
     public void navigateToBaiterek() {
-        step("Навигация на страницу о Baspana.kz", () -> {
+        step("Навигация на страницу Baiterek", () -> {
             footerSteps.navigateToBaiterekPage();
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baiterekUrl());
     }
 
-    @Test(description="Ссылка Памятка по информационной безопасности", groups = {"automated"})
+    @Test(description="Ссылка <Памятка по информационной безопасности>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Памятка по информационной безопасности")
     @Severity(SeverityLevel.TRIVIAL)
@@ -129,11 +129,9 @@ public class FooterTest extends BaseTest {
         step("Навигация на страницу Памятка по информационной безопасности", () -> {
             footerSteps.navigateToInformationSecurityPage();
         });
-//        brManager.switchToLastTab();
-//        Assert.assertEquals(brManager.getCurrUrl(), config.baiterekUrl());        //уточнить навигация на страницу или загрузка документа
     }
 
-    @Test(description="Ссылка Депозитный портфель", groups = {"automated"})
+    @Test(description="Ссылка <Депозитный портфель>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Депозитный портфель")
     @Severity(SeverityLevel.TRIVIAL)
@@ -145,7 +143,7 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.depositPortfolioPath()));
     }
 
-    @Test(description="Ссылка Facebook", groups = {"automated"})
+    @Test(description="Ссылка <Facebook>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Facebook")
     @Severity(SeverityLevel.TRIVIAL)
@@ -157,7 +155,7 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.facebookUrl());
     }
 
-    @Test(description="Ссылка VK", groups = {"automated"})
+    @Test(description="Ссылка <VK>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу vk")
     @Severity(SeverityLevel.TRIVIAL)
@@ -169,7 +167,7 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.vkUrl());
     }
 
-    @Test(description="Ссылка Instagram", groups = {"automated"})
+    @Test(description="Ссылка <Instagram>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Instagram")
     @Severity(SeverityLevel.TRIVIAL)
@@ -181,7 +179,7 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.instagramUrl());
     }
 
-    @Test(description="Ссылка Youtube", groups = {"automated"})
+    @Test(description="Ссылка <Youtube>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу Youtube")
     @Severity(SeverityLevel.TRIVIAL)
@@ -193,7 +191,7 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.youtubeUrl());
     }
 
-    @Test(description="Ссылка AppStore", groups = {"automated"})
+    @Test(description="Ссылка <AppStore>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу AppStore")
     @Severity(SeverityLevel.TRIVIAL)
@@ -205,7 +203,7 @@ public class FooterTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.appStoreUrl());
     }
 
-    @Test(description="Ссылка GooglePlay", groups = {"automated"})
+    @Test(description="Ссылка <GooglePlay>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу GooglePlay")
     @Severity(SeverityLevel.TRIVIAL)

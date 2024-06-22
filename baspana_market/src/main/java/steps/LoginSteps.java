@@ -27,10 +27,10 @@ public class LoginSteps {
                 .clickForgotPasswordLink();
     }
 
-    public void passwordRecovery_input_numberCode_login(String documentData, String phoneNumber) {
+    public void passwordRecovery_inputData(String number, String phone) {
         loginPage
-                .inputDocumentData(documentData)
-                .inputUserName(phoneNumber)
+                .inputDocumentNumber(number)
+                .inputUserName(phone)
                 .clickSendSmsButton();
     }
 
@@ -75,10 +75,20 @@ public class LoginSteps {
                 .clickBaspanaBusinessButton();
     }
 
-    public void inputBin(String bin, String binPass) {
+    public void inputBin(String bin, String password) {
         loginPage
                 .inputBin(bin)
-                .inputBinPass(binPass);
+                .inputBinPass(password);
 //                .clickLoginButton();
+    }
+
+    public void registration() {
+        loginPage
+                .clickRegisterLink();
+    }
+
+    public void becomeClient() {
+        loginPage
+                .clickBecomeClientButton();
     }
 }

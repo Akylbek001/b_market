@@ -8,11 +8,6 @@ public class BecomeClientSteps {
 
     public BecomeClientSteps(WebDriver driver) { becomeClientPage = new BecomeClientPage(driver); }
 
-    public void becomeClient() {
-        becomeClientPage
-                .clickBecomeClientButton();
-    }
-
     public void openDeposit() {
         becomeClientPage
                 .clickOpenDepositBlock()
@@ -37,7 +32,6 @@ public class BecomeClientSteps {
                 .clickAgreeToGetNewslettersCheckbox()
                 .clickContinueButton();
     }
-
 
     public void confirmByOtp(String otp) {
         becomeClientPage

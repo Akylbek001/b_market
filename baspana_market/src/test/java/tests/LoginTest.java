@@ -22,36 +22,36 @@ public class LoginTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Клиент => Авторизация {логин & пароль}", groups = {"automated"})
+    @Test(description="Авторизация клиента {логин & пароль}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Клиент. Успешная авторизация")
+    @Description("Успешная авторизация")
     @Severity(SeverityLevel.NORMAL)
     public void successfulAuthorizationClient() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Ввод авторизационных данных", () -> {
+        step("Ввести авторизационные данные", () -> {
             loginSteps.login(config.clientLogin(), config.clientPassword());
         });
         Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Клиент_Авторизация => Не корректный логин {номер телефона}", groups = {"automated"})
+    @Test(description="Авторизация клиента => Не корректный логин {номер телефона}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация некорректного логина ")
+    @Description("Валидация некорректного логина")
     @Severity(SeverityLevel.NORMAL)
     public void validateClientLogin() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Ввод авторизационных данных", () -> {
+        step("Ввести авторизационные данные", () -> {
             loginSteps.login(config.clientInvalidLogin(), config.clientPassword());
         });
         Assert.assertEquals(
                 CharacterSetConstants.UNEXPECTED_ERROR,elementsAttributes.getValue(WRONG_CREDENTIALS_TEXT));
     }
 
-    @Test(description="Клиент_ Авторизация => Не корректный пароль", groups = {"automated"})
+    @Test(description="Авторизация клиента => Не корректный пароль", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -59,7 +59,7 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Ввод авторизационных данных", () -> {
+        step("Ввести авторизационные данные", () -> {
             loginSteps.login(config.clientLogin(), config.clientInvalidPassword());
         });
         Assert.assertEquals(
@@ -68,7 +68,7 @@ public class LoginTest extends BaseTest {
         );
     }
 
-    @Test(description="Гость => Авторизация {логин & пароль}", groups = {"automated"})
+    @Test(description="Авторизация гостя {логин & пароль}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Гость. Успешная авторизация")
     @Severity(SeverityLevel.NORMAL)
@@ -79,13 +79,13 @@ public class LoginTest extends BaseTest {
         step("Выбрать вкладку Гость", () -> {
             loginSteps.selectGuest();
         });
-        step("Ввод авторизационных данных", () -> {
+        step("Ввести авторизационные данные", () -> {
             loginSteps.login(config.guestLogin(), config.guestPassword());
         });
         Assert.assertEquals(CharacterSetConstants.GUEST_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Гость_Авторизация => Не корректный логин {номер телефона}", groups = {"automated"})
+    @Test(description="Авторизация гостя => Не корректный логин {номер телефона}", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного логина ")
     @Severity(SeverityLevel.NORMAL)
@@ -96,14 +96,16 @@ public class LoginTest extends BaseTest {
         step("Выбрать вкладку Гость", () -> {
             loginSteps.selectGuest();
         });
-        step("Ввод авторизационных данных", () -> {
+        step("Ввести авторизационные данные", () -> {
             loginSteps.login(config.guestInvalidLogin(), config.guestPassword());
         });
         Assert.assertEquals(
-                CharacterSetConstants.INVALID_GUEST_NAME_OR_PASSWORD,elementsAttributes.getValue(WRONG_CREDENTIALS_TEXT));
+                CharacterSetConstants.INVALID_GUEST_NAME_OR_PASSWORD,
+                elementsAttributes.getValue(WRONG_CREDENTIALS_TEXT)
+        );
     }
 
-    @Test(description="Гость_Авторизация => Не корректный пароль", groups = {"automated"})
+    @Test(description="Авторизация гостя => Не корректный пароль", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация некорректного пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -114,7 +116,7 @@ public class LoginTest extends BaseTest {
         step("Выбрать вкладку Гость", () -> {
             loginSteps.selectGuest();
         });
-        step("Ввод авторизационных данных", () -> {
+        step("Ввести авторизационные данные", () -> {
             loginSteps.login(config.guestLogin(), config.guestInvalidPassword());
         });
         Assert.assertEquals(
@@ -136,14 +138,14 @@ public class LoginTest extends BaseTest {
             loginSteps.clickForgetPasswordLink();
         });
         step("Ввести данные для восстановления", () -> {
-            loginSteps.passwordRecovery_input_numberCode_login(
+            loginSteps.passwordRecovery_inputData(
                     config.client_for_password_recovery_document(),
                     config.client_for_password_recovery_login());
         });
-        step("Подтверждение пользователя по смс", () -> {
+        step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(config.smsCode());
         });
-        step("Подтверждение и установка нового пароля", () -> {
+        step("Подтвердить и установить новый пароль", () -> {
             loginSteps.passwordRecoverySetNewPassword(
                     config.client_for_password_recovery_newPassword(),
                     config.client_for_password_recovery_newPassword()
@@ -152,7 +154,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Восстановление пароля => Валидация данных", groups = {"automated"})
+    @Test(description="Восстановление пароля пароля по номеру документа => Валидация данных", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Проверка валидации при установке существующего пароля в виде нового пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -163,8 +165,8 @@ public class LoginTest extends BaseTest {
         step("Кликнуть ссылку Забыли пароль", () -> {
             loginSteps.clickForgetPasswordLink();
         });
-        step("Заполнение данных", () -> {
-            loginSteps.passwordRecovery_input_numberCode_login(
+        step("Ввести данные для восстановления", () -> {
+            loginSteps.passwordRecovery_inputData(
                     config.client_for_password_recovery_invalidDocument(),
                     config.client_for_password_recovery_invalidLogin());
         });
@@ -174,7 +176,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля => Валидация смс-кода", groups = {"automated"}, enabled = false)
+    @Test(description="Восстановление пароля по номеру документа=> Валидация смс-кода", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация смс-кода")
     @Severity(SeverityLevel.NORMAL)
@@ -186,11 +188,11 @@ public class LoginTest extends BaseTest {
             loginSteps.clickForgetPasswordLink();
         });
         step("Ввести данные для восстановления", () -> {
-            loginSteps.passwordRecovery_input_numberCode_login(
+            loginSteps.passwordRecovery_inputData(
                     config.client_for_password_recovery_document(),
                     config.client_for_password_recovery_login());
         });
-        step("Подтверждение пользователя по смс", () -> {
+        step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(RandomUtils.randomNumeric(6));
         });
         Assert.assertEquals(
@@ -208,18 +210,18 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть ссылку Забыли пароль", () -> {
+        step("Кликнуть ссылку <Забыли пароль>", () -> {
             loginSteps.clickForgetPasswordLink();
         });
         step("Ввести данные для восстановления", () -> {
-            loginSteps.passwordRecovery_input_numberCode_login(
+            loginSteps.passwordRecovery_inputData(
                     config.client_for_password_recovery_document(),
                     config.client_for_password_recovery_login());
         });
-        step("Подтверждение пользователя по смс", () -> {
+        step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(config.smsCode());
         });
-        step("Подтверждение и установка нового пароля", () -> {
+        step("Подтвердить и установить новый пароль", () -> {
             loginSteps.passwordRecoverySetNewPassword(
                     config.client_for_password_recovery_newPassword(),
                     config.client_for_password_recovery_invalidPassword()
@@ -239,21 +241,21 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть ссылку Забыли пароль", () -> {
+        step("Кликнуть ссылку <Забыли пароль>", () -> {
             loginSteps.clickForgetPasswordLink();
         });
         step("Выбрать опцию по альтернативному коду", () -> {
             loginSteps.selectAlternativeCodeRadioButton();
         });
         step("Ввести данные для восстановления", () -> {
-            loginSteps.passwordRecovery_input_numberCode_login(
+            loginSteps.passwordRecovery_inputData(
                     config.client_for_password_recovery_alternativeCode(),
                     config.client_for_password_recovery_login());
         });
-        step("Подтверждение пользователя по смс", () -> {
+        step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(config.smsCode());
         });
-        step("Подтверждение и установка нового пароля", () -> {
+        step("Подтвердить и установить новый пароль", () -> {
             loginSteps.passwordRecoverySetNewPassword(
                     config.client_for_password_recovery_newPassword(),
                     config.client_for_password_recovery_newPassword()
@@ -270,43 +272,20 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть ссылку Забыли пароль", () -> {
+        step("Кликнуть ссылку <Забыли пароль>", () -> {
             loginSteps.clickForgetPasswordLink();
         });
         step("Выбрать опцию по альтернативному коду", () -> {
             loginSteps.selectAlternativeCodeRadioButton();
         });
         step("Ввести данные для восстановления", () -> {
-            loginSteps.passwordRecovery_input_numberCode_login(
+            loginSteps.passwordRecovery_inputData(
                     config.client_for_password_recovery_document(),
                     config.client_for_password_recovery_login());
         });
         Assert.assertEquals(
                 CharacterSetConstants.USER_WITH_SUCH_DATA_NOT_FOUND, elementsAttributes.getValue(USER_NOT_FOUND)
         );
-    }
-
-    @Test(description="Изменение номера телефона => Валидация текущего логина", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация текущего логина")
-    @Severity(SeverityLevel.NORMAL)
-    public void tryUpdateLoginToCurrentLogin() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
-        step("Кликнуть Изменить номер телефона", () -> {
-            loginSteps.clickChangePhoneNumberLink();
-        });
-        step("Заполненить инн и логин", () -> {
-            loginSteps.inputIinAndLogin(
-                    config.client_for_password_recovery_iin(), config.client_for_password_recovery_login()
-            );
-        });
-        Assert.assertEquals(
-                drManager.getDriver().switchTo().alert().getText(),
-                CharacterSetConstants.PHONE_NUMBER_ALREADY_CURRENT
-        );
-        drManager.getDriver().switchTo().alert().accept();
     }
 
     @Test(description="Изменение номера телефона", groups = {"automated"})
@@ -317,7 +296,7 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть Изменить номер телефона", () -> {
+        step("Кликнуть <Изменить номер телефона>", () -> {
             loginSteps.clickChangePhoneNumberLink();
         });
         step("Заполненить инн и логин", () -> {
@@ -331,6 +310,29 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
+    @Test(description="Изменение номера телефона => Валидация текущего логина", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация текущего логина")
+    @Severity(SeverityLevel.NORMAL)
+    public void tryUpdateLoginToCurrentLogin() {
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Кликнуть <Изменить номер телефона>", () -> {
+            loginSteps.clickChangePhoneNumberLink();
+        });
+        step("Заполнить инн и логин", () -> {
+            loginSteps.inputIinAndLogin(
+                    config.client_for_password_recovery_iin(), config.client_for_password_recovery_login()
+            );
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.PHONE_NUMBER_ALREADY_CURRENT
+        );
+        drManager.getDriver().switchTo().alert().accept();
+    }
+
     @Test(description="Изменение номера телефона => Ошибка биометрии", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Ошибка биометрии")
@@ -339,10 +341,10 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Кликнуть Изменить номер телефона", () -> {
+        step("Кликнуть <Изменить номер телефона>", () -> {
             loginSteps.clickChangePhoneNumberLink();
         });
-        step("Заполненить инн и логин", () -> {
+        step("Заполнить инн и логин", () -> {
             loginSteps.inputIinAndLogin(
                     config.client_for_password_recovery_iin(), config.client_for_password_recovery_newLogin()
             );
@@ -363,7 +365,7 @@ public class LoginTest extends BaseTest {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
-        step("Заполнение данных", () -> {
+        step("Ввести данные авторизации", () -> {
             loginSteps.selectBaspanaBusiness();
             brManager.switchToLastTab();
             loginSteps.inputBin("800800800800", "passs");

@@ -15,6 +15,11 @@ public class MainSteps {
                 .clickLoginButton();
     }
 
+    public void openProfileMenu() {
+        mainPage
+                .clickProfileIcon();
+    }
+
     public void navigateToBaspanaNewsPage() {
         mainPage
                 .clickReadBaspanaNewsButton();

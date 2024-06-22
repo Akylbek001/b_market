@@ -8,12 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 @Slf4j
 public class RegistrationPage extends BasePage {
-    private static final By REGISTRATION_LINK_LOCATOR = By.xpath(
-            "//div[@class='btn-submit text-center regs'] /button[contains(text(), 'Зарегистрироваться ')]"
-    );
-//    private static final By REGISTRATION_LINK_LOCATOR = By.xpath(
-//            "//div[@class='BecomeClient'] //button[contains(text(), 'Зарегистрироваться ')]"
-//    );
     private static final By ACCEPT_CONTINUE_BUTTON = By.id("registerUser");
     private static final By GUEST_NAME_LOCATOR = By.id("UserName");
     private static final By PHONE__INPUT = By.id("UserPhone");
@@ -34,17 +28,8 @@ public class RegistrationPage extends BasePage {
         super(driver);
     }
 
-    @Step("Click resister link")
-    public RegistrationPage clickRegister() {
-        WaitUtils.wait(2);
-
-//        elementsAttributes.waitUntilTextPresent(REGISTRATION_LINK_LOCATOR, "Зарегистрироваться");
-        button.btnClick(REGISTRATION_LINK_LOCATOR);
-        return this;
-    }
-
     @Step("Click accept and continue button")
-    public RegistrationPage clickAcceptContinue() {
+    public RegistrationPage clickAcceptAndContinueButton() {
         button.btnClick(ACCEPT_CONTINUE_BUTTON);
         return this;
     }

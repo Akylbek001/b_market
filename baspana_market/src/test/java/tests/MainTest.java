@@ -41,10 +41,10 @@ public class MainTest extends BaseTest {
         step("Авторизация", () -> {
             loginSteps.login(config.clientLogin(), config.clientPassword());
         });
-        step("Редиректа в форму заполнения", () -> {
+        step("Редирект в форму заполнения", () -> {
             mainSteps.clickCalculateButton();
         });
-        step("Ввод стоимости недвижимости", () -> {
+        step("Ввести стоимость недвижимости", () -> {
             mainSteps.checkSaldo(config.mortgageAmount());
         });
         Assert.assertEquals(elementsAttributes.getAttrValueElemPresent(SALDO), "25000000");
@@ -69,12 +69,12 @@ public class MainTest extends BaseTest {
         });
     }
 
-    @Test(description="Калькулятор ипотеки. Проверка редиректа в форму авторизации", groups = {"automated"})
+    @Test(description="Калькулятор ипотеки. Проверить редирект в форму авторизации", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Неавторизованный пользователь")
     @Severity(SeverityLevel.MINOR)
     public void checkRedirectToAuth() {
-        step("Проверка редиректа в форму авторизации", () -> {
+        step("Проверить редирект в форму авторизации", () -> {
             mainSteps.clickCalculateButton();
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.authPath()));

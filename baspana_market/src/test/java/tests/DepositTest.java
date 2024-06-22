@@ -22,15 +22,16 @@ public class DepositTest extends BaseTest {
     }
 
     //нужна учетка
-    @Test(description="Открыть депозит Баспана", groups = {"automated"})
+    @Test(description="Открыть депозит <Баспана>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Открыть депозит Баспана")
     @Severity(SeverityLevel.CRITICAL)
     public void openBaspanaDeposit() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
@@ -46,20 +47,21 @@ public class DepositTest extends BaseTest {
     }
 
     //Завершить проверку
-    @Test(description="Открыть депозит Баспана => Обратитесь в отделение", groups = {"automated"})
+    @Test(description="Открыть депозит <Баспана> => Обратитесь в отделение", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - Обратитесь в отделение")
     @Severity(SeverityLevel.CRITICAL)
     public void tryOpenBaspanaDeposit() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Открыть депозит {}", () -> {
+        step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.clickOpenBaspanaDepositButton();
             depositSteps.openBaspanaDeposit();
@@ -67,40 +69,42 @@ public class DepositTest extends BaseTest {
         Assert.assertTrue(false);
     }
 
-    @Test(description="Открыть образовательный вклад «AQYL»", groups = {"automated"})
+    @Test(description="Открыть образовательный вклад <AQYL>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - отсутствует текущий счет")
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Открыть депозит {}", () -> {
+        step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.openAqyl();
         });
         Assert.assertTrue(true);
     }
 
-    @Test(description="Открыть образовательный вклад «AQYL» => Валидация счета", groups = {"automated"})
+    @Test(description="Открыть образовательный вклад <AQYL> => Валидация счета", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - отсутствует текущий счет")
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl_needAccount() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Открыть депозит {}", () -> {
+        step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.openAqyl();
         });
@@ -110,20 +114,21 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Открыть образовательный вклад «AQYL» => не достаточно средств", groups = {"automated"})
+    @Test(description="Открыть образовательный вклад <AQYL> => не достаточно средств", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - не достаточно средств")
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl_insufficientFunds() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Открыть депозит {}", () -> {
+        step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.openAqyl();
         });
@@ -131,20 +136,23 @@ public class DepositTest extends BaseTest {
                 "Недостаточно средств на текущем счете", elementsAttributes.getValue(REFUSED_NOTIFICATION));
     }
 
-    @Test(description="Открыть образовательный вклад «AQYL» => отсутсвует в базе налогового органа", groups = {"automated"})
+    @Test(description="Открыть образовательный вклад <AQYL> => отсутсвует в базе налогового органа",
+            groups = {"automated"}
+    )
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - отсутсвует в базе налогового органа")
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl__NotInTaxAuthorityDatabase() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Открыть депозит {}", () -> {
+        step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.openAqyl();
         });
@@ -157,23 +165,24 @@ public class DepositTest extends BaseTest {
     }
 
     //Add case - нужна учетка для реализации кейса по изменению гос.премии
-    @Test(description="Изменить гос.премию текущего депозита => Валидация имеющейся премии", groups = {"automated"})
+    @Test(description="Изменить <гос.премию> текущего депозита => Валидация имеющейся премии", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить гос.премию - Премия пристуствует")
     @Severity(SeverityLevel.CRITICAL)
     public void tryChangeGosPrem() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
         step("Присвоить гос.премию", () -> {
@@ -191,18 +200,19 @@ public class DepositTest extends BaseTest {
     @Description("Расторжение депозита")
     @Severity(SeverityLevel.CRITICAL)
     public void terminateDeposit() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
         step("Присвоить гос.премию", () -> {
@@ -216,18 +226,19 @@ public class DepositTest extends BaseTest {
     @Description("Изменить условия депозита")
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
         step("Изменить условия депозита", () -> {
@@ -243,21 +254,22 @@ public class DepositTest extends BaseTest {
     @Description("Создать семейный пакет")
     @Severity(SeverityLevel.NORMAL)
     public void createFamilyPackage() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
-        step("Выбрать операцию Создать семейный пакет", () -> {
+        step("Выбрать операцию <Создать семейный пакет>", () -> {
             depositSteps.selectCreateFamilyPackageOperation();
         });
         step("Создать семейный пакет", () -> {
@@ -271,15 +283,16 @@ public class DepositTest extends BaseTest {
     @Description("Валидация степени родства")
     @Severity(SeverityLevel.NORMAL)
     public void tryAddMember_WithoutSelectRelationDegree() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
         step("Добавить учестника", () -> {
@@ -298,15 +311,16 @@ public class DepositTest extends BaseTest {
     @Description("Валидация ИИН")
     @Severity(SeverityLevel.NORMAL)
     public void tryAddFamilyPackageMember_WithInvalidIin() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
         step("Добавить учестника", () -> {
@@ -323,15 +337,16 @@ public class DepositTest extends BaseTest {
     @Description("Валидация алтернативного кода")
     @Severity(SeverityLevel.NORMAL)
     public void tryAddFamilyPackageMember_WithInvalidAltCode() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
         step("Добавить учестника", () -> {
@@ -348,15 +363,16 @@ public class DepositTest extends BaseTest {
     @Description("Добавить участника")
     @Severity(SeverityLevel.NORMAL)
     public void addFamilyPackageMember() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
         step("Добавить учестника", () -> {
@@ -370,15 +386,16 @@ public class DepositTest extends BaseTest {
     @Description("Удалить участника")
     @Severity(SeverityLevel.NORMAL)
     public void removeFamilyPackageMember() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
         step("Удалить учестника", () -> {
@@ -391,15 +408,16 @@ public class DepositTest extends BaseTest {
     @Description("Расформировать семейный пакет")
     @Severity(SeverityLevel.NORMAL)
     public void disbandFamilyPackage() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
         step("Удалить семейный пакет", () -> {
@@ -412,24 +430,27 @@ public class DepositTest extends BaseTest {
     @Description("Деление депозита")
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
         step("Деление депозита", () -> {
             depositSteps.selectDepositDivisionOperation();
         });
-        Assert.assertEquals(CharacterSetConstants.DEPOSIT_DIVISION_ACCEPTED, elementsAttributes.getValue(DIVIDE_DEPOSIT_ACCEPTED));
+        Assert.assertEquals(CharacterSetConstants.DEPOSIT_DIVISION_ACCEPTED,
+                elementsAttributes.getValue(DIVIDE_DEPOSIT_ACCEPTED)
+        );
     }
 
     @Test(description="Объединение депозита", groups = {"automated"})
@@ -437,18 +458,19 @@ public class DepositTest extends BaseTest {
     @Description("Объединение депозита")
     @Severity(SeverityLevel.CRITICAL)
     public void depositPooling() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
         step("Объединение депозита", () -> {
@@ -466,18 +488,19 @@ public class DepositTest extends BaseTest {
     @Description("Уступка безвозмездная")
     @Severity(SeverityLevel.CRITICAL)
     public void assignmentGratuitous() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
         step("Уступка безвозмездная", () -> {
@@ -490,18 +513,19 @@ public class DepositTest extends BaseTest {
     @Description("Калькулятор депозита")
     @Severity(SeverityLevel.NORMAL)
     public void calculatorOP() {
-        step("Авторизация и навигация в Мои депозиты {}", () -> {
+        step("Авторизация -> Мои депозиты", () -> {
             mainSteps.loginButton();
             loginSteps.login(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
+            mainSteps.openProfileMenu();
             profileSteps.navigateToProfile();
             depositSteps.selectMyBankMenu();
             depositSteps.selectDepositsMenu();
         });
-        step("Выбрать открытый депозит {}", () -> {
+        step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Показать доступные операции {}", () -> {
+        step("Показать доступные операции", () -> {
             depositSteps.calculator();
         });
         Assert.assertTrue(true);
