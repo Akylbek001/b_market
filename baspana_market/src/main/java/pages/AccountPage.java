@@ -6,9 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class AccountPage extends BasePage {
-    private static final By ACCOUNTS = By.xpath(
-            "//div[@class='menu-list']//*[contains(text(), 'Счета')]"
-    );
+//    private static final By ACCOUNTS = By.xpath(
+//            "//div[@class='menu-list']//*[contains(text(), 'Счета')]"
+//    );
     private static final By OPEN_ACCOUNTS_BUTTON = By.xpath(
             "//div[@class='account_title'] //button[@data-target='#myAccModal']"
     );
@@ -71,12 +71,6 @@ public class AccountPage extends BasePage {
 
     public AccountPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Step("Select account menu")
-    public AccountPage selectAccountsMenu() {
-        button.btnClick(ACCOUNTS);
-        return this;
     }
 
     @Step("Click open account button")

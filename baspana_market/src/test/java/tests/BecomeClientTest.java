@@ -30,7 +30,7 @@ public class BecomeClientTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void becomeClientByDeposit() {
         step("Открыть депозит", () -> {
-            becomeClientSteps.openDeposit();;
+            becomeClientSteps.openDeposit();
         });
         step("Заполнить данные и подтвердить", () -> {
             becomeClientSteps.verifyPhoneNumberAndIin("77007777777", "860709300429");
@@ -47,7 +47,7 @@ public class BecomeClientTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void becomeClientByDeposit_WithExistedLogin() {
         step("Открыть депозит", () -> {
-            becomeClientSteps.openDeposit();;
+            becomeClientSteps.openDeposit();
         });
         step("Заполнить данные и подтвердить", () -> {
             becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), config.clientIin());
@@ -61,7 +61,7 @@ public class BecomeClientTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void becomeClientByDeposit_under18YearsOld() {
         step("Открыть депозит", () -> {
-            becomeClientSteps.openDeposit();;
+            becomeClientSteps.openDeposit();
         });
         step("Заполнить данные и подтвердить", () -> {
             becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), "200903502862");

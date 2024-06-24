@@ -7,10 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 public class DepositPage extends BasePage {
 
-    private static final By MY_BANK_MENU = By.xpath("//div[@id='menuList'] /a[@id='menu2']");
-    private static final By DEPOSITS = By.xpath(
-            "//div[@class='menu-list']//*[contains(text(), 'Депозиты')]"
-    );
     private static final By MY_DEPOSIT_LABEL = By.cssSelector("[role='option']");
     private static final By NEW_DEPOSIT_BUTTON = By.id("OpenButtons");
     private static final By OPEN_BASPANA_DEPOSIT = By.xpath(
@@ -95,23 +91,10 @@ public class DepositPage extends BasePage {
     private static final By CONFIRM_SMS_BUTTON = By.id("continue-sms-cession");
 
 
-
     public DepositPage(WebDriver driver) {
         super(driver);
     }
 
-    @Step("Select myBank menu")
-    public DepositPage selectMyBankMenu() {
-        button.btnClick(MY_BANK_MENU);
-        WaitUtils.wait(2);
-        return this;
-    }
-
-    @Step("Select deposits menu")
-    public DepositPage selectDepositsMenu() {
-        button.btnClick(DEPOSITS);
-        return this;
-    }
 
     @Step("Select my opened deposit")
     public DepositPage selectOpenedDeposit() {

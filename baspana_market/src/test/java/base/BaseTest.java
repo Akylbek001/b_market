@@ -49,6 +49,7 @@ public abstract class BaseTest{
     protected DepositSteps depositSteps;
     protected AccountSteps accountSteps;
     protected CertificatesSteps certificatesSteps;
+    protected CabinetSteps cabinetSteps;
 
     @BeforeSuite(alwaysRun = true, description = "Логирование старта комплекта тестов")
     public void setUp(ITestContext ctx) {
@@ -98,6 +99,7 @@ public abstract class BaseTest{
         depositSteps = new DepositSteps(driver);
         accountSteps = new AccountSteps(driver);
         certificatesSteps = new CertificatesSteps(driver);
+        cabinetSteps = new CabinetSteps(driver);
     }
 
     private void configInit() {

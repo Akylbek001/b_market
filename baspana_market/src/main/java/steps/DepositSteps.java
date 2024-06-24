@@ -7,15 +7,6 @@ public class DepositSteps {
     private final DepositPage depositPage;
     public DepositSteps(WebDriver driver) { depositPage = new DepositPage(driver); }
 
-    public void selectMyBankMenu() {
-        depositPage
-                .selectMyBankMenu();
-    }
-
-    public void selectDepositsMenu() {
-        depositPage.selectDepositsMenu();
-    }
-
     public void selectOpenedDeposit() {
         depositPage.selectOpenedDeposit();
     }

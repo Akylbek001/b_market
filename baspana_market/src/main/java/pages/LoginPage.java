@@ -92,12 +92,6 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Click Digital Document button")
-    public LoginPage edd() {
-        elementsAttributes.getAttrValue(WRONG_CREDENTIALS_TEXT);
-        return this;
-    }
-
     @Step("Click forgot password link")
     public LoginPage clickForgotPasswordLink() {
         WaitUtils.wait(1);

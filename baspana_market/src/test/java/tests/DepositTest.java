@@ -28,15 +28,14 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openBaspanaDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            mainSteps.clickProfileIcon();
+            cabinetSteps.selectMyBankMenu();
+            cabinetSteps.selectDepositsMenu();
         });
-        step("Открыть депозит {}", () -> {
+        step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
             depositSteps.clickOpenBaspanaDepositButton();
             depositSteps.openBaspanaDeposit();
@@ -53,13 +52,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void tryOpenBaspanaDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
@@ -75,13 +71,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
@@ -96,13 +89,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl_needAccount() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
@@ -120,13 +110,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl_insufficientFunds() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
@@ -144,13 +131,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl__NotInTaxAuthorityDatabase() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
@@ -171,13 +155,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void tryChangeGosPrem() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -201,13 +182,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void terminateDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -227,13 +205,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -255,13 +230,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void createFamilyPackage() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -284,13 +256,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void tryAddMember_WithoutSelectRelationDegree() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -312,13 +281,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void tryAddFamilyPackageMember_WithInvalidIin() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -338,13 +304,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void tryAddFamilyPackageMember_WithInvalidAltCode() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -364,13 +327,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void addFamilyPackageMember() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -387,13 +347,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void removeFamilyPackageMember() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -409,13 +366,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void disbandFamilyPackage() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -431,13 +385,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -459,13 +410,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositPooling() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -489,13 +437,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void assignmentGratuitous() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
@@ -514,13 +459,10 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void calculatorOP() {
         step("Авторизация -> Мои депозиты", () -> {
-            mainSteps.loginButton();
-            loginSteps.login(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-            mainSteps.openProfileMenu();
-            profileSteps.navigateToProfile();
-            depositSteps.selectMyBankMenu();
-            depositSteps.selectDepositsMenu();
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();

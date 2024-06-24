@@ -257,7 +257,7 @@ public class RegistrationTest extends BaseTest {
 
     @Test(description="Регистрация клиента по альтернативному коду => Валидация", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Валидация")
     @Severity(SeverityLevel.NORMAL)
     public void tryRegisterExistedClientByAlternativeCode() {
         step("Выбрать регистрацию по альтернативному коду", () -> {

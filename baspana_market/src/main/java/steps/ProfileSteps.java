@@ -10,11 +10,6 @@ public class ProfileSteps {
         profilePage = new ProfilePage(driver);
     }
 
-    public void navigateToProfile() {
-        profilePage
-                .clickProfileMenu();
-    }
-
     public void editPhoneNumber(String phoneNumber) {
         profilePage
                 .clickPhoneNumber()

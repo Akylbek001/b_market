@@ -359,12 +359,10 @@ public class LoginTest extends BaseTest {
 
     @Test(description="BaspanaBusiness", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Авторизация")
     @Severity(SeverityLevel.NORMAL)
     public void baspanaBusiness() {
-        step("Перейти на страницу авторизации", () -> {
-            mainSteps.loginButton();
-        });
+        step("Перейти на страницу авторизации", () -> mainSteps.loginButton());
         step("Ввести данные авторизации", () -> {
             loginSteps.selectBaspanaBusiness();
             brManager.switchToLastTab();

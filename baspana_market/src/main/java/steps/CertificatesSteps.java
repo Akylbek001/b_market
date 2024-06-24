@@ -7,11 +7,6 @@ public class CertificatesSteps {
     private final CertificatesPage certificatesPage;
     public CertificatesSteps(WebDriver driver) { certificatesPage = new CertificatesPage(driver); }
 
-    public void selectCertificatesMenu() {
-        certificatesPage
-                .selectCertificatesMenu();
-
-    }
     public void getAccountCertificate() {
         certificatesPage
                 .selectAccountAvailabilityCertificate()

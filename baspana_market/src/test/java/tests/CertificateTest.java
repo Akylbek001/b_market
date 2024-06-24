@@ -19,13 +19,6 @@ public class CertificateTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
-
-        mainSteps.loginButton();
-        loginSteps.login(
-                config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword());
-        mainSteps.openProfileMenu();
-        profileSteps.navigateToProfile();
-        depositSteps.selectMyBankMenu();
     }
 
     @Test(description = "Справка о наличии счета", groups = {"automated"})
@@ -33,8 +26,15 @@ public class CertificateTest extends BaseTest {
     @Description("Справка о наличии счета")
     @Severity(SeverityLevel.NORMAL)
     public void getAccountAvailabilityCertificate () {
+        step("Авторизация -> Справки", () -> {
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            mainSteps.clickProfileIcon();
+            cabinetSteps.selectMyBankMenu();
+            cabinetSteps.selectCertificatesMenu();
+        });
         step("Получить справку", () -> {
-            certificatesSteps.selectCertificatesMenu();
             certificatesSteps.getAccountCertificate();
         });
         Assert.assertEquals(
@@ -48,8 +48,13 @@ public class CertificateTest extends BaseTest {
     @Description("Справка о ссудной задолженности")
     @Severity(SeverityLevel.NORMAL)
     public void getLoanDebtCertificate () {
+        step("Авторизация -> Справки", () -> {
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );;
+            brManager.navigateTo(envConfig.baseUrl().concat("Inquiry"));
+        });
         step("Получить справку", () -> {
-            certificatesSteps.selectCertificatesMenu();
             certificatesSteps.getLoanDebtCertificate();
         });
         Assert.assertEquals(

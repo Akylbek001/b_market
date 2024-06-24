@@ -15,6 +15,11 @@ public interface EnvConfig extends Config{
     @Key("base.url")
     String baseUrl();
 
+    @Key("deposit.page")
+    String depositPage();
+
+
+
     @Key("ownHouseProgram.path")
     String ownHouseProgramPath();
 

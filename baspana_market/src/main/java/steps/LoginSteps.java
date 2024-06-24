@@ -2,12 +2,24 @@ package steps;
 
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
+import pages.MainPage;
 
 public class LoginSteps {
+
     private final LoginPage loginPage;
+    private final MainPage mainPage;
 
     public LoginSteps(WebDriver driver) {
         loginPage = new LoginPage(driver);
+        mainPage = new MainPage(driver);
+    }
+
+    public void auth(String phoneNumber, String password) {
+        mainPage.clickLoginButton();
+        loginPage
+                .inputPhoneNumber(phoneNumber)
+                .inputPassword(password)
+                .clickSubmitButton();
     }
 
     public void login(String phoneNumber, String password) {
@@ -18,13 +30,11 @@ public class LoginSteps {
     }
 
     public void selectGuest() {
-        loginPage
-                .clickGuestButton();
+        loginPage.clickGuestButton();
     }
 
     public void clickForgetPasswordLink() {
-        loginPage
-                .clickForgotPasswordLink();
+        loginPage.clickForgotPasswordLink();
     }
 
     public void passwordRecovery_inputData(String number, String phone) {
@@ -48,13 +58,11 @@ public class LoginSteps {
     }
 
     public void selectAlternativeCodeRadioButton() {
-        loginPage
-                .clickAlternativeCodeRadioButton();
+        loginPage.clickAlternativeCodeRadioButton();
     }
 
     public void clickChangePhoneNumberLink() {
-        loginPage
-                .clickChangePhoneNumberLink();
+        loginPage.clickChangePhoneNumberLink();
     }
 
     public void inputIinAndLogin(String iin, String phone) {
@@ -71,8 +79,7 @@ public class LoginSteps {
     }
 
     public void selectBaspanaBusiness() {
-        loginPage
-                .clickBaspanaBusinessButton();
+        loginPage.clickBaspanaBusinessButton();
     }
 
     public void inputBin(String bin, String password) {
@@ -83,12 +90,10 @@ public class LoginSteps {
     }
 
     public void registration() {
-        loginPage
-                .clickRegisterLink();
+        loginPage.clickRegisterLink();
     }
 
     public void becomeClient() {
-        loginPage
-                .clickBecomeClientButton();
+        loginPage.clickBecomeClientButton();
     }
 }

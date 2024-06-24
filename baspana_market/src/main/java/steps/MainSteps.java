@@ -15,7 +15,7 @@ public class MainSteps {
                 .clickLoginButton();
     }
 
-    public void openProfileMenu() {
+    public void clickProfileIcon() {
         mainPage
                 .clickProfileIcon();
     }

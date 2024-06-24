@@ -6,9 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CertificatesPage extends BasePage {
-    private static final By CERTIFICATES = By.xpath(
-            "//div[@class='menu-list']//*[text() = 'Справки']"
-    );
     private static final By CERTIFICATE_OF_ACCOUNT_AVAILABILITY = By.id("GetForm");
     private static final By CERTIFICATE_OF_LOAN_DEBT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Справка о ссудной задолженности']");
 
@@ -24,14 +21,6 @@ public class CertificatesPage extends BasePage {
         super(driver);
     }
 
-
-    @Step("Select certificates menu")
-    public CertificatesPage selectCertificatesMenu() {
-        move.scrollToElement(CERTIFICATES);
-        button.btnClick(CERTIFICATES);
-        WaitUtils.wait(3);
-        return this;
-    }
 
     @Step("Select certificate of account availability")
     public CertificatesPage selectAccountAvailabilityCertificate() {

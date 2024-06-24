@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 @Slf4j
 public class ProfilePage extends BasePage {
-    private static final By PROFILE_MENU = By.xpath("//img[@src='/Images-baspana/profile.svg']");
     private static final By PHONE_NUMBER = By.xpath(
             "//img[@src='/Images-baspana/phone-call-3.svg']"
     );
@@ -40,16 +39,9 @@ public class ProfilePage extends BasePage {
     public static final By PASSWORD_CONFIRMATION_ERROR_LOCATOR = By.cssSelector(
             ".ob__bodyM.ob__error.hidden.passwordError"
     );
-    private static final By MY_BANK_MENU = By.id("menu2");
 
     public ProfilePage(WebDriver driver) {
         super(driver);
-    }
-
-    @Step("Click profile menu")
-    public ProfilePage clickProfileMenu() {
-        button.btnClick(PROFILE_MENU);
-        return this;
     }
 
     @Step("Click phone number")
@@ -136,12 +128,6 @@ public class ProfilePage extends BasePage {
     public ProfilePage clickChangePasswordButton() {
         button.btnClick(CHANGE_PASSWORD_BUTTON);
         WaitUtils.wait(2);
-        return this;
-    }
-
-    @Step("Click my bank menu")
-    public ProfilePage clickMyBankMenu() {
-        button.btnClick(MY_BANK_MENU);
         return this;
     }
 }

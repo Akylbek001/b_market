@@ -7,11 +7,6 @@ public class AccountSteps {
     private final AccountPage accountPage;
     public AccountSteps(WebDriver driver) { accountPage = new AccountPage(driver); }
 
-    public void selectAccountsMenu() {
-        accountPage
-                .selectAccountsMenu();
-    }
-
     public void openAccountButton() {
         accountPage
                 .clickOpenAccountButton();

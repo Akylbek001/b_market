@@ -22,14 +22,14 @@ public class ProfileTest extends BaseTest {
 
         mainSteps.loginButton();
         loginSteps.login(config.client_for_login(), config.client_for_password());
-        mainSteps.openProfileMenu();
-        profileSteps.navigateToProfile();
+        mainSteps.clickProfileIcon();
+        cabinetSteps.selectProfileMenu();
     }
 
     //изменить можно раз в 90 дней
     @Test(description="Изменить номер телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Изменить номер телефона")
     @Severity(SeverityLevel.NORMAL)
     public void editPhoneNumber() {
         step("Установить новый номер телефона", () -> {
@@ -41,7 +41,7 @@ public class ProfileTest extends BaseTest {
     //нужна учетка
     @Test(description="Удостоверение личности", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Удостоверение личности")
     @Severity(SeverityLevel.NORMAL)
     public void editIdentificationData() {
         step("Удостоверение личности", () -> {
@@ -53,7 +53,7 @@ public class ProfileTest extends BaseTest {
     //нужна учетка
     @Test(description="Изменить личные данные", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Изменить личные данные")
     @Severity(SeverityLevel.NORMAL)
     public void editPersonalData() {
         step("Личные данные", () -> {
@@ -87,6 +87,23 @@ public class ProfileTest extends BaseTest {
         Assert.assertEquals(
                 CharacterSetConstants.INVALID_EMAIL_FORMAT_TEXT,
                 elementsAttributes.getValue(INVALID_EMAIL_TEXT_LOCATOR)
+        );
+    }
+
+    //нужна учетка - повторно изменить пороль после запуска теста
+    @Test(description="Изменить пароль", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешное изменение пароля клиента")
+    @Severity(SeverityLevel.NORMAL)
+    public void changePassword() {
+        step("Ввести текущий и новый пароль", () -> {
+            profileSteps.inputCurrentAndNewPassword(
+                    config.client_for_password(), config.client_for_newPassword(), config.client_for_newPassword()
+            );
+            profileSteps.confirmPasswordChange();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.PASSWORD_UPDATED, elementsAttributes.getValue(EMAIL_SUCCESSFULLY_CHANGED)
         );
     }
 
@@ -124,22 +141,5 @@ public class ProfileTest extends BaseTest {
                 CharacterSetConstants.NEW_PASSWORD_SAME_WITH_CURRENT
         );
         drManager.getDriver().switchTo().alert().accept();
-    }
-
-    //нужна учетка - повторно изменить пороль после запуска теста
-    @Test(description="Изменить пароль", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Успешное изменение пароля клиента")
-    @Severity(SeverityLevel.NORMAL)
-    public void changePassword() {
-        step("Ввести текущий и новый пароль", () -> {
-            profileSteps.inputCurrentAndNewPassword(
-                    config.client_for_password(), config.client_for_newPassword(), config.client_for_newPassword()
-            );
-            profileSteps.confirmPasswordChange();
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.PASSWORD_UPDATED, elementsAttributes.getValue(EMAIL_SUCCESSFULLY_CHANGED)
-        );
     }
 }
