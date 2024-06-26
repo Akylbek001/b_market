@@ -1,6 +1,5 @@
 package steps;
 
-import kotlin._Assertions;
 import org.openqa.selenium.WebDriver;
 import pages.ProfilePage;
 
