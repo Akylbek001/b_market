@@ -35,6 +35,23 @@ public class CabinetSteps {
                 .selectCertificatesMenu();
     }
 
+    public void selectGovServicesMenu() {
+        cabinetPage
+                .selectGovServicesMenu();
+    }
+
+    public void selectGovServicesCertificatesMenu() {
+        cabinetPage
+                .selectGovServicesCertificatesMenu();
+    }
+
+    public void selectAppointmentToDepartmentMenu() {
+        cabinetPage
+                .selectAppointmentToDepartmentMenu();
+    }
+
+
+
     public void addEditEmail(String email) {
         cabinetPage
                 .clickAddEditEmailButton()

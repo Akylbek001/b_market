@@ -50,6 +50,9 @@ public class BecomeClientPage extends BasePage {
     public static final By REFUSE_TEXT = By.cssSelector("#NextSteps p");
     public static final By INVALID_IIN_TEXT = By.cssSelector("[class='errtexts']");
     public static final By OPEN_DEPOSIT_BUTTON = By.cssSelector("[onclick='PhoneVerification()']");
+    public static final By BIOMETRY_CHECK_FAILED = By.id("failed-error-custom-message");
+
+
 
 
     public BecomeClientPage(WebDriver driver) {
@@ -96,8 +99,8 @@ public class BecomeClientPage extends BasePage {
     @Step("Click verify button")
     public BecomeClientPage clickVerifyButton() {
         button.btnClick(VERIFY_BUTTON);
-        elementsAttributes.waitUntilExist(REFUSE_TEXT);
-        WaitUtils.wait(1);
+//        elementsAttributes.waitUntilExist(REFUSE_TEXT);
+        WaitUtils.wait(3);
         return this;
     }
 

@@ -39,6 +39,8 @@ public class ProfilePage extends BasePage {
     public static final By PASSWORD_CONFIRMATION_ERROR_LOCATOR = By.cssSelector(
             ".ob__bodyM.ob__error.hidden.passwordError"
     );
+    private static final By AGREEMENT_CHECKBOX = By.cssSelector(".form-check-label");
+    private static final By START_BIOMETRY_BUTTON = By.id("startBiometry");
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -128,6 +130,18 @@ public class ProfilePage extends BasePage {
     public ProfilePage clickChangePasswordButton() {
         button.btnClick(CHANGE_PASSWORD_BUTTON);
         WaitUtils.wait(2);
+        return this;
+    }
+
+    @Step("Click agreement checkbox")
+    public ProfilePage clickAgreementCheckbox() {
+        button.btnClick(AGREEMENT_CHECKBOX);
+        return this;
+    }
+
+    @Step("Click start biometry button")
+    public ProfilePage clickStartBiometryButton() {
+        button.btnClick(START_BIOMETRY_BUTTON);
         return this;
     }
 }

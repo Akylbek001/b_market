@@ -51,7 +51,7 @@ public class CertificateTest extends BaseTest {
         step("Авторизация -> Справки", () -> {
             loginSteps.auth(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );;
+            );
             brManager.navigateTo(envConfig.baseUrl().concat("Inquiry"));
         });
         step("Получить справку", () -> {

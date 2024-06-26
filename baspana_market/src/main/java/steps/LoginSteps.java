@@ -47,6 +47,7 @@ public class LoginSteps {
     public void inputSmsCode(String smsCode) {
         loginPage
                 .inputSmsCode(smsCode)
+                .clickReCapture()
                 .clickContinueButton();
     }
 

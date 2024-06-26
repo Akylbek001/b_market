@@ -6,9 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+
 @Slf4j
 public class CabinetPage extends BasePage {
     private static final By PROFILE_MENU = By.xpath("//img[@src='/Images-baspana/profile.svg']");
+    private static final By DIGITAL_MORTGAGE_MENU = By.cssSelector("[href='/DigitalMortgage']");
     private static final By MY_BANK_MENU = By.xpath("//div[@id='menuList'] /a[@id='menu2']");
     private static final By DEPOSITS = By.xpath(
             "//div[@class='menu-list']//*[contains(text(), 'Депозиты')]"
@@ -19,12 +21,12 @@ public class CabinetPage extends BasePage {
     private static final By CERTIFICATES = By.xpath(
             "//div[@class='menu-list']//*[text() = 'Справки']"
     );
-    private static final By APPOINTMENT_TO_DEPARTMENT = By.xpath(
+    private static final By APPOINTMENT_TO_DEPARTMENT_MENU = By.xpath(
             "//div[@class='menu-list']//*[text() = 'Запись в отделение']"
     );
-
-
-    private static final By ADD_EDIT_EMAIL_BUTTON = By.id("ProfilesEmailsId");
+    private static final By GOV_SERVICES_MENU = By.cssSelector(".menu-item #StateCertificate");
+    private static final By GOV_SERVICES_CERTIFICATES = By.cssSelector("[href='/StateApplication']");
+    private static final By ADD_EDIT_EMAIL_BUTTON = By.cssSelector("#ProfilesEmailsId div");
     private static final By EMAIL_INPUT = By.cssSelector(".form.profiles_emails");
     private static final By SAVE_EMAIL_BUTTON = By.xpath("//a[@id='ProfilesEmailsSavesId'] /div");
     public static final By PROFILE_EMAIL = By.id("profileEmail");
@@ -48,6 +50,7 @@ public class CabinetPage extends BasePage {
 
     @Step("Select myBank menu")
     public CabinetPage selectMyBankMenu() {
+        move.scrollToElement(MY_BANK_MENU);
         button.btnClick(MY_BANK_MENU);
         WaitUtils.wait(2);
         return this;
@@ -73,6 +76,36 @@ public class CabinetPage extends BasePage {
         return this;
     }
 
+    @Step("Select government services menu")
+    public CabinetPage selectGovServicesMenu() {
+        move.scrollToElement(GOV_SERVICES_MENU);
+        button.btnClick(GOV_SERVICES_MENU);
+        WaitUtils.wait(3);
+        return this;
+    }
+
+    @Step("Select government services certifications menu")
+    public CabinetPage selectGovServicesCertificatesMenu() {
+        button.btnClick(GOV_SERVICES_CERTIFICATES);
+        return this;
+    }
+
+    @Step("Select digital mortgage menu")
+    public CabinetPage selectDigitalMortgageMenu() {
+        move.scrollToElement(DIGITAL_MORTGAGE_MENU);
+        button.btnClick(DIGITAL_MORTGAGE_MENU);
+        WaitUtils.wait(3);
+        return this;
+    }
+
+    @Step("Select appointment to department menu")
+    public CabinetPage selectAppointmentToDepartmentMenu() {
+        move.scrollToElement(APPOINTMENT_TO_DEPARTMENT_MENU);
+        button.btnClick(APPOINTMENT_TO_DEPARTMENT_MENU);
+        WaitUtils.wait(3);
+        return this;
+    }
+
     @Step("Click add email button")
     public CabinetPage clickAddEditEmailButton() {
         button.btnClick(ADD_EDIT_EMAIL_BUTTON);
@@ -82,13 +115,14 @@ public class CabinetPage extends BasePage {
     @Step("Input email")
     public CabinetPage inputEmail(String email) {
         input.inputWithClear(EMAIL_INPUT, email);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Click save email button")
     public CabinetPage clickSaveEmailButton() {
         button.btnClick(SAVE_EMAIL_BUTTON);
-        WaitUtils.wait(2);
+        WaitUtils.wait(1);
         return this;
     }
 
@@ -119,13 +153,6 @@ public class CabinetPage extends BasePage {
     @Step("Click change password submit button")
     public CabinetPage clickChangePasswordSubmitButton() {
         button.btnClick(CHANGE_PASSWORD_SUBMIT_BUTTON);
-        return this;
-    }
-
-    @Step("Select appointment to department menu")
-    public CabinetPage selectAppointmentToDepartmentMenu() {
-        button.btnClick(APPOINTMENT_TO_DEPARTMENT);
-        WaitUtils.wait(2);
         return this;
     }
 }

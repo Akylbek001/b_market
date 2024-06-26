@@ -36,20 +36,23 @@ public abstract class BaseTest{
     protected RegistrationSteps registrationSteps;
     protected BecomeClientPage becomeClientPage;
     protected BecomeClientSteps becomeClientSteps;
-    protected FeedbackPage feedbackPage;
     protected FeedbackSteps feedbackSteps;
     protected MainSteps mainSteps;
     protected FooterSteps footerSteps;
     protected FilterPage filterPage;
     protected FilterSteps filterSteps;
     protected ProfileSteps profileSteps;
+    protected DigitalMortgageSteps digitalMortgageSteps;
+    protected CabinetSteps cabinetSteps;
     protected ProfilePage profilePage;
     protected AppConfig config;
     protected EnvConfig envConfig;
     protected DepositSteps depositSteps;
     protected AccountSteps accountSteps;
     protected CertificatesSteps certificatesSteps;
-    protected CabinetSteps cabinetSteps;
+    protected GovServicesSteps govServicesSteps;
+    protected AppointmentToDepartmentSteps appointmentToDepartmentSteps;
+    protected FavoritesSteps favoritesSteps;
 
     @BeforeSuite(alwaysRun = true, description = "Логирование старта комплекта тестов")
     public void setUp(ITestContext ctx) {
@@ -94,12 +97,16 @@ public abstract class BaseTest{
         footerSteps = new FooterSteps(driver);
         filterSteps = new FilterSteps(driver);
         profileSteps = new ProfileSteps(driver);
+        digitalMortgageSteps = new DigitalMortgageSteps(driver);
+        cabinetSteps = new CabinetSteps(driver);
         headerSteps = new HeaderSteps(driver);
         feedbackSteps =new FeedbackSteps(driver);
         depositSteps = new DepositSteps(driver);
         accountSteps = new AccountSteps(driver);
+        govServicesSteps = new GovServicesSteps(driver);
         certificatesSteps = new CertificatesSteps(driver);
-        cabinetSteps = new CabinetSteps(driver);
+        appointmentToDepartmentSteps = new AppointmentToDepartmentSteps(driver);
+        favoritesSteps = new FavoritesSteps(driver);
     }
 
     private void configInit() {

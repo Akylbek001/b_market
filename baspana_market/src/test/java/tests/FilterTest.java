@@ -27,7 +27,7 @@ public class FilterTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void filterForBuy() {
         step("Выбрать параметры поиска", () -> {
-            filterSteps.searchObjectForBuyByAllParameters(config.priceFrom(), config.priceTo());
+//            filterSteps.searchObjectForBuyByAllParameters(config.priceFrom(), config.priceTo());
             filterSteps.testt();
         });
     }

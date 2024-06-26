@@ -10,7 +10,7 @@ public class FilterSteps {
         filterPage = new FilterPage(driver);
     }
 
-    public void searchObjectForBuyByAllParameters(String code, String price) {
+    public void searchObjectForBuyByAllParameters() {
         filterPage
 //                .clickBuyTab()
 //                .clickHouseTypeDropDown();

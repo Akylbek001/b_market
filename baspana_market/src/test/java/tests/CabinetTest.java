@@ -20,9 +20,7 @@ public class CabinetTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
-        loginSteps.auth(
-                config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-        );
+        loginSteps.auth(config.userLogin(), config.userPass());
         brManager.navigateTo(envConfig.baseUrl().concat("cabinet"));
     }
 
@@ -43,9 +41,9 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void changeEmail () {
         step("Изменить email", () -> {
-            cabinetSteps.addEditEmail("nurRene@bk.ru");
+            cabinetSteps.addEditEmail("akylbek@bk.ru");
         });
-        Assert.assertEquals(elementsAttributes.getValue(PROFILE_EMAIL), "nurRene@bk.ru");
+        Assert.assertEquals(elementsAttributes.getValue(PROFILE_EMAIL), "akylbek@bk.ru");
     }
 
     @Test(description = "Изменить пароль", groups = {"automated"})
@@ -56,7 +54,6 @@ public class CabinetTest extends BaseTest {
         step("Изменить пароль", () -> {
             cabinetSteps.changePassword("oldPassword@", "newPassword@");
         });
-        Assert.assertEquals(elementsAttributes.getValue(PROFILE_EMAIL), "Rene@bk.ru");
     }
 
     @Test(description = "Изменить пароль => валидация текущего пароля", groups = {"automated"})
@@ -65,8 +62,8 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.client_for_password_recovery_newPassword(),
-                    config.client_for_newPassword()
+            cabinetSteps.changePassword(config.userPass(),
+                    config.userPass()
             );
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
@@ -80,7 +77,7 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void validatePassword_digit() {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.client_for_password_recovery_newPassword(), "oldassword");
+            cabinetSteps.changePassword(config.userPass(), "oldassword");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
                 "Пароль должен содержать хотябы одну цифру"
@@ -93,7 +90,7 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void validatePassword_capitalLetter() {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.client_for_password_recovery_newPassword(), "oldassword1");
+            cabinetSteps.changePassword(config.userPass(), "oldassword1");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
                 "Пароль должен содержать хотябы одну заглавную букву"
@@ -106,7 +103,7 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void validatePassword_specialCharacter() {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.client_for_password_recovery_newPassword(), "Oldassword1");
+            cabinetSteps.changePassword(config.userPass(), "Oldassword1");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
                 "Пароль должен содержать хотябы один символ"

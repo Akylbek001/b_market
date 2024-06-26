@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static common.consts.CharacterSetConstants.OPEN_DEPOSIT_REFUSED;
 import static io.qameta.allure.Allure.step;
 import static pages.DepositPage.*;
 
@@ -43,9 +44,10 @@ public class DepositTest extends BaseTest {
         step("Подтвердить открытие депозита", () -> {
             depositSteps.confirmBySms(config.smsCode(), "800000");
         });
+        Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
     }
 
-    //Завершить проверку
+    //Нужна соответствующая учетка
     @Test(description="Открыть депозит <Баспана> => Обратитесь в отделение", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - Обратитесь в отделение")
@@ -62,12 +64,16 @@ public class DepositTest extends BaseTest {
             depositSteps.clickOpenBaspanaDepositButton();
             depositSteps.openBaspanaDeposit();
         });
-        Assert.assertTrue(false);
+        Assert.assertEquals(
+                CharacterSetConstants.OPEN_DEPOSIT_REFUSED,
+                elementsAttributes.getValue(REFUSED_NOTIFICATION)
+        );
     }
 
+    //Нужна соответствующая учетка
     @Test(description="Открыть образовательный вклад <AQYL>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - отсутствует текущий счет")
+    @Description("")
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl() {
         step("Авторизация -> Мои депозиты", () -> {
@@ -83,7 +89,7 @@ public class DepositTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Открыть образовательный вклад <AQYL> => Валидация счета", groups = {"automated"})
+    @Test(description="Открыть обр.вклад <AQYL> => Валидация счета", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - отсутствует текущий счет")
     @Severity(SeverityLevel.CRITICAL)
@@ -104,7 +110,7 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Открыть образовательный вклад <AQYL> => не достаточно средств", groups = {"automated"})
+    @Test(description="Открыть обр.вклад <AQYL> => не достаточно средств", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - не достаточно средств")
     @Severity(SeverityLevel.CRITICAL)
@@ -120,12 +126,10 @@ public class DepositTest extends BaseTest {
             depositSteps.openAqyl();
         });
         Assert.assertEquals(
-                "Недостаточно средств на текущем счете", elementsAttributes.getValue(REFUSED_NOTIFICATION));
+                CharacterSetConstants.INSUFFICIENT_FOUND_TEXT, elementsAttributes.getValue(REFUSED_NOTIFICATION));
     }
 
-    @Test(description="Открыть образовательный вклад <AQYL> => отсутсвует в базе налогового органа",
-            groups = {"automated"}
-    )
+    @Test(description="Открыть обр.вклад <AQYL> => отсутсвует в базе налогового органа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - отсутсвует в базе налогового органа")
     @Severity(SeverityLevel.CRITICAL)
@@ -148,7 +152,6 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    //Add case - нужна учетка для реализации кейса по изменению гос.премии
     @Test(description="Изменить <гос.премию> текущего депозита => Валидация имеющейся премии", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить гос.премию - Премия пристуствует")
@@ -171,11 +174,13 @@ public class DepositTest extends BaseTest {
         });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
-                "На выбранном депозите уже присутствует государственная премия"
+                CharacterSetConstants.GOS_PREM_ALREADY_EXIST_TEXT
         );
         drManager.getDriver().switchTo().alert().accept();
     }
+    //Add case - нужна учетка для реализации кейса по изменению гос.премии
 
+    //BUG - срабатывает паттерн проверки при отсутсвии активной заявки на деление
     @Test(description="Расторжение депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Расторжение депозита")
@@ -193,10 +198,40 @@ public class DepositTest extends BaseTest {
         step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
+        step("Расторгнуть", () -> {
+            depositSteps.terminateDeposit();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.REQUEST_ACCEPTED_TEXT,
+                elementsAttributes.getValue(TERMINATE_DEPOSIT_REQUEST_ACCEPTED)
+        );
+    }
+
+    @Test(description="Расторжение депозита => Валидация актуальной заявки на деление", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отказ-Валидация актуальной заявки на деление")
+    @Severity(SeverityLevel.CRITICAL)
+    public void terminateDeposit_validateActiveOrderForDivision() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
         step("Присвоить гос.премию", () -> {
             depositSteps.terminateDeposit();
         });
-        Assert.assertTrue(true);
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.ACTIVE_ORDER_FOR_DIVISION_MESSAGE
+        );
+        drManager.getDriver().switchTo().alert().accept();
     }
 
     @Test(description="Изменить условия депозита", groups = {"automated"})
@@ -219,9 +254,9 @@ public class DepositTest extends BaseTest {
         step("Изменить условия депозита", () -> {
             depositSteps.changeDepositConditions("3700000", config.smsCode());
         });
-        System.out.println(elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY));
-        String s = elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY);
-        Assert.assertEquals(s, elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY));
+        Assert.assertEquals(CharacterSetConstants.DEPOSIT_CONDITIONS_CHANGED_SUCCESSFULLY_TEXT,
+                elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
+        );
     }
 
     @Test(description="Создать семейный пакет", groups = {"automated"})
@@ -273,8 +308,6 @@ public class DepositTest extends BaseTest {
         );
     }
 
-
-    //BUG: ввести валидный левый ИИН => ошибка альтКода, ввести не валидный ИИН => валидация регистрации ?!
     @Test(description="Добавить участника семейного пакета => Валидация ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация ИИН")
@@ -358,7 +391,7 @@ public class DepositTest extends BaseTest {
         step("Удалить учестника", () -> {
             depositSteps.removeFamilyPackageMember();
         });
-    }
+    } //добавить проверку
 
     @Test(description="Расформировать семейный пакет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -377,7 +410,7 @@ public class DepositTest extends BaseTest {
         step("Удалить семейный пакет", () -> {
             depositSteps.disbandFamilyPackage();
         });
-    }
+    } //добавить проверку
 
     @Test(description="Деление депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -424,6 +457,28 @@ public class DepositTest extends BaseTest {
         step("Объединение депозита", () -> {
             depositSteps.selectUniteDepositOperation();
         });
+    }
+
+    @Test(description="Объединение депозита => Валидация при наличии всего одного депозита", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Объединение депозита-валидация кол-ва депозитов")
+    @Severity(SeverityLevel.CRITICAL)
+    public void depositPooling_validateDepositQuantity() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Объединение депозита", () -> {
+            depositSteps.selectUniteDepositOperation();
+        });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
                 CharacterSetConstants.ONLY_ONE_DEPOSIT
@@ -452,6 +507,7 @@ public class DepositTest extends BaseTest {
             depositSteps.selectAssignmentGratuitousOperation(config.clientIin(), config.smsCode());
         });
     }
+    //implement other side accept
 
     @Test(description="Калькулятор депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")

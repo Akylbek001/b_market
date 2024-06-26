@@ -152,7 +152,7 @@ public class FilterPage extends BasePage {
     @Step("Click search button")
     public FilterPage clickSearchButton() {
         button.btnClick(SEARCH_HOUSE_BUTTON);
-//        WaitUtils.wait(4);
+        WaitUtils.wait(3);
         return this;
     }
 

@@ -15,20 +15,19 @@ public class LoginPage extends BasePage {
     private static final By BIN_PASS= By.id("passwordTextBox");
     private static final By USER_PHONE_NUMBER_LOCATOR = By.id("UserNameLogin");
     private static final By USER_PASSWORD_LOCATOR = By.id("PasswordLogin");
-    private static final By SUBMIT_BUTTON_LOCATOR = By.xpath(
-            "//button[@class = 'baspanaBusiness bbreverse']"
-    );
+    private static final By SUBMIT_BUTTON_LOCATOR = By.cssSelector(".baspanaBusiness.bbreverse");
     public static final By PROFILE_NAME = By.xpath("//div[@class='clientName'] /a");
     private static final By FORGET_PASSWORD_LOCATOR = By.id("forgetPass");
     private static final By DOCUMENT_DATA_LOCATOR = By.id("documentData");
     public static final By USER_NOT_FOUND = By.xpath("//span[@class='text-danger mt-3']");
     private static final By USER_NAME_LOCATOR = By.id("UserNameName");
     private static final By SMS_CODE_LOCATOR = By.id("smsForget");
+    private static final By RE_CAPTURE = By.id("rc-anchor-container");
     private static final By CONTINUE_SMS_FORGET_BUTTON = By.id("checkPassForgetPass");
     private static final By NEW_PASSWORD_INPUT_LOCATOR = By.id("newPassInp");
     private static final By NEW_PASSWORD_CONFIRM_LOCATOR = By.id("newPassInpConfirm");
     private static final By SAVE_AND_LOGIN_BUTTON = By.id("saveAndLogin");
-    private static final By SEND_SMS_BUTTON_LOCATOR = By.id("sendSmsBtnForget");
+    private static final By SEND_SMS_BUTTON_LOCATOR = By.cssSelector("#sendSmsForget #sendSmsBtnForgetPass");
     public static final By WRONG_SMS_CODE_TEXT = By.id("otpResult");
     private static final By CHANGE_PHONE_NUMBER_LOCATOR = By.xpath(
             "//*[contains(text(), 'Изменить номер телефона')]"
@@ -121,6 +120,12 @@ public class LoginPage extends BasePage {
     @Step("Input forget sms")
     public LoginPage inputSmsCode(String smsCode) {
         input.inputWithClear(SMS_CODE_LOCATOR, smsCode);
+        return this;
+    }
+
+    @Step("Input forget sms")
+    public LoginPage clickReCapture() {
+        button.btnClick(RE_CAPTURE);
         return this;
     }
 

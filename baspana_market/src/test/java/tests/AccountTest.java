@@ -43,7 +43,7 @@ public class AccountTest extends BaseTest {
             accountSteps.finishOpenCurrentAccount();
         });
         Assert.assertEquals(
-                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_SUCCESSFULLY,
+                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_SUCCESSFULLY_TEXT,
                 elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
         );
     }
@@ -89,7 +89,7 @@ public class AccountTest extends BaseTest {
             accountSteps.openAccountForEpvSignAndConfirm(config.smsCode());
         });
         Assert.assertEquals(
-                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_SUCCESSFULLY,
+                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_SUCCESSFULLY_TEXT,
                 elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
         );
     }
@@ -118,7 +118,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    //BUG - no accounts in dropdown list even when existed deposit
+    //BUG - в выпадающем списке не отображаются счета, даже при наличии депозита
     @Test(description="Перевод между своими счетами", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -139,7 +139,7 @@ public class AccountTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    //BUG - "Произошла ошибка. Повторите попытку позже." - но перевод совершается
+    //BUG - "Произошла ошибка. Повторите попытку позже."=> но перевод совершается(средства списываются и пополняются)
     @Test(description="Перевод клиенту <Отбасы Банк> => по номеру телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -164,7 +164,7 @@ public class AccountTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Перевод клиенту <Отбасы Банк> по номеру телефона => не найден", groups = {"automated"})
+    @Test(description="Перевод клиенту <Отбасы Банк> по номеру телефона => Клиент не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Клиент не найден")
     @Severity(SeverityLevel.BLOCKER)
@@ -213,7 +213,7 @@ public class AccountTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Перевод клиенту <Отбасы Банк> по альтернативному коду => не найден", groups = {"automated"})
+    @Test(description="Перевод клиенту <Отбасы Банк> по альт.коду => Клиент не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Клиент не найден")
     @Severity(SeverityLevel.BLOCKER)
@@ -238,7 +238,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    //BUG -
+
     @Test(description="Перевод в другой банк", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -357,7 +357,7 @@ public class AccountTest extends BaseTest {
                 CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(EPV_ERROR_MESSAGE)
         );
     }
-    // Add validation sms_code test cases
+    // Add validation otp cases for current&EPV accounts
 
     @Test(description="Перевод между своими счетами => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")

@@ -126,7 +126,7 @@ public class LoginTest extends BaseTest {
     }
 
     //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля по номеру документа", groups = {"automated"}, enabled = false)
+    @Test(description="Восстановление пароля по номеру документа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное восстановление пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -139,8 +139,8 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    config.client_for_password_recovery_document(),
-                    config.client_for_password_recovery_login());
+                    "037916624",
+                    "77007010990");
         });
         step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(config.smsCode());
@@ -198,7 +198,6 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(
                 CharacterSetConstants.INVALID_CODE, elementsAttributes.getValue(WRONG_SMS_CODE_TEXT)
         );
-        //rc-anchor-container
     }
 
     //ToDo - find out how to get capture
@@ -288,6 +287,7 @@ public class LoginTest extends BaseTest {
         );
     }
 
+    //нужна учетка
     @Test(description="Изменение номера телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение номера телефона")
@@ -357,6 +357,7 @@ public class LoginTest extends BaseTest {
         );
     }
 
+    //нужна учетка
     @Test(description="BaspanaBusiness", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Авторизация")

@@ -50,7 +50,6 @@ public class BrowserManager {
 
     public void navigateTo(String url) {
         drManager.getDriver().navigate().to(url);
-
     }
 
     public void returnBack() {

@@ -24,6 +24,7 @@ public class BecomeClientTest extends BaseTest {
         loginSteps.becomeClient();
     }
 
+    //проверка подлинности
     @Test(description="Стать клиентом => Открыть депозит", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Открыть депозит")
@@ -69,13 +70,52 @@ public class BecomeClientTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(REFUSE_TEXT), CharacterSetConstants.UNDER_18_YEARS_OLD_TEXT);
     }
 
+    @Test(description="Стать клиентом НФД", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Стать клиентом НФД")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByNDF() {
+        step("Счет для НДФ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForNDF();
+        });
+        step("Заполнить данные", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77001117070", "060328600678");
+            becomeClientSteps.confirmByOtp(config.smsCode());
+            becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
+            becomeClientSteps.selectRegAddress("91", "91");
+            becomeClientSteps.selectLivingAddress("21", "21");
+            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", "codeWord");
+        });
+        Assert.assertEquals("Вы не прошли проверку подлинности личности",
+                elementsAttributes.getValue(BIOMETRY_CHECK_FAILED)
+        );
+    }
+
+    @Test(description="Стать клиентом_НФД => Валидация существующего номера телефона", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация существующего номера телефона")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByNDF_existedNumber() {
+        step("Счет для НДФ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForNDF();
+        });
+        step("Заполнить данные", () -> {
+                    becomeClientSteps.verifyPhoneNumberAndIin("77770770707", "060328600678");
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.CLIENT_NUMBER_ALREADY_EXIST, elementsAttributes.getValue(REFUSE_TEXT));
+    }
+
     @Test(description="Стать клиентом_НФД => Валидация возраста", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация возраста по ИИН")
     @Severity(SeverityLevel.NORMAL)
     public void becomeClientByNDF_InvalidAge() {
+        step("Счет для НДФ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForNDF();
+        });
         step("Заполнить данные", () -> {
-            becomeClientSteps.becomeClientByOpenAccountForNFD(config.clientLogin(), config.clientIin());
+            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), config.clientIin());
         });
         Assert.assertEquals(
                 CharacterSetConstants.CLIENT_AGE_IS_NOT_SUITABLE, elementsAttributes.getValue(REFUSE_TEXT));
@@ -86,8 +126,11 @@ public class BecomeClientTest extends BaseTest {
     @Description("Валидация формата ИИН")
     @Severity(SeverityLevel.NORMAL)
     public void becomeClientByNDF_InvalidIinFormat() {
+        step("Счет для НДФ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForNDF();
+        });
         step("Заполнить данные", () -> {
-            becomeClientSteps.becomeClientByOpenAccountForNFD(config.clientLogin(), config.userInvalidIin());
+            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), config.userInvalidIin());
         });
         Assert.assertEquals(CharacterSetConstants.INVALID_IIN_FORMAT, elementsAttributes.getValue(INVALID_IIN_TEXT));
     }
@@ -139,7 +182,7 @@ public class BecomeClientTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    @Test(description="Стать клиентом_ЕПВ => Валидация существующего клиента", groups = {"automated"})
+    @Test(description="Стать клиентом_ЕПВ => Валидация существующего клиента о ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Счет для ЕПВ.Валидация существующего клиента")
     @Severity(SeverityLevel.NORMAL)

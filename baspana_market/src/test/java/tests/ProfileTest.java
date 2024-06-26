@@ -21,7 +21,7 @@ public class ProfileTest extends BaseTest {
         WaitUtils.wait(1);
 
         mainSteps.loginButton();
-        loginSteps.login(config.client_for_login(), config.client_for_password());
+        loginSteps.login(config.userLogin(), config.userPass());
         mainSteps.clickProfileIcon();
         cabinetSteps.selectProfileMenu();
     }
