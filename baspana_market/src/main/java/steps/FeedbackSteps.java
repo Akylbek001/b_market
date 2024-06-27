@@ -110,6 +110,18 @@ public class FeedbackSteps {
                 .selectGratitude();
     }
 
+    public void selectFeedbackType_withdrawalComplaintAppeal() {
+        feedbackPage
+                .clickAppealType()
+                .selectWithdrawalComplaintAppeal();
+    }
+
+    public void selectFeedbackType_floods() {
+        feedbackPage
+                .clickAppealType()
+                .selectFloods();
+    }
+
     public void setCaptureTextAndSend(String text, String captcha) {
         feedbackPage
                 .inputQuestionText(text)

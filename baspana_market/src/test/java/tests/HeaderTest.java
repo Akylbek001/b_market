@@ -100,7 +100,7 @@ public class HeaderTest extends BaseTest {
             headerSteps.navigateToFavorite();
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.favoriteForNotAuthorized()));
-        //ошибка - ОР - форма авторизации
+        //BUG - ОР - форма авторизации
     }
 
     @Test(description="Включить режим <Для слабовидящих>", groups = {"automated"})

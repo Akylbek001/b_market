@@ -211,6 +211,70 @@ public class FeedbackTest extends BaseTest {
         );
     }
 
+    @Test(description="Оставить отзыв => Отзыв жалобы/обращения", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отзыв жалобы/обращения")
+    @Severity(SeverityLevel.NORMAL)
+    public void leaveFeedback_withdrawalComplaintAppeal() {
+        step("Вызвать меню Связаться", () -> {
+            feedbackSteps.clickContactIcon();
+        });
+        step("Перейти на страницу отзыва", () -> {
+            feedbackSteps.clickLeaveFeedbackIcon();
+        });
+        step("Заполненить персональные данные", () -> {
+            brManager.switchToLastTab();
+            feedbackSteps.fillPersonalData(
+                    config.guestLastName(),
+                    config.guestName(),
+                    config.guestSureName(),
+                    config.guestPhone(),
+                    config.guestEmail(),
+                    config.guestIin());
+        });
+        step("Выбрать вид обращения", () -> {
+            feedbackSteps.selectFeedbackType_withdrawalComplaintAppeal();
+        });
+        step("Заполнить текст обращения(capture) и отправить", () -> {
+            feedbackSteps.setCaptureTextAndSend(config.guestName(), elementsAttributes.getValue(CAPTCHA));
+        });
+        Assert.assertEquals(
+                elementsAttributes.getValue(REQUEST_NOTIFICATION), CharacterSetConstants.REQUEST_BEEN_ACCEPTED_TEXT
+        );
+    }
+
+    @Test(description="Оставить отзыв => Паводки", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Паводки")
+    @Severity(SeverityLevel.NORMAL)
+    public void leaveFeedback_floods() {
+        step("Вызвать меню Связаться", () -> {
+            feedbackSteps.clickContactIcon();
+        });
+        step("Перейти на страницу отзыва", () -> {
+            feedbackSteps.clickLeaveFeedbackIcon();
+        });
+        step("Заполненить персональные данные", () -> {
+            brManager.switchToLastTab();
+            feedbackSteps.fillPersonalData(
+                    config.guestLastName(),
+                    config.guestName(),
+                    config.guestSureName(),
+                    config.guestPhone(),
+                    config.guestEmail(),
+                    config.guestIin());
+        });
+        step("Выбрать вид обращения", () -> {
+            feedbackSteps.selectFeedbackType_floods();
+        });
+        step("Заполнить текст обращения(capture) и отправить", () -> {
+            feedbackSteps.setCaptureTextAndSend(config.guestName(), elementsAttributes.getValue(CAPTCHA));
+        });
+        Assert.assertEquals(
+                elementsAttributes.getValue(REQUEST_NOTIFICATION), CharacterSetConstants.REQUEST_BEEN_ACCEPTED_TEXT
+        );
+    }
+
     @Test(description="WhatsApp", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу WhatsApp")

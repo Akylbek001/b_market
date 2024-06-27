@@ -45,6 +45,8 @@ public class FeedbackPage extends BasePage {
     private static final By PROPOSAL = By.xpath("//*[text()='Ұсыныс']");
     private static final By COMPLAINT = By.xpath("//*[text()='Шағым']");
     private static final By GRATITUDE = By.xpath("//*[text()='Алғыс']");
+    private static final By WITHDRAWAL_COMPLAINT_APPEAL = By.xpath("//*[text()='Шағымды/өтінішті кері қайтарып алу']");
+    private static final By FLOODS = By.xpath("//*[text()='Су тасқыны']");
 
     public static final By CAPTCHA = By.xpath("//span[@class='captcha']");
     private static final By CAPTCHA_VALUE_INPUT = By.xpath("//*[label='Мәтінді енгізіңіз']/input");
@@ -253,6 +255,20 @@ public class FeedbackPage extends BasePage {
     @Step("Select gratitude")
     public FeedbackPage selectGratitude() {
         button.btnClick(GRATITUDE);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select gratitude")
+    public FeedbackPage selectWithdrawalComplaintAppeal() {
+        button.btnClick(WITHDRAWAL_COMPLAINT_APPEAL);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select floods")
+    public FeedbackPage selectFloods() {
+        button.btnClick(FLOODS);
         WaitUtils.wait(1);
         return this;
     }
