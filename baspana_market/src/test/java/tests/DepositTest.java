@@ -8,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static common.consts.CharacterSetConstants.OPEN_DEPOSIT_REFUSED;
 import static io.qameta.allure.Allure.step;
 import static pages.DepositPage.*;
 
@@ -505,6 +504,8 @@ public class DepositTest extends BaseTest {
         });
         step("Уступка безвозмездная", () -> {
             depositSteps.selectAssignmentGratuitousOperation(config.clientIin(), config.smsCode());
+            generalSteps.acceptAgreement_startBiometry();
+            depositSteps.confirmByOtp(config.smsCode());
         });
     }
     //implement other side accept

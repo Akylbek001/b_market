@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HeaderPage extends BasePage{
+public class HeaderPage extends BasePage {
 
     private static final By BANK_PROGRAMS = By.id("pbId");
     private static final By MY_HOUSE_PROGRAM = By.xpath("//*[text()='Свой дом']");

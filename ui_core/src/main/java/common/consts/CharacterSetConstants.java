@@ -65,4 +65,7 @@ public final class CharacterSetConstants {
     public static final String ONLY_ONE_DEPOSIT = "У вас недостаточное количество депозитов для совершения операции объединения";
     public static final String DEPOSIT_CONDITIONS_CHANGED_SUCCESSFULLY_TEXT ="Операция завершилась успешно";
     public static final String REQUEST_ACCEPTED_TEXT ="Ваша заявка на расторжение депозита принята";
+    public static final String NOT_READY_TO_ACCEPT_REQUEST_TEXT = "Выбранный акимат еще не готов принять заявление";
+
+
 }

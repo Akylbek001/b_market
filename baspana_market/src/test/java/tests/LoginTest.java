@@ -125,7 +125,6 @@ public class LoginTest extends BaseTest {
         );
     }
 
-    //ToDo - find out how to get capture
     @Test(description="Восстановление пароля по номеру документа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное восстановление пароля")
@@ -140,25 +139,29 @@ public class LoginTest extends BaseTest {
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
                     "037916624",
-                    "77007010990");
+                    config.userLogin());
+        });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
         });
         step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(config.smsCode());
+            drManager.getDriver().switchTo().frame(0);
+            loginSteps.clickReCapture();
+            drManager.getDriver().switchTo().defaultContent();
+            loginSteps.clickContinueButton();
         });
         step("Подтвердить и установить новый пароль", () -> {
-            loginSteps.passwordRecoverySetNewPassword(
-                    config.client_for_password_recovery_newPassword(),
-                    config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.passwordRecoverySetNewPassword(config.userNewPassword(), config.userNewPassword());
         });
         Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
 
-    @Test(description="Восстановление пароля пароля по номеру документа => Валидация данных", groups = {"automated"})
+    @Test(description="Восстановление пароля пароля по номеру документа => Валидация номера документа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Проверка валидации при установке существующего пароля в виде нового пароля")
+    @Description("Валидация номера документа")
     @Severity(SeverityLevel.NORMAL)
-    public void validateUserPasswordRecoveryByDocument() {
+    public void passwordRecoveryByDocument_validateDocNumber() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -167,20 +170,19 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    config.client_for_password_recovery_invalidDocument(),
-                    config.client_for_password_recovery_invalidLogin());
+                    "037916623",
+                    config.userLogin());
         });
         Assert.assertEquals(
                 CharacterSetConstants.USER_WITH_SUCH_DATA_NOT_FOUND, elementsAttributes.getValue(USER_NOT_FOUND_TEXT)
         );
     }
 
-    //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля по номеру документа=> Валидация смс-кода", groups = {"automated"}, enabled = false)
+    @Test(description="Восстановление пароля по номеру документа=> Валидация смс-кода", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация смс-кода")
     @Severity(SeverityLevel.NORMAL)
-    public void validateSmsCodePasswordRecoveryByDocument() {
+    public void passwordRecoveryByDocument_validateOtp() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -189,23 +191,29 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    config.client_for_password_recovery_document(),
-                    config.client_for_password_recovery_login());
+                    "037916624",
+                    config.userLogin());
+        });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
         });
         step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(RandomUtils.randomNumeric(6));
+            drManager.getDriver().switchTo().frame(0);
+            loginSteps.clickReCapture();
+            drManager.getDriver().switchTo().defaultContent();
+            loginSteps.clickContinueButton();
         });
         Assert.assertEquals(
                 CharacterSetConstants.INVALID_CODE, elementsAttributes.getValue(WRONG_SMS_CODE_TEXT)
         );
     }
 
-    //ToDo - find out how to get capture
-    @Test(description="Восстановление пароля по номеру документа => Валидация пароля", groups = {"automated"}, enabled = false)
+    @Test(description="Восстановление пароля по номеру документа => Валидация пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация пароля подтверждения")
+    @Description("Валидация подтверждения пароля")
     @Severity(SeverityLevel.NORMAL)
-    public void validationPasswordConfirmationRecoveryByDocument() {
+    public void passwordRecoveryByDocument_validatePasswordConfirmation() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -214,29 +222,32 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    config.client_for_password_recovery_document(),
-                    config.client_for_password_recovery_login());
+                    "037916624",
+                    config.userLogin());
+        });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
         });
         step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(config.smsCode());
+            drManager.getDriver().switchTo().frame(0);
+            loginSteps.clickReCapture();
+            drManager.getDriver().switchTo().defaultContent();
+            loginSteps.clickContinueButton();
         });
         step("Подтвердить и установить новый пароль", () -> {
-            loginSteps.passwordRecoverySetNewPassword(
-                    config.client_for_password_recovery_newPassword(),
-                    config.client_for_password_recovery_invalidPassword()
-            );
+            loginSteps.passwordRecoverySetNewPassword(config.userNewPassword(), config.userFakePass());
         });
         Assert.assertEquals(
-                "", elementsAttributes.getValue(WRONG_SMS_CODE_TEXT)
+                "Пароли не совпадают", elementsAttributes.getValue(WRONG_PASSWORD_CONFIRMATION)
         );
     }
 
-    //ToDo - find out alternative code
-    @Test(description="Восстановление пароля по альтернативному коду", groups = {"automated"}, enabled = false)
+    @Test(description="Восстановление пароля по альтернативному коду", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное восстановление пароля")
     @Severity(SeverityLevel.NORMAL)
-    public void passRecoveryByCode() {
+    public void passwordRecovery_byAltCode() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -248,17 +259,21 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    config.client_for_password_recovery_alternativeCode(),
-                    config.client_for_password_recovery_login());
+                    "311052345789",
+                    config.userLogin());
+        });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
         });
         step("Подтвердить пользователя по смс", () -> {
             loginSteps.inputSmsCode(config.smsCode());
+            drManager.getDriver().switchTo().frame(0);
+            loginSteps.clickReCapture();
+            drManager.getDriver().switchTo().defaultContent();
+            loginSteps.clickContinueButton();
         });
         step("Подтвердить и установить новый пароль", () -> {
-            loginSteps.passwordRecoverySetNewPassword(
-                    config.client_for_password_recovery_newPassword(),
-                    config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.passwordRecoverySetNewPassword(config.userNewPassword(), config.userNewPassword());
         });
         Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
     }
@@ -267,7 +282,7 @@ public class LoginTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Пользователь не найден")
     @Severity(SeverityLevel.NORMAL)
-    public void tryRecoveryPasswordByInvalidClientData() {
+    public void passwordRecoveryByAltCode_validateAltCode() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -279,8 +294,8 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    config.client_for_password_recovery_document(),
-                    config.client_for_password_recovery_login());
+                    "311052345780",
+                    config.userLogin());
         });
         Assert.assertEquals(
                 CharacterSetConstants.USER_WITH_SUCH_DATA_NOT_FOUND, elementsAttributes.getValue(USER_NOT_FOUND)
@@ -292,7 +307,7 @@ public class LoginTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение номера телефона")
     @Severity(SeverityLevel.NORMAL)
-    public void changePhone() {
+    public void updateLogin() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -304,8 +319,8 @@ public class LoginTest extends BaseTest {
                     config.client_for_password_recovery_iin(), config.client_for_password_recovery_newLogin()
             );
         });
-        step("Начать биометрическую проверку", () -> {
-            loginSteps.startBiometryChecking();
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
         });
         Assert.assertTrue(true);
     }
@@ -314,7 +329,7 @@ public class LoginTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация текущего логина")
     @Severity(SeverityLevel.NORMAL)
-    public void tryUpdateLoginToCurrentLogin() {
+    public void updateLogin_validateCurrentLogin() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -337,7 +352,7 @@ public class LoginTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Ошибка биометрии")
     @Severity(SeverityLevel.NORMAL)
-    public void identityVerificationFailed() {
+    public void updateLogin_biometryError() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });
@@ -349,8 +364,8 @@ public class LoginTest extends BaseTest {
                     config.client_for_password_recovery_iin(), config.client_for_password_recovery_newLogin()
             );
         });
-        step("Начать биометрическую проверку", () -> {
-            loginSteps.startBiometryChecking();
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
         });
         Assert.assertEquals(
                 CharacterSetConstants.IDENTITY_VERIFICATION_ERROR_TEXT, elementsAttributes.getValue(BIOMETRY_ERROR)

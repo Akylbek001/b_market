@@ -6,9 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class AccountPage extends BasePage {
-//    private static final By ACCOUNTS = By.xpath(
-//            "//div[@class='menu-list']//*[contains(text(), 'Счета')]"
-//    );
     private static final By OPEN_ACCOUNTS_BUTTON = By.xpath(
             "//div[@class='account_title'] //button[@data-target='#myAccModal']"
     );
@@ -18,7 +15,6 @@ public class AccountPage extends BasePage {
     private static final By ACCOUNT_FOR_EPV = By.xpath(
             "//div[@id='myAccModal'] //a[@href='/PensionAccount/Open']"
     );
-
     private static final By OPEN_CURRENT_ACCOUNT_BUTTON = By.id("btnOpenCurAccount");
     private static final By FURTHER_BUTTON = By.id("btnOnboardingNext");
     private static final By SELECT_ACCOUNT_TYPE = By.xpath("//span[text()='Платежи за аренду жилища']");

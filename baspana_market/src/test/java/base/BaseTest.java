@@ -16,7 +16,17 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import pages.BecomeClientPage;
+import pages.LoginPage;
+import pages.RegistrationPage;
+import pages.FilterPage;
 import steps.*;
+import steps.BecomeClientSteps;
+import steps.LoginSteps;
+import steps.RegistrationSteps;
+import steps.AccountSteps;
+import steps.CertificatesSteps;
+import steps.DepositSteps;
 
 @Slf4j
 @Listeners(TestListener.class)
@@ -53,6 +63,8 @@ public abstract class BaseTest{
     protected GovServicesSteps govServicesSteps;
     protected AppointmentToDepartmentSteps appointmentToDepartmentSteps;
     protected FavoritesSteps favoritesSteps;
+    protected GeneralSteps generalSteps;
+    protected DiplomaToVillageSteps diplomaToVillageSteps;
 
     @BeforeSuite(alwaysRun = true, description = "Логирование старта комплекта тестов")
     public void setUp(ITestContext ctx) {
@@ -107,6 +119,8 @@ public abstract class BaseTest{
         certificatesSteps = new CertificatesSteps(driver);
         appointmentToDepartmentSteps = new AppointmentToDepartmentSteps(driver);
         favoritesSteps = new FavoritesSteps(driver);
+        generalSteps = new GeneralSteps(driver);
+        diplomaToVillageSteps = new DiplomaToVillageSteps(driver);
     }
 
     private void configInit() {

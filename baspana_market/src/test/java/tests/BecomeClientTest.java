@@ -36,6 +36,7 @@ public class BecomeClientTest extends BaseTest {
         step("Заполнить данные и подтвердить", () -> {
             becomeClientSteps.verifyPhoneNumberAndIin("77007777777", "860709300429");
             becomeClientSteps.confirmByOtp(config.smsCode());
+            generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputEmail("bin@bk.ru");
 
         });
@@ -81,6 +82,7 @@ public class BecomeClientTest extends BaseTest {
         step("Заполнить данные", () -> {
             becomeClientSteps.verifyPhoneNumberAndIin("77001117070", "060328600678");
             becomeClientSteps.confirmByOtp(config.smsCode());
+            generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
             becomeClientSteps.selectRegAddress("91", "91");
             becomeClientSteps.selectLivingAddress("21", "21");
@@ -146,6 +148,7 @@ public class BecomeClientTest extends BaseTest {
         step("Верификация", () -> {
             becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
             becomeClientSteps.confirmByOtp(config.smsCode());
+            generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
             becomeClientSteps.selectRegAddress("91", "91");
             becomeClientSteps.selectLivingAddress("21", "21");
@@ -170,6 +173,7 @@ public class BecomeClientTest extends BaseTest {
         step("Верификация", () -> {
             becomeClientSteps.verifyPhoneNumberAndIin("77759005677", "890604300394");
             becomeClientSteps.confirmByOtp(config.smsCode());
+            generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
             becomeClientSteps.selectRegAddress("91", "91");
             becomeClientSteps.selectSameAddressCheckbox();

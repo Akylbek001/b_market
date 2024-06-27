@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-    @Slf4j
+@Slf4j
     public class FooterPage extends BasePage {
     private static final By INTERNET_BANKING_LINK = By.cssSelector("a[href='https://online.hcsbk.kz/']");
     private static final By MORTGAGE_LINK = By.cssSelector("a[href='/programm-bank/mortgage-shares-index']");

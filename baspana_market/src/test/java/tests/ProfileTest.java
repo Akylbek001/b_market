@@ -33,7 +33,7 @@ public class ProfileTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void editPhoneNumber() {
         step("Установить новый номер телефона", () -> {
-            profileSteps.editPhoneNumber(config.client_for_login());
+            profileSteps.editPhoneNumber(config.userLogin());
         });
         Assert.assertTrue(true);
     }
@@ -98,7 +98,7 @@ public class ProfileTest extends BaseTest {
     public void changePassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.client_for_password(), config.client_for_newPassword(), config.client_for_newPassword()
+                    config.userPass(), config.userPass(), config.userNewPassword()
             );
             profileSteps.confirmPasswordChange();
         });
@@ -114,9 +114,9 @@ public class ProfileTest extends BaseTest {
     public void validateNewPasswordConfirmation() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.client_for_password(),
-                    config.client_for_password(),
-                    config.client_for_password().concat("@")
+                    config.userPass(),
+                    config.userPass(),
+                    config.userPass().concat("@")
             );
         });
         Assert.assertEquals(
@@ -132,10 +132,14 @@ public class ProfileTest extends BaseTest {
     public void validateCurrentPassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.client_for_password(), config.client_for_password(), config.client_for_password()
+                    config.userPass(), config.userPass(), config.userPass()
             );
             profileSteps.confirmPasswordChange();
         });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
+        });
+
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
                 CharacterSetConstants.NEW_PASSWORD_SAME_WITH_CURRENT

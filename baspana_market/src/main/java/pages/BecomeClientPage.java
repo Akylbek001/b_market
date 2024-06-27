@@ -17,9 +17,7 @@ public class BecomeClientPage extends BasePage {
     private static final By VERIFY_BUTTON = By.id("PhoneVerifyButton");
     private static final By OTP = By.id("CodeSmsId");
     private static final By SEND_BUTTON = By.id("VerifyPhone");
-    private static final By AGREEMENT_CHECKBOX = By.cssSelector(".form-check-label");
 
-    private static final By START_BIOMETRY_BUTTON = By.id("startBiometry");
     private static final By WORK_PLACE = By.id("WorkPlace");
     private static final By WORK_POSITION = By.id("WorkPosition");
     private static final By SOURCE_OF_INCOME = By.id("IncomeSourceCode");
@@ -51,9 +49,6 @@ public class BecomeClientPage extends BasePage {
     public static final By INVALID_IIN_TEXT = By.cssSelector("[class='errtexts']");
     public static final By OPEN_DEPOSIT_BUTTON = By.cssSelector("[onclick='PhoneVerification()']");
     public static final By BIOMETRY_CHECK_FAILED = By.id("failed-error-custom-message");
-
-
-
 
     public BecomeClientPage(WebDriver driver) {
         super(driver);
@@ -114,18 +109,6 @@ public class BecomeClientPage extends BasePage {
     @Step("Click send button")
     public BecomeClientPage clickSendButton() {
         button.btnClick(SEND_BUTTON);
-        return this;
-    }
-
-    @Step("Click agreement checkbox")
-    public BecomeClientPage clickAgreementCheckbox() {
-        button.btnClick(AGREEMENT_CHECKBOX);
-        return this;
-    }
-
-    @Step("Click start biometry button")
-    public BecomeClientPage clickStartBiometryButton() {
-        button.btnClick(START_BIOMETRY_BUTTON);
         return this;
     }
 

@@ -19,7 +19,7 @@ public class FavoritesTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Добавить бъявление в избранное", groups = {"automated"})
+    @Test(description = "Добавить объявление в избранное", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Добавить в избранное")
     @Severity(SeverityLevel.NORMAL)

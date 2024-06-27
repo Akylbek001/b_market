@@ -27,10 +27,8 @@ public class DepositPage extends BasePage {
     private static final By DEPOSIT_TERM = By.id("calc_l_m_range--g");
     private static final By CONFIRM = By.xpath("//button[@class='ValSums']");
 
-
     public static final By NOTIFICATION_VISIT_THE_BANK = By.xpath("//div[@id='NextSteps'] //p");
     public static final By SUCCESS = By.cssSelector("#NextSteps p");
-
 
     private static final By SMS_CODE = By.id("CodeSmsId");
     private static final By SEND = By.id("EndsSteps");
@@ -40,7 +38,6 @@ public class DepositPage extends BasePage {
     private static final By AVAILABLE_OPERATIONS_WITH_DEPOSIT = By.id("checBlock");
     private static final By CHANGE_GOS_PREM_OPERATION = By.id("changeGosPremButton");
     private static final By DEPOSIT_LIST_FOR_GOS_PREM = By.cssSelector(".body-block");
-
 
     private static final By SELECT = By.id("next-step");
 
@@ -58,7 +55,6 @@ public class DepositPage extends BasePage {
         "[onclick='BlocksStartsTerminationEnd()']"
     );
     public static final By TERMINATE_DEPOSIT_REQUEST_ACCEPTED = By.cssSelector(".TerminationBlocks--Starts h3");
-
 
     private static final By CHANGE_DEPOSIT_CONDITIONS_OPERATION = By.id("ChangeDeposConditionsButton");
     private static final By NEGOTIATED_AMOUNT = By.cssSelector("[name='NewAgreementSumm']");
@@ -81,7 +77,6 @@ public class DepositPage extends BasePage {
 //    private static final By  RELATION_DEGREE_VALUE = By.xpath("//ul[@class='select-options'] /li[@rel='SPOS']");
     private static final By  RELATION_DEGREE_VALUE = By.cssSelector("ul.select-options li[rel='SPOS']");
 
-
     private static final By  INVITED_IIN = By.id("inputInviteIIN");
     private static final By  INVITED_ALTERNATIVE_CODE = By.id("inputInviteAlterCode");
     public static final By INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION = By.cssSelector("label#modalNotificationBody");
@@ -93,7 +88,6 @@ public class DepositPage extends BasePage {
 
 //    public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.xpath("//button[@data-target='#modalDisbandFP']");
     public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.cssSelector("[@data-target='#modalDisbandFP']");
-
 
     private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
     private static final By DEPOSIT_DIVISION_OPERATION = By.xpath(" //div[@class='operTxt' and text()='Деление депозита']");
@@ -107,8 +101,6 @@ public class DepositPage extends BasePage {
     private static final By ASSIGNMENT_GRATUITOUS_RELATION_DEGREE = By.id("selectKinship");
     private static final By USER_IIN = By.id("iin-input");
     public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_ = By.cssSelector(".right_button.ob-mt-20px.web-block button");
-    public static final By BIOMETRY_AGREEMENT_CHECKBOX_ = By.cssSelector(".form-check-label");
-    private static final By START_BIOMETRY_BUTTON = By.id("startBiometry");
     private static final By CONFIRM_SMS_BUTTON = By.id("continue-sms-cession");
 
 
@@ -365,17 +357,6 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-    @Step("Click assignment gratuitous biometry agreement")
-    public DepositPage clickAssignmentGratuitousBiometryAgreement() {
-        button.btnClick(BIOMETRY_AGREEMENT_CHECKBOX_);
-        return this;
-    }
-
-    @Step("Click start biometry button")
-    public DepositPage clickStartBiometryButton() {
-        button.btnClick(START_BIOMETRY_BUTTON);
-        return this;
-    }
 
     @Step("Click otp confirm button")
     public DepositPage clickOtpConfirmButton() {
@@ -442,8 +423,6 @@ public class DepositPage extends BasePage {
         button.btnClick(DEPOSIT_TERM);
         return this;
     }
-
-
 
     @Step("Click confirm")
     public DepositPage clickConfirm() {

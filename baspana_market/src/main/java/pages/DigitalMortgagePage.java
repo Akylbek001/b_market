@@ -8,7 +8,7 @@ public class DigitalMortgagePage extends BasePage {
 
     private static final By DIGITAL_MORTGAGE_BLOCK = By.cssSelector("[href='/Prequalification/PriorApproval']");
     private static final By VIDEO_CALL_BLOCK = By.cssSelector(".digital-mortgage [href='/Home/VideosConsultacia/']");
-    private static final By I_CONFIRMED_BUTTON = By.cssSelector("#kdpCheck .btn-success']");
+    private static final By I_CONFIRMED_BUTTON = By.cssSelector("button.btn-success");
 
 
     private static final By START_BUTTON = By.cssSelector(".btn-success");
@@ -26,6 +26,7 @@ public class DigitalMortgagePage extends BasePage {
     @Step("Click start button")
     public DigitalMortgagePage clickStartButton() {
         button.btnClick(START_BUTTON);
+        elementsAttributes.waitUntilVisible(I_CONFIRMED_BUTTON);
         return this;
     }
 

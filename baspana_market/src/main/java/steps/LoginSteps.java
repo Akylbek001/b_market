@@ -46,8 +46,16 @@ public class LoginSteps {
 
     public void inputSmsCode(String smsCode) {
         loginPage
-                .inputSmsCode(smsCode)
-                .clickReCapture()
+                .inputSmsCode(smsCode);
+    }
+
+    public void clickReCapture() {
+        loginPage
+                .clickReCapture();
+    }
+
+    public void clickContinueButton() {
+        loginPage
                 .clickContinueButton();
     }
 
@@ -71,12 +79,6 @@ public class LoginSteps {
                 .inputIin(iin)
                 .inputPhone(phone)
                 .clickContinue();
-    }
-
-    public void startBiometryChecking() {
-        loginPage
-                .clickAgreementCheckBox()
-                .clickStartBiometry();
     }
 
     public void selectBaspanaBusiness() {

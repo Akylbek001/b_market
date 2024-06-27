@@ -45,8 +45,6 @@ public class ProfileSteps {
 
     public void confirmPasswordChange() {
         profilePage
-                .clickChangePasswordButton()
-                .clickAgreementCheckbox()
-                .clickStartBiometryButton();
+                .clickChangePasswordButton();
     }
 }

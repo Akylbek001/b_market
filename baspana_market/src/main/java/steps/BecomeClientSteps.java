@@ -41,9 +41,7 @@ public class BecomeClientSteps {
     public void confirmByOtp(String otp) {
         becomeClientPage
                 .inputOtp(otp)
-                .clickSendButton()
-                .clickAgreementCheckbox()
-                .clickStartBiometryButton();
+                .clickSendButton();
     }
 
     public void inputPersonalDataFirstPart(String workPlace, String workPosition, String email) {

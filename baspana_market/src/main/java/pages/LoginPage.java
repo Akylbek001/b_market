@@ -19,32 +19,31 @@ public class LoginPage extends BasePage {
     public static final By PROFILE_NAME = By.xpath("//div[@class='clientName'] /a");
     private static final By FORGET_PASSWORD_LOCATOR = By.id("forgetPass");
     private static final By DOCUMENT_DATA_LOCATOR = By.id("documentData");
-    public static final By USER_NOT_FOUND = By.xpath("//span[@class='text-danger mt-3']");
+    public static final By USER_NOT_FOUND = By.cssSelector("#resultForgetTxtResult #resultForgetTxt");
     private static final By USER_NAME_LOCATOR = By.id("UserNameName");
     private static final By SMS_CODE_LOCATOR = By.id("smsForget");
-    private static final By RE_CAPTURE = By.id("rc-anchor-container");
-    private static final By CONTINUE_SMS_FORGET_BUTTON = By.id("checkPassForgetPass");
-    private static final By NEW_PASSWORD_INPUT_LOCATOR = By.id("newPassInp");
-    private static final By NEW_PASSWORD_CONFIRM_LOCATOR = By.id("newPassInpConfirm");
-    private static final By SAVE_AND_LOGIN_BUTTON = By.id("saveAndLogin");
+    private static final By RE_CAPTURE = By.cssSelector(".recaptcha-checkbox-border");
+    private static final By CONTINUE_SMS_FORGET_BUTTON = By.id("checkPassForgetPassword");
+    private static final By NEW_PASSWORD_INPUT_LOCATOR = By.id("newPassInpBiometryChange");
+    private static final By NEW_PASSWORD_CONFIRM_LOCATOR = By.id("newPassInpConfirmBiometryChange");
+    private static final By SAVE_AND_LOGIN_BUTTON = By.id("saveAndLoginIntoBiometry");
     private static final By SEND_SMS_BUTTON_LOCATOR = By.cssSelector("#sendSmsForget #sendSmsBtnForgetPass");
     public static final By WRONG_SMS_CODE_TEXT = By.id("otpResult");
+    public static final By WRONG_PASSWORD_CONFIRMATION = By.cssSelector(".content.forgetPassModalContent.biometry__forget__password #newPassInpConfirmErr");
+
+
     private static final By CHANGE_PHONE_NUMBER_LOCATOR = By.xpath(
             "//*[contains(text(), 'Изменить номер телефона')]"
     );
     private static final By IIN_LOCATOR = By.id("iin-input");
     private static final By PHONE_LOCATOR = By.id("phone-input");
-    private static final By CHANGE_LOGIN_AGREEMENT_CHECKBOX = By.xpath(
-            "//label[@class='form-check-label']"
-    );
     private static final By CONTINUE_BUTTON_LOCATOR = By.xpath(
             "//*[contains(text(), 'Продолжить')]"
     );
-    private static final By START_BIOMETRY_BUTTON = By.id("startBiometry");
     public static final By BIOMETRY_ERROR = By.id("errorMessage");
     private static final By BY_ALTERNATIVE_CODE_LOCATOR = By.xpath("//span[.='По альтернативному коду']");
     public static final By WRONG_CREDENTIALS_TEXT = By.id("LoginMSG");
-    public static final By USER_NOT_FOUND_TEXT = By.xpath("//div[@id='beforeCodeconfirmed']/ span[3]");
+    public static final By USER_NOT_FOUND_TEXT = By.cssSelector("#resultForgetTxtResult #resultForgetTxt");
 
     private static final By REGISTRATION_LINK_LOCATOR = By.xpath(
             "//div[@class='btn-submit text-center regs'] /button[contains(text(), 'Зарегистрироваться ')]"
@@ -126,6 +125,7 @@ public class LoginPage extends BasePage {
     @Step("Input forget sms")
     public LoginPage clickReCapture() {
         button.btnClick(RE_CAPTURE);
+        WaitUtils.wait(1);
         return this;
     }
 
@@ -182,18 +182,6 @@ public class LoginPage extends BasePage {
     public LoginPage clickContinue() {
         button.btnClick(CONTINUE_BUTTON_LOCATOR);
         WaitUtils.wait(5);
-        return this;
-    }
-
-    @Step("Click agreement checkbox")
-    public LoginPage clickAgreementCheckBox() {
-        button.btnClick(CHANGE_LOGIN_AGREEMENT_CHECKBOX);
-        return this;
-    }
-
-    @Step("Click start biometry check button")
-    public LoginPage clickStartBiometry() {
-        button.btnClick(START_BIOMETRY_BUTTON);
         return this;
     }
 

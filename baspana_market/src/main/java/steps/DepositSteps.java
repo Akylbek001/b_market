@@ -122,20 +122,20 @@ public class DepositSteps {
                 .selectUniteDepositOperation();
     }
 
-
     public void selectAssignmentGratuitousOperation(String iin, String otp) {
         depositPage
                 .selectAssignmentGratuitousOperation()
                 .clickAssignmentGratuitousContinueButton()
                 .selectRelationDegree()
                 .inputIin(iin)
-                .clickAssignmentGratuitousContinueButton_()
-                .clickAssignmentGratuitousBiometryAgreement()
-                .clickStartBiometryButton()
+                .clickAssignmentGratuitousContinueButton_();
+    }
+
+    public void confirmByOtp(String otp) {
+        depositPage
                 .clickAssignmentGratuitousContinueButton_()
                 .inputSmsCode(otp)
                 .clickOtpConfirmButton();
-
     }
 
     public void calculator() {
