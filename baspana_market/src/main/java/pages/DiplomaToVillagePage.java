@@ -1,16 +1,12 @@
 package pages;
 
-import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Wait;
 
 public class DiplomaToVillagePage extends BasePage {
 
-    private static final By APPLY_REQUEST = By.cssSelector(
-            ".btn.btn-light.clicked"
-    );
+    private static final By APPLY_REQUEST = By.cssSelector(".btn.btn-light.clicked");
     private static final By SELECT_DISTRICT = By.cssSelector("select[name='oblast']");
     private static final By SELECT_AKIMAT = By.cssSelector("select[name='districtId']");
     private static final By SELECT_REQUEST_TYPE = By.cssSelector("select[name='targetId']");
@@ -19,7 +15,6 @@ public class DiplomaToVillagePage extends BasePage {
     private static final By CONFIRM_BUTTON = By.cssSelector(".confirm");
     public static final By REQUEST_IN_PROGRESS = By.xpath("//div[@class='border_block'] /div[3]");
     public static final By SAME_REQUEST_TYPE = By.cssSelector(".selo--refusalblock p");
-
 
     public static final By AGREEMENT_CHECKBOX = By.id("vector2-checkbox");
     public static final By CONTINUE_BUTTON = By.cssSelector(".confirmation [type='button']");
@@ -30,8 +25,6 @@ public class DiplomaToVillagePage extends BasePage {
     public static final By CREATED_REQUEST = By.cssSelector(".loanCard");
     public static final By CANCEL_REQUEST = By.cssSelector("[data-target='#exampleModal-digital-cansel']");
     public static final By CANCEL_REQUEST_CONFIRM_BUTTON= By.cssSelector(".head_submitting_app .btn.btn-info.cansel-application");
-
-
 
 
     public DiplomaToVillagePage(WebDriver driver) {

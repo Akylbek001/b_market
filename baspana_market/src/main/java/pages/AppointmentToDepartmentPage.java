@@ -1,5 +1,6 @@
 package pages;
 
+import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,7 @@ public class AppointmentToDepartmentPage extends BasePage {
     private static final By BOOKING_PHONE_INPUT = By.id("bookingPhone");
     private static final By BOOKING_FILIAL = By.id("bookingFilial");
     private static final By ODER_TYPE = By.id("MainOperList");
-    private static final By VISIT_PURPOSE = By.id("bookingVisitPurpose");
+    private static final By VISIT_PURPOSE = By.cssSelector("select#bookingVisitPurpose");
     private static final By PERIOD = By.id("calendar-range");
     private static final By DATE = By.cssSelector("[aria-label='Июнь 5, 2024']");
     private static final By TIME = By.id("bookingTime");
@@ -35,19 +36,22 @@ public class AppointmentToDepartmentPage extends BasePage {
 
     @Step("Select filial")
     public AppointmentToDepartmentPage selectFilial() {
-        dropDown.selectByIndex(BOOKING_FILIAL, 1);
+        dropDown.selectByIndex(BOOKING_FILIAL, 2);
+        WaitUtils.wait(2);
         return this;
     }
 
     @Step("Select order type")
     public AppointmentToDepartmentPage selectOrderType() {
         dropDown.selectByIndex(ODER_TYPE, 1);
+        WaitUtils.wait(2);
         return this;
     }
 
     @Step("Select visit purpose")
     public AppointmentToDepartmentPage selectVisitPurpose() {
-        dropDown.selectByIndex(VISIT_PURPOSE, 1);
+        dropDown.selectByIndex(VISIT_PURPOSE, 2);
+        WaitUtils.wait(2);
         return this;
     }
 

@@ -3,8 +3,6 @@ package tests;
 import base.BaseTest;
 import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
-import helpers.Elements;
-import helpers.Move;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

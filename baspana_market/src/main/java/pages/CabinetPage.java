@@ -29,6 +29,9 @@ public class CabinetPage extends BasePage {
     private static final By APPOINTMENT_TO_DEPARTMENT_MENU = By.xpath(
             "//div[@class='menu-list']//*[text() = 'Запись в отделение']"
     );
+    private static final By HOUSING_CENTER_MENU = By.cssSelector(".nav-box .hpc.menu-item");
+
+
     private static final By GOV_SERVICES_MENU = By.cssSelector(".menu-item #StateCertificate");
     private static final By GOV_SERVICES_CERTIFICATES = By.cssSelector("[href='/StateApplication']");
     private static final By ADD_EDIT_EMAIL_BUTTON = By.cssSelector("#ProfilesEmailsId div");
