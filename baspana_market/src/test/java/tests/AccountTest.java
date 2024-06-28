@@ -185,7 +185,7 @@ public class AccountTest extends BaseTest {
             accountSteps.searchOtbasyBankClient_byPhoneNumber(config.clientLogin().substring(1));
         });
         Assert.assertEquals(
-                "Клиент не найден, проверьте номер телефона", elementsAttributes.getValue(NOT_FOUND_BY_NUMBER)
+                CharacterSetConstants.CLIENT_NOT_FOUND_CHECK_NUMBER, elementsAttributes.getValue(NOT_FOUND_BY_NUMBER)
         );
     }
 
@@ -234,7 +234,7 @@ public class AccountTest extends BaseTest {
             accountSteps.validateOtbasyBankClient_byAltCode("191014670500");
         });
         Assert.assertEquals(
-                "Клиент не найден, проверьте введенный код", elementsAttributes.getValue(NOT_FOUND_BY_CODE)
+                CharacterSetConstants.CLIENT_NOT_FOUND_CHECK_CODE, elementsAttributes.getValue(NOT_FOUND_BY_CODE)
         );
     }
 
@@ -284,7 +284,7 @@ public class AccountTest extends BaseTest {
             accountSteps.searchOtherBankIban("KZ649729722204F0Z3LL".substring(2));
         });
         Assert.assertEquals(
-                "Вы ввели некорректный IBAN счет!", elementsAttributes.getValue(IBAN_ERROR)
+                CharacterSetConstants.INVALID_IBAN, elementsAttributes.getValue(IBAN_ERROR)
         );
     }
 
@@ -310,7 +310,7 @@ public class AccountTest extends BaseTest {
             accountSteps.transfer_insufficientFunds("5000000");
         });
         Assert.assertEquals(
-                "Недостаточно средств для перевода", elementsAttributes.getValue(INSUFFICIENT_FUNDS)
+                CharacterSetConstants.INSUFFICIENT_FUNDS_FOR_TRANSFER, elementsAttributes.getValue(INSUFFICIENT_FUNDS)
         );
     }
 

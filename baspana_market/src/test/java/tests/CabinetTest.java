@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -52,7 +53,7 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void changePassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword("oldPassword@", "newPassword@");
+            cabinetSteps.changePassword(config.userPass(), config.userPass());
         });
     }
 
@@ -67,7 +68,7 @@ public class CabinetTest extends BaseTest {
             );
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
-                "Старый и новый пароль не должны совпадать"
+                CharacterSetConstants.PASSWORDS_MUST_NOT_BE_SAME
         );
     }
 
@@ -80,7 +81,7 @@ public class CabinetTest extends BaseTest {
             cabinetSteps.changePassword(config.userPass(), "oldassword");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
-                "Пароль должен содержать хотябы одну цифру"
+                CharacterSetConstants.PASSWORDS_MUST_CONTAIN_AT_LEAST_ONE_NUMBER
         );
     }
 
@@ -93,7 +94,7 @@ public class CabinetTest extends BaseTest {
             cabinetSteps.changePassword(config.userPass(), "oldassword1");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
-                "Пароль должен содержать хотябы одну заглавную букву"
+                CharacterSetConstants.PASSWORDS_MUST_CONTAIN_AT_LEAST_ONE_CAPITAL_LETTER
         );
     }
 
@@ -106,7 +107,7 @@ public class CabinetTest extends BaseTest {
             cabinetSteps.changePassword(config.userPass(), "Oldassword1");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
-                "Пароль должен содержать хотябы один символ"
+                CharacterSetConstants.PASSWORDS_MUST_CONTAIN_AT_LEAST_ONE_CHARACTER
         );
     }
 }

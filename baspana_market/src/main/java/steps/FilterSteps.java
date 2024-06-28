@@ -10,71 +10,24 @@ public class FilterSteps {
         filterPage = new FilterPage(driver);
     }
 
-    public void searchObjectForBuyByAllParameters() {
+    public void otauAndNaurizApartments() {
         filterPage
-//                .clickBuyTab()
-//                .clickHouseTypeDropDown();
-//                .selectHouseTypeValue();
-//                .selectRegion()
-//                .selectCity()
-//                .clickObjectStatusDropDown()
-//                .selectObjectStatus()
-//                .selectCode()
-//                .typeCodeValue(code)
-//                .selectRooms()
-//                .selectRoomsValue()
-//                .selectImplementationType()
-//                .selectImplementationTypeValue()
-//                .clickPriceDropDown()
-//                .inputPriceFrom(price)
-//                .inputPriceTo(price)
-                .clickSearchButton();
+                .clickOtauAndNaurizApartments();
     }
 
-    public void testt() {
+    public void showSearchResultOnMap() {
         filterPage
-                .clickBuyTab();
-    }
-
-    public void objectForBuyDefaultSearch() {
-        filterPage
-                .clickBuyTab()
-                .clickSearchButton();
-//                .clickDetailsButton();
-    }
-
-    public void searchObjectForRentByAllParameters(String code, String price) {
-        filterPage
-                .clickRentTab()
-                .selectRegion();
-//                .selectCity()
-//                .clickPropertyTypeDropDown()
-//                .selectApartmentType()
-//                .selectRooms()
-//                .selectRoomsValue()
-//                .selectTransactionType()
-//                .selectTransactionTypeValue()
-//                .clickPriceDropDown()
-//                .inputPriceFrom(price)
-//                .inputPriceTo(price)
-//                .clickSearchButton();
-    }
-
-    public void searchObjectForRentByDefaultSearch() {
-        filterPage
-                .clickRentTab()
-                .clickSearchButton();
-    }
-
-    public void testAddFilter() {
-        filterPage
-                .clickRentTab()
-                .clickHouseTypeDropDown();
-//                .clickSearchButton();
-    }
-
-    public void map() {
-        filterPage
+                .clickSearchButton()
                 .clickShowOnMap();
+    }
+
+    public void onMap() {
+        filterPage
+                .clickOnMapButton();
+    }
+
+    public void selectRegion() {
+        filterPage
+                .selectRegion();
     }
 }

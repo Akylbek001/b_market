@@ -41,6 +41,12 @@ public class DepositSteps {
                 .clickSend();
     }
 
+    public void clickJustOpenedDeposit() {
+        depositPage
+                .clickJustOpenedDeposit();
+    }
+
+
     public void showAvailableOperations() {
         depositPage.showAvailableOperations();
     }

@@ -32,6 +32,10 @@ public class DepositPage extends BasePage {
 
     private static final By SMS_CODE = By.id("CodeSmsId");
     private static final By SEND = By.id("EndsSteps");
+    private static final By SEE_DEPOSIT = By.cssSelector(".DepositBlock--background.OpenDepositsStepsEnds button");
+    public static final By DEPOSIT_CREATED_DATE = By.cssSelector(".titlel");
+
+
     private static final By SHOW_DEPOSIT_DETAILS = By.id("text");
     private static final By CALCULATOR_OP_BUTTON = By.id("calculateOPButton");
 
@@ -440,6 +444,12 @@ public class DepositPage extends BasePage {
     public DepositPage clickSend() {
         button.btnClick(SEND);
         WaitUtils.wait(5);
+        return this;
+    }
+
+    @Step("Select just opened deposit")
+    public DepositPage clickJustOpenedDeposit() {
+        button.btnClick(SEE_DEPOSIT);
         return this;
     }
 }

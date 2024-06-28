@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import common.consts.CharacterSetConstants;
+import common.utils.DatesUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -29,6 +30,36 @@ public class DepositTest extends BaseTest {
     public void openBaspanaDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
             loginSteps.auth(
+                    config.clientLogin(), config.clientPassword()
+            );
+            mainSteps.clickProfileIcon();
+            cabinetSteps.selectMyBankMenu();
+            cabinetSteps.selectDepositsMenu();
+        });
+        step("Открыть депозит", () -> {
+            depositSteps.clickNewDepositButton();
+            depositSteps.clickOpenBaspanaDepositButton();
+            depositSteps.openBaspanaDeposit();
+        });
+        step("Подтвердить открытие депозита", () -> {
+            depositSteps.confirmBySms(config.smsCode(), "99000000");
+            Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
+        });
+        step("Посмотреть открытый депозит", () -> {
+            depositSteps.clickJustOpenedDeposit();
+            Assert.assertEquals(elementsAttributes.getValue(DEPOSIT_CREATED_DATE), DatesUtils.getCurrentDate());
+        });
+        System.out.println(elementsAttributes.getValue(DEPOSIT_CREATED_DATE));
+        System.out.println(DatesUtils.getCurrentDate());
+    }
+
+    @Test(description="Открыть депозит <Баспана> => Валидация договорной суммы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Открыть депозит Баспана")
+    @Severity(SeverityLevel.CRITICAL)
+    public void openBaspanaDeposit_validateAgreedSum() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
             );
             mainSteps.clickProfileIcon();
@@ -42,8 +73,9 @@ public class DepositTest extends BaseTest {
         });
         step("Подтвердить открытие депозита", () -> {
             depositSteps.confirmBySms(config.smsCode(), "800000");
+            Assert.assertEquals(CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
+                    elementsAttributes.getValue(SUCCESS));
         });
-        Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
     }
 
     //Нужна соответствующая учетка

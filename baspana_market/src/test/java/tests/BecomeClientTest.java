@@ -156,7 +156,7 @@ public class BecomeClientTest extends BaseTest {
         });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
-                "Вы не прошли проверку подлинности личности"
+                CharacterSetConstants.IDENTITY_VERIFICATION_ERROR_TEXT
         );
         drManager.getDriver().switchTo().alert().accept();
     }
@@ -181,7 +181,7 @@ public class BecomeClientTest extends BaseTest {
         });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
-                "Вы не прошли проверку подлинности личности"
+                CharacterSetConstants.IDENTITY_VERIFICATION_ERROR_TEXT
         );
         drManager.getDriver().switchTo().alert().accept();
     }

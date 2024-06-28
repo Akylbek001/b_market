@@ -230,7 +230,7 @@ public class RegistrationTest extends BaseTest {
             registrationSteps.clickRegisterClientButton();
         });
         Assert.assertEquals(
-                "Пользователь по номеру документа не найден", elementsAttributes.getValue(REGISTRATION_RESULT)
+                CharacterSetConstants.CLIENT_NOT_FOUND, elementsAttributes.getValue(REGISTRATION_RESULT)
         );
     }
 

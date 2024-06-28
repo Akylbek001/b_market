@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.FilterPage.EMPTY_SEARCH_RESULT_TEXT;
 import static pages.FilterPage.MAP_OBJECT;
 
 @Owner("Алибек Акылбеков")
@@ -21,73 +20,47 @@ public class FilterTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Поиск недвижимости => Покупка", groups = {"automated"})
+    @Test(description="Квартиры Отау и Наурыз", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Фильтр - покупка")
+    @Description("")
     @Severity(SeverityLevel.NORMAL)
-    public void filterForBuy() {
-        step("Выбрать параметры поиска", () -> {
-//            filterSteps.searchObjectForBuyByAllParameters(config.priceFrom(), config.priceTo());
-            filterSteps.testt();
-        });
-    }
-
-    @Test(description="Поиск недвижимости > Покупка => Карта объекта", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Карточка объекта")
-    @Severity(SeverityLevel.NORMAL)
-    public void navigateToRealEstate() {
+    public void otauAndNaurizApartments() {
         step("Поиск по умолчанию", () -> {
-            filterSteps.objectForBuyDefaultSearch();
+            filterSteps.otauAndNaurizApartments();
         });
-        step("Проверить страницу объекта", () -> {
-            Assert.assertEquals("20 этажный жилой дом", filterPage.getObjectTitleValue().toString());
-        });
+        Assert.assertEquals(envConfig.baseUrl().concat("pool/search"), brManager.getCurrUrl());
     }
 
-    @Test(description="Поиск недвижимости > Покупка => На карте", groups = {"automated"})
+    @Test(description="Поиск недвижимости => На карте", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Фильтр - покупка. Посмотреть на карте")
+    @Severity(SeverityLevel.NORMAL)
+    public void onMap_mainPageFilter() {
+        step("На карте", () -> {
+            filterSteps.onMap();
+        });
+        Assert.assertTrue(elementsAttributes.isDisplayed(MAP_OBJECT));
+    }
+
+    @Test(description="Поиск недвижимости => На карте", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Фильтр - покупка. Посмотреть на карте")
     @Severity(SeverityLevel.NORMAL)
     public void showResultOnMap() {
         step("Поиск по умолчанию", () -> {
-            filterSteps.objectForBuyDefaultSearch();
-        });
-        step("На карте", () -> {
-            filterSteps.map();
+            filterSteps.showSearchResultOnMap();
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(MAP_OBJECT));
     }
 
-    @Test(description="Поиск недвижимости => Аренда", groups = {"automated"})
+    @Test(description="Поиск недвижимости", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Фильтр - аренда")
+    @Description("")
     @Severity(SeverityLevel.NORMAL)
-    public void filterForRent() {
-        step("Выбрать параметры поиска", () -> {
-            filterSteps.searchObjectForRentByAllParameters(config.priceFrom(), config.priceTo());
-        });
-    }
-
-    @Test(description="Поиск недвижимости > Аренда => Нет результата", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Фильтр - аренда")
-    @Severity(SeverityLevel.NORMAL)
-    public void unsuccessfulSearch() {
+    public void search() {
         step("Поиск по умолчанию", () -> {
-            filterSteps.searchObjectForRentByDefaultSearch();
+            filterSteps.selectRegion();
         });
-        elementsAttributes.waitUntilVisible(EMPTY_SEARCH_RESULT_TEXT);
-        Assert.assertEquals("Предложений: 0", elementsAttributes.getValue(EMPTY_SEARCH_RESULT_TEXT));
-    }
-
-    @Test(description="Поиск недвижимости > Аренда => Доп.фильтр", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Фильтр - аренда")
-    @Severity(SeverityLevel.NORMAL)
-    public void searchByAdditionalParameters() {
-        step("Поиск", () -> {
-            filterSteps.testAddFilter();
-        });
+        Assert.assertTrue(elementsAttributes.isDisplayed(MAP_OBJECT));
     }
 }
