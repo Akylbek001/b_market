@@ -11,17 +11,27 @@ public class DiplomaToVillagePage extends BasePage {
     private static final By SELECT_AKIMAT = By.cssSelector("select[name='districtId']");
     private static final By SELECT_REQUEST_TYPE = By.cssSelector("select[name='targetId']");
     private static final By SUBMIT_BUTTON = By.cssSelector("[type='submit']");
+
     public static final By NOT_READY_TO_ACCEPT_REQUEST = By.cssSelector(".village--cancelblock p");
     private static final By CONFIRM_BUTTON = By.cssSelector(".confirm");
     public static final By REQUEST_IN_PROGRESS = By.xpath("//div[@class='border_block'] /div[3]");
     public static final By SAME_REQUEST_TYPE = By.cssSelector(".selo--refusalblock p");
 
-    public static final By AGREEMENT_CHECKBOX = By.id("vector2-checkbox");
-    public static final By CONTINUE_BUTTON = By.cssSelector(".confirmation [type='button']");
+    private static final By CONFIRM_PERSONAL_DATA_CHECKBOX = By.cssSelector(".custom_checkbox");
+    private static final By CONFIRM_PERSONAL_DATA_BUTTON = By.cssSelector(".confirmation button");
+
     public static final By GET_PASSPORT_BUTTON = By.cssSelector(".digital-village-id-card-block");
+    public static final By PASSPORT_DIGITAL_CODE = By.id("village--id--card");
+    public static final By GET_PASSPORT_DIGITAL_CODE_BUTTON = By.cssSelector("#exampleModal-digital .btn.btn-primary.valid");
+
     public static final By GET_DIPLOMA_BUTTON = By.id("submit-digital3");
+    public static final By DIPLOMA_DIGITAL_CODE = By.id("village--id--card");
+    public static final By GET_DIPLOMA_DIGITAL_CODE_BUTTON = By.cssSelector("#exampleModal-digital3 .btn.btn-primary.valid");
+
+    public static final By UPLOAD_DIPLOMA_IF_NO_IN_EGOV = By.id("FileName");
+    public static final By UPLOAD_CERTIFICATE_OF_ABSENCE_OF_REAL_ESTATE = By.id("CERTIFICATE_OF_ABSENCE_OF_REAL_ESTATE");
     public static final By UPLOAD_EMPLOYMENT_CONTRACT = By.id("EMPLOYMENT_CONTRACT");
-    public static final By UPLOAD_REQUISITES = By.id("REQUISITES");
+
     public static final By CREATED_REQUEST = By.cssSelector(".loanCard");
     public static final By CANCEL_REQUEST = By.cssSelector("[data-target='#exampleModal-digital-cansel']");
     public static final By CANCEL_REQUEST_CONFIRM_BUTTON= By.cssSelector(".head_submitting_app .btn.btn-info.cansel-application");
@@ -67,15 +77,69 @@ public class DiplomaToVillagePage extends BasePage {
         return this;
     }
 
-    @Step("Click agreement checkbox")
-    public DiplomaToVillagePage clickAgreementCheckbox() {
-        button.btnClick(AGREEMENT_CHECKBOX);
+    @Step("Click confirm personal data checkbox")
+    public DiplomaToVillagePage clickConfirmPersonalDataCheckbox() {
+        button.btnClick(CONFIRM_PERSONAL_DATA_CHECKBOX);
         return this;
     }
 
     @Step("Click continue button")
     public DiplomaToVillagePage clickContinueButton() {
-        button.btnClick(CONTINUE_BUTTON);
+        button.btnClick(CONFIRM_PERSONAL_DATA_BUTTON);
+        return this;
+    }
+
+    @Step("Click get passport button")
+    public DiplomaToVillagePage clickGetPassportButton() {
+        button.btnClick(GET_PASSPORT_BUTTON);
+        return this;
+    }
+
+    @Step("Input passport digital code")
+    public DiplomaToVillagePage inputPassportDigitalCode(String code) {
+        input.inputWithClear(PASSPORT_DIGITAL_CODE, code);
+        return this;
+    }
+
+    @Step("Click get passport digital code button")
+    public DiplomaToVillagePage clickGetPassportDigitalCodeButton() {
+        button.btnClick(GET_PASSPORT_DIGITAL_CODE_BUTTON);
+        return this;
+    }
+
+    @Step("Click get diploma button")
+    public DiplomaToVillagePage clickGetDiplomaButton() {
+        button.btnClick(GET_DIPLOMA_BUTTON);
+        return this;
+    }
+
+    @Step("Input digital diploma code")
+    public DiplomaToVillagePage inputDigitalDiplomaCode(String code) {
+        input.inputWithClear(DIPLOMA_DIGITAL_CODE, code);
+        return this;
+    }
+
+    @Step("Click get diploma digital code button")
+    public DiplomaToVillagePage clickGetDiplomaDigitalCodeButton() {
+        button.btnClick(GET_DIPLOMA_DIGITAL_CODE_BUTTON);
+        return this;
+    }
+
+    @Step("Upload diploma")
+    public DiplomaToVillagePage uploadDiploma(String diplomaPath) {
+        input.inputWithClear(UPLOAD_DIPLOMA_IF_NO_IN_EGOV, diplomaPath);
+        return this;
+    }
+
+    @Step("Upload certificate of absence of real estates")
+    public DiplomaToVillagePage uploadCertificateOfAbsenceRealEstate(String certificatePath) {
+        input.inputWithClear(UPLOAD_CERTIFICATE_OF_ABSENCE_OF_REAL_ESTATE, certificatePath);
+        return this;
+    }
+
+    @Step("Upload employment contract")
+    public DiplomaToVillagePage uploadEmploymentContract(String employmentContractPath) {
+        input.inputWithClear(UPLOAD_EMPLOYMENT_CONTRACT, employmentContractPath);
         return this;
     }
 

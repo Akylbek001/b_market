@@ -15,14 +15,14 @@ public class DiplomaToVillageSteps {
                 .selectAkimat(2);
     }
 
-    public void applyRequest() {
+    public void applyRequestSelectRegion() {
         diplomaToVillagePage
                 .clickApplyRequest()
                 .selectDistrict(2)
                 .selectAkimat(10);
     }
 
-    public void applyRequestFinish() {
+    public void applyRequestSelectRequestType() {
         diplomaToVillagePage
                 .selectRequestType()
                 .clickSubmitButton();
@@ -35,14 +35,38 @@ public class DiplomaToVillageSteps {
 
     public void applyRequestContinue() {
         diplomaToVillagePage
-                .clickAgreementCheckbox()
+                .clickConfirmPersonalDataCheckbox()
                 .clickContinueButton();
     }
 
-//    public void getDocuments() {
-//        diplomaToVillagePage
-//                .clickGetPassportButton();
-//    }
+    public void getPassport(String code) {
+        diplomaToVillagePage
+                .clickGetPassportButton()
+                .inputPassportDigitalCode(code)
+                .clickGetPassportDigitalCodeButton();
+    }
+
+    public void getDiploma(String code) {
+        diplomaToVillagePage
+                .clickGetDiplomaButton()
+                .inputDigitalDiplomaCode(code)
+                .clickGetDiplomaDigitalCodeButton();
+    }
+
+    public void uploadDiploma(String diplomaPath) {
+        diplomaToVillagePage
+                .uploadDiploma(diplomaPath);
+    }
+
+    public void uploadCertificateOfAbsenceRealEstate(String certificatePath) {
+        diplomaToVillagePage
+                .uploadCertificateOfAbsenceRealEstate(certificatePath);
+    }
+
+    public void uploadEmploymentContract(String employmentContractPath) {
+        diplomaToVillagePage
+                .uploadEmploymentContract(employmentContractPath);
+    }
 
     public void cancelRequest() {
         diplomaToVillagePage

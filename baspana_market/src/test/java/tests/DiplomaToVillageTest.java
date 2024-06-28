@@ -21,7 +21,26 @@ public class DiplomaToVillageTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Подать заявку => Акимат не готов пр", groups = {"automated"})
+    @Test(description = "Подать заявку", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Подать заявку")
+    @Severity(SeverityLevel.NORMAL)
+    public void applyRequest () {
+        step("Авторизация", () -> {
+            loginSteps.auth(
+                    config.userLogin(), config.userPass()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Village"));
+        });
+        step("Подать заявку", () -> {
+            diplomaToVillageSteps.applyRequestSelectRegion();
+            diplomaToVillageSteps.applyRequestSelectRequestType();
+            diplomaToVillageSteps.applyRequestConfirm();
+        });
+        elementsAttributes.isVisible(REQUEST_IN_PROGRESS);
+    }
+
+    @Test(description = "Подать заявку => Акимат не готов принять заявку", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Подать заявку")
     @Severity(SeverityLevel.NORMAL)
@@ -34,31 +53,12 @@ public class DiplomaToVillageTest extends BaseTest {
         });
         step("Подать заявку", () -> {
             diplomaToVillageSteps.applyRequest_validateAkimat();
-            diplomaToVillageSteps.applyRequestFinish();
+            diplomaToVillageSteps.applyRequestSelectRequestType();
         });
         Assert.assertEquals(
                 CharacterSetConstants.NOT_READY_TO_ACCEPT_REQUEST_TEXT,
                 elementsAttributes.getValue(NOT_READY_TO_ACCEPT_REQUEST)
         );
-    }
-
-    @Test(description = "Подать заявку", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Подать заявку")
-    @Severity(SeverityLevel.NORMAL)
-    public void applyRequest () {
-        step("Авторизация", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Village"));
-        });
-        step("Подать заявку", () -> {
-            diplomaToVillageSteps.applyRequest();
-            diplomaToVillageSteps.applyRequestFinish();
-            diplomaToVillageSteps.applyRequestConfirm();
-        });
-        elementsAttributes.isVisible(REQUEST_IN_PROGRESS);
     }
 
     @Test(description = "Подать заявку => валидация существующей заявки", groups = {"automated"})
@@ -73,8 +73,8 @@ public class DiplomaToVillageTest extends BaseTest {
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
-            diplomaToVillageSteps.applyRequest();
-            diplomaToVillageSteps.applyRequestFinish();
+            diplomaToVillageSteps.applyRequestSelectRegion();
+            diplomaToVillageSteps.applyRequestSelectRequestType();
         });
         elementsAttributes.isVisible(SAME_REQUEST_TYPE);
     }
