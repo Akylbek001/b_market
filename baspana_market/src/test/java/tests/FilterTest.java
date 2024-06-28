@@ -22,7 +22,7 @@ public class FilterTest extends BaseTest {
 
     @Test(description="Квартиры Отау и Наурыз", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Навигация на страницу результата поиска")
     @Severity(SeverityLevel.NORMAL)
     public void otauAndNaurizApartments() {
         step("Поиск по умолчанию", () -> {
@@ -33,7 +33,7 @@ public class FilterTest extends BaseTest {
 
     @Test(description="Поиск недвижимости => На карте", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Фильтр - покупка. Посмотреть на карте")
+    @Description("Фильтр - Посмотреть на карте")
     @Severity(SeverityLevel.NORMAL)
     public void onMap_mainPageFilter() {
         step("На карте", () -> {
@@ -53,7 +53,7 @@ public class FilterTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(MAP_OBJECT));
     }
 
-    @Test(description="Поиск недвижимости", groups = {"automated"})
+    @Test(description="Поиск недвижимости - параметры поиска", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.NORMAL)

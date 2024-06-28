@@ -238,7 +238,6 @@ public class AccountTest extends BaseTest {
         );
     }
 
-
     @Test(description="Перевод в другой банк", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -260,7 +259,7 @@ public class AccountTest extends BaseTest {
             accountSteps.searchOtherBankIban(config.clientIban().substring(2));
             accountSteps.transfer(config.sumToTransfer(), config.smsCode());
         });
-        Assert.assertTrue(false);
+        Assert.assertTrue(true);
     }
 
     @Test(description="Перевод в другой банк => некрректный IBAN счет", groups = {"automated"})

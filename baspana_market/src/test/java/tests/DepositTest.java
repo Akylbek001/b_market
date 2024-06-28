@@ -104,7 +104,7 @@ public class DepositTest extends BaseTest {
     //Нужна соответствующая учетка
     @Test(description="Открыть образовательный вклад <AQYL>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("AQYL")
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl() {
         step("Авторизация -> Мои депозиты", () -> {

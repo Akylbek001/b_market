@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DatesUtils {
-    private static DateTimeFormatter formats = DateTimeFormatter.ofPattern("dd.MM.YYYY");
+    private static DateTimeFormatter formats = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     private DatesUtils() {}
 
