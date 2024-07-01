@@ -9,7 +9,11 @@ public class HousingCenterPage extends BasePage {
     private static final By APPLY_REQUEST = By.cssSelector("#cozhnews #applyApplication");
     private static final By AGREEMENT_CHECKBOX = By.cssSelector(".conditions-container label.agreement");
     private static final By SIGN_BUTTON = By.id("sign-button");
-    private static final By FINISH_BUTTON = By.cssSelector(".btn.btn-green.bodyL");
+    private static final By UPLOAD_DOCUMENTS = By.cssSelector("input_file-button-text nemob");
+    private static final By CONTINUE_BUTTON = By.id("stage0continueButton");
+    private static final By AGREEMENT = By.cssSelector("[for='AgreeWithAgreement']");
+    public static final By FILE_TO_SIGN = By.cssSelector(".cozh_news--clients--doc--i_s");
+
 
 
     public HousingCenterPage(WebDriver driver) {
@@ -33,21 +37,27 @@ public class HousingCenterPage extends BasePage {
     }
 
     @Step("Click sign button")
-    public HousingCenterPage clickSignButton() {
-        button.btnClick(SIGN_BUTTON);
+    public HousingCenterPage clickSignButton(String path) {
+//        button.btnClick(SIGN_BUTTON);
+        input.inputWithClear(SIGN_BUTTON, path);
         return this;
     }
 
-//    @Step("Click sign button")
-//    public HousingCenterPage clickSignButton(String path) {
-//        button.btnClick(SIGN_BUTTON);
-//        input.inputWithClear(SIGN_BUTTON, path);
-//        return this;
-//    }
+    @Step("Click continue button")
+    public HousingCenterPage clickContinueButton() {
+        button.btnClick(CONTINUE_BUTTON);
+        return this;
+    }
 
-    @Step("Click finish button")
-    public HousingCenterPage clickFinishButton() {
-        button.btnClick(FINISH_BUTTON);
+    @Step("Click upload documents")
+    public HousingCenterPage clickUploadDocuments(String path) {
+        input.inputWithClear(UPLOAD_DOCUMENTS, path);
+        return this;
+    }
+
+    @Step("Click agreement checkbox")
+    public HousingCenterPage clickAgreementCheckbox() {
+        button.btnClick(AGREEMENT);
         return this;
     }
 }

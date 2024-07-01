@@ -68,6 +68,18 @@ public class DiplomaToVillageSteps {
                 .uploadEmploymentContract(employmentContractPath);
     }
 
+    public void fillWorkData(String location, String place, String position, String otp) {
+        diplomaToVillagePage
+                .inputWorkLocation(location)
+                .inputWorkPlace(place)
+                .inputPosition(position)
+                .selectSphereActivity()
+                .clickSignButton()
+                .inputOtp(otp)
+                .sendOtpButton()
+                .sendGenerateRequestButton();
+    }
+
     public void cancelRequest() {
         diplomaToVillagePage
                 .selectCreatedRequest()

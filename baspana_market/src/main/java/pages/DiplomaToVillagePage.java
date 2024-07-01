@@ -1,5 +1,6 @@
 package pages;
 
+import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,15 @@ public class DiplomaToVillagePage extends BasePage {
     public static final By CREATED_REQUEST = By.cssSelector(".loanCard");
     public static final By CANCEL_REQUEST = By.cssSelector("[data-target='#exampleModal-digital-cansel']");
     public static final By CANCEL_REQUEST_CONFIRM_BUTTON= By.cssSelector(".head_submitting_app .btn.btn-info.cansel-application");
+
+    public static final By WORK_LOCATION= By.cssSelector("#wrapper > #workLocation");
+    public static final By WORK_PLACE = By.cssSelector("#wrapper > #placeOfWork");
+    public static final By POSITION = By.cssSelector("#wrapper > #position");
+    public static final By SPHERE_ACTIVITY = By.cssSelector(".select_region--block--items #spheraActivity");
+    public static final By SIGN_BUTTON = By.cssSelector(".apply-choose-mio--pkb-report");
+    private static final By TRANSFER_OTP = By.id("smsVerificationCodeInput");
+    private static final By SEND_OTP_BUTTON = By.cssSelector("#exampleModalSMSVillage .btn.btn-primary");
+    private static final By GENERATE_REQUEST_BUTTON = By.cssSelector(".btn.btn-primary.celo-ipoteka.btn-form_app.sign_and_send");
 
 
     public DiplomaToVillagePage(WebDriver driver) {
@@ -160,6 +170,56 @@ public class DiplomaToVillagePage extends BasePage {
         button.btnClick(CANCEL_REQUEST_CONFIRM_BUTTON);
         return this;
     }
+
+    @Step("Input work location")
+    public DiplomaToVillagePage inputWorkLocation(String workLocation) {
+        input.inputWithClear(WORK_LOCATION, workLocation);
+        return this;
+    }
+
+    @Step("Input work place")
+    public DiplomaToVillagePage inputWorkPlace(String workPlace) {
+        input.inputWithClear(WORK_PLACE, workPlace);
+        return this;
+    }
+
+    @Step("Input position")
+    public DiplomaToVillagePage inputPosition(String position) {
+        input.inputWithClear(POSITION, position);
+        return this;
+    }
+
+    @Step("Select sphere activity")
+    public DiplomaToVillagePage selectSphereActivity() {
+        dropDown.selectByIndex(SPHERE_ACTIVITY, 2);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Click sign button")
+    public DiplomaToVillagePage clickSignButton() {
+        button.btnClick(SIGN_BUTTON);
+        return this;
+    }
+
+    @Step("Input otp")
+    public DiplomaToVillagePage inputOtp(String otp) {
+        input.inputWithClear(TRANSFER_OTP, otp);
+        return this;
+    }
+
+    @Step("Click send otp button")
+    public DiplomaToVillagePage sendOtpButton() {
+        button.btnClick(SEND_OTP_BUTTON);
+        return this;
+    }
+
+    @Step("Click generate request button")
+    public DiplomaToVillagePage sendGenerateRequestButton() {
+        button.btnClick(GENERATE_REQUEST_BUTTON);
+        return this;
+    }
+
 
     @Step("Click news link")
     public DiplomaToVillagePage checkElemIsDisappeared() {

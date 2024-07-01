@@ -47,7 +47,6 @@ public final class CharacterSetConstants {
     public static final String CLIENT_NOT_FOUND_CHECK_NUMBER = "Клиент не найден, проверьте номер телефона";
     public static final String CLIENT_NOT_FOUND_CHECK_CODE = "Клиент не найден, проверьте введенный код";
 
-
     public static final String INVALID_FIO = "Нельзя вводить символы в ФИО";
     public static final String INVALID_PASS_CONFIRMATION = "Пароли не совпадают";
     public static final String INVALID_EMAIL = "Некорректный email";
@@ -62,7 +61,6 @@ public final class CharacterSetConstants {
     public static final String INVALID_IBAN = "Вы ввели некорректный IBAN счет!";
     public static final String INSUFFICIENT_FUNDS_FOR_TRANSFER = "Недостаточно средств для перевода";
 
-
     public static final String CURRENT_ACCOUNT_OPEN_SUCCESSFULLY_TEXT ="Операция успешно завершена";
     public static final String OPEN_DEPOSIT_REFUSED = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
     public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Уважаемый клиент! Введенный Вами альтернативный код некорректный, просим проверить данные.";
@@ -74,6 +72,9 @@ public final class CharacterSetConstants {
     public static final String GOS_PREM_ALREADY_EXIST_TEXT = "На выбранном депозите уже присутствует государственная премия";
     public static final String REQUEST_BEEN_ACCEPTED_TEXT = "Рахмет! Сіздің өтінішіңіз қабылданды. Поштаңызға өтініш туралы хабарлама жіберілді.";
     public static final String DEPOSIT_DIVISION_ACCEPTED = "Ваша заявка на деление депозита принята";
+    public static final String DEPOSIT_DIVISION_NEED_TO_OPEN_ACCOUNT_VALIDATION = "Для деления депозита Вам необходимо открыть текущий счет. Поскольку на этот счет будет произведен перевод денежных средств с делимого депозита";
+    public static final String DEPOSIT_DIVISION_SAVING_AMOUNT_VALIDATION = "Уважаемый клиент! Минимальная сумма накопления должна быть больше 50 МРП";
+
     public static final String ONLY_ONE_DEPOSIT = "У вас недостаточное количество депозитов для совершения операции объединения";
     public static final String DEPOSIT_AMOUNT_MUST_BE_BETWEEN = "Договорная сумма должна быть между: 1846000,0₸ - 195154000,0₸";
     public static final String DEPOSIT_CONDITIONS_CHANGED_SUCCESSFULLY_TEXT ="Операция завершилась успешно";

@@ -468,6 +468,56 @@ public class DepositTest extends BaseTest {
         );
     }
 
+    @Test(description="Деление депозита => Валидация отсутствия текущего счета", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация отсутствия текущего счета")
+    @Severity(SeverityLevel.CRITICAL)
+    public void depositDivision_validateNoCurrentAccount() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(
+                    config.userLogin(), config.userPass()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Деление депозита", () -> {
+            depositSteps.selectDepositDivisionOperation();
+        });
+        Assert.assertEquals(CharacterSetConstants.DEPOSIT_DIVISION_NEED_TO_OPEN_ACCOUNT_VALIDATION,
+                elementsAttributes.getValue(DIVIDE_NO_ACCOUNT_VALIDATION)
+        );
+    }
+
+    @Test(description="Деление депозита => Валидация суммы накопления", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация суммы накопления")
+    @Severity(SeverityLevel.CRITICAL)
+    public void depositDivision_validateSavingAmount() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(
+                    config.userLogin(), config.userPass()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Деление депозита", () -> {
+            depositSteps.selectDepositDivisionOperation();
+        });
+        Assert.assertEquals(CharacterSetConstants.DEPOSIT_DIVISION_SAVING_AMOUNT_VALIDATION,
+                elementsAttributes.getValue(DIVIDE_SAVING_AMOUNT_VALIDATION)
+        );
+    }
+
     @Test(description="Объединение депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Объединение депозита")
@@ -490,7 +540,7 @@ public class DepositTest extends BaseTest {
         });
     }
 
-    @Test(description="Объединение депозита => Валидация при наличии всего одного депозита", groups = {"automated"})
+    @Test(description="Объединение депозита => Валидация наличия всего одного депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Объединение депозита-валидация кол-ва депозитов")
     @Severity(SeverityLevel.CRITICAL)

@@ -7,11 +7,10 @@ public class HousingCenterSteps {
     private final HousingCenterPage housingCenterPage;
     public HousingCenterSteps(WebDriver driver) { housingCenterPage = new HousingCenterPage(driver); }
 
-    public void applyRequest_validateNcaLayer() {
+    public void applyRequest_validateNcaLayer(String path) {
         housingCenterPage
                 .clickApplyRequest()
                 .clickAgreementCheckBox()
-                .clickSignButton();
-//                .clickFinishButton();
+                .clickSignButton(path);
     }
 }

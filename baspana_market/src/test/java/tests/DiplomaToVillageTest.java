@@ -21,7 +21,8 @@ public class DiplomaToVillageTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Подать заявку", groups = {"automated"})
+    //нет тестовых данных цифрового УД и диплома
+    @Test(description = "Подать заявку", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Подать заявку")
     @Severity(SeverityLevel.NORMAL)
@@ -36,6 +37,10 @@ public class DiplomaToVillageTest extends BaseTest {
             diplomaToVillageSteps.applyRequestSelectRegion();
             diplomaToVillageSteps.applyRequestSelectRequestType();
             diplomaToVillageSteps.applyRequestConfirm();
+            diplomaToVillageSteps.applyRequestContinue();
+            diplomaToVillageSteps.getPassport("passportDigitalCode");
+            diplomaToVillageSteps.getDiploma("diplomaDigitalCode");
+            diplomaToVillageSteps.fillWorkData("location", "place", "position", config.smsCode());
         });
         elementsAttributes.isVisible(REQUEST_IN_PROGRESS);
     }
