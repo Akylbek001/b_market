@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -33,7 +34,7 @@ public class GosServicesTest extends BaseTest {
         step("Получить справку", () -> {
             govServicesSteps.getCertificateOfAbsenceOfRealEstatesButton();
         });
-        Assert.assertEquals("Изивините, сервис временно недоступен! Повторите попытку позже",
+        Assert.assertEquals(CharacterSetConstants.SERVICE_NOT_AVAILABLE,
                 elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
         );
         step("Завершить", () -> {
@@ -49,7 +50,7 @@ public class GosServicesTest extends BaseTest {
         step("Получить справку", () -> {
             govServicesSteps.getCertificateOfRegisteredRightsAndEncumbrances();
         });
-        Assert.assertEquals("Изивините, сервис временно недоступен! Повторите попытку позже",
+        Assert.assertEquals(CharacterSetConstants.SERVICE_NOT_AVAILABLE,
                 elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
         );
         step("Завершить", () -> {
