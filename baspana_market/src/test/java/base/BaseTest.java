@@ -67,6 +67,7 @@ public abstract class BaseTest{
     protected DiplomaToVillageSteps diplomaToVillageSteps;
     protected HousingCenterSteps housingCenterSteps;
     protected MortgageOnlineSteps mortgageOnlineSteps;
+    protected LoansSteps loansSteps;
 
     @BeforeSuite(alwaysRun = true, description = "Логирование старта комплекта тестов")
     public void setUp(ITestContext ctx) {
@@ -125,6 +126,7 @@ public abstract class BaseTest{
         diplomaToVillageSteps = new DiplomaToVillageSteps(driver);
         housingCenterSteps = new HousingCenterSteps(driver);
         mortgageOnlineSteps = new MortgageOnlineSteps(driver);
+        loansSteps = new LoansSteps(driver);
     }
 
     private void configInit() {

@@ -1,8 +1,15 @@
 package common.config.app;
 
+import common.wrappers.SecretText;
 import org.aeonbits.owner.Config;
 @Config.Sources({"classpath:application.properties"})
 public interface AppConfig extends Config {
+
+    @Key("loanClient.login")
+    String loanClient_login();
+
+    @Key("loanClient.password")
+    String loanClient_password();
 
 
     @Key("client.fullName")

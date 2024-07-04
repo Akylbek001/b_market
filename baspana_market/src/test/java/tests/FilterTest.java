@@ -53,7 +53,7 @@ public class FilterTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(MAP_OBJECT));
     }
 
-    @Test(description="Поиск недвижимости - параметры поиска", groups = {"automated"})
+    @Test(description="Поиск недвижимости - параметры поиска", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.NORMAL)

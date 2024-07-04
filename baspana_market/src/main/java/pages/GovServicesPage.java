@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 public class GovServicesPage extends BasePage {
     private static final By CERTIFICATE_OF_ABSENCE_OF_REAL_ESTATES = By.id("AvailabilityRealEstate");
     private static final By CERTIFICATE_OF_REGISTERED_RIGHTS_AND_ENCUMBRANCES = By.id("RegisteredRightsAndEncumbrances");
+    private static final By CONFIRMED_BUTTON = By.id("succes-btn");
+
 
 
     public static final By CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE = By.id("failed-error-custom-message");

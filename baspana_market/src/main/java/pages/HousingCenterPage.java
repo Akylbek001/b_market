@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class HousingCenterPage extends BasePage {
     private static final By APPLY_REQUEST = By.cssSelector("#cozhnews #applyApplication");
     private static final By AGREEMENT_CHECKBOX = By.cssSelector(".conditions-container label.agreement");
-    private static final By SIGN_BUTTON = By.id("sign-button");
+    public static final By SIGN_BUTTON = By.id("sign-button");
     private static final By UPLOAD_DOCUMENTS = By.cssSelector("input_file-button-text nemob");
     private static final By CONTINUE_BUTTON = By.id("stage0continueButton");
     private static final By AGREEMENT = By.cssSelector("[for='AgreeWithAgreement']");
@@ -37,9 +37,9 @@ public class HousingCenterPage extends BasePage {
     }
 
     @Step("Click sign button")
-    public HousingCenterPage clickSignButton(String path) {
-//        button.btnClick(SIGN_BUTTON);
-        input.inputWithClear(SIGN_BUTTON, path);
+    public HousingCenterPage clickSignButton() {
+        button.btnClick(SIGN_BUTTON);
+//        input.inputWithClear(SIGN_BUTTON, path);
         return this;
     }
 

@@ -25,6 +25,8 @@ public class CabinetTest extends BaseTest {
         brManager.navigateTo(envConfig.baseUrl().concat("cabinet"));
     }
 
+//    SecretText userPass = new SecretText(config.userPass());
+
     @Test(description = "Добавить email", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Добавить email")
@@ -63,9 +65,7 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.userPass(),
-                    config.userPass()
-            );
+            cabinetSteps.changePassword(config.userPass(), config.userPass());
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
                 CharacterSetConstants.PASSWORDS_MUST_NOT_BE_SAME

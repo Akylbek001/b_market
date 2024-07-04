@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Set;
+
 import static io.qameta.allure.Allure.step;
 import static pages.HeaderPage.*;
 
@@ -31,6 +33,7 @@ public class HeaderTest extends BaseTest {
         });
         brManager.switchToLastTab();
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.ownHouseProgramPath()));
+
     }
 
     @Test(description="Новости", groups = {"automated"})

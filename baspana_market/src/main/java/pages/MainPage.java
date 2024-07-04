@@ -10,8 +10,8 @@ import org.openqa.selenium.WebDriver;
 public class MainPage extends BasePage {
     private static final By LOGIN_BUTTON = By.id("OBLoginButtDiv");
     private static final By CLIENT_PROFILE_NAME = By.id("ClientName");
-    private static final By READ_BUTTON = By.xpath("//div[@class='news-box']//p[text()='Читать']");
-    private static final By CALCULATE_BUTTON = By.xpath("//div[@class='news-box']//p[text()='Рассчитать']");
+    private static final By READ_BUTTON = By.cssSelector("[onclick=\"window.location.href = '/news-ads/ads'\"]");
+    private static final By CALCULATE_BUTTON = By.cssSelector("[onclick=\"window.location.href = '/OnlineMortgage/IpotekaCalculate'\"]");
     private static final By REALITY_TYPE_TAB = By.id("RealtyType");
     private static final By REGION_LIST = By.id("regionSelect");
     private static final By REDEMPTION_TYPE = By.id("RedemptionMethod");
@@ -51,8 +51,6 @@ public class MainPage extends BasePage {
     @Step("Click calculate button")
     public MainPage clickCalculateButton() {
         move.scrollToElement(CALCULATE_BUTTON);
-        move.scrollToElement(CALCULATE_BUTTON);
-
         button.btnClick(CALCULATE_BUTTON);
         return this;
     }

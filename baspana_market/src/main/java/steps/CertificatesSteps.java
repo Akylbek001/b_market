@@ -22,9 +22,9 @@ public class CertificatesSteps {
                 .selectDepositCertificate();
     }
 
-    public void selectEPVAccountCertificate() {
+    public void selectAccountCertificate() {
         certificatesPage
-                .selectEPVAccountCertificate();
+                .selectAccountCertificate();
     }
 
     public void selectLoanStatementCertificate() {
@@ -37,24 +37,61 @@ public class CertificatesSteps {
                 .selectLoanRepaymentScheduleCertificate();
     }
 
-    public void getAccountCertificate() {
+    public void openAccountsList() {
         certificatesPage
-                .clickAccountsListsDropdown()
-                .selectAccount()
+                .clickAccountsListsDropdown();
+    }
+
+    public void selectAllAccounts() {
+        certificatesPage
+                .selectAllAccounts();
+    }
+
+    public void selectCurrentAccount() {
+        certificatesPage
+                .selectCurrentAccount();
+    }
+
+    public void selectEPVAccount() {
+        certificatesPage
+                .selectEPVAccount();
+    }
+
+    public void selectSocialAccount() {
+        certificatesPage
+                .selectSocialAccount();
+    }
+
+    public void selectDepositAccount() {
+        certificatesPage
+                .selectDepositAccount();
+    }
+
+    public void selectCertificateLanguage() {
+        certificatesPage
                 .clickLanguagesListsDropdown()
                 .selectLanguage();
     }
 
-    public void getLoanDebtCertificate() {
+    public void _selectCurrentAccount() {
         certificatesPage
-                .clickLoanDebtLanguagesListsDropdown()
-                .selectLanguage();
+                ._selectCurrentAccount();
     }
 
-    public void getDepositCertificate() {
+    public void _selectEPVAccount() {
+        certificatesPage
+                ._selectEPVAccount();
+    }
+
+    public void _selectSocialAccount() {
+        certificatesPage
+                ._selectSocialAccount();
+    }
+
+    public void fillRequiresData() {
         certificatesPage
                 .clickAccountsListsDropdown()
-                .selectDeposit()
+                .selectValueFromList()
                 .clickLanguagesListsDropdown()
                 .selectLanguage();
     }
@@ -71,16 +108,18 @@ public class CertificatesSteps {
                 .clickEndDate();
     }
 
-    public void getEPVAccountCertificate() {
+    public void getLoanCertificate() {
         certificatesPage
-                .clickAccountsListsDropdown()
-                .selectEpvAccount()
-                .clickLanguagesListsDropdown()
-                .selectLanguage();
+                .clickAccountsListsDropdown();
     }
 
     public void getCertificate() {
         certificatesPage
                 .clickGetCertificateButton();
+    }
+
+    public void getCertificateForWhile() {
+        certificatesPage
+                .clickGetCertificateButton_additionalWaitResult();
     }
 }

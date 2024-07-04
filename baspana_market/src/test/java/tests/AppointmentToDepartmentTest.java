@@ -38,7 +38,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
             appointmentToDepartmentSteps.fillForm(config.clientLogin());
         });
         Assert.assertEquals(
-                CharacterSetConstants.CERTIFICATE_GENERATED_TEXT,
+                CharacterSetConstants.CERTIFICATE_HAS_BEEN_GENERATED,
                 elementsAttributes.getValue(CERTIFICATE_GENERATED_NOTIFICATION)
         );
     }

@@ -67,7 +67,9 @@ public final class CharacterSetConstants {
     public static final String VALIDATION_OF_REGISTRATION = "Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Интернет банкинге/мобильном приложений, необходимо проверить наличие регистрации.";
     public static final String RELATION_DEGREE_NOT_SELECTED_TEXT = "Уважаемый клиент! Выберите степень родства";
     public static final String NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT = "Для продолжения операции Вам необходимо открыть текущий счет, далее необходимо обеспечить наличии минимального взноса в размере 3 МРП.";
-    public static final String CERTIFICATE_GENERATED_TEXT = "Выписка сформирована";
+    public static final String CERTIFICATE_HAS_BEEN_GENERATED = "Справка сформирована";
+    public static final String STATEMENT_HAS_BEEN_GENERATED = "Выписка сформирована";
+
     public static final String INSUFFICIENT_FOUND_TEXT = "Недостаточно средств на текущем счете";
     public static final String GOS_PREM_ALREADY_EXIST_TEXT = "На выбранном депозите уже присутствует государственная премия";
     public static final String REQUEST_BEEN_ACCEPTED_TEXT = "Рахмет! Сіздің өтінішіңіз қабылданды. Поштаңызға өтініш туралы хабарлама жіберілді.";

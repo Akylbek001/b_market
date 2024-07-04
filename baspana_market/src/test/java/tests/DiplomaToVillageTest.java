@@ -28,9 +28,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest () {
         step("Авторизация", () -> {
-            loginSteps.auth(
-                    config.userLogin(), config.userPass()
-            );
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
@@ -51,9 +49,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validationAkimat () {
         step("Авторизация", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
@@ -72,9 +68,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validateAlreadyExistedTypeOfRequest() {
         step("Авторизация", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
@@ -90,9 +84,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void cancelRequest () {
         step("Авторизация", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Аннулировать заявку", () -> {

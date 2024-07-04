@@ -9,29 +9,32 @@ public class CertificatesPage extends BasePage {
     private static final By CERTIFICATE_OF_ACCOUNT_AVAILABILITY = By.id("GetForm");
     private static final By CERTIFICATE_OF_LOAN_DEBT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Справка о ссудной задолженности']");
     private static final By CERTIFICATE_OF_DEPOSIT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по депозиту']");
-    private static final By CERTIFICATE_OF_EPV_ACCOUNT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по счету']");
-    private static final By CERTIFICATE_OF_LOAN_STATEMENT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по счету']");
+    private static final By CERTIFICATE_OF_ACCOUNT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по счету']");
+    private static final By CERTIFICATE_OF_LOAN_STATEMENT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по займу']");
     private static final By CERTIFICATE_OF_LOAN_REPAYMENT_SCHEDULE = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по графику погашения займа']");
 
-
     private static final By ACCOUNTS_DROPDOWN_LIST = By.cssSelector(".custom-select--for--counts");
-    private static final By ACCOUNT = By.xpath("//div[@class='select-items'] /div[2]");
-    private static final By DEPOSIT = By.xpath("//div[@class='select-items'] /div");
-    private static final By EPV_ACCOUNT = By.xpath("//div[@class='select-items'] /div");
+    private static final By ALL_ACCOUNTS = By.xpath("//div[@class='select-items'] /div[1]");
+    private static final By CURRENT_ACCOUNT = By.xpath("//div[@class='select-items'] /div[2]");
+    private static final By EPV_ACCOUNT = By.xpath("//div[@class='select-items'] /div[3]");
+    private static final By SOCIAL_ACCOUNT = By.xpath("//div[@class='select-items'] /div[4]");
+    private static final By DEPOSIT_ACCOUNT = By.xpath("//div[@class='select-items'] /div[5]");
+
+    private static final By ACCOUNTS_DROPDOWN_VALUE = By.xpath("//div[@class='select-items'] /div");
+    private static final By _CURRENT_ACCOUNT = By.xpath("//div[@class='select-items'] /div[1]");
+    private static final By _EPV_ACCOUNT = By.xpath("//div[@class='select-items'] /div[2]");
+    private static final By _SOCIAL_ACCOUNT = By.xpath("//div[@class='select-items'] /div[3]");
 
     private static final By LANGUAGE_DROPDOWN_LIST = By.cssSelector(".custom-select");
     private static final By LANGUAGE = By.xpath("//div[@class='select-items'] /div[1]");
     private static final By FOR_ALL_PERIOD = By.cssSelector(".btn-onoff");
     private static final By PERIOD = By.id("calendar-range");
-    private static final By START_DATE = By.cssSelector("[aria-label='Июнь 1, 2024']");
-    private static final By END_DATE = By.cssSelector("[aria-label='Июнь 30, 2024']");
-
-    private static final By LOAN_DEBT_LANGUAGE_DROPDOWN_LIST = By.cssSelector(".select-selected");
+    private static final By START_DATE = By.cssSelector("[aria-label='Июль 1, 2024']");
+    private static final By END_DATE = By.cssSelector("[aria-label='Июль 30, 2024']");
 
     private static final By GET_CERTIFICATE_BUTTON = By.xpath("//button[@class='btn-form_app']");
     public static final By CERTIFICATE_GENERATED_NOTIFICATION = By.xpath("//div[@id='GetToCertificateFinale'] //b");
     public static final By GENERATED_CERTIFICATE = By.cssSelector(".certificate_info--b");
-
 
 
     public CertificatesPage(WebDriver driver) {
@@ -57,9 +60,9 @@ public class CertificatesPage extends BasePage {
         return this;
     }
 
-    @Step("Select certificate of epv account")
-    public CertificatesPage selectEPVAccountCertificate() {
-        button.btnClick(CERTIFICATE_OF_EPV_ACCOUNT);
+    @Step("Select certificate of account")
+    public CertificatesPage selectAccountCertificate() {
+        button.btnClick(CERTIFICATE_OF_ACCOUNT);
         return this;
     }
 
@@ -75,7 +78,6 @@ public class CertificatesPage extends BasePage {
         return this;
     }
 
-
     @Step("Click accounts list dropdown")
     public CertificatesPage clickAccountsListsDropdown() {
         button.btnClick(ACCOUNTS_DROPDOWN_LIST);
@@ -83,21 +85,57 @@ public class CertificatesPage extends BasePage {
         return this;
     }
 
-    @Step("Select account")
-    public CertificatesPage selectAccount() {
-        button.btnClick(ACCOUNT);
+    @Step("Select all accounts")
+    public CertificatesPage selectAllAccounts() {
+        button.btnClick(ALL_ACCOUNTS);
         return this;
     }
 
-    @Step("Select deposit")
-    public CertificatesPage selectDeposit() {
-        button.btnClick(DEPOSIT);
+    @Step("Select current account")
+    public CertificatesPage selectCurrentAccount() {
+        button.btnClick(CURRENT_ACCOUNT);
         return this;
     }
 
-    @Step("Select epv account")
-    public CertificatesPage selectEpvAccount() {
+    @Step("Select EPV account")
+    public CertificatesPage selectEPVAccount() {
         button.btnClick(EPV_ACCOUNT);
+        return this;
+    }
+
+    @Step("Select social account")
+    public CertificatesPage selectSocialAccount() {
+        button.btnClick(SOCIAL_ACCOUNT);
+        return this;
+    }
+
+    @Step("Select deposit account")
+    public CertificatesPage selectDepositAccount() {
+        button.btnClick(DEPOSIT_ACCOUNT);
+        return this;
+    }
+
+    @Step("Select value from list value")
+    public CertificatesPage selectValueFromList() {
+        button.btnClick(ACCOUNTS_DROPDOWN_VALUE);
+        return this;
+    }
+
+    @Step("Select current account")
+    public CertificatesPage _selectCurrentAccount() {
+        button.btnClick(_CURRENT_ACCOUNT);
+        return this;
+    }
+
+    @Step("Select EPV account")
+    public CertificatesPage _selectEPVAccount() {
+        button.btnClick(_EPV_ACCOUNT);
+        return this;
+    }
+
+    @Step("Select social account")
+    public CertificatesPage _selectSocialAccount() {
+        button.btnClick(_SOCIAL_ACCOUNT);
         return this;
     }
 
@@ -138,18 +176,17 @@ public class CertificatesPage extends BasePage {
         return this;
     }
 
-
-
     @Step("Click get certificate button")
     public CertificatesPage clickGetCertificateButton() {
         button.btnClick(GET_CERTIFICATE_BUTTON);
-        WaitUtils.wait(5);
+        elementsAttributes.waitUntilVisible(GENERATED_CERTIFICATE);
         return this;
     }
 
-    @Step("Click loan debt languages list dropdown")
-    public CertificatesPage clickLoanDebtLanguagesListsDropdown() {
-        button.btnClick(LOAN_DEBT_LANGUAGE_DROPDOWN_LIST);
+    @Step("Click get certificate button")
+    public CertificatesPage clickGetCertificateButton_additionalWaitResult() {
+        button.btnClick(GET_CERTIFICATE_BUTTON);
+        WaitUtils.wait(20);
         return this;
     }
 }

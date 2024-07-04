@@ -1,5 +1,6 @@
 package steps;
 
+import common.wrappers.SecretText;
 import org.openqa.selenium.WebDriver;
 import pages.CabinetPage;
 
@@ -23,6 +24,10 @@ public class CabinetSteps {
 
     public void selectDepositsMenu() {
         cabinetPage.selectDepositsMenu();
+    }
+
+    public void selectLoansMenu() {
+        cabinetPage.selectLoansMenu();
     }
 
     public void selectAccountsMenu() {

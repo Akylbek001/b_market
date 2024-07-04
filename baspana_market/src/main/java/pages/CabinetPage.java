@@ -1,6 +1,7 @@
 package pages;
 
 import common.utils.WaitUtils;
+import common.wrappers.SecretText;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -20,6 +21,9 @@ public class CabinetPage extends BasePage {
     private static final By DEPOSITS = By.xpath(
             "//div[@class='menu-list']//*[contains(text(), 'Депозиты')]"
     );
+    private static final By LOANS = By.xpath(
+            "//div[@class='menu-list']//*[contains(text(), 'Займы')]"
+    );
     private static final By ACCOUNTS = By.xpath(
             "//div[@class='menu-list']//*[contains(text(), 'Счета')]"
     );
@@ -30,7 +34,6 @@ public class CabinetPage extends BasePage {
             "//div[@class='menu-list']//*[text() = 'Запись в отделение']"
     );
     private static final By HOUSING_CENTER_MENU = By.cssSelector(".nav-box .hpc.menu-item");
-
 
     private static final By GOV_SERVICES_MENU = By.cssSelector(".menu-item #StateCertificate");
     private static final By GOV_SERVICES_CERTIFICATES = By.cssSelector("[href='/StateApplication']");
@@ -44,7 +47,6 @@ public class CabinetPage extends BasePage {
     public static final By CONFIRM_PASSWORD_INPUT = By.id("confirm-password");
     public static final By CHANGE_PASSWORD_SUBMIT_BUTTON = By.id("changePassSubmit");
     public static final By CHANGE_PASSWORD_RESULT = By.id("changePassResult");
-
 
     public CabinetPage(WebDriver driver) {
         super(driver);
@@ -67,6 +69,12 @@ public class CabinetPage extends BasePage {
     @Step("Select deposits menu")
     public CabinetPage selectDepositsMenu() {
         button.btnClick(DEPOSITS);
+        return this;
+    }
+
+    @Step("Select loans menu")
+    public CabinetPage selectLoansMenu() {
+        button.btnClick(LOANS);
         return this;
     }
 

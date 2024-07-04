@@ -49,6 +49,7 @@ public class FilterPage extends BasePage {
     @Step("Click <on map> button")
     public FilterPage clickOnMapButton() {
         button.btnClick(ON_MAP);
+        elementsAttributes.waitUntilVisible(MAP_OBJECT);
         return this;
     }
 
