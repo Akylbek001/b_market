@@ -22,19 +22,106 @@ public class LoansSteps {
                 .openAvailableOperations();
     }
 
-    public void partialEarlyRepaymentOperation(String sum) {
+    public void fullEarlyRepaymentOperation() {
         loansPage
-                .selectPartialEarlyRepaymentOperation()
-                .inputSum(sum)
+                .selectFullEarlyRepaymentOperation();
+    }
+
+    public void partialEarlyRepaymentOperation() {
+        loansPage
+                .selectPartialEarlyRepaymentOperation();
+    }
+
+    public void replacementOfCollateralOperation() {
+        loansPage
+                .selectReplacementOfCollateralOperation();
+    }
+
+    public void extensionInsuranceContractOperation() {
+        loansPage
+                .selectExtensionInsuranceContractOperation();
+    }
+
+    public void changingPaymentDateOperation() {
+        loansPage
+                .selectChangingPaymentDateOperation();
+    }
+
+    public void selectSwitchingToHomeLoanOperation() {
+        loansPage
+                .selectSwitchingToHomeLoanOperation();
+    }
+
+    public void replacementOfCoBorrowerOperation() {
+        loansPage
+                .selectReplacementOfCoBorrowerOperation();
+    }
+
+    public void exclusionOfCoBorrowerOperation() {
+        loansPage
+                .selectExclusionOfCoBorrowerOperation();
+    }
+
+    public void selectFullRepaymentWithDepositTermination() {
+        loansPage
+                .selectFullRepaymentWithDepositTermination();
+    }
+
+    public void selectFullRepaymentWithoutDepositTermination() {
+        loansPage
+                .selectFullRepaymentWithoutDepositTermination();
+    }
+
+    public void fullEarlyRepayment(String otp) {
+        loansPage
+                .clickContinueFullRepaymentButton()
+                .clickAgreementCheckbox()
+                .clickSecondAgreementCheckbox()
+                .clickValidationButton()
+                .clickSignFullRepaymentButton()
+                .inputOtp(otp)
+                .clickSendOtpButton();
+    }
+
+    public void partialEarlyRepayment(String sum) {
+        loansPage
                 .clickContinueButton()
                 .clickAgreementCheckbox()
                 .clickValidationButton()
-                .clickSignButton();
+                .inputSum(sum)
+                .clickSendButton()
+                .clickSignButton()
+                .inputSum(sum)
+                .clickSendButton();
     }
 
-    public void selectReplacementOfCollateralOperation() {
+    public void replacementOfCoBorrower(String iin) {
         loansPage
-                .selectReplacementOfCollateralOperation()
+                .inputSearchIin(iin)
+                .clickReplaceContinueButton()
+                .selectExceptionType()
+                .selectExceptionPerson()
+                .selectRegion()
+                .clickStartExceptionButton()
+                .clickRequestFamilyInfoButton();
+    }
+
+    public void extensionInsuranceContract(String otp) {
+        loansPage
+                .clickExtensionInsuranceContractContinueButton()
+                .clickEstateInsuranceCheckbox()
+                .clickTitleInsuranceCheckbox()
+                .clickAgreementToTransferCheckbox()
+                .clickConfirmAgreementButton()
+                .clickUploadDocumentButton()
+                .inputInsuranceOtp(otp)
+                .clickOtpVerificationButton()
+                .clickNextToApplicationButton();
+
+    }
+
+    public void replacementOfCollateral() {
+        loansPage
                 .clickNextButton()
                 .selectCollateralForChange()
                 .clickStartButton();

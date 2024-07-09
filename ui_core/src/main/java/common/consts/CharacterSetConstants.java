@@ -83,4 +83,9 @@ public final class CharacterSetConstants {
     public static final String REQUEST_ACCEPTED_TEXT ="Ваша заявка на расторжение депозита принята";
     public static final String NOT_READY_TO_ACCEPT_REQUEST_TEXT = "Выбранный акимат еще не готов принять заявление";
     public static final String SERVICE_NOT_AVAILABLE = "Изивините, сервис временно недоступен! Повторите попытку позже";
+    public static final String DENIED_RESTRICTION_ON_ACCOUNTS  = "Уважаемый клиент! Вам отказано, в связи с наличием ограничений на ваших счетах. Подробнее можете узнать по номеру 300 (звонок бесплатный).";
+    public static final String DENIED_DEPOSIT_SUM  = "На депозите меньше 50% от Договорной суммы;";
+    public static final String INTENDED_USE_OF_LOAN  = "Операция недоступна. По данному займу не предоставлены документы, подтверждающие целевое использование займа.";
+
+
 }
