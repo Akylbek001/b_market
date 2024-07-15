@@ -56,6 +56,13 @@ public class AccountSteps {
                 .inputPhoneNumber(number);
     }
 
+    public void searchOtbasyBankClient_validateClient(String number) {
+        accountPage
+                .inputPhoneNumber_clientNotFound(number);
+    }
+
+
+
     public void searchOtbasyBankClient_byAltCode(String code) {
         accountPage
                 .selectAltCodeTab()

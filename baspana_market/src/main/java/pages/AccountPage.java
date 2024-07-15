@@ -115,9 +115,16 @@ public class AccountPage extends BasePage {
     }
 
     @Step("Input phone number")
+    public AccountPage inputPhoneNumber_clientNotFound(String number) {
+        input.inputWithClear(PHONE_NUMBER, number);
+        elementsAttributes.waitUntilVisible(NOT_FOUND_BY_NUMBER);
+        return this;
+    }
+
+    @Step("Input phone number")
     public AccountPage inputPhoneNumber(String number) {
         input.inputWithClear(PHONE_NUMBER, number);
-        elementsAttributes.waitUntilVisible(FOUND_USER_BY_NUMBER);
+        elementsAttributes.waitUntilVisible(NOT_FOUND_BY_NUMBER);
         return this;
     }
 

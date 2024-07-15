@@ -12,7 +12,7 @@ import static io.qameta.allure.Allure.step;
 import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
 
 @Owner("Алибек Акылбеков")
-@Feature("Справки")
+@Feature("Запись в отделение")
 public class AppointmentToDepartmentTest extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")
     public void setUpMethod() {

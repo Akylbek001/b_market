@@ -46,7 +46,7 @@ public final class InitOptions {
         optChrome.addArguments("--window-size=2560,1440");
         optChrome.addArguments("--no-sandbox");
         optChrome.addArguments("--disable-gpu");
-//        optChrome.addArguments("--incognito");
+        //optChrome.addArguments("--incognito");
         //optChrome.addArguments("--disable-popup-blocking");
         optChrome.addArguments("--safebrowsing-disable-download-protection");
         optChrome.addArguments("--safebrowsing-disable-extension-blacklist");

@@ -32,28 +32,53 @@ public class DepositSteps {
                 .clickOpenAqylContinueButton();
     }
 
-    public void confirmBySms(String smsCode, String sum) {
+    public void clearField() {
         depositPage
-                .inputAgreedSum(sum)
+                .clearInputField();
+    }
+
+    public void agreedSum(String sum) {
+        depositPage
+                .inputAgreedSum(sum);
+    }
+
+    public void confirmBySms(String smsCode) {
+        depositPage
                 .selectDepositTerm()
                 .clickConfirm()
                 .inputSmsCode(smsCode)
                 .clickSend();
     }
 
-    public void clickJustOpenedDeposit() {
+    public void selectFirstDeposit() {
         depositPage
-                .clickJustOpenedDeposit();
+                .selectFirstDeposit();
     }
 
+    public void selectSecondDeposit() {
+        depositPage
+                .selectSecondDeposit();
+    }
 
     public void showAvailableOperations() {
         depositPage.showAvailableOperations();
     }
 
-    public void changeGosPrem() {
+    public void changeGosPrem(String otp) {
         depositPage
                 .selectChangeGosPremOperation()
+                .selectFirstDeposit()
+                .clickSelectButton()
+                .clickGosPremAgreement()
+                .clickSelectButton()
+                .inputSmsCode(otp)
+                .clickOtpConfirmButton();
+    }
+
+    public void changeGosPrem_validation() {
+        depositPage
+                .selectChangeGosPremOperation()
+                .selectFirstDeposit()
                 .clickSelectButton();
     }
 

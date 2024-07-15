@@ -168,7 +168,7 @@ public class AccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Клиент не найден")
     @Severity(SeverityLevel.BLOCKER)
-    public void transferToOtbasyClient_byPhoneNumber_notFound() {
+    public void transferToOtbasyClient_clientNotFound() {
         step("Авторизация -> Мои Счета", () -> {
             loginSteps.auth(
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
@@ -182,7 +182,7 @@ public class AccountTest extends BaseTest {
             accountSteps.transferToOtbasyBankClient();
         });
         step("Перевод клиенту <Отбасы Банк>", () -> {
-            accountSteps.searchOtbasyBankClient_byPhoneNumber(config.clientLogin().substring(1));
+            accountSteps.searchOtbasyBankClient_validateClient("77768467535");
         });
         Assert.assertEquals(
                 CharacterSetConstants.CLIENT_NOT_FOUND_CHECK_NUMBER, elementsAttributes.getValue(NOT_FOUND_BY_NUMBER)

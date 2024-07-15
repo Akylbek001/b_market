@@ -21,6 +21,12 @@ public class MainPage extends BasePage {
     public static final By NUMBER_OFF_FAMILY = By.id("NumberOfFamily");
     public static final By INCOMES = By.id("ClientIncomes");
     public static final By COSTS = By.id("ClientCosts");
+    public static final By POST_AD_BUTTON = By.cssSelector(".glow-on-hoverz");
+    public static final By ROOM = By.cssSelector("[for='RoomsCount1']");
+    public static final By TOTAL_AREA = By.cssSelector(".square-items.square-items--f.decimal");
+    public static final By FLOOR = By.cssSelector(".square-items.items-w.items-w--nc.decimal");
+    public static final By FLOOR_IN_HOUSE = By.cssSelector(".square-items.items-w.items-w--c.decimal");
+    private static final By OBJECT_STATE = By.xpath("//*[text()='Хорошее']");
 
 
     public MainPage(WebDriver driver) {
@@ -37,6 +43,43 @@ public class MainPage extends BasePage {
     public MainPage clickProfileIcon() {
         button.btnClick(CLIENT_PROFILE_NAME);
         WaitUtils.wait(2);
+        return this;
+    }
+
+    @Step("Click post ad button")
+    public MainPage clickPostAdButton() {
+        button.btnClick(POST_AD_BUTTON);
+        return this;
+    }
+
+    @Step("Select room")
+    public MainPage selectRoom() {
+        button.btnClick(ROOM);
+        return this;
+    }
+
+    @Step("Input total area")
+    public MainPage inputTotalArea(String area) {
+        input.inputWithClear(TOTAL_AREA, area);
+        return this;
+    }
+
+    @Step("Input total area")
+    public MainPage inputFloor(String floor) {
+        input.inputWithClear(FLOOR, floor);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input total area")
+    public MainPage inputFloorInHouse(String floor) {
+        input.inputWithClear(FLOOR_IN_HOUSE, floor);
+        return this;
+    }
+
+    @Step("Select object state")
+    public MainPage selectObjectState() {
+        button.btnClick(OBJECT_STATE);
         return this;
     }
 

@@ -325,6 +325,9 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
+    //добавить кейс о невозможности сменить номер в течении 90 дней
+    //добвить кейс валидации времени совершения операции (после 18-00)
+    // жду список режим работ по операциям
     @Test(description="Изменение номера телефона => Валидация текущего логина", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация текущего логина")
@@ -372,8 +375,8 @@ public class LoginTest extends BaseTest {
         );
     }
 
-    //нужна учетка
-    @Test(description="BaspanaBusiness", groups = {"automated"})
+    // пока не нужный кейс
+    @Test(description="BaspanaBusiness", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Авторизация")
     @Severity(SeverityLevel.NORMAL)

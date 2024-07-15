@@ -5,6 +5,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class CertificatesPage extends BasePage {
     private static final By CERTIFICATE_OF_ACCOUNT_AVAILABILITY = By.id("GetForm");
     private static final By CERTIFICATE_OF_LOAN_DEBT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Справка о ссудной задолженности']");
@@ -186,7 +188,7 @@ public class CertificatesPage extends BasePage {
     @Step("Click get certificate button")
     public CertificatesPage clickGetCertificateButton_additionalWaitResult() {
         button.btnClick(GET_CERTIFICATE_BUTTON);
-        WaitUtils.wait(20);
+        drManager.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return this;
     }
 }

@@ -19,6 +19,19 @@ public class MainTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
+    @Test(description="Разместить объявление", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("")
+    @Severity(SeverityLevel.MINOR)
+    public void postAd() {
+        step("", () -> {
+            loginSteps.auth(
+                    config.clientLogin(), config.clientPassword()
+            );
+            mainSteps.postAd("50", "4");
+        });
+    }
+
     @Test(description="Ссылка новости Baspana", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редирект на страницу новости Baspana")

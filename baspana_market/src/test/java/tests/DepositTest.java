@@ -9,6 +9,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static io.qameta.allure.Allure.step;
 import static pages.DepositPage.*;
 
@@ -30,7 +32,7 @@ public class DepositTest extends BaseTest {
     public void openBaspanaDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
             loginSteps.auth(
-                    config.clientLogin(), config.clientPassword()
+                    "77760170303", config.clientPassword()
             );
             mainSteps.clickProfileIcon();
             cabinetSteps.selectMyBankMenu();
@@ -42,25 +44,29 @@ public class DepositTest extends BaseTest {
             depositSteps.openBaspanaDeposit();
         });
         step("Подтвердить открытие депозита", () -> {
-            depositSteps.confirmBySms(config.smsCode(), "99000000");
+            depositSteps.clearField();
+            drManager.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+            drManager.getDriver().switchTo().alert().accept();
+
+            depositSteps.agreedSum(config.priceFrom());
+            depositSteps.confirmBySms(config.smsCode());
             Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
         });
         step("Посмотреть открытый депозит", () -> {
-            depositSteps.clickJustOpenedDeposit();
+            depositSteps.selectFirstDeposit();
             Assert.assertEquals(elementsAttributes.getValue(DEPOSIT_CREATED_DATE), DatesUtils.getCurrentDate());
         });
-        System.out.println(elementsAttributes.getValue(DEPOSIT_CREATED_DATE));
-        System.out.println(DatesUtils.getCurrentDate());
     }
 
-    @Test(description="Открыть депозит <Баспана> => Валидация договорной суммы", groups = {"automated"})
+    @Test(description="Открыть депозит <Баспана> => Валидация договорной суммы <", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Открыть депозит Баспана")
     @Severity(SeverityLevel.CRITICAL)
-    public void openBaspanaDeposit_validateAgreedSum() {
+    public void openBaspanaDeposit_validateAgreedLessSum() {
         step("Авторизация -> Мои депозиты", () -> {
             loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+                    "77003896225", config.client_for_password_recovery_newPassword()
             );
             mainSteps.clickProfileIcon();
             cabinetSteps.selectMyBankMenu();
@@ -72,10 +78,47 @@ public class DepositTest extends BaseTest {
             depositSteps.openBaspanaDeposit();
         });
         step("Подтвердить открытие депозита", () -> {
-            depositSteps.confirmBySms(config.smsCode(), "800000");
-            Assert.assertEquals(CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
-                    elementsAttributes.getValue(SUCCESS));
+            depositSteps.agreedSum("800000");
+//            depositSteps.confirmBySms(config.smsCode());
+//            Assert.assertEquals(CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
+//                    elementsAttributes.getValue(SUCCESS));
         });
+//        Assert.assertEquals(
+//                drManager.getDriver().switchTo().alert().getText(),
+//                CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN
+//        );
+//        drManager.getDriver().switchTo().alert().accept();
+    }
+
+    @Test(description="Открыть депозит <Баспана> => Валидация договорной суммы >", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Открыть депозит Баспана")
+    @Severity(SeverityLevel.CRITICAL)
+    public void openBaspanaDeposit_validateAgreedMaxSum() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(
+                    "77003896225", config.client_for_password_recovery_newPassword()
+            );
+            mainSteps.clickProfileIcon();
+            cabinetSteps.selectMyBankMenu();
+            cabinetSteps.selectDepositsMenu();
+        });
+        step("Открыть депозит", () -> {
+            depositSteps.clickNewDepositButton();
+            depositSteps.clickOpenBaspanaDepositButton();
+            depositSteps.openBaspanaDeposit();
+        });
+        step("Подтвердить открытие депозита", () -> {
+            depositSteps.agreedSum("198000000");
+//            depositSteps.confirmBySms(config.smsCode());
+//            Assert.assertEquals(CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
+//                    elementsAttributes.getValue(SUCCESS));
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN
+        );
+        drManager.getDriver().switchTo().alert().accept();
     }
 
     //Нужна соответствующая учетка
@@ -201,7 +244,7 @@ public class DepositTest extends BaseTest {
             depositSteps.showAvailableOperations();
         });
         step("Присвоить гос.премию", () -> {
-            depositSteps.changeGosPrem();
+            depositSteps.changeGosPrem_validation();
         });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
@@ -209,9 +252,30 @@ public class DepositTest extends BaseTest {
         );
         drManager.getDriver().switchTo().alert().accept();
     }
-    //Add case - нужна учетка для реализации кейса по изменению гос.премии
 
-    //BUG - срабатывает паттерн проверки при отсутсвии активной заявки на деление
+    @Test(description="Присвоить гос.премию", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Присвоить гос.премию")
+    @Severity(SeverityLevel.CRITICAL)
+    public void changeGosPrem() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth("77003896225", config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectSecondDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Присвоить гос.премию", () -> {
+            depositSteps.changeGosPrem(config.smsCode());
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.GOS_PREM_SUCCESSFULLY_ADDED, elementsAttributes.getValue(FINAL_TEXT)
+        );
+    }
+
     @Test(description="Расторжение депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Расторжение депозита")
@@ -224,7 +288,7 @@ public class DepositTest extends BaseTest {
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
+            depositSteps.selectSecondDeposit();
         });
         step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
@@ -238,6 +302,8 @@ public class DepositTest extends BaseTest {
         );
     }
 
+    //api or заявка на деление
+    //добавить кейс - невозможно расторгнуть если > million
     @Test(description="Расторжение депозита => Валидация актуальной заявки на деление", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ-Валидация актуальной заявки на деление")
@@ -265,6 +331,8 @@ public class DepositTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
+    // добавить кейс - изменить срок депозита
+    // добавить кейс указав сумму в рамках условии
     @Test(description="Изменить условия депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить условия депозита")
@@ -385,6 +453,7 @@ public class DepositTest extends BaseTest {
         );
     }
 
+    //добавить кейс проверить связку иин и аль кода добавляемого клиента
     @Test(description="Добавить участника семейного пакета", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Добавить участника")

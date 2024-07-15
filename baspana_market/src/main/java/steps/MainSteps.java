@@ -46,4 +46,14 @@ public class MainSteps {
                 .inputIncomes(incomes)
                 .inputCosts(costs);
     }
+
+    public void postAd(String area, String floor) {
+        mainPage
+                .clickPostAdButton()
+                .selectRoom()
+                .inputTotalArea(area)
+                .inputFloor(floor)
+                .inputFloorInHouse(floor)
+                .selectObjectState();
+    }
 }

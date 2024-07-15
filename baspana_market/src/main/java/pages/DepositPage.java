@@ -19,26 +19,30 @@ public class DepositPage extends BasePage {
     private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.xpath(
             "//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']"
     );
-    private static final By AGREEMENT_CHECKBOX = By.xpath(
-            "//form[@id='fatca-formm'] //input[@id='StandardConditionsAgreed']"
-    );
+    private static final By AGREEMENT_CHECKBOX = By.cssSelector("#StandardConditionsAgreed");
+
     private static final By SUBMIT = By.xpath("//button[@type='submit']");
-    private static final By AGREED_SUM = By.id("dep_agree_sum");
+    private static final By AGREED_SUM = By.cssSelector("input#dep_agree_sum.depsums");
     private static final By DEPOSIT_TERM = By.id("calc_l_m_range--g");
-    private static final By CONFIRM = By.xpath("//button[@class='ValSums']");
+    public static final By CONFIRM = By.xpath("//button[@class='ValSums']");
 
     public static final By NOTIFICATION_VISIT_THE_BANK = By.xpath("//div[@id='NextSteps'] //p");
     public static final By SUCCESS = By.cssSelector("#NextSteps p");
     private static final By SMS_CODE = By.id("CodeSmsId");
     private static final By SEND = By.id("EndsSteps");
-    private static final By SEE_DEPOSIT = By.cssSelector(".DepositBlock--background.OpenDepositsStepsEnds button");
+    private static final By FIRST_DEPOSIT = By.cssSelector(".DepositBlock--background.OpenDepositsStepsEnds button");
+    private static final By SECOND_DEPOSIT = By.cssSelector("//div[@class='slick-track']/label[2]");
+
     public static final By DEPOSIT_CREATED_DATE = By.cssSelector(".titlel");
     private static final By SHOW_DEPOSIT_DETAILS = By.id("text");
     private static final By CALCULATOR_OP_BUTTON = By.id("calculateOPButton");
 
     private static final By AVAILABLE_OPERATIONS_WITH_DEPOSIT = By.id("checBlock");
     private static final By CHANGE_GOS_PREM_OPERATION = By.id("changeGosPremButton");
-    private static final By DEPOSIT_LIST_FOR_GOS_PREM = By.cssSelector(".body-block");
+    private static final By SELECT_SECOND_DEPOSIT = By.cssSelector(".card-item.deposit-item.active");
+    private static final By GOS_PREM_AGREEMENT = By.cssSelector("#modal-body-gos-prem [for='AgreeWithAgreement']");
+    public static final By FINAL_TEXT = By.cssSelector(".finalTxt");
+
     private static final By SELECT = By.id("next-step");
     private static final By TERMINATE_DEPOSIT_OPERATION = By.id("terminateDeposit");
     private static final By TERMINATE_DEPOSIT_BUTTON = By.cssSelector(
@@ -130,6 +134,20 @@ public class DepositPage extends BasePage {
         button.btnClick(SELECT);
         return this;
     }
+
+    @Step("Select second deposit")
+    public DepositPage _selectSecondDeposit() {
+        button.btnClick(SELECT_SECOND_DEPOSIT);
+        return this;
+    }
+
+    @Step("Click gos prem agreement")
+    public DepositPage clickGosPremAgreement() {
+        button.btnClick(GOS_PREM_AGREEMENT);
+        return this;
+    }
+
+
 
     @Step("Select terminate deposit operation")
     public DepositPage terminateDepositOperation() {
@@ -389,13 +407,20 @@ public class DepositPage extends BasePage {
     @Step("Click continue")
     public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
-        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Clear agreed sum input fields")
+    public DepositPage clearInputField() {
+        input.cleanField(AGREED_SUM);
+        WaitUtils.wait(3);
         return this;
     }
 
     @Step("Input agreed sum")
     public DepositPage inputAgreedSum(String sum) {
-        input.inputWithClear(AGREED_SUM, sum);
+        WaitUtils.wait(3);
+        input.input(AGREED_SUM, sum);
         return this;
     }
 
@@ -424,9 +449,15 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-    @Step("Select just opened deposit")
-    public DepositPage clickJustOpenedDeposit() {
-        button.btnClick(SEE_DEPOSIT);
+    @Step("Select first deposit")
+    public DepositPage selectFirstDeposit() {
+        button.btnClick(FIRST_DEPOSIT);
+        return this;
+    }
+
+    @Step("Select second deposit")
+    public DepositPage selectSecondDeposit() {
+        button.btnClick(SECOND_DEPOSIT);
         return this;
     }
 }

@@ -25,7 +25,7 @@ public class HousingCenterTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
     }
-    String filePath = System.getProperty("user.dir") + "/src/test/resources/documents/AUTH_RSA256.p12";
+//    String filePath = System.getProperty("user.dir") + "/src/test/resources/documents/.p12";
 
     @Test(description = "Подать заявку => Валидация ncaLayer", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -38,7 +38,7 @@ public class HousingCenterTest extends BaseTest {
         });
         step("Подать заявку", () -> {
             housingCenterSteps.applyRequest_validateNcaLayer();
-            housingCenterSteps.sign(filePath, elementsAttributes.getValue(FILE_TO_SIGN), "AkylbekovA9@#");
+            housingCenterSteps.sign("filePath", elementsAttributes.getValue(FILE_TO_SIGN), "AkylbekovA9@#");
 
 
 //            KeyStore keyStore = KeyStore.getInstance("PKCS12");

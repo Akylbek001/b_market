@@ -72,6 +72,7 @@ public final class CharacterSetConstants {
 
     public static final String INSUFFICIENT_FOUND_TEXT = "Недостаточно средств на текущем счете";
     public static final String GOS_PREM_ALREADY_EXIST_TEXT = "На выбранном депозите уже присутствует государственная премия";
+    public static final String GOS_PREM_SUCCESSFULLY_ADDED = "Операция по присвоению Премии государства успешно завершена!";
     public static final String REQUEST_BEEN_ACCEPTED_TEXT = "Рахмет! Сіздің өтінішіңіз қабылданды. Поштаңызға өтініш туралы хабарлама жіберілді.";
     public static final String DEPOSIT_DIVISION_ACCEPTED = "Ваша заявка на деление депозита принята";
     public static final String DEPOSIT_DIVISION_NEED_TO_OPEN_ACCOUNT_VALIDATION = "Для деления депозита Вам необходимо открыть текущий счет. Поскольку на этот счет будет произведен перевод денежных средств с делимого депозита";
@@ -82,10 +83,10 @@ public final class CharacterSetConstants {
     public static final String DEPOSIT_CONDITIONS_CHANGED_SUCCESSFULLY_TEXT ="Операция завершилась успешно";
     public static final String REQUEST_ACCEPTED_TEXT ="Ваша заявка на расторжение депозита принята";
     public static final String NOT_READY_TO_ACCEPT_REQUEST_TEXT = "Выбранный акимат еще не готов принять заявление";
-    public static final String SERVICE_NOT_AVAILABLE = "Изивините, сервис временно недоступен! Повторите попытку позже";
+//    public static final String SERVICE_NOT_AVAILABLE = "Изивините, сервис временно недоступен! Повторите попытку позже";
+    public static final String SERVICE_NOT_AVAILABLE = "не_найден_в_бмг";
+
     public static final String DENIED_RESTRICTION_ON_ACCOUNTS  = "Уважаемый клиент! Вам отказано, в связи с наличием ограничений на ваших счетах. Подробнее можете узнать по номеру 300 (звонок бесплатный).";
     public static final String DENIED_DEPOSIT_SUM  = "На депозите меньше 50% от Договорной суммы;";
     public static final String INTENDED_USE_OF_LOAN  = "Операция недоступна. По данному займу не предоставлены документы, подтверждающие целевое использование займа.";
-
-
 }
