@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 
 //используем BaseTest на Kotlin
-@Owner("Андрей Усков")
+@Owner("Алибек Акылбеков")
 @Feature("Функционал логина")
 class KotlinLoginTest2 : KotlinBaseTest() {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")

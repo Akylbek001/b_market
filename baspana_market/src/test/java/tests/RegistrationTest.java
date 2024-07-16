@@ -122,25 +122,26 @@ public class RegistrationTest extends BaseTest {
         );
     }
 
-    //BUG => ФР->Непредвиденная ошибка при вводе OTP
-    @Test(description="Регистрация клиента по номеру документа", groups = {"automated"})
+    //disabled - because of no DB for AT
+    @Test(description="Регистрация клиента по номеру документа", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешная регистрация клиента")
     @Severity(SeverityLevel.NORMAL)
     public void clientRegistrationByDocument() {
         step("Выбрать регистрацию по номеру документа", () -> {
-            registrationSteps.registrationByDocumentCode("037916624");
+            registrationSteps.registrationByDocumentCode("052285386");
         });
         step("Заполнить регистрационные данные клиента", () -> {
             registrationSteps.inputRegistrationData(
-                    config.userLogin(), config.userEmail(), config.userPass(), config.userPass()
+                    "77055575087", "bsb@mail.ru", config.userPass(), config.userPass()
             );
             registrationSteps.clickRegisterClientButton();
+            generalSteps.acceptAgreement_startBiometry();
         });
         step("Подтвердить регистрацию по смс коду", () -> {
             registrationSteps.confirmRegistrationBySmsCode(config.smsCode());
         });
-        Assert.assertTrue(true);
+        Assert.assertTrue(true); //BUG-после уведомления об успешности, система падает
     }
 
     @Test(description="Регистрация клиента по номеру документа => Валидация существующего логина клиента",
@@ -234,7 +235,7 @@ public class RegistrationTest extends BaseTest {
         );
     }
 
-    //Нужен альтернативный код
+    //disabled - because of no DB for AT
     @Test(description="Регистрация клиента по альтернативному коду", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешная регистрация")
@@ -251,6 +252,7 @@ public class RegistrationTest extends BaseTest {
         });
         step("Подтвердить регистрацию по смс коду", () -> {
             registrationSteps.confirmRegistrationBySmsCode(config.smsCode());
+            generalSteps.acceptAgreement_startBiometry();
         });
         Assert.assertTrue(true);
     }

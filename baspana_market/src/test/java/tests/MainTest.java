@@ -24,11 +24,46 @@ public class MainTest extends BaseTest {
     @Description("")
     @Severity(SeverityLevel.MINOR)
     public void postAd() {
-        step("", () -> {
-            loginSteps.auth(
-                    config.clientLogin(), config.clientPassword()
-            );
-            mainSteps.postAd("50", "4");
+        step("Авторизация", () -> {
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
+        });
+        step("Разместить объявление", () -> {
+            mainSteps.postAd("50", "4", "street", "house", "description", "8000000");
+        });
+        Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
+    }
+
+    @Test(description="Разместить объявление из раздела <Мои объявления>", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("")
+    @Severity(SeverityLevel.MINOR)
+    public void postAd_fromMyAdBlock() {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
+        });
+        step("Перейти в раздел <Мои объявления>", () -> {
+            brManager.navigateTo(envConfig.baseUrl().concat("SecondHouse/MySecondHouses"));
+        });
+        step("Разместить объявление", () -> {
+            mainSteps._clickPostAdButton();
+            mainSteps.postAd("50", "4", "street", "house", "description", "17000000");
+        });
+        Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
+    }
+
+    @Test(description="Удалить объявление", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Удалить объявление")
+    @Severity(SeverityLevel.MINOR)
+    public void removeAd() {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
+        });
+        step("Перейти в раздел <Мои объявления>", () -> {
+            brManager.navigateTo(envConfig.baseUrl().concat("SecondHouse/MySecondHouses"));
+        });
+        step("Удалить объявление", () -> {
+            mainSteps.removeAd();
         });
     }
 

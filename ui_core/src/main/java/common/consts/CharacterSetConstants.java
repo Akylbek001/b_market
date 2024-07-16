@@ -8,7 +8,7 @@ public final class CharacterSetConstants {
     public static final String SPEC_CHARS = ",./?'|][{}()-_=+*&^:;#@$%\"";
     public static final String ALL_CHARS = ENGLISH_ALPHABET + NUMERIC + SPEC_CHARS;
     public static final String ALL_CHARS_AND_RUSSIAN = ENGLISH_ALPHABET + NUMERIC + SPEC_CHARS+RUSSIAN_ALPHABET;
-    public static final String CLIENT_NAME = "NurRaul";
+    public static final String CLIENT_NAME = "NurLeo";
     public static final String GUEST_NAME = "Alibek";
 
     public static final String INVALID_CLIENT_NAME_OR_PASSWORD = "Указанные имя пользователя или пароль не верны.";
@@ -54,6 +54,14 @@ public final class CharacterSetConstants {
     public static final String SELECTED_LOCATION = "ВКО";
 
     public static final String PHONE_NUMBER_ALREADY_CURRENT = "Көрсетілген телефон нөмірі қазірдің өзінде ағымдағы. / Указанный телефон уже актуален.";
+    public static final String TRANSACTION_SCHEDULE = "График совершения данной операции:\n" +
+            "понедельник: 09:00 - 23:00\n" +
+            "вторник: 09:00 - 23:00\n" +
+            "среда: 09:00 - 23:00\n" +
+            "четверг: 09:00 - 23:00\n" +
+            "пятница: 09:00 - 23:00\n";
+
+    public static final String UPDATE_LOGIN_NOTIFICATION = "Изменение номера телефона доступно 1 раз в течении 90 дней";
     public static final String OPERATION_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
     public static final String ACTIVE_ORDER_FOR_DIVISION_MESSAGE ="Извините но у Вас уже есть актуальная заявка на деление вклада. Подробнее о заявке вы можете посмотреть во вкладке 'Заявки'.";
     public static final String INVALID_OTP_TEXT = "Уважаемый клиент! Убедитесь в правильности ввода кода из SMS";
@@ -89,4 +97,5 @@ public final class CharacterSetConstants {
     public static final String DENIED_RESTRICTION_ON_ACCOUNTS  = "Уважаемый клиент! Вам отказано, в связи с наличием ограничений на ваших счетах. Подробнее можете узнать по номеру 300 (звонок бесплатный).";
     public static final String DENIED_DEPOSIT_SUM  = "На депозите меньше 50% от Договорной суммы;";
     public static final String INTENDED_USE_OF_LOAN  = "Операция недоступна. По данному займу не предоставлены документы, подтверждающие целевое использование займа.";
+    public static final String REFUSED_REASON  = "Ваше участие в программе невозможно, так как остаток средств на вашем депозите/депозитах составляет менее 1 000 000 тенге";
 }

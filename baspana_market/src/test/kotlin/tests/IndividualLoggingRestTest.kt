@@ -12,7 +12,7 @@ import rest.RestAssuredSpecs
 import java.util.*
 
 
-@Owner("Андрей Усков")
+@Owner("Алибек Акылбеков")
 @Feature("Произвольный функционал для примера")
 //наследуем от базового класса методы работы с отдельными LogEntity, а не листенер
 //1. Для каждого запроса отдельно создаём и указываем имя записи через specs.commonRequestSpecification(newLogEntity("name"))

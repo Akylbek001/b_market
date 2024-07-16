@@ -43,7 +43,7 @@ public final class InitOptions {
         optChrome.addArguments("--allow-file-access-from-files");
 
         optChrome.addArguments("--start-maximized");
-        optChrome.addArguments("--window-size=2560,1440");
+        optChrome.addArguments("--window-size=2048,1536");
         optChrome.addArguments("--no-sandbox");
         optChrome.addArguments("--disable-gpu");
         //optChrome.addArguments("--incognito");

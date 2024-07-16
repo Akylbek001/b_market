@@ -303,7 +303,7 @@ public class LoginTest extends BaseTest {
     }
 
     //нужна учетка
-    @Test(description="Изменение номера телефона", groups = {"automated"})
+    @Test(description="Изменение номера телефона", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение номера телефона")
     @Severity(SeverityLevel.NORMAL)
@@ -325,9 +325,29 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    //добавить кейс о невозможности сменить номер в течении 90 дней
-    //добвить кейс валидации времени совершения операции (после 18-00)
-    // жду список режим работ по операциям
+    @Test(description="Изменение номера телефона => Повторное изменение", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Ошибка биометрии")
+    @Severity(SeverityLevel.NORMAL)
+    public void updateLogin_tryUpdateAgain() {
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Кликнуть <Изменить номер телефона>", () -> {
+            loginSteps.clickChangePhoneNumberLink();
+        });
+        step("Заполнить инн и логин", () -> {
+            loginSteps.inputIinAndLogin(
+                    config.client_for_password_recovery_iin(), config.client_for_password_recovery_newLogin()
+            );
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.UPDATE_LOGIN_NOTIFICATION
+        );
+        drManager.getDriver().switchTo().alert().accept();
+    }
+
     @Test(description="Изменение номера телефона => Валидация текущего логина", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация текущего логина")
@@ -351,7 +371,30 @@ public class LoginTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    @Test(description="Изменение номера телефона => Ошибка биометрии", groups = {"automated"})
+    @Test(description="Изменение номера телефона => График совершения операции", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Ошибка биометрии")
+    @Severity(SeverityLevel.NORMAL)
+    public void updateLogin_transactionSchedule() {
+        step("Перейти на страницу авторизации", () -> {
+            mainSteps.loginButton();
+        });
+        step("Кликнуть <Изменить номер телефона>", () -> {
+            loginSteps.clickChangePhoneNumberLink();
+        });
+        step("Заполнить инн и логин", () -> {
+            loginSteps.inputIinAndLogin(
+                    config.client_for_password_recovery_iin(), config.client_for_password_recovery_newLogin()
+            );
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.TRANSACTION_SCHEDULE
+        );
+        drManager.getDriver().switchTo().alert().accept();
+    }
+
+    @Test(description="Изменение номера телефона => Ошибка биометрии", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Ошибка биометрии")
     @Severity(SeverityLevel.NORMAL)

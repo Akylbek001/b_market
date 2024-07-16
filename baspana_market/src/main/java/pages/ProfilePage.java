@@ -28,7 +28,7 @@ public class ProfilePage extends BasePage {
     public static final By INVALID_EMAIL_TEXT_LOCATOR = By.id("emailError");
     private static final By NEW_EMAIL_INPUT = By.id("inputEmail");
     private static final By CHANGE_EMAIL_BUTTON = By.id("changeEmailButton");
-    public static final By EMAIL_SUCCESSFULLY_CHANGED = By.cssSelector(".ob__bodyL");
+    public static final By EMAIL_SUCCESSFULLY_CHANGED = By.cssSelector("#email_change_success .ob__bodyL");
     private static final By CHANGE_PASSWORD_LOCATOR = By.xpath(
             "//*[contains(text(), 'Изменить пароль')]"
     );

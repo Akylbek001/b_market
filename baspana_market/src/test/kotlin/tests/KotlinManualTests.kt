@@ -4,7 +4,7 @@ import inlines.step
 import io.qameta.allure.*
 import org.testng.annotations.Test
 
-@Owner("Андрей Усков")
+@Owner("Алибек Акылбеков")
 @Feature("Произвольный функционал для примера")
 class KotlinManualTests {
     @Test(description = "Пример неавтоматизированного теста", groups = ["manual"])

@@ -17,16 +17,28 @@ public class MainPage extends BasePage {
     private static final By REDEMPTION_TYPE = By.id("RedemptionMethod");
     private static final By DESIRE_AMOUNT_INPUT = By.id("DesiredAmount");
     public static final By SALDO = By.id("Saldo");
-    public static final By SPOUSE_TYPE = By.id("SpouseType");
-    public static final By NUMBER_OFF_FAMILY = By.id("NumberOfFamily");
-    public static final By INCOMES = By.id("ClientIncomes");
-    public static final By COSTS = By.id("ClientCosts");
-    public static final By POST_AD_BUTTON = By.cssSelector(".glow-on-hoverz");
-    public static final By ROOM = By.cssSelector("[for='RoomsCount1']");
-    public static final By TOTAL_AREA = By.cssSelector(".square-items.square-items--f.decimal");
-    public static final By FLOOR = By.cssSelector(".square-items.items-w.items-w--nc.decimal");
-    public static final By FLOOR_IN_HOUSE = By.cssSelector(".square-items.items-w.items-w--c.decimal");
+    private static final By SPOUSE_TYPE = By.id("SpouseType");
+    private static final By NUMBER_OFF_FAMILY = By.id("NumberOfFamily");
+    private static final By INCOMES = By.id("ClientIncomes");
+    private static final By COSTS = By.id("ClientCosts");
+    private static final By POST_AD_BUTTON = By.cssSelector(".glow-on-hoverz");
+    private static final By ROOM = By.cssSelector("[for='RoomsCount1']");
+    private static final By TOTAL_AREA = By.cssSelector(".square-items.square-items--f.decimal");
+    private static final By FLOOR = By.cssSelector(".square-items.items-w.items-w--nc.decimal");
+    private static final By FLOOR_IN_HOUSE = By.cssSelector(".square-items.items-w.items-w--c.decimal");
     private static final By OBJECT_STATE = By.xpath("//*[text()='Хорошее']");
+    private static final By REGION = By.cssSelector("select.square-items.adress-items--w");
+    private static final By CITY_REGION = By.cssSelector("select.square-items.adress-items--w.sub-opt");
+    private static final By STREET = By.cssSelector(".adress-items .square-items.adress-items--w");
+    private static final By HOUSE = By.xpath("//div[@class='adress-items']// input[@class='square-items']");
+    private static final By HOUSE_TYPE = By.cssSelector("select.square-items.btn-wb");
+    private static final By DESCRIPTION = By.cssSelector(".item-description");
+    private static final By PRICE = By.cssSelector(".square-items.c");
+    private static final By PUBLIC_BUTTON = By.cssSelector(".btn-object");
+    public static final By STATUS_OF_AD = By.cssSelector(".house-card-footer--t");
+    private static final By REMOVE_AD_BUTTON = By.cssSelector(".btn.u");
+    private static final By REMOVE_CONFIRM_BUTTON = By.cssSelector("button.button--r");
+    private static final By POST_AD_BUTTON_FROM_MY_AD = By.cssSelector(".addstates");
 
 
     public MainPage(WebDriver driver) {
@@ -80,6 +92,75 @@ public class MainPage extends BasePage {
     @Step("Select object state")
     public MainPage selectObjectState() {
         button.btnClick(OBJECT_STATE);
+        return this;
+    }
+
+    @Step("Select region")
+    public MainPage _selectRegion() {
+        dropDown.selectByIndex(REGION, 8);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select city")
+    public MainPage selectCity() {
+        dropDown.selectByIndex(CITY_REGION, 8);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input street")
+    public MainPage inputStreet(String street) {
+        input.inputWithClear(STREET, street);
+        return this;
+    }
+
+    @Step("Input house")
+    public MainPage inputHouse(String house) {
+        input.inputWithClear(HOUSE, house);
+        return this;
+    }
+
+    @Step("Select house type")
+    public MainPage selectHouseType() {
+        dropDown.selectByIndex(HOUSE_TYPE, 5);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input description")
+    public MainPage inputDescription(String description) {
+        input.inputWithClear(DESCRIPTION, description);
+        return this;
+    }
+
+    @Step("Input price")
+    public MainPage inputPrice(String price) {
+        input.inputWithClear(PRICE, price);
+        return this;
+    }
+
+    @Step("Click public button")
+    public MainPage clickPublicButton() {
+        button.btnClick(PUBLIC_BUTTON);
+        return this;
+    }
+
+    @Step("Click remove button")
+    public MainPage clickRemoveButton() {
+        button.btnClick(REMOVE_AD_BUTTON);
+        return this;
+    }
+
+    @Step("Click remove confirm button")
+    public MainPage clickRemoveConfirmButton() {
+        button.btnClick(REMOVE_CONFIRM_BUTTON);
+        return this;
+    }
+
+    @Step("Click post ad button")
+    public MainPage _clickPostAdButton() {
+        button.btnClick(POST_AD_BUTTON_FROM_MY_AD);
         return this;
     }
 

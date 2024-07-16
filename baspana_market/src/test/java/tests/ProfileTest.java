@@ -57,12 +57,15 @@ public class ProfileTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void editPersonalData() {
         step("Личные данные", () -> {
-            profileSteps.editPersonalData("QA");
+            try {
+                profileSteps.editPersonalData("QA");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
         Assert.assertTrue(true);
     }
 
-    //нужна учетка
     @Test(description="Изменить email", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Редактирование email клиента")
@@ -98,7 +101,7 @@ public class ProfileTest extends BaseTest {
     public void changePassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.userPass(), config.userPass(), config.userNewPassword()
+                    config.userPass(), config.userNewPassword(), config.userNewPassword()
             );
             profileSteps.confirmPasswordChange();
         });

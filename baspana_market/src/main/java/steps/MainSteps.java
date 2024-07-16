@@ -47,13 +47,32 @@ public class MainSteps {
                 .inputCosts(costs);
     }
 
-    public void postAd(String area, String floor) {
+    public void postAd(String area, String floor, String street, String house, String description, String price) {
         mainPage
                 .clickPostAdButton()
                 .selectRoom()
                 .inputTotalArea(area)
                 .inputFloor(floor)
                 .inputFloorInHouse(floor)
-                .selectObjectState();
+                .selectObjectState()
+                ._selectRegion()
+                .selectCity()
+                .inputStreet(street)
+                .inputHouse(house)
+                .selectHouseType()
+                .inputDescription(description)
+                .inputPrice(price)
+                .clickPublicButton();
+    }
+
+    public void removeAd() {
+        mainPage
+                .clickRemoveButton()
+                .clickRemoveConfirmButton();
+    }
+
+    public void _clickPostAdButton() {
+        mainPage
+                ._clickPostAdButton();
     }
 }

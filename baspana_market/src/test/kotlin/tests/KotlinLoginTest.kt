@@ -9,7 +9,7 @@ import org.testng.annotations.Test
 
 
 //используем BaseTest на Java
-@Owner("Андрей Усков")
+@Owner("Алибек Акылбеков")
 @Feature("Функционал логина")
 class KotlinLoginTest : BaseTest() {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")
