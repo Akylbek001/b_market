@@ -420,7 +420,7 @@ public class DepositPage extends BasePage {
     @Step("Input agreed sum")
     public DepositPage inputAgreedSum(String sum) {
         WaitUtils.wait(3);
-        input.input(AGREED_SUM, sum);
+        input.inputWithClear(AGREED_SUM, sum);
         return this;
     }
 
@@ -432,7 +432,11 @@ public class DepositPage extends BasePage {
 
     @Step("Click confirm")
     public DepositPage clickConfirm() {
+//        button.btnClick(CONFIRM);
+//        WaitUtils.wait(1);
         button.btnClick(CONFIRM);
+
+        WaitUtils.wait(5);
         return this;
     }
 

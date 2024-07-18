@@ -49,7 +49,6 @@ public class MainSteps {
 
     public void postAd(String area, String floor, String street, String house, String description, String price) {
         mainPage
-                .clickPostAdButton()
                 .selectRoom()
                 .inputTotalArea(area)
                 .inputFloor(floor)
@@ -71,8 +70,14 @@ public class MainSteps {
                 .clickRemoveConfirmButton();
     }
 
-    public void _clickPostAdButton() {
+
+    public void clickPostAdButton() {
         mainPage
-                ._clickPostAdButton();
+                .clickPostAdButton();
+    }
+
+    public void clickPostAdButton_fromMyAdBlock() {
+        mainPage
+                .clickPostAdButton_fromMyAdBlock();
     }
 }

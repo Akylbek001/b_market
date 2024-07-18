@@ -159,7 +159,7 @@ public class MainPage extends BasePage {
     }
 
     @Step("Click post ad button")
-    public MainPage _clickPostAdButton() {
+    public MainPage clickPostAdButton_fromMyAdBlock() {
         button.btnClick(POST_AD_BUTTON_FROM_MY_AD);
         return this;
     }

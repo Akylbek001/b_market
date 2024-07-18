@@ -90,7 +90,7 @@ public class CertificateTest extends BaseTest {
         step("Получить справку", () -> {
             certificatesSteps.selectAccountAvailabilityCertificate();
             certificatesSteps.openAccountsList();
-            certificatesSteps.selectSocialAccount();
+            certificatesSteps.selectSpecialAccount();
             certificatesSteps.selectCertificateLanguage();
             certificatesSteps.getCertificate();
         });
@@ -252,15 +252,15 @@ public class CertificateTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isPresent(GENERATED_CERTIFICATE));
     }
 
-    @Test(description = "Выписка о счете за весь период => соц. счет", groups = {"automated"})
+    @Test(description = "Выписка о счете за весь период => спец. счет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("соц. счет")
+    @Description("спец. счет")
     @Severity(SeverityLevel.NORMAL)
-    public void getSocialAccountStatement_forEntirePeriod () {
+    public void getSpecialAccountStatement_forEntirePeriod () {
         step("Получить справку", () -> {
             certificatesSteps.selectAccountCertificate();
             certificatesSteps.openAccountsList();
-            certificatesSteps._selectSocialAccount();
+            certificatesSteps._selectSpecialAccount();
             certificatesSteps.selectCertificateLanguage();
             certificatesSteps.selectEntirePeriod();
             certificatesSteps.getCertificateForWhile();
@@ -276,11 +276,11 @@ public class CertificateTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("соц. счет")
     @Severity(SeverityLevel.NORMAL)
-    public void getSocialAccountStatement_forSpecifiedPeriod () {
+    public void getSpecialAccountStatement_forSpecifiedPeriod () {
         step("Получить справку", () -> {
             certificatesSteps.selectAccountCertificate();
             certificatesSteps.openAccountsList();
-            certificatesSteps._selectSocialAccount();
+            certificatesSteps._selectSpecialAccount();
             certificatesSteps.selectCertificateLanguage();
             certificatesSteps.selectSpecifiedPeriod();
             certificatesSteps.getCertificateForWhile();

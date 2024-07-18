@@ -5,8 +5,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
-
 public class CertificatesPage extends BasePage {
     private static final By CERTIFICATE_OF_ACCOUNT_AVAILABILITY = By.id("GetForm");
     private static final By CERTIFICATE_OF_LOAN_DEBT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Справка о ссудной задолженности']");
@@ -19,13 +17,13 @@ public class CertificatesPage extends BasePage {
     private static final By ALL_ACCOUNTS = By.xpath("//div[@class='select-items'] /div[1]");
     private static final By CURRENT_ACCOUNT = By.xpath("//div[@class='select-items'] /div[2]");
     private static final By EPV_ACCOUNT = By.xpath("//div[@class='select-items'] /div[3]");
-    private static final By SOCIAL_ACCOUNT = By.xpath("//div[@class='select-items'] /div[4]");
+    private static final By SPECIAL_ACCOUNT = By.xpath("//div[@class='select-items'] /div[4]");
     private static final By DEPOSIT_ACCOUNT = By.xpath("//div[@class='select-items'] /div[5]");
 
     private static final By ACCOUNTS_DROPDOWN_VALUE = By.xpath("//div[@class='select-items'] /div");
     private static final By _CURRENT_ACCOUNT = By.xpath("//div[@class='select-items'] /div[1]");
     private static final By _EPV_ACCOUNT = By.xpath("//div[@class='select-items'] /div[2]");
-    private static final By _SOCIAL_ACCOUNT = By.xpath("//div[@class='select-items'] /div[3]");
+    private static final By _SPECIAL_ACCOUNT = By.xpath("//div[@class='select-items'] /div[3]");
 
     private static final By LANGUAGE_DROPDOWN_LIST = By.cssSelector(".custom-select");
     private static final By LANGUAGE = By.xpath("//div[@class='select-items'] /div[1]");
@@ -105,9 +103,9 @@ public class CertificatesPage extends BasePage {
         return this;
     }
 
-    @Step("Select social account")
-    public CertificatesPage selectSocialAccount() {
-        button.btnClick(SOCIAL_ACCOUNT);
+    @Step("Select special account")
+    public CertificatesPage selectSpecialAccount() {
+        button.btnClick(SPECIAL_ACCOUNT);
         return this;
     }
 
@@ -136,8 +134,8 @@ public class CertificatesPage extends BasePage {
     }
 
     @Step("Select social account")
-    public CertificatesPage _selectSocialAccount() {
-        button.btnClick(_SOCIAL_ACCOUNT);
+    public CertificatesPage _selectSpecialAccount() {
+        button.btnClick(_SPECIAL_ACCOUNT);
         return this;
     }
 
@@ -188,7 +186,7 @@ public class CertificatesPage extends BasePage {
     @Step("Click get certificate button")
     public CertificatesPage clickGetCertificateButton_additionalWaitResult() {
         button.btnClick(GET_CERTIFICATE_BUTTON);
-        drManager.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        elementsAttributes.waitUntilVisible(GENERATED_CERTIFICATE);
         return this;
     }
 }

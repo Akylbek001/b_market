@@ -28,7 +28,15 @@ public class MainTest extends BaseTest {
             loginSteps.auth(config.clientLogin(), config.clientPassword());
         });
         step("Разместить объявление", () -> {
-            mainSteps.postAd("50", "4", "street", "house", "description", "8000000");
+            mainSteps.clickPostAdButton();
+            mainSteps.postAd(
+                    "50",
+                    "4",
+                    "ул.Абылайхана",
+                    "91",
+                    "description",
+                    "17000000"
+            );
         });
         Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
     }
@@ -45,8 +53,15 @@ public class MainTest extends BaseTest {
             brManager.navigateTo(envConfig.baseUrl().concat("SecondHouse/MySecondHouses"));
         });
         step("Разместить объявление", () -> {
-            mainSteps._clickPostAdButton();
-            mainSteps.postAd("50", "4", "street", "house", "description", "17000000");
+            mainSteps.clickPostAdButton_fromMyAdBlock();
+            mainSteps.postAd(
+                    "50",
+                    "4",
+                    "ул.Абылайхана",
+                    "91",
+                    "description",
+                    "17000000"
+            );
         });
         Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
     }
@@ -113,7 +128,12 @@ public class MainTest extends BaseTest {
             mainSteps.clickCalculateButton();
         });
         step("Рассчитать", () -> {
-            mainSteps.fillMortgageForm(config.mortgageAmount(), "2", config.priceTo(), config.priceFrom());
+            mainSteps.fillMortgageForm(
+                    config.mortgageAmount(),
+                    "2",
+                    config.priceTo(),
+                    config.priceFrom()
+            );
         });
     }
 

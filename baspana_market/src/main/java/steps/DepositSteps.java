@@ -44,7 +44,7 @@ public class DepositSteps {
 
     public void confirmBySms(String smsCode) {
         depositPage
-                .selectDepositTerm()
+//                .selectDepositTerm()
                 .clickConfirm()
                 .inputSmsCode(smsCode)
                 .clickSend();

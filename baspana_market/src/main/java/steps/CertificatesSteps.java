@@ -57,9 +57,9 @@ public class CertificatesSteps {
                 .selectEPVAccount();
     }
 
-    public void selectSocialAccount() {
+    public void selectSpecialAccount() {
         certificatesPage
-                .selectSocialAccount();
+                .selectSpecialAccount();
     }
 
     public void selectDepositAccount() {
@@ -83,9 +83,9 @@ public class CertificatesSteps {
                 ._selectEPVAccount();
     }
 
-    public void _selectSocialAccount() {
+    public void _selectSpecialAccount() {
         certificatesPage
-                ._selectSocialAccount();
+                ._selectSpecialAccount();
     }
 
     public void fillRequiresData() {

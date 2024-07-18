@@ -32,7 +32,7 @@ public class DepositTest extends BaseTest {
     public void openBaspanaDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
             loginSteps.auth(
-                    "77760170303", config.clientPassword()
+                    "77772911272", config.clientPassword()
             );
             mainSteps.clickProfileIcon();
             cabinetSteps.selectMyBankMenu();
@@ -44,12 +44,9 @@ public class DepositTest extends BaseTest {
             depositSteps.openBaspanaDeposit();
         });
         step("Подтвердить открытие депозита", () -> {
-            depositSteps.clearField();
-            drManager.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-            drManager.getDriver().switchTo().alert().accept();
-
-            depositSteps.agreedSum(config.priceFrom());
+//            depositSteps.clearField();
+//
+//            depositSteps.agreedSum(config.priceFrom());
             depositSteps.confirmBySms(config.smsCode());
             Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
         });
