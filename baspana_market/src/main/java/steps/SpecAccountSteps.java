@@ -53,8 +53,14 @@ public class SpecAccountSteps {
 
     public void inputRecipientInfo_RE(String bin, String iban) {
         specAccountPage
-                .inputIin(bin)
-                .inputIban(iban);
+                .inputBin(bin)
+                .inputIban_RE(iban);
+    }
+
+    public void inputRecipientInfo_RE_loanRepayment(String bin, String iban) {
+        specAccountPage
+                .inputBin_loanRepayment(bin)
+                .inputIban_RE(iban);
     }
 
     public void inputRecipientIban(String iban) {
@@ -68,10 +74,22 @@ public class SpecAccountSteps {
                 .inputContractDate(date);
     }
 
+    public void indicateSign_withContractNumber_re(String date) {
+        specAccountPage
+                .clickWithNumberSwitch_re()
+                .inputContractDate_ofRE(date);
+    }
+
     public void indicateSign_withoutContractNumber(String contractNumber, String date) {
         specAccountPage
                 .inputContractNumber(contractNumber)
                 .inputContractDate(date);
+    }
+
+    public void indicateSign_withoutContractNumber_RE(String contractNumber, String date) {
+        specAccountPage
+                .inputContractNumber_ofRE(contractNumber)
+                .inputContractDate_ofRE(date);
     }
 
     public void inputSumToTransfer_forIndividual(String sumToTransfer) {
@@ -81,13 +99,19 @@ public class SpecAccountSteps {
 
     public void inputSumToTransfer_forRE(String sumToTransfer) {
         specAccountPage
-                .inputSumToTransfer_forRE(sumToTransfer);
+                .inputSumToTransfer_re(sumToTransfer);
     }
 
     public void acceptAgreementAndTransfer() {
         specAccountPage
                 .clickAgreement()
                 .clickSendTransferButton();
+    }
+
+    public void acceptAgreementAndTransfer_forRE() {
+        specAccountPage
+                .clickAgreement_re()
+                .clickSendTransferButton_re();
     }
 
     public void transferToMortgageOperation() {

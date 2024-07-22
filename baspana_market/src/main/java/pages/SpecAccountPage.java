@@ -1,6 +1,5 @@
 package pages;
 
-import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,17 +17,29 @@ public class SpecAccountPage extends BasePage {
     public static final By LEGAL_ENTITY = By.xpath("//div[@class='select-items'] /div[2]");
     private static final By IIN = By.id("inputNormalIin");
     private static final By BIN = By.id("inputLegalIin");
+    private static final By BIN_OF_LOAN_REPAYMENT = By.id("inputLegalBin");
 
     private static final By IBAN = By.id("inputNormalIban");
+    private static final By IBAN_RE = By.id("inputLegalIban");
     private static final By BANK_NAME = By.id("ibanBankNaturalPerson");
+    private static final By BANK_NAME_RE = By.id("ibanBank");
 
     public static final By WITH_NUMBER_SWITCH = By.cssSelector("#naturalPersonDiv .slider.round");
+    public static final By WITH_NUMBER_SWITCH_RE = By.cssSelector("#legalEntityDiv .slider.round");
+
     public static final By CONTRACT_NUMBER = By.id("inputNormalApplicationNumber");
+    public static final By CONTRACT_NUMBER_RE = By.id("inputLegalApplicationNumber");
+
     public static final By CONTRACT_DATE = By.id("inputNormalApplicationDate");
+    public static final By CONTRACT_DATE_RE = By.id("inputLegalApplicationDate");
+
     public static final By SUM_TO_TRANSFER_FOR_INDIVIDUAL = By.id("sumToTransferNormal");
-    public static final By SUM_TO_TRANSFER_FOR_RE = By.id("sumToTransferLegal");
+    public static final By SUM_TO_TRANSFER_RE = By.id("sumToTransferLegal");
     public static final By AGREEMENT = By.cssSelector("[for='NaturalCheckbox']");
+    public static final By AGREEMENT_RE = By.cssSelector("[for='legalConfirmCheckbox']");
+
     public static final By SEND_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
+    public static final By SEND_TRANSFER_BUTTON_RE = By.id("sendTransferLegalEntity");
 
 
     public SpecAccountPage(WebDriver driver) {
@@ -95,6 +106,12 @@ public class SpecAccountPage extends BasePage {
         return this;
     }
 
+    @Step("Input bin for loan repayment")
+    public SpecAccountPage inputBin_loanRepayment(String bin) {
+        input.inputWithClear(BIN_OF_LOAN_REPAYMENT, bin);
+        return this;
+    }
+
     @Step("Input iban")
     public SpecAccountPage inputIban(String iban) {
         input.inputWithClear(IBAN, iban);
@@ -102,12 +119,26 @@ public class SpecAccountPage extends BasePage {
         return this;
     }
 
+    @Step("Input iban of RE")
+    public SpecAccountPage inputIban_RE(String iban) {
+        input.inputWithClear(IBAN_RE, iban);
+        elementsAttributes.waitUntilVisible(BANK_NAME_RE);
+        return this;
+    }
+
     @Step("Click <with number> switch")
     public SpecAccountPage clickWithNumberSwitch() {
         button.btnClick(WITH_NUMBER_SWITCH);
-//        WaitUtils.wait(1);
         return this;
     }
+
+    @Step("Click <with number> switch of RE")
+    public SpecAccountPage clickWithNumberSwitch_re() {
+        button.btnClick(WITH_NUMBER_SWITCH_RE);
+        return this;
+    }
+
+
 
     @Step("Input contract number")
     public SpecAccountPage inputContractNumber(String number) {
@@ -115,10 +146,21 @@ public class SpecAccountPage extends BasePage {
         return this;
     }
 
+    @Step("Input contract number of RE")
+    public SpecAccountPage inputContractNumber_ofRE(String number) {
+        input.inputWithClear(CONTRACT_NUMBER_RE, number);
+        return this;
+    }
+
     @Step("Input contract date")
     public SpecAccountPage inputContractDate(String date) {
         input.inputWithClear(CONTRACT_DATE, date);
-//        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input contract date")
+    public SpecAccountPage inputContractDate_ofRE(String date) {
+        input.inputWithClear(CONTRACT_DATE_RE, date);
         return this;
     }
 
@@ -129,8 +171,8 @@ public class SpecAccountPage extends BasePage {
     }
 
     @Step("Input sum to transfer for RE")
-    public SpecAccountPage inputSumToTransfer_forRE(String sum) {
-        input.inputWithClear(SUM_TO_TRANSFER_FOR_RE, sum);
+    public SpecAccountPage inputSumToTransfer_re(String sum) {
+        input.inputWithClear(SUM_TO_TRANSFER_RE, sum);
         return this;
     }
 
@@ -140,9 +182,24 @@ public class SpecAccountPage extends BasePage {
         return this;
     }
 
+    @Step("Click agreement of RE")
+    public SpecAccountPage clickAgreement_re() {
+        move.scrollToElement(AGREEMENT_RE);
+        button.btnClick(AGREEMENT_RE);
+        return this;
+    }
+
     @Step("Click send transfer button")
     public SpecAccountPage clickSendTransferButton() {
         button.btnClick(SEND_TRANSFER_BUTTON);
         return this;
     }
+
+    @Step("Click send transfer button for RE")
+    public SpecAccountPage clickSendTransferButton_re() {
+        button.btnClick(SEND_TRANSFER_BUTTON_RE);
+        return this;
+    }
+
+
 }

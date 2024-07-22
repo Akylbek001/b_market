@@ -61,7 +61,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToRent_ForIndividual_withoutContractNumber () {
+    public void transferToRent_forIndividual_withoutContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -86,7 +86,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToRent_ForIndividual_withContractNumber () {
+    public void transferToRent_forIndividual_withContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -111,7 +111,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToRent_ForRE_withoutContractNumber () {
+    public void transferToRent_forRE_withoutContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -125,9 +125,9 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
-            specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("777");
-            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
+            specAccountSteps.inputSumToTransfer_forRE("777");
+            specAccountSteps.acceptAgreementAndTransfer_forRE();
         });
 //        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
     }
@@ -136,7 +136,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToRent_ForRE_withContractNumber () {
+    public void transferToRent_forRE_withContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -150,9 +150,9 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
-            specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
+            specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forRE("555");
-            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.acceptAgreementAndTransfer_forRE();
         });
 //        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
     }
@@ -163,7 +163,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToOtherBank_ForIndividual_withoutContractNumber () {
+    public void transferToOtherBank_forIndividual_withoutContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -171,7 +171,7 @@ public class SpecAccountTest extends BaseTest {
         step("Выбрать перевод на аренду", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
-            specAccountSteps.selectTransferToRentOperation();
+            specAccountSteps.transferToMortgageOperation();
         });
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
@@ -188,7 +188,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToOtherBank_ForIndividual_withContractNumber () {
+    public void transferToOtherBank_forIndividual_withContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -196,14 +196,14 @@ public class SpecAccountTest extends BaseTest {
         step("Выбрать перевод на аренду", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
-            specAccountSteps.selectTransferToRentOperation();
+            specAccountSteps.transferToMortgageOperation();
         });
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientIban(config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("555");
+            specAccountSteps.inputSumToTransfer_forIndividual("555");
             specAccountSteps.acceptAgreementAndTransfer();
         });
 //        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
@@ -213,7 +213,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToOtherBank_ForRE_withoutContractNumber () {
+    public void transferToOtherBank_forRE_withoutContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -221,13 +221,15 @@ public class SpecAccountTest extends BaseTest {
         step("Выбрать перевод на аренду", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
-            specAccountSteps.selectTransferToRentOperation();
+            specAccountSteps.transferToMortgageOperation();
         });
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban());
-            specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
+            specAccountSteps.inputRecipientInfo_RE_loanRepayment(
+                    config.clientIin(), config.clientIban().substring(2)
+            );
+            specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("777");
             specAccountSteps.acceptAgreementAndTransfer();
         });
@@ -238,7 +240,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToOtherBank_ForRE_withContractNumber () {
+    public void transferToOtherBank_forRE_withContractNumber () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -246,12 +248,14 @@ public class SpecAccountTest extends BaseTest {
         step("Выбрать перевод на аренду", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
-            specAccountSteps.selectTransferToRentOperation();
+            specAccountSteps.transferToMortgageOperation();
         });
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban());
+            specAccountSteps.inputRecipientInfo_RE_loanRepayment(
+                    config.clientIin(), config.clientIban().substring(2)
+            );
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forRE("555");
             specAccountSteps.acceptAgreementAndTransfer();
