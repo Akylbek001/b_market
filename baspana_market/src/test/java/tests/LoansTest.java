@@ -145,8 +145,8 @@ public class LoansTest extends BaseTest {
             loansSteps.selectSwitchingToHomeLoanOperation();
         });
         Assert.assertEquals(
-                CharacterSetConstants.DENIED_RESTRICTION_ON_ACCOUNTS,
-                elementsAttributes.getValue(SWITCHING_TO_HOME_LOAN_ACCOUNT_VALIDATION)
+                elementsAttributes.getValue(SWITCHING_TO_HOME_LOAN_ACCOUNT_VALIDATION),
+                CharacterSetConstants.DENIED_RESTRICTION_ON_ACCOUNTS
         );
     }
 
@@ -242,7 +242,7 @@ public class LoansTest extends BaseTest {
             loansSteps.replacementOfCollateral();
         });
         Assert.assertEquals(
-                "Ваш залогодатель не зарегестрирован. Зарегистрируйтесь и попробуйте еще e.",
+                "Ваш залогодатель не зарегестрирован. Зарегистрируйтесь и попробуйте еще раз.",
                 elementsAttributes.getValue(NOTIFICATION_OF_REGISTRATION)
         );
     }

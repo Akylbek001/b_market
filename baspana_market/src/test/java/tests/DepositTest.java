@@ -9,8 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 import static io.qameta.allure.Allure.step;
 import static pages.DepositPage.*;
 
@@ -32,7 +30,7 @@ public class DepositTest extends BaseTest {
     public void openBaspanaDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
             loginSteps.auth(
-                    "77772911272", config.clientPassword()
+                    "77076769290", config.clientPassword()
             );
             mainSteps.clickProfileIcon();
             cabinetSteps.selectMyBankMenu();
@@ -45,9 +43,8 @@ public class DepositTest extends BaseTest {
         });
         step("Подтвердить открытие депозита", () -> {
 //            depositSteps.clearField();
-//
 //            depositSteps.agreedSum(config.priceFrom());
-            depositSteps.confirmBySms(config.smsCode());
+            depositSteps.confirmBySms(777777);
             Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
         });
         step("Посмотреть открытый депозит", () -> {
@@ -139,6 +136,20 @@ public class DepositTest extends BaseTest {
                 CharacterSetConstants.OPEN_DEPOSIT_REFUSED,
                 elementsAttributes.getValue(REFUSED_NOTIFICATION)
         );
+    }
+
+    @Test(description="Открыть депозит => Валидация ареста", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отказ - Обратитесь в отделение")
+    @Severity(SeverityLevel.CRITICAL)
+    public void openDeposit_validate() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        String alertText = drManager.getDriver().switchTo().alert().getText();
+        Assert.assertTrue(alertText.contains("Запрет открытия счетов"));
+        drManager.getDriver().switchTo().alert().accept();
     }
 
     //Нужна соответствующая учетка
@@ -540,9 +551,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision_validateNoCurrentAccount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.userLogin(), config.userPass()
-            );
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -565,9 +574,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision_validateSavingAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.userLogin(), config.userPass()
-            );
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

@@ -26,7 +26,7 @@ public class AccountPage extends BasePage {
     public static final By INVALID_OTP = By.id("modalNotificationBody");
     private static final By STATEMENT_CONTINUE_BUTTON = By.cssSelector(".deposit_check_submit button");
     private static final By SEND_RATE_BUTTON = By.cssSelector("[onclick='SendRate()']");
-    public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".part-pay_complete_content h2");
+    public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".form_step.act .title");
     public static final By NOTIFICATION_TEXT = By.cssSelector("label#modalNotificationBody");
 
     public static final By EXISTED_CURRENT_ACCOUNT = By.cssSelector(".card.account");
@@ -45,6 +45,7 @@ public class AccountPage extends BasePage {
     private static final By IBAN = By.id("ibanCode");
     public static final By IBAN_ERROR = By.id("ibanError");
     private static final By SUM_TO_TRANSFER = By.id("sumToTransfer");
+
     public static final By INSUFFICIENT_FUNDS = By.cssSelector(".transferError.bodyM");
 
     private static final By SEND_TRANSFER_BUTTON = By.id("sendTransferButton");
@@ -64,6 +65,10 @@ public class AccountPage extends BasePage {
     private static final By OTHER_BANK_CONTINUE_BUTTON = By.xpath("//button[@class='button-mybank green']");
     private static final By OTHER_BANK_NAME = By.xpath("//div[@class='checkBox-Banks'] /div[2]");
     private static final By OTHER_BANK_CONTINUE_BUTTON_ = By.xpath("//div[@class='Button-SMS'] /button");
+
+    public static final By TEST_SELECTOR = By.cssSelector("#errorTransfer .bodyL");
+
+
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -90,18 +95,19 @@ public class AccountPage extends BasePage {
     @Step("Open available operations")
     public AccountPage openAvailableOperations() {
         button.btnClick(AVAILABLE_OPERATIONS);
-//        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Select transfer to debt operation")
     public AccountPage transferToDebt() {
+        elementsAttributes.waitUntilVisible(TRANSFER_TO_DEBT);
         button.btnClick(TRANSFER_TO_DEBT);
         return this;
     }
 
     @Step("Select transfer to otbasy client operation")
     public AccountPage transferToOtbasyBankClient() {
+        elementsAttributes.waitUntilVisible(TRANSFER_TO_OTBASY_CLIENT);
         button.btnClick(TRANSFER_TO_OTBASY_CLIENT);
         WaitUtils.wait(1);
 
@@ -110,6 +116,7 @@ public class AccountPage extends BasePage {
 
     @Step("Select transfer to other bank operation")
     public AccountPage transferToOtherBank() {
+        elementsAttributes.waitUntilVisible(TRANSFER_TO_OTHER_BANK);
         button.btnClick(TRANSFER_TO_OTHER_BANK);
         return this;
     }
@@ -124,7 +131,7 @@ public class AccountPage extends BasePage {
     @Step("Input phone number")
     public AccountPage inputPhoneNumber(String number) {
         input.inputWithClear(PHONE_NUMBER, number);
-        elementsAttributes.waitUntilVisible(NOT_FOUND_BY_NUMBER);
+        elementsAttributes.waitUntilVisible(FOUND_USER_BY_NUMBER);
         return this;
     }
 
@@ -150,6 +157,7 @@ public class AccountPage extends BasePage {
     @Step("Input iban")
     public AccountPage inputIban(String iban) {
         input.inputWithClear(IBAN, iban);
+//        elementsAttributes.waitUntilVisible(FOUND_USER_BY_CODE);
         WaitUtils.wait(1);
         return this;
     }

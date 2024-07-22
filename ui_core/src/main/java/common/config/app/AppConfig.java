@@ -11,6 +11,12 @@ public interface AppConfig extends Config {
     @Key("loanClient.password")
     String loanClient_password();
 
+    @Key("specAccount.login")
+    String specAccount_login();
+
+    @Key("specAccount.password")
+    String specAccount_password();
+
 
     @Key("client.fullName")
     String clientFullName();

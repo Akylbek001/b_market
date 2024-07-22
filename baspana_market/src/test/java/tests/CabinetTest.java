@@ -21,7 +21,7 @@ public class CabinetTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
-        loginSteps.auth(config.userLogin(), config.userPass());
+        loginSteps.auth("77760170303", config.clientPassword());
         brManager.navigateTo(envConfig.baseUrl().concat("cabinet"));
     }
 

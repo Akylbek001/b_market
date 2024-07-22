@@ -13,7 +13,7 @@ import java.time.Duration;
  */
 abstract public class Elements {
 
-    private static final int DEFAULT_IMPL_WAIT_SEC = 40;
+    private static final int DEFAULT_IMPL_WAIT_SEC = 60;
     private static final int DEF_DELAY = 600;
 
     protected WebDriver driver = InitDriver.initDriver();

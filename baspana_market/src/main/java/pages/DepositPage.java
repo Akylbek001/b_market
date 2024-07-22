@@ -1,7 +1,9 @@
 package pages;
 
 import common.utils.WaitUtils;
+import helpers.Elements;
 import io.qameta.allure.Step;
+import org.aspectj.apache.bcel.classfile.annotation.ElementValue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,15 +18,16 @@ public class DepositPage extends BasePage {
     private static final By CONTINUE_OPEN_CONTRIBUTION_AQYL_BUTTON = By.xpath("//div[@class='modal fade show'] //button[@id='continueOpenChildDeposit']");
     public static final By REFUSED_NOTIFICATION = By.id("reasonAqyl");
 
-    private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.xpath(
-            "//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']"
-    );
+//    private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.xpath(
+//            "//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']"
+//    );
+    private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.id("FatcasSteps");
     private static final By AGREEMENT_CHECKBOX = By.cssSelector("#StandardConditionsAgreed");
 
     private static final By SUBMIT = By.xpath("//button[@type='submit']");
     private static final By AGREED_SUM = By.cssSelector("input#dep_agree_sum.depsums");
     private static final By DEPOSIT_TERM = By.id("calc_l_m_range--g");
-    public static final By CONFIRM = By.xpath("//button[@class='ValSums']");
+    public static final By CONFIRM = By.cssSelector("#NextSteps .ValSums");
 
     public static final By NOTIFICATION_VISIT_THE_BANK = By.xpath("//div[@id='NextSteps'] //p");
     public static final By SUCCESS = By.cssSelector("#NextSteps p");
@@ -394,7 +397,7 @@ public class DepositPage extends BasePage {
     @Step("Click open deposit button")
     public DepositPage clickOpenDepositButton() {
         button.btnClick(OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON);
-        WaitUtils.wait(1);
+        elementsAttributes.waitUntilVisible(AGREEMENT_CHECKBOX);
         return this;
     }
 
@@ -407,6 +410,7 @@ public class DepositPage extends BasePage {
     @Step("Click continue")
     public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
+        WaitUtils.wait(5);
         return this;
     }
 
@@ -432,15 +436,12 @@ public class DepositPage extends BasePage {
 
     @Step("Click confirm")
     public DepositPage clickConfirm() {
-//        button.btnClick(CONFIRM);
-//        WaitUtils.wait(1);
         button.btnClick(CONFIRM);
-
-        WaitUtils.wait(5);
+        elementsAttributes.waitUntilClickable(SEND);
         return this;
     }
 
-    @Step("Input sms code")
+    @Step("Input iin")
     public DepositPage inputSmsCode(String smsCode) {
         input.inputWithClear(SMS_CODE, smsCode);
         return this;
@@ -449,7 +450,7 @@ public class DepositPage extends BasePage {
     @Step("Click send")
     public DepositPage clickSend() {
         button.btnClick(SEND);
-        WaitUtils.wait(5);
+        elementsAttributes.waitUntilVisible(DEPOSIT_CREATED_DATE);
         return this;
     }
 

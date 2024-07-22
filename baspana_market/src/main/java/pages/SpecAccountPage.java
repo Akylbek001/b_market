@@ -1,0 +1,148 @@
+package pages;
+
+import common.utils.WaitUtils;
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class SpecAccountPage extends BasePage {
+    private static final By SPEC_ACCOUNT = By.cssSelector("a.card.specialAccount");
+    private static final By SPEC_ACCOUNT_OPERATIONS = By.cssSelector(".allOperBtn.cursor_pointer");
+    private static final By TRANSFER_TO_DEPOSIT = By.id("transferToDep");
+    private static final By TRANSFER_TO_RENT = By.id("transferToRent");
+    private static final By TRANSFER_TO_MORTGAGE = By.id("transferToMortgage");
+    public static final By ERROR_TEXT = By.cssSelector("#operationErrorModal #errorText");
+
+    public static final By RECIPIENT_TYPE = By.cssSelector(".select-selected");
+    public static final By INDIVIDUAL = By.xpath("//div[@class='select-items'] /div[1]");
+    public static final By LEGAL_ENTITY = By.xpath("//div[@class='select-items'] /div[2]");
+    private static final By IIN = By.id("inputNormalIin");
+    private static final By BIN = By.id("inputLegalIin");
+
+    private static final By IBAN = By.id("inputNormalIban");
+    private static final By BANK_NAME = By.id("ibanBankNaturalPerson");
+
+    public static final By WITH_NUMBER_SWITCH = By.cssSelector("#naturalPersonDiv .slider.round");
+    public static final By CONTRACT_NUMBER = By.id("inputNormalApplicationNumber");
+    public static final By CONTRACT_DATE = By.id("inputNormalApplicationDate");
+    public static final By SUM_TO_TRANSFER_FOR_INDIVIDUAL = By.id("sumToTransferNormal");
+    public static final By SUM_TO_TRANSFER_FOR_RE = By.id("sumToTransferLegal");
+    public static final By AGREEMENT = By.cssSelector("[for='NaturalCheckbox']");
+    public static final By SEND_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
+
+
+    public SpecAccountPage(WebDriver driver) {
+        super(driver);
+    }
+
+    @Step("Select spec account")
+    public SpecAccountPage selectSpecAccount() {
+        button.btnClick(SPEC_ACCOUNT);
+        return this;
+    }
+
+    @Step("Open spec account operations")
+    public SpecAccountPage openSpecAccountOperations() {
+        button.btnClick(SPEC_ACCOUNT_OPERATIONS);
+        return this;
+    }
+
+    @Step("Select transfer to deposit operation")
+    public SpecAccountPage selectTransferToDepositOperation() {
+        button.btnClick(TRANSFER_TO_DEPOSIT);
+        return this;
+    }
+    @Step("Select transfer to deposit rent")
+    public SpecAccountPage selectTransferToRentOperation() {
+        button.btnClick(TRANSFER_TO_RENT);
+        elementsAttributes.waitUntilVisible(RECIPIENT_TYPE);
+        return this;
+    }
+    @Step("Select transfer to mortgage operation")
+    public SpecAccountPage selectTransferToMortgageOperation() {
+        button.btnClick(TRANSFER_TO_MORTGAGE);
+        return this;
+    }
+
+    @Step("Open recipient type list")
+    public SpecAccountPage openRecipientTypeList() {
+        button.btnClick(RECIPIENT_TYPE);
+        elementsAttributes.waitUntilVisible(INDIVIDUAL);
+        return this;
+    }
+
+    @Step("Select individual")
+    public SpecAccountPage selectIndividual() {
+        button.btnClick(INDIVIDUAL);
+        return this;
+    }
+
+    @Step("Select legal entity")
+    public SpecAccountPage selectLegalEntity() {
+        button.btnClick(LEGAL_ENTITY);
+        return this;
+    }
+
+    @Step("Input iin")
+    public SpecAccountPage inputIin(String iin) {
+        input.inputWithClear(IIN, iin);
+        return this;
+    }
+
+    @Step("Input bin")
+    public SpecAccountPage inputBin(String bin) {
+        input.inputWithClear(BIN, bin);
+        return this;
+    }
+
+    @Step("Input iban")
+    public SpecAccountPage inputIban(String iban) {
+        input.inputWithClear(IBAN, iban);
+        elementsAttributes.waitUntilVisible(BANK_NAME);
+        return this;
+    }
+
+    @Step("Click <with number> switch")
+    public SpecAccountPage clickWithNumberSwitch() {
+        button.btnClick(WITH_NUMBER_SWITCH);
+//        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input contract number")
+    public SpecAccountPage inputContractNumber(String number) {
+        input.inputWithClear(CONTRACT_NUMBER, number);
+        return this;
+    }
+
+    @Step("Input contract date")
+    public SpecAccountPage inputContractDate(String date) {
+        input.inputWithClear(CONTRACT_DATE, date);
+//        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input sum to transfer for individual")
+    public SpecAccountPage inputSumToTransfer_forIndividual(String sum) {
+        input.inputWithClear(SUM_TO_TRANSFER_FOR_INDIVIDUAL, sum);
+        return this;
+    }
+
+    @Step("Input sum to transfer for RE")
+    public SpecAccountPage inputSumToTransfer_forRE(String sum) {
+        input.inputWithClear(SUM_TO_TRANSFER_FOR_RE, sum);
+        return this;
+    }
+
+    @Step("Click agreement")
+    public SpecAccountPage clickAgreement() {
+        button.btnClick(AGREEMENT);
+        return this;
+    }
+
+    @Step("Click send transfer button")
+    public SpecAccountPage clickSendTransferButton() {
+        button.btnClick(SEND_TRANSFER_BUTTON);
+        return this;
+    }
+}

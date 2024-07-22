@@ -41,7 +41,6 @@ public final class InitOptions {
         optChrome.addArguments("--reduce-security-for-testing");
         optChrome.addArguments("--use-fake-device-for-media-stream");
         optChrome.addArguments("--allow-file-access-from-files");
-
         optChrome.addArguments("--start-maximized");
         optChrome.addArguments("--window-size=2048,1536");
         optChrome.addArguments("--no-sandbox");

@@ -42,11 +42,11 @@ public class DepositSteps {
                 .inputAgreedSum(sum);
     }
 
-    public void confirmBySms(String smsCode) {
+    public void confirmBySms(Integer smsCode) {
         depositPage
 //                .selectDepositTerm()
                 .clickConfirm()
-                .inputSmsCode(smsCode)
+                .inputSmsCode(smsCode.toString())
                 .clickSend();
     }
 

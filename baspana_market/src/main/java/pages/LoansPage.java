@@ -11,7 +11,7 @@ public class LoansPage extends BasePage {
     private static final By FULL_EARLY_REPAYMENT_OPERATION = By.id("full-repayment-menu-block");
     private static final By PARTIAL_EARLY_REPAYMENT_OPERATION = By.xpath("//div[@class='allOperWrap'] /div[2]");
     private static final By CHANGING_PAYMENT_DATE_OPERATION = By.xpath("//div[@class='operTxt' and text()='Изменение даты платежа']");
-    private static final By SWITCHING_TO_HOME_LOAN_OPERATION = By.xpath("//div[@class='operTxt' and text()='Переход на жилищный заем']");
+    private static final By SWITCHING_TO_HOME_LOAN = By.xpath("//div[@class='operTxt' and text()='Переход на жилищный заем']");
     private static final By REPLACEMENT_OF_CO_BORROWER = By.xpath("//div[@class='operTxt' and text()='Замена созаемщика']");
     private static final By EXCLUSION_OF_CO_BORROWER = By.xpath("//div[@class='operTxt' and text()='Исключение созаемщика']");
     private static final By EXTENSION_INSURANCE_CONTRACT_OPERATION = By.xpath("//div[@class='operTxt' and text()='Продление договора страхования']");
@@ -131,7 +131,7 @@ public class LoansPage extends BasePage {
     }
     @Step("Select switching to home loan operation")
     public LoansPage selectSwitchingToHomeLoanOperation() {
-        button.btnClick(SWITCHING_TO_HOME_LOAN_OPERATION);
+        button.btnClick(SWITCHING_TO_HOME_LOAN);
         return this;
     }
     @Step("Select replacement of co-borrower operation")

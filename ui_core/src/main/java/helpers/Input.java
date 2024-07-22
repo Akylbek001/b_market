@@ -47,10 +47,12 @@ public class Input extends Elements {
         _inputWithClear(locator, text);
     }
 
+
     @Step("Insert [{text}] to input field [{locator}]]")
     public void inputWithClear(By locator, SecretText text) {
         _inputWithClear(locator, text.getSecretText());
     }
+
 
     private void _inputWithClear(By locator, String text) {
         waitUntilClickable(locator).clear();

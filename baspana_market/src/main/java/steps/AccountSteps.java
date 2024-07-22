@@ -61,8 +61,6 @@ public class AccountSteps {
                 .inputPhoneNumber_clientNotFound(number);
     }
 
-
-
     public void searchOtbasyBankClient_byAltCode(String code) {
         accountPage
                 .selectAltCodeTab()

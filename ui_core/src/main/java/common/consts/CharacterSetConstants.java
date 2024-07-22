@@ -77,6 +77,7 @@ public final class CharacterSetConstants {
     public static final String NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT = "Для продолжения операции Вам необходимо открыть текущий счет, далее необходимо обеспечить наличии минимального взноса в размере 3 МРП.";
     public static final String CERTIFICATE_HAS_BEEN_GENERATED = "Справка сформирована";
     public static final String STATEMENT_HAS_BEEN_GENERATED = "Выписка сформирована";
+    public static final String NO_DEPOSIT = "У Вас отсутствуют доступные депозиты для перевода";
 
     public static final String INSUFFICIENT_FOUND_TEXT = "Недостаточно средств на текущем счете";
     public static final String GOS_PREM_ALREADY_EXIST_TEXT = "На выбранном депозите уже присутствует государственная премия";
