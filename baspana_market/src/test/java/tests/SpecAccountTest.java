@@ -230,8 +230,8 @@ public class SpecAccountTest extends BaseTest {
                     config.clientIin(), config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("777");
-            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.inputSumToTransfer_forRE("777");
+            specAccountSteps.acceptAgreementAndTransfer_forRE();
         });
 //        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
     }
@@ -257,8 +257,8 @@ public class SpecAccountTest extends BaseTest {
                     config.clientIin(), config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("555");
-            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.inputSumToTransfer_forRE("777");
+            specAccountSteps.acceptAgreementAndTransfer_forRE();
         });
 //        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
     }
