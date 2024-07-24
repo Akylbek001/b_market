@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
+
 @Slf4j
 public class CabinetPage extends BasePage {
     private static final By PROFILE_MENU = By.xpath("//img[@src='/Images-baspana/profile.svg']");
