@@ -372,9 +372,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void createFamilyPackage() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770366767", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -398,9 +396,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void tryAddMember_WithoutSelectRelationDegree() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770366767", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -421,9 +417,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void tryAddFamilyPackageMember_WithInvalidIin() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770366767", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -444,9 +438,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void tryAddFamilyPackageMember_WithInvalidAltCode() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770366767", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -468,9 +460,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void addFamilyPackageMember() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770366767", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -488,9 +478,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void removeFamilyPackageMember() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770366767", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
