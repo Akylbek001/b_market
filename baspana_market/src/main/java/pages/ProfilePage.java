@@ -28,7 +28,9 @@ public class ProfilePage extends BasePage {
     public static final By INVALID_EMAIL_TEXT_LOCATOR = By.id("emailError");
     private static final By NEW_EMAIL_INPUT = By.id("inputEmail");
     private static final By CHANGE_EMAIL_BUTTON = By.id("changeEmailButton");
+    public static final By PASSWORD_SUCCESSFULLY_CHANGED = By.cssSelector(".ob__bodyL.text-break");
     public static final By EMAIL_SUCCESSFULLY_CHANGED = By.cssSelector("#email_change_success .ob__bodyL");
+
     private static final By CHANGE_PASSWORD_LOCATOR = By.xpath(
             "//*[contains(text(), 'Изменить пароль')]"
     );
@@ -109,6 +111,8 @@ public class ProfilePage extends BasePage {
     @Step("Input old password")
     public ProfilePage inputOldPassword(String oldPassword) {
         input.inputWithClear(OLD_PASSWORD, oldPassword);
+//        WaitUtils.wait(2);
+
         return this;
     }
 
@@ -127,7 +131,7 @@ public class ProfilePage extends BasePage {
     @Step("Click change password button")
     public ProfilePage clickChangePasswordButton() {
         button.btnClick(CHANGE_PASSWORD_BUTTON);
-        WaitUtils.wait(2);
+        WaitUtils.wait(4);
         return this;
     }
 }

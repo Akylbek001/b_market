@@ -70,6 +70,7 @@ public abstract class BaseTest{
     protected LoansSteps loansSteps;
     protected OtauSteps otauSteps;
     protected SpecAccountSteps specAccountSteps;
+    protected SpecAccountSgoSteps specAccountSgoSteps;
 
     @BeforeSuite(alwaysRun = true, description = "Логирование старта комплекта тестов")
     public void setUp(ITestContext ctx) {
@@ -131,6 +132,7 @@ public abstract class BaseTest{
         loansSteps = new LoansSteps(driver);
         otauSteps =new OtauSteps(driver);
         specAccountSteps = new SpecAccountSteps(driver);
+        specAccountSgoSteps = new SpecAccountSgoSteps(driver);
     }
 
     private void configInit() {

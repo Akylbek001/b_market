@@ -138,8 +138,6 @@ public class SpecAccountPage extends BasePage {
         return this;
     }
 
-
-
     @Step("Input contract number")
     public SpecAccountPage inputContractNumber(String number) {
         input.inputWithClear(CONTRACT_NUMBER, number);
@@ -147,7 +145,7 @@ public class SpecAccountPage extends BasePage {
     }
 
     @Step("Input contract number of RE")
-    public SpecAccountPage inputContractNumber_ofRE(String number) {
+    public SpecAccountPage inputContractNumber_re(String number) {
         input.inputWithClear(CONTRACT_NUMBER_RE, number);
         return this;
     }
@@ -159,7 +157,7 @@ public class SpecAccountPage extends BasePage {
     }
 
     @Step("Input contract date")
-    public SpecAccountPage inputContractDate_ofRE(String date) {
+    public SpecAccountPage inputContractDate_re(String date) {
         input.inputWithClear(CONTRACT_DATE_RE, date);
         return this;
     }

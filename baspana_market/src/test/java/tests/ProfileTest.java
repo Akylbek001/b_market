@@ -22,8 +22,7 @@ public class ProfileTest extends BaseTest {
 
         mainSteps.loginButton();
         loginSteps.login(config.userLogin(), config.userPass());
-        mainSteps.clickProfileIcon();
-        cabinetSteps.selectProfileMenu();
+        brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
     }
 
     //изменить можно раз в 90 дней
@@ -90,7 +89,7 @@ public class ProfileTest extends BaseTest {
     }
 
     //нужна учетка - повторно изменить пороль после запуска теста
-    @Test(description="Изменить пароль", groups = {"automated"})
+    @Test(description="Изменить пароль", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение пароля клиента")
     @Severity(SeverityLevel.NORMAL)
@@ -99,11 +98,14 @@ public class ProfileTest extends BaseTest {
             profileSteps.inputCurrentAndNewPassword(
                     config.userPass(), config.userNewPassword(), config.userNewPassword()
             );
-//            profileSteps.confirmPasswordChange();
+            profileSteps.confirmPasswordChange();
         });
-//        Assert.assertEquals(
-//                CharacterSetConstants.PASSWORD_UPDATED, elementsAttributes.getValue(EMAIL_SUCCESSFULLY_CHANGED)
-//        );
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.PASSWORD_UPDATED, elementsAttributes.getValue(PASSWORD_SUCCESSFULLY_CHANGED)
+        );
     }
 
     @Test(description="Изменить пароль => Валидация подтверждения пароля", groups = {"automated"})
@@ -124,7 +126,8 @@ public class ProfileTest extends BaseTest {
         );
     }
 
-    @Test(description="Изменить пароль => Валидация текущего пароля", groups = {"automated"})
+    //BUG - валидация срабатывает после биометрии, перенести на страницу подтверждения пароля
+    @Test(description="Изменить пароль => Валидация текущего пароля", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация текущего пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -138,7 +141,6 @@ public class ProfileTest extends BaseTest {
         step("Биометрия", () -> {
             generalSteps.acceptAgreement_startBiometry();
         });
-
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
                 CharacterSetConstants.NEW_PASSWORD_SAME_WITH_CURRENT

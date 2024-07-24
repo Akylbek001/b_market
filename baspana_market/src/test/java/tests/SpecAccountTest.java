@@ -256,7 +256,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.inputRecipientInfo_RE_loanRepayment(
                     config.clientIin(), config.clientIban().substring(2)
             );
-            specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
+            specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forRE("777");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
         });

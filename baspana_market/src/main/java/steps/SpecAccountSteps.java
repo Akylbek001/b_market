@@ -77,7 +77,7 @@ public class SpecAccountSteps {
     public void indicateSign_withContractNumber_re(String date) {
         specAccountPage
                 .clickWithNumberSwitch_re()
-                .inputContractDate_ofRE(date);
+                .inputContractDate_re(date);
     }
 
     public void indicateSign_withoutContractNumber(String contractNumber, String date) {
@@ -88,8 +88,8 @@ public class SpecAccountSteps {
 
     public void indicateSign_withoutContractNumber_RE(String contractNumber, String date) {
         specAccountPage
-                .inputContractNumber_ofRE(contractNumber)
-                .inputContractDate_ofRE(date);
+                .inputContractNumber_re(contractNumber)
+                .inputContractDate_re(date);
     }
 
     public void inputSumToTransfer_forIndividual(String sumToTransfer) {
