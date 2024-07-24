@@ -28,6 +28,7 @@ public class MortgageOnlineTest extends BaseTest {
                     config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
             );
             brManager.navigateTo(envConfig.baseUrl().concat("cabinet/MyStatement"));
+            cabinetSteps.clickOnlineMortgageBlock();
         });
         step("Видеозвонок", () -> {
             mortgageOnlineSteps.clickVideoCallBlock();

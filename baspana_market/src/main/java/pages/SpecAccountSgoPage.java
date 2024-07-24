@@ -1,5 +1,6 @@
 package pages;
 
+import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class SpecAccountSgoPage extends BasePage {
     private static final By TRANSFER_TO_FULL_PAYMENT = By.id("TransferToFullPayment");
     private static final By TRANSFER_TO_INITIAL_PAYMENT = By.id("transferToInitialPayment");
-    private static final By TRANSFER_TO_PAYMENT_WITH_REDEMPTION= By.id("transferToPaymentWithRedemption");
+    private static final By TRANSFER_TO_PAYMENT_WITH_REDEMPTION = By.id("transferToPaymentWithRedemption");
     private static final By TRANSFER_TO_PURCHASE_HOME = By.id("transferToPurchaseHome");
 
     private static final By PHONE_NUMBER = By.id("phoneNumber");
@@ -24,11 +25,9 @@ public class SpecAccountSgoPage extends BasePage {
 
     private static final By SEND_TRANSFER_BUTTON = By.id("sendTransferButton");
     private static final By CONFIRM_TRANSFER_BUTTON = By.id("confirmTransfer");
-    private static final By OTP_CODE_FOR_TRANSFER = By.id("smsVerificationCodeInput");
+    public static final By OTP_CODE_FOR_TRANSFER = By.cssSelector("input#smsVerificationCodeInput");
     private static final By SEND_OTP_BUTTON = By.id("smsVerificationBtn");
     public static final By TRANSFER_DETAILS = By.cssSelector(".checkTransfer");
-
-
 
 
     public SpecAccountSgoPage(WebDriver driver) {
@@ -62,6 +61,12 @@ public class SpecAccountSgoPage extends BasePage {
         return this;
     }
 
+    @Step("Click <with number> switch")
+    public SpecAccountSgoPage clickWithoutContractSwitch() {
+        button.btnClick(WITHOUT_NUMBER_SLIDER);
+        return this;
+    }
+
     @Step("Input contract number")
     public SpecAccountSgoPage inputContractNumber(String number) {
         input.inputWithClear(CONTRACT_NUMBER, number);
@@ -90,18 +95,27 @@ public class SpecAccountSgoPage extends BasePage {
     public SpecAccountSgoPage confirmTransferButton() {
         button.btnClick(CONFIRM_TRANSFER_BUTTON);
         elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Input otp")
     public SpecAccountSgoPage inputOtp(String code) {
         input.inputWithClear(OTP_CODE_FOR_TRANSFER, code);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Click send otp button")
     public SpecAccountSgoPage clickSendOtpButton() {
         button.btnClick(SEND_OTP_BUTTON);
+        elementsAttributes.waitUntilVisible(TRANSFER_DETAILS);
+        return this;
+    }
+
+    @Step("Select transfer to payment with redemption operation")
+    public SpecAccountSgoPage selectTransferToPaymentWithRedemptionOperation() {
+        button.btnClick(TRANSFER_TO_PAYMENT_WITH_REDEMPTION);
         return this;
     }
 }

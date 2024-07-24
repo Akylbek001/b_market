@@ -17,6 +17,11 @@ public class CabinetSteps {
                 .clickProfileMenu();
     }
 
+    public void clickOnlineMortgageBlock() {
+        cabinetPage
+                .clickOnlineMortgageBlock();
+    }
+
     public void selectMyBankMenu() {
         cabinetPage
                 .selectMyBankMenu();

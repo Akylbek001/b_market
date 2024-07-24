@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 @Slf4j
 public class CabinetPage extends BasePage {
     private static final By PROFILE_MENU = By.xpath("//img[@src='/Images-baspana/profile.svg']");
+    private static final By ONLINE_MORTGAGE = By.cssSelector("[href='/OnlineMortgage/Videocall']");
+
     private static final By MY_REQUESTS_MENU = By.cssSelector("#myState.menu-item");
     private static final By WITH_DIPLOMA_TO_VILLAGE = By.xpath(
             "//div[@class='menu-list'] //*[contains(text(), 'С дипломом в село')]"
@@ -55,6 +57,12 @@ public class CabinetPage extends BasePage {
     @Step("Click profile menu")
     public CabinetPage clickProfileMenu() {
         button.btnClick(PROFILE_MENU);
+        return this;
+    }
+
+    @Step("Click online mortgage block")
+    public CabinetPage clickOnlineMortgageBlock() {
+        button.btnClick(ONLINE_MORTGAGE);
         return this;
     }
 

@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static pages.SpecAccountSgoPage.OTP_CODE_FOR_TRANSFER;
+
 public class SpecAccountPage extends BasePage {
     private static final By SPEC_ACCOUNT = By.cssSelector("a.card.specialAccount");
     private static final By SPEC_ACCOUNT_OPERATIONS = By.cssSelector(".allOperBtn.cursor_pointer");
@@ -190,6 +192,7 @@ public class SpecAccountPage extends BasePage {
     @Step("Click send transfer button")
     public SpecAccountPage clickSendTransferButton() {
         button.btnClick(SEND_TRANSFER_BUTTON);
+        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
         return this;
     }
 

@@ -14,6 +14,11 @@ public class SpecAccountSgoSteps {
                 .selectTransferToFullPaymentOperation();
     }
 
+    public void selectTransferToPaymentWithRedemptionOperation() {
+        specAccountSgoPage
+                .selectTransferToPaymentWithRedemptionOperation();
+    }
+
     public void inputPhone(String number) {
         specAccountSgoPage
                 .inputPhone(number);
@@ -33,6 +38,7 @@ public class SpecAccountSgoSteps {
 
     public void inputTransferData_withoutContract(String date) {
         specAccountSgoPage
+                .clickWithoutContractSwitch()
                 .inputContractDate(date);
     }
 
