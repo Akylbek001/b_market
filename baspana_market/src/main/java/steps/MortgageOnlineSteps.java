@@ -10,10 +10,18 @@ public class MortgageOnlineSteps {
         mortgageOnlinePage = new MortgageOnlinePage(driver);
     }
 
-    public void clickVideoCallBlock() {
+    public void clickStartVideoCallButton() {
         mortgageOnlinePage
-                .clickStartVideoCallButton()
-                .clickAgreementCheckbox()
+                .clickStartVideoCallButton();
+    }
+
+    public void clickAgreementCheckbox() {
+        mortgageOnlinePage
+                .clickAgreementCheckbox();
+    }
+
+    public void confirm() {
+        mortgageOnlinePage
                 .clickConfirmButton()
                 .clickConfirmButton();
     }

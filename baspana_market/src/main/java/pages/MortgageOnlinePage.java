@@ -1,5 +1,6 @@
 package pages;
 
+import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,7 @@ public class MortgageOnlinePage extends BasePage {
     @Step("Click start videoCall button")
     public MortgageOnlinePage clickStartVideoCallButton() {
         button.btnClick(START_VIDEO_CALL_BUTTON);
+        WaitUtils.wait(4);
         return this;
     }
 
