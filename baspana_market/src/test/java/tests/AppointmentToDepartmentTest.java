@@ -29,7 +29,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     public void appointmentToDepartment_byCancelModal () {
         step("Авторизация", () -> {
             loginSteps.auth(
-                    config.clientLogin(), config.clientPassword()
+                    config.userLogin(), config.userPass()
             );
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
