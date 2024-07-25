@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static pages.AppointmentToDepartmentPage.RESULT;
 import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
 
 @Owner("Алибек Акылбеков")
@@ -25,21 +26,45 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Запись в отделение")
     @Severity(SeverityLevel.NORMAL)
-    public void appointmentToDepartment () {
-        step("Авторизация -> Запись в отдление", () -> {
+    public void appointmentToDepartment_byCancelModal () {
+        step("Авторизация", () -> {
             loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+                    config.clientLogin(), config.clientPassword()
             );
-//            mainSteps.clickProfileIcon();
-//            cabinetSteps.selectAppointmentToDepartmentMenu();
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
+        });
+        step("Закрыть модальное окно", () -> {
+            appointmentToDepartmentSteps.clickCancelButton();
         });
         step("Заполнить форму", () -> {
             appointmentToDepartmentSteps.fillForm(config.clientLogin());
         });
         Assert.assertEquals(
-                CharacterSetConstants.CERTIFICATE_HAS_BEEN_GENERATED,
-                elementsAttributes.getValue(CERTIFICATE_GENERATED_NOTIFICATION)
+                "Ваш запрос на бронирование очереди подтвержден",
+                elementsAttributes.getValue(RESULT)
+        );
+    }
+
+    @Test(description="Запись в отделение", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Запись в отделение")
+    @Severity(SeverityLevel.NORMAL)
+    public void appointmentToDepartment_byAcceptModal () {
+        step("Авторизация", () -> {
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
+        });
+        step("Закрыть модальное окно", () -> {
+            appointmentToDepartmentSteps.clickReserveButton();
+        });
+        step("Заполнить форму", () -> {
+            appointmentToDepartmentSteps.fillForm(config.clientLogin());
+        });
+        Assert.assertEquals(
+                "Ваш запрос на бронирование очереди подтвержден",
+                elementsAttributes.getValue(RESULT)
         );
     }
 }

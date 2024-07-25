@@ -10,6 +10,16 @@ public class AppointmentToDepartmentSteps {
         appointmentToDepartmentPage = new AppointmentToDepartmentPage(driver);
     }
 
+    public void clickCancelButton() {
+        appointmentToDepartmentPage
+                .clickCancelButton();
+    }
+
+    public void clickReserveButton() {
+        appointmentToDepartmentPage
+                .clickReserveButton();
+    }
+
     public void fillForm(String phone) {
         appointmentToDepartmentPage
                 .clickBookingButton()
