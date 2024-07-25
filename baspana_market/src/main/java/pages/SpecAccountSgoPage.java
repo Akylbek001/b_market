@@ -24,7 +24,7 @@ public class SpecAccountSgoPage extends BasePage {
     public static final By SUM_TO_TRANSFER = By.id("sumToTransfer");
 
     private static final By SEND_TRANSFER_BUTTON = By.id("sendTransferButton");
-    private static final By CONFIRM_TRANSFER_BUTTON = By.id("confirmTransfer");
+    private static final By CONFIRM_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
     public static final By OTP_CODE_FOR_TRANSFER = By.cssSelector("input#smsVerificationCodeInput");
     private static final By SEND_OTP_BUTTON = By.id("smsVerificationBtn");
     public static final By TRANSFER_DETAILS = By.cssSelector(".checkTransfer");

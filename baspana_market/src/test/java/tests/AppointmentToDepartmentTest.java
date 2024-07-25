@@ -28,9 +28,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_byCancelModal () {
         step("Авторизация", () -> {
-            loginSteps.auth(
-                    config.userLogin(), config.userPass()
-            );
+            loginSteps.auth("77016677419", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
@@ -51,9 +49,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_byAcceptModal () {
         step("Авторизация", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770077702", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {

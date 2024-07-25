@@ -341,6 +341,9 @@ public class LoginTest extends BaseTest {
                     config.client_for_password_recovery_iin(), config.client_for_password_recovery_newLogin()
             );
         });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
+        });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
                 CharacterSetConstants.UPDATE_LOGIN_NOTIFICATION
@@ -364,6 +367,9 @@ public class LoginTest extends BaseTest {
                     config.client_for_password_recovery_iin(), config.client_for_password_recovery_login()
             );
         });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
+        });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
                 CharacterSetConstants.PHONE_NUMBER_ALREADY_CURRENT
@@ -386,6 +392,9 @@ public class LoginTest extends BaseTest {
             loginSteps.inputIinAndLogin(
                     config.client_for_password_recovery_iin(), config.client_for_password_recovery_newLogin()
             );
+        });
+        step("Биометрия", () -> {
+            generalSteps.acceptAgreement_startBiometry();
         });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),

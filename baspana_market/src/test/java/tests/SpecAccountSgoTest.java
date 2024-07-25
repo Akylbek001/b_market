@@ -159,7 +159,7 @@ public class SpecAccountSgoTest extends BaseTest {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientInfo_individual(config.clientIin(), config.clientIban().substring(2));
-            specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
+            specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("777");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSgoSteps.confirmTransferByOtp(config.smsCode());

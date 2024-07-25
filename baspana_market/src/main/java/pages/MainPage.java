@@ -91,6 +91,7 @@ public class MainPage extends BasePage {
 
     @Step("Select object state")
     public MainPage selectObjectState() {
+        move.scrollToElement(OBJECT_STATE);
         button.btnClick(OBJECT_STATE);
         return this;
     }
@@ -111,6 +112,7 @@ public class MainPage extends BasePage {
 
     @Step("Input street")
     public MainPage inputStreet(String street) {
+        move.scrollToElement(STREET);
         input.inputWithClear(STREET, street);
         return this;
     }

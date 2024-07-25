@@ -21,7 +21,7 @@ public class BecomeClientSteps {
 
     public void becomeClientByOpenAccountForNDF() {
         becomeClientPage
-                .clickAccountForEPVBlock();
+                .clickAccountForNFDBlock();
     }
 
     public void verifyPhoneNumberAndIin(String phoneNumber, String iin) {

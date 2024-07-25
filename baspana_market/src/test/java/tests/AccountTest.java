@@ -136,6 +136,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
+    //NEED ACCOUNT - в базе бездействующих налогоплательщиков
     @Test(description="Открыть счет для ЕПВ => Валидация налогоплательщика", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")

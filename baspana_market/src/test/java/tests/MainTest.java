@@ -47,7 +47,7 @@ public class MainTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     public void postAd_fromMyAdBlock() {
         step("Авторизация", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth(config.userLogin(), config.userPass());
         });
         step("Перейти в раздел <Мои объявления>", () -> {
             brManager.navigateTo(envConfig.baseUrl().concat("SecondHouse/MySecondHouses"));

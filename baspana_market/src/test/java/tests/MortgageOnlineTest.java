@@ -10,7 +10,7 @@ import static io.qameta.allure.Allure.step;
 
 @Owner("Алибек Акылбеков")
 @Feature("Ипотека онлайн")
-    public class MortgageOnlineTest extends BaseTest {
+        public class MortgageOnlineTest extends BaseTest {
     @BeforeMethod(alwaysRun = true, description = "Подготовка браузера")
     public void setUpMethod() {
         brManager.clearCache();
