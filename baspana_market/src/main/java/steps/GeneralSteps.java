@@ -25,4 +25,12 @@ public class GeneralSteps {
         generalPage
                 .clickStartBiometryButton();
     }
+
+    public void confirmationByOtp(String otp) {
+        generalPage
+                .inputOtp(otp)
+                .clickSendOtpButton();
+    }
+
+
 }

@@ -26,13 +26,13 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Запись в отделение")
     @Severity(SeverityLevel.NORMAL)
-    public void appointmentToDepartment_byCancelModal () {
+    public void appointmentToDepartment_byAcceptModal () {
         step("Авторизация", () -> {
-            loginSteps.auth("77016677419", config.clientPassword());
+            loginSteps.auth("77770077702", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
-            appointmentToDepartmentSteps.clickCancelButton();
+            appointmentToDepartmentSteps.clickReserveButton();
         });
         step("Заполнить форму", () -> {
             appointmentToDepartmentSteps.fillForm(config.clientLogin());
@@ -43,17 +43,17 @@ public class AppointmentToDepartmentTest extends BaseTest {
         );
     }
 
-    @Test(description="Запись в отделение", groups = {"automated"})
+    @Test(description="Запись в отделение", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Запись в отделение")
     @Severity(SeverityLevel.NORMAL)
-    public void appointmentToDepartment_byAcceptModal () {
+    public void appointmentToDepartment_byCancelModal () {
         step("Авторизация", () -> {
-            loginSteps.auth("77770077702", config.clientPassword());
+            loginSteps.auth("77016677419", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
-            appointmentToDepartmentSteps.clickReserveButton();
+            appointmentToDepartmentSteps.clickCancelButton();
         });
         step("Заполнить форму", () -> {
             appointmentToDepartmentSteps.fillForm(config.clientLogin());

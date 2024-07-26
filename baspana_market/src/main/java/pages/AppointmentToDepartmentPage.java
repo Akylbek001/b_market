@@ -26,12 +26,15 @@ public class AppointmentToDepartmentPage extends BasePage {
     @Step("Click cancel modal button")
     public AppointmentToDepartmentPage clickCancelButton() {
         button.btnClick(CANCEL_BUTTON);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Click reserve modal button")
     public AppointmentToDepartmentPage clickReserveButton() {
+        WaitUtils.wait(1);
         button.btnClick(RESERVE_BUTTON);
+        WaitUtils.wait(1);
         return this;
     }
 

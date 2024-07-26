@@ -5,6 +5,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static pages.SpecAccountPage.TRANSFER_DETAILS;
+
 public class SpecAccountSgoPage extends BasePage {
     private static final By TRANSFER_TO_FULL_PAYMENT = By.id("TransferToFullPayment");
     private static final By TRANSFER_TO_INITIAL_PAYMENT = By.id("transferToInitialPayment");
@@ -27,7 +29,6 @@ public class SpecAccountSgoPage extends BasePage {
     private static final By CONFIRM_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
     public static final By OTP_CODE_FOR_TRANSFER = By.cssSelector("input#smsVerificationCodeInput");
     private static final By SEND_OTP_BUTTON = By.id("smsVerificationBtn");
-    public static final By TRANSFER_DETAILS = By.cssSelector(".checkTransfer");
 
 
     public SpecAccountSgoPage(WebDriver driver) {

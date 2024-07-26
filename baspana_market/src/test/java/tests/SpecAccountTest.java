@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static pages.SpecAccountPage.ERROR_TEXT;
+import static pages.SpecAccountPage.TRANSFER_DETAILS;
 
 @Owner("Алибек Акылбеков")
 @Feature("Спец.счет")
@@ -56,7 +57,6 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
     }
 
-//Перевод на аренду
     @Test(description = "Перевод на аренду(ФЛ) => без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -76,10 +76,12 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientInfo_individual(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("777");
+            specAccountSteps.inputSumToTransfer_forIndividual("77");
             specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-//        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
     @Test(description = "Перевод на аренду(ФЛ) => с номером договора", groups = {"automated"})
@@ -103,8 +105,10 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("555");
             specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-//        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
     @Test(description = "Перевод на аренду(ЮЛ) => без номера договора", groups = {"automated"})
@@ -126,10 +130,12 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("777");
+            specAccountSteps.inputSumToTransfer_forRE("55");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-//        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
     @Test(description = "Перевод на аренду(ЮЛ) => с номером договора", groups = {"automated"})
@@ -151,14 +157,14 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("555");
+            specAccountSteps.inputSumToTransfer_forRE("77");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-//        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-
-//Погашение займа в другом банке
     @Test(description = "Перевод на аренду(ФЛ) => без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -178,10 +184,12 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientIban(config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("777");
+            specAccountSteps.inputSumToTransfer_forIndividual("55");
             specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-    //        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
     @Test(description = "Перевод на аренду(ФЛ) => с номером договора", groups = {"automated"})
@@ -203,10 +211,12 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientIban(config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("555");
+            specAccountSteps.inputSumToTransfer_forIndividual("77");
             specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-//        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
     @Test(description = "Перевод на аренду(ЮЛ) => без номера договора", groups = {"automated"})
@@ -230,10 +240,12 @@ public class SpecAccountTest extends BaseTest {
                     config.clientIin(), config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("777");
+            specAccountSteps.inputSumToTransfer_forRE("55");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-//        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
     @Test(description = "Перевод на аренду(ЮЛ) => с номером договора", groups = {"automated"})
@@ -257,9 +269,11 @@ public class SpecAccountTest extends BaseTest {
                     config.clientIin(), config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("777");
+            specAccountSteps.inputSumToTransfer_forRE("77");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
+            specAccountSteps.confirmTransferOnModal();
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-//        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 }

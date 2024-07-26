@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.SpecAccountSgoPage.TRANSFER_DETAILS;
+import static pages.SpecAccountPage.TRANSFER_DETAILS;
 
 @Owner("Алибек Акылбеков")
 @Feature("Спец.счет c СГО")

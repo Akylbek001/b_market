@@ -43,6 +43,9 @@ public class SpecAccountPage extends BasePage {
     public static final By SEND_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
     public static final By SEND_TRANSFER_BUTTON_RE = By.id("sendTransferLegalEntity");
 
+    public static final By CONFIRM_TRANSFER = By.cssSelector(".btn.btn-green#confirmTransfer");
+    public static final By TRANSFER_DETAILS = By.cssSelector(".checkTransfer");
+
 
     public SpecAccountPage(WebDriver driver) {
         super(driver);
@@ -192,7 +195,7 @@ public class SpecAccountPage extends BasePage {
     @Step("Click send transfer button")
     public SpecAccountPage clickSendTransferButton() {
         button.btnClick(SEND_TRANSFER_BUTTON);
-        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+        elementsAttributes.waitUntilVisible(CONFIRM_TRANSFER);
         return this;
     }
 
@@ -201,6 +204,16 @@ public class SpecAccountPage extends BasePage {
         button.btnClick(SEND_TRANSFER_BUTTON_RE);
         return this;
     }
+
+    @Step("Click confirm transfer button")
+    public SpecAccountPage clickConfirmTransferButton() {
+        button.btnClick(CONFIRM_TRANSFER);
+        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+        return this;
+    }
+
+
+
 
 
 }

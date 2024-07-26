@@ -114,6 +114,12 @@ public class SpecAccountSteps {
                 .clickSendTransferButton_re();
     }
 
+    public void confirmTransferOnModal() {
+        specAccountPage
+                .clickConfirmTransferButton();
+    }
+
+
     public void transferToMortgageOperation() {
         specAccountPage
                 .selectTransferToMortgageOperation();

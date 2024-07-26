@@ -22,7 +22,7 @@ public class AppointmentToDepartmentSteps {
 
     public void fillForm(String phone) {
         appointmentToDepartmentPage
-                .clickBookingButton()
+//                .clickBookingButton()
                 .inputPhone(phone)
                 .selectFilial()
                 .selectOrderType()
