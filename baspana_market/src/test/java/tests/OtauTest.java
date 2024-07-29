@@ -38,7 +38,7 @@ public class OtauTest extends BaseTest {
         );
     }
 
-    @Test(description = "Подать заявку", groups = {"automated"})
+    @Test(description = "Подать заявку = > Валидация клиента", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Подать заявку")
     @Severity(SeverityLevel.NORMAL)

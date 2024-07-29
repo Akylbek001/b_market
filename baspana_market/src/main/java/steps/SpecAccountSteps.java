@@ -119,13 +119,14 @@ public class SpecAccountSteps {
                 .clickConfirmTransferButton();
     }
 
-
     public void transferToMortgageOperation() {
         specAccountPage
                 .selectTransferToMortgageOperation();
     }
 
-
-
-
+    public void acceptAgreementAndTransfer_forValidate() {
+        specAccountPage
+                .clickAgreement()
+                .clickSendTransferButton_forValidate();
+    }
 }

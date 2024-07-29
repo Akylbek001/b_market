@@ -5,6 +5,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static pages.SpecAccountPage.TRANSFER_DETAILS;
+
 public class GeneralPage extends BasePage {
 
     private static final By AGREEMENT_CHECKBOX = By.cssSelector(".form-check-label");
@@ -41,7 +43,7 @@ public class GeneralPage extends BasePage {
     @Step("Click send otp button")
     public GeneralPage clickSendOtpButton() {
         button.btnClick(SEND_OTP_BUTTON);
-        WaitUtils.wait(3);
+        elementsAttributes.waitUntilVisible(TRANSFER_DETAILS);
         return this;
     }
 }

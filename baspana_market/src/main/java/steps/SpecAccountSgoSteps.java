@@ -54,7 +54,4 @@ public class SpecAccountSgoSteps {
                 .inputOtp(otp)
                 .clickSendOtpButton();
     }
-
-
-
 }

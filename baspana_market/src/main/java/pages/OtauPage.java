@@ -48,7 +48,9 @@ public class OtauPage extends BasePage {
 
     @Step("Click agreement")
     public OtauPage clickAgreement() {
+        move.scrollToElement(AGREEMENT);
         button.btnClick(AGREEMENT);
+        WaitUtils.wait(2);
         return this;
     }
 
@@ -63,6 +65,7 @@ public class OtauPage extends BasePage {
     @Step("Click select deposit button")
     public OtauPage clickSelectDepositButton() {
         button.btnClick(SELECT_DEPOSIT_BUTTON);
+        elementsAttributes.waitUntilVisible(DEPOSIT_VALUE);
         return this;
     }
 
@@ -75,6 +78,7 @@ public class OtauPage extends BasePage {
     @Step("Click select button")
     public OtauPage clickSelectButton() {
         button.btnClick(SELECT_BUTTON);
+        elementsAttributes.waitUntilVisible(AGREEMENT_FOR_PUBLIC);
         return this;
     }
 
@@ -87,11 +91,14 @@ public class OtauPage extends BasePage {
     @Step("Click agreement for share personal data")
     public OtauPage clickAgreementForSharePersonalData() {
         button.btnClick(AGREEMENT_FOR_PERSONAL_DATA);
+        WaitUtils.wait(2);
+
         return this;
     }
 
     @Step("Click confirm button")
     public OtauPage clickConfirmButton() {
+        move.scrollToElement(CONFIRM_BUTTON);
         button.btnClick(CONFIRM_BUTTON);
         return this;
     }

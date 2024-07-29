@@ -39,6 +39,7 @@ public class SpecAccountPage extends BasePage {
     public static final By SUM_TO_TRANSFER_RE = By.id("sumToTransferLegal");
     public static final By AGREEMENT = By.cssSelector("[for='NaturalCheckbox']");
     public static final By AGREEMENT_RE = By.cssSelector("[for='legalConfirmCheckbox']");
+    public static final By SEND_TRANSFER_BUTTON_FOR_VALIDATE = By.cssSelector("button#sendTransferNaturalPerson");
 
     public static final By SEND_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
     public static final By SEND_TRANSFER_BUTTON_RE = By.id("sendTransferLegalEntity");
@@ -192,6 +193,13 @@ public class SpecAccountPage extends BasePage {
         return this;
     }
 
+    @Step("Click send transfer button validate")
+    public SpecAccountPage clickSendTransferButton_forValidate() {
+        move.scrollToElement(SEND_TRANSFER_BUTTON_FOR_VALIDATE);
+        button.btnClick(SEND_TRANSFER_BUTTON_FOR_VALIDATE);
+        return this;
+    }
+
     @Step("Click send transfer button")
     public SpecAccountPage clickSendTransferButton() {
         button.btnClick(SEND_TRANSFER_BUTTON);
@@ -211,9 +219,4 @@ public class SpecAccountPage extends BasePage {
         elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
         return this;
     }
-
-
-
-
-
 }

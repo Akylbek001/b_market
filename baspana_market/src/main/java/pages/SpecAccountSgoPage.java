@@ -29,6 +29,7 @@ public class SpecAccountSgoPage extends BasePage {
     private static final By CONFIRM_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
     public static final By OTP_CODE_FOR_TRANSFER = By.cssSelector("input#smsVerificationCodeInput");
     private static final By SEND_OTP_BUTTON = By.id("smsVerificationBtn");
+    public static final By CURRENT_ACC_BALANCE_VALIDATION = By.id("ErrorResponse");
 
 
     public SpecAccountSgoPage(WebDriver driver) {
@@ -83,20 +84,22 @@ public class SpecAccountSgoPage extends BasePage {
     @Step("Input sum to transfer")
     public SpecAccountSgoPage inputSumToTransfer(String sum) {
         input.inputWithClear(SUM_TO_TRANSFER, sum);
+
         return this;
     }
 
     @Step("Click send transfer button")
     public SpecAccountSgoPage clickSendTransferButton() {
+        move.scrollToElement(SEND_TRANSFER_BUTTON);
         button.btnClick(SEND_TRANSFER_BUTTON);
+//        elementsAttributes.waitUntilVisible(CONFIRM_TRANSFER_BUTTON);
         return this;
     }
 
     @Step("Confirm transfer button")
     public SpecAccountSgoPage confirmTransferButton() {
         button.btnClick(CONFIRM_TRANSFER_BUTTON);
-        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
-        WaitUtils.wait(1);
+        WaitUtils.wait(6);
         return this;
     }
 
