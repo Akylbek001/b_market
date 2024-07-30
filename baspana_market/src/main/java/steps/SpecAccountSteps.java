@@ -51,6 +51,23 @@ public class SpecAccountSteps {
                 .inputIban(iban);
     }
 
+    public void inputIban_validation(String iban) {
+        specAccountPage
+                .inputIban_validation(iban);
+    }
+
+    public void inputIin_validation(String iin) {
+        specAccountPage
+                .inputIin_validation(iin);
+    }
+
+    public void inputBin_validation(String bin) {
+        specAccountPage
+                .inputBin_validation(bin);
+    }
+
+
+
     public void inputRecipientInfo_RE(String bin, String iban) {
         specAccountPage
                 .inputBin(bin)

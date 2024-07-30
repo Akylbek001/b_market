@@ -30,6 +30,11 @@ public class SpecAccountSgoPage extends BasePage {
     public static final By OTP_CODE_FOR_TRANSFER = By.cssSelector("input#smsVerificationCodeInput");
     private static final By SEND_OTP_BUTTON = By.id("smsVerificationBtn");
     public static final By CURRENT_ACC_BALANCE_VALIDATION = By.id("ErrorResponse");
+    public static final By IBAN_ERROR = By.cssSelector("span#ibanErrorNaturalPerson");
+    public static final By IIN_ERROR = By.cssSelector("span#IinError");
+    public static final By BIN_ERROR = By.cssSelector("span#BinError");
+
+
 
 
     public SpecAccountSgoPage(WebDriver driver) {

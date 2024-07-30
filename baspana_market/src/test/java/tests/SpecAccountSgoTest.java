@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import common.consts.CharacterSetConstants;
 import common.utils.DatesUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
@@ -9,9 +10,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static pages.CabinetPage.CHANGE_PASSWORD_RESULT;
 import static pages.MainPage.SALDO;
 import static pages.SpecAccountPage.TRANSFER_DETAILS;
-import static pages.SpecAccountSgoPage.CURRENT_ACC_BALANCE_VALIDATION;
+import static pages.SpecAccountSgoPage.*;
 
 @Owner("Алибек Акылбеков")
 @Feature("Спец.счет c СГО")
@@ -200,4 +202,80 @@ public class SpecAccountSgoTest extends BaseTest {
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
+
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) => валидация ИИН", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация ИИН")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToPaymentWithRedemption_validationIin () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77022636672", config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSgoSteps.selectTransferToPaymentWithRedemptionOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSteps.inputIin_validation("960327300188");
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IIN_ERROR),
+                "Проверьте корректность ИИН"
+        );
+    }
+
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) => валидация IBAN отбасы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация IBAN отбасы")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToPaymentWithRedemption_validationOtbasyIban () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77022636672", config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSgoSteps.selectTransferToPaymentWithRedemptionOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSteps.inputIban_validation("KZ649729722204F0Z3LP");
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR),
+                "Вы ввели некорректный IBAN счет!"
+        );
+    }
+
+    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ) => валидация БИН", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация IBAN отбасы")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToPaymentWithRedemption_validationBin () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77022636672", config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSgoSteps.selectTransferToPaymentWithRedemptionOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectRERecipientType();
+            specAccountSteps.inputBin_validation(config.clientIin());
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(BIN_ERROR),
+                "Ошибка при получении информации об организации по БИН"
+        );
+    }
+
+
+
+
 }

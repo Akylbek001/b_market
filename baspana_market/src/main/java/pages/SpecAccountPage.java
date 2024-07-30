@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static pages.SpecAccountSgoPage.OTP_CODE_FOR_TRANSFER;
+import static pages.SpecAccountSgoPage.*;
 
 public class SpecAccountPage extends BasePage {
     private static final By SPEC_ACCOUNT = By.cssSelector("a.card.specialAccount");
@@ -122,6 +122,27 @@ public class SpecAccountPage extends BasePage {
     public SpecAccountPage inputIban(String iban) {
         input.inputWithClear(IBAN, iban);
         elementsAttributes.waitUntilVisible(BANK_NAME);
+        return this;
+    }
+
+    @Step("Input iban")
+    public SpecAccountPage inputIban_validation(String iban) {
+        input.inputWithClear(IBAN, iban);
+        elementsAttributes.waitUntilVisible(IBAN_ERROR);
+        return this;
+    }
+
+    @Step("Input iin")
+    public SpecAccountPage inputIin_validation(String iin) {
+        input.inputWithClear(IIN, iin);
+        elementsAttributes.waitUntilVisible(IIN_ERROR);
+        return this;
+    }
+
+    @Step("Input bin")
+    public SpecAccountPage inputBin_validation(String bin) {
+        input.inputWithClear(BIN, bin);
+        elementsAttributes.waitUntilVisible(BIN_ERROR);
         return this;
     }
 
