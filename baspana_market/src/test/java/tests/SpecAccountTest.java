@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import static io.qameta.allure.Allure.step;
 import static pages.SpecAccountPage.ERROR_TEXT;
 import static pages.SpecAccountPage.TRANSFER_DETAILS;
+import static pages.SpecAccountSgoPage.*;
 
 @Owner("Алибек Акылбеков")
 @Feature("Спец.счет")
@@ -111,6 +112,55 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
+    //BUG - нет проверки на валидность ИИН
+    @Test(description = "Перевод на аренду(ФЛ) => валидация ИИН", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация ИИН")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToRent_forIndividual_validateIin () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSteps.selectTransferToRentOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSteps.inputIin_validation("960327300188");
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IIN_ERROR),
+                "Проверьте корректность ИИН"
+        );
+    }
+
+    @Test(description = "Перевод на аренду(ФЛ) => валидация IBAN отбасы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация IBAN отбасы")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToRent_forIndividual_validateIbanOtbasy () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSteps.selectTransferToRentOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSteps.inputIban_validation("KZ649729722204F0Z3LP");
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR),
+                "Вы ввели некорректный IBAN счет!"
+        );
+    }
+
     @Test(description = "Перевод на аренду(ЮЛ) => без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -165,7 +215,32 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на аренду(ФЛ) => без номера договора", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ЮЛ) => валидация БИН", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация БИН")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToRent_forRE_validateBin () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSteps.selectTransferToRentOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectRERecipientType();
+            specAccountSteps.inputBin_validation(config.clientIin());
+
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(BIN_ERROR),
+                "Ошибка при получении информации об организации по БИН"
+        );
+    }
+
+    @Test(description = "Погашение займа в другом банке(ФЛ) => без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -192,7 +267,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на аренду(ФЛ) => с номером договора", groups = {"automated"})
+    @Test(description = "Погашение займа в другом банке(ФЛ) => с номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -219,7 +294,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на аренду(ЮЛ) => без номера договора", groups = {"automated"})
+    @Test(description = "Погашение займа в другом банке(ЮЛ) => без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -248,7 +323,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на аренду(ЮЛ) => с номером договора", groups = {"automated"})
+    @Test(description = "Погашение займа в другом банке(ЮЛ) => с номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)

@@ -1,5 +1,6 @@
 package pages;
 
+import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -237,7 +238,8 @@ public class SpecAccountPage extends BasePage {
     @Step("Click confirm transfer button")
     public SpecAccountPage clickConfirmTransferButton() {
         button.btnClick(CONFIRM_TRANSFER);
-        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+        WaitUtils.wait(10);
+//        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
         return this;
     }
 }

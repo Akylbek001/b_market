@@ -1,9 +1,7 @@
 package pages;
 
 import common.utils.WaitUtils;
-import helpers.Elements;
 import io.qameta.allure.Step;
-import org.aspectj.apache.bcel.classfile.annotation.ElementValue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -67,16 +65,16 @@ public class DepositPage extends BasePage {
     private static final By CREATE_FAMILY_PACKAGE_BUTTON = By.id("btnCreate");
     public static final By CREATED_FAMILY_PACKAGE_NAME = By.xpath("//h2");
     private static final By INVITE_FAMILY_PACKAGE_MEMBER_BUTTON = By.cssSelector("[data-target='#modalInvite']");//?
-    private static final By  RELATION_DEGREE_LIST = By.cssSelector(".col-4 div.select");
-    private static final By  RELATION_DEGREE_VALUE = By.cssSelector("ul.select-options li[rel='SPOS']");
-    private static final By  INVITED_IIN = By.id("inputInviteIIN");
-    private static final By  INVITED_ALTERNATIVE_CODE = By.id("inputInviteAlterCode");
+    private static final By RELATION_DEGREE_LIST = By.cssSelector(".col-4 div.select");
+    private static final By RELATION_DEGREE_VALUE = By.cssSelector("ul.select-options li[rel='SPOS']");
+    private static final By INVITED_IIN = By.id("inputInviteIIN");
+    private static final By INVITED_ALTERNATIVE_CODE = By.id("inputInviteAlterCode");
     public static final By INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION = By.cssSelector("label#modalNotificationBody");
-    private static final By  ADD_MEMBER_BUTTON = By.id("btnAddMember");
+    private static final By ADD_MEMBER_BUTTON = By.id("btnAddMember");
     public static final By ADDED_FAMILY_MEMBER_FIO = By.xpath("//div[@class='family-members'][2] //div[@class='col-sm-4'] /h6");
-    private static final By  CANCEL_INVITE_ICON = By.id("cancelInvite");//?
-    private static final By  CONFIRM_CANCEL_INVITE_BUTTON = By.xpath("//button[@id='btnCancelInvite'][2]");
-    public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.cssSelector("[@data-target='#modalDisbandFP']");//?
+    private static final By CANCEL_INVITE_ICON = By.id("cancelInvite");//?
+    private static final By CONFIRM_CANCEL_INVITE_BUTTON = By.xpath("//button[@id='btnCancelInvite'][2]");
+    public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.cssSelector("[data-target='#modalDisbandFP']");//?
     private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
     private static final By DEPOSIT_DIVISION_OPERATION = By.xpath(" //div[@class='operTxt' and text()='Деление депозита']");
     private static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");

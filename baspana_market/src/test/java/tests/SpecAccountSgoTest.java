@@ -153,7 +153,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToPaymentWithRedemption () {
+    public void transferToPaymentWithRedemption_fl_withoutContract () {
         step("Авторизация", () -> {
             loginSteps.auth("77022636672", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -207,7 +207,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация ИИН")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToPaymentWithRedemption_validationIin () {
+    public void transferToPaymentWithRedemption_validateIin () {
         step("Авторизация", () -> {
             loginSteps.auth("77022636672", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -251,11 +251,70 @@ public class SpecAccountSgoTest extends BaseTest {
         );
     }
 
+
+
+    //not finished
+    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ)=>c номером договора", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешный перевод")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToPaymentWithRedemption_ul_withContract () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77022636672", config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSgoSteps.selectTransferToPaymentWithRedemptionOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectRERecipientType();
+            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
+            specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
+            specAccountSteps.inputSumToTransfer_forIndividual("55");
+            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.confirmTransferOnModal();
+            specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
+        });
+        Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
+    }
+
+    //not finished
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ)=>без номера договора", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешный перевод")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToPaymentWithRedemption_ul_withoutContract () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77022636672", config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSgoSteps.selectTransferToPaymentWithRedemptionOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectRERecipientType();
+            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
+            specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
+            specAccountSteps.inputSumToTransfer_forIndividual("77");
+            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
+
+        });
+        Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
+    }
+
+
     @Test(description = "Оплата аренды с последующим выкупом(ЮЛ) => валидация БИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация IBAN отбасы")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToPaymentWithRedemption_validationBin () {
+    public void transferToPaymentWithRedemption_validateBin () {
         step("Авторизация", () -> {
             loginSteps.auth("77022636672", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -274,8 +333,4 @@ public class SpecAccountSgoTest extends BaseTest {
                 "Ошибка при получении информации об организации по БИН"
         );
     }
-
-
-
-
 }

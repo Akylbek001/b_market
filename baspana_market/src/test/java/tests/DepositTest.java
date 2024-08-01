@@ -42,8 +42,8 @@ public class DepositTest extends BaseTest {
             depositSteps.openBaspanaDeposit();
         });
         step("Подтвердить открытие депозита", () -> {
-//            depositSteps.clearField();
-//            depositSteps.agreedSum(config.priceFrom());
+            depositSteps.clearField();
+            depositSteps.agreedSum(config.priceFrom());
             depositSteps.confirmBySms(777777);
             Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
         });
@@ -495,9 +495,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void disbandFamilyPackage() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77770366767", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
