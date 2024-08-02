@@ -25,13 +25,6 @@ public class LoansPage extends BasePage {
     private static final By FULL_EARLY_REPAYMENT_OTP = By.cssSelector(".OtpBlocks--inputs");
     private static final By OTP_BUTTON = By.id("otp-button");
 
-
-
-
-
-
-
-
     public static final By INTENDED_USE_OF_LOAN_NOTIFICATION = By.id("changePaymentDayModalBody");
 
     public static final By CHANGING_PAYMENT_DATE_NOTIFICATION = By.id("changePaymentDayModalBody");
@@ -47,11 +40,6 @@ public class LoansPage extends BasePage {
     private static final By REGION = By.id("selectRegion");
     private static final By START_EXCEPTION_BUTTON = By.cssSelector("#TheStepsId button");
     private static final By REQUEST_FAMILY_INFO_BUTTON = By.cssSelector(".FamilyInfoBlock.GreyBackgroundBlocks button");
-
-
-
-
-
 
 
     private static final By SIGN_SCHEDULE = By.cssSelector("[data-target='#ModalToSendApplication']");
@@ -76,9 +64,6 @@ public class LoansPage extends BasePage {
     public static final By INSURANCE_OTP_INPUT = By.id("smsVerificationCodeInput");
     public static final By OTP_VERIFICATION_BUTTON = By.id("smsVerificationBtn");
     public static final By NEXT_TO_APPLICATION_BUTTON = By.id("nextToApplication");
-
-
-
 
 
     private static final By PARTIAL_REPAYMENT_SUM = By.cssSelector(".InputBlocks input");

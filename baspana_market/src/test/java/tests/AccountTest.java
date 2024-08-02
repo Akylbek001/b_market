@@ -43,7 +43,7 @@ public class AccountTest extends BaseTest {
             accountSteps.finishOpenCurrentAccount();
         });
         Assert.assertEquals(
-                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_SUCCESSFULLY_TEXT,
+                CharacterSetConstants.OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION,
                 elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
         );
     }
@@ -109,7 +109,7 @@ public class AccountTest extends BaseTest {
             accountSteps.openAccountForEpvSignAndConfirm(config.smsCode());
         });
         Assert.assertEquals(
-                CharacterSetConstants.CURRENT_ACCOUNT_OPEN_SUCCESSFULLY_TEXT,
+                CharacterSetConstants.OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION,
                 elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
         );
     }

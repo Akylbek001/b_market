@@ -22,7 +22,7 @@ public class DiplomaToVillageTest extends BaseTest {
     }
 
     //нет тестовых данных цифрового УД и диплома
-    @Test(description = "Подать заявку", groups = {"automated"}, enabled = false)
+    @Test(description = "Подать заявку", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Подать заявку")
     @Severity(SeverityLevel.NORMAL)
@@ -49,7 +49,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validationAkimat () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
@@ -84,8 +84,17 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void cancelRequest () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
+        });
+        step("Подать заявку", () -> {
+            diplomaToVillageSteps.applyRequestSelectRegion();
+            diplomaToVillageSteps.applyRequestSelectRequestType();
+            diplomaToVillageSteps.applyRequestConfirm();
+            diplomaToVillageSteps.applyRequestContinue();
+            diplomaToVillageSteps.getPassport("passportDigitalCode");
+            diplomaToVillageSteps.getDiploma("diplomaDigitalCode");
+            diplomaToVillageSteps.fillWorkData("location", "place", "position", config.smsCode());
         });
         step("Аннулировать заявку", () -> {
             diplomaToVillageSteps.cancelRequest();

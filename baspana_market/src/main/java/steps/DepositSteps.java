@@ -42,11 +42,11 @@ public class DepositSteps {
                 .inputAgreedSum(sum);
     }
 
-    public void confirmBySms(Integer smsCode) {
+    public void confirmBySms(String smsCode) {
         depositPage
 //                .selectDepositTerm()
                 .clickConfirm()
-                .inputSmsCode(smsCode.toString())
+                .inputSmsCode(smsCode)
                 .clickSend();
     }
 
@@ -67,18 +67,19 @@ public class DepositSteps {
     public void changeGosPrem(String otp) {
         depositPage
                 .selectChangeGosPremOperation()
-                .selectFirstDeposit()
+                ._selectSecondDeposit()
                 .clickSelectButton()
                 .clickGosPremAgreement()
                 .clickSelectButton()
                 .inputSmsCode(otp)
-                .clickOtpConfirmButton();
+//                .clickOtpConfirmButton();
+                .clickSelectButton();
     }
 
     public void changeGosPrem_validation() {
         depositPage
                 .selectChangeGosPremOperation()
-                .selectFirstDeposit()
+                ._selectFirstDeposit()
                 .clickSelectButton();
     }
 
@@ -153,7 +154,34 @@ public class DepositSteps {
                 .selectUniteDepositOperation();
     }
 
-    public void selectAssignmentGratuitousOperation(String iin, String otp) {
+    public void uniteDeposits(String otp) {
+        depositPage
+                .selectFirstDepositToUnite()
+                .selectSecondDepositToUnite()
+                .clickConfirmSelectedDepositsButton()
+                .clickUniteDepositsConfirmButton()
+                .inputOtp(otp)
+                .clickUniteDepositsContinueButton()
+                .selectDepositForGosPrem()
+                .clickConfirmSelection();
+    }
+
+    public void depositPolling_otpValidation(String otp) {
+        depositPage
+                .selectFirstDepositToUnite()
+                .selectSecondDepositToUnite()
+                .clickConfirmSelectedDepositsButton()
+                .clickUniteDepositsConfirmButton()
+                .inputOtp(otp)
+                .clickUniteDepositsContinueButton();
+    }
+
+    public void selectAssignmentGratuitousOperation() {
+        depositPage
+                .selectAssignmentGratuitousOperation();
+    }
+
+    public void assignmentGratuitousOperation(String iin, String otp) {
         depositPage
                 .selectAssignmentGratuitousOperation()
                 .clickAssignmentGratuitousContinueButton()

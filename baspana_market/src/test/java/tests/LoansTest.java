@@ -136,7 +136,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void selectSwitchingToHomeLoan_validateAccount() {
         step("Авторизация -> Запись в отдление", () -> {
-            loginSteps.auth("77016677419", "12345test");
+            loginSteps.auth("77772911272 ", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {

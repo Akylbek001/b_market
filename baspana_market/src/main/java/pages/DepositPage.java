@@ -1,5 +1,6 @@
 package pages;
 
+import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -31,8 +32,9 @@ public class DepositPage extends BasePage {
     public static final By SUCCESS = By.cssSelector("#NextSteps p");
     private static final By SMS_CODE = By.id("CodeSmsId");
     private static final By SEND = By.id("EndsSteps");
-    private static final By FIRST_DEPOSIT = By.cssSelector(".DepositBlock--background.OpenDepositsStepsEnds button");
-    private static final By SECOND_DEPOSIT = By.cssSelector("//div[@class='slick-track']/label[2]");
+    private static final By FIRST_DEPOSIT = By.cssSelector(".ob-deposit.depositCover.backgroundCover2.slick-slide.slick-current.slick-active");
+    private static final By SECOND_DEPOSIT = By.cssSelector("label[aria-describedby='slick-slide01']");
+
 
     public static final By DEPOSIT_CREATED_DATE = By.cssSelector(".titlel");
     private static final By SHOW_DEPOSIT_DETAILS = By.id("text");
@@ -40,7 +42,9 @@ public class DepositPage extends BasePage {
 
     private static final By AVAILABLE_OPERATIONS_WITH_DEPOSIT = By.id("checBlock");
     private static final By CHANGE_GOS_PREM_OPERATION = By.id("changeGosPremButton");
-    private static final By SELECT_SECOND_DEPOSIT = By.cssSelector(".card-item.deposit-item.active");
+    private static final By SELECT_SECOND_DEPOSIT = By.cssSelector("[gos-prem-flag='False']");
+    private static final By SELECT_FIRST_DEPOSIT = By.cssSelector("[gos-prem-flag='True']");
+
     private static final By GOS_PREM_AGREEMENT = By.cssSelector("#modal-body-gos-prem [for='AgreeWithAgreement']");
     public static final By FINAL_TEXT = By.cssSelector(".finalTxt");
 
@@ -82,12 +86,28 @@ public class DepositPage extends BasePage {
     public static final By DIVIDE_SAVING_AMOUNT_VALIDATION = By.id("diffinfoHTML");
     public static final By DIVIDE_DEPOSIT_ACCEPTED = By.cssSelector(".h5_22");//?
     private static final By UNITE_DEPOSIT_OPERATION = By.id("UniteDepositsButton");
+    private static final By FIRST_DEPOSIT_TO_UNITE = By.xpath("//div[@class='DepositsChangeBlocks--items'] /div[1]");
+    private static final By SECOND_DEPOSIT_TO_UNITE = By.xpath("//div[@class='DepositsChangeBlocks--items'] /div[2]");
+    private static final By CONFIRM_SELECTED_DEPOSITS_BUTTON = By.cssSelector(".ChangeDepositsValidations");
+    private static final By UNITE_DEPOSIT_CONFIRM_BUTTON = By.cssSelector(".ConfirmationSteps");
+    private static final By OPT_INPUT = By.cssSelector(".input_code input.code");
+    private static final By UNITE_DEPOSIT_CONTINUE_BUTTON = By.cssSelector(".continue-button button");
+    private static final By DEPOSIT_FOR_GOS_PREM = By.cssSelector("div.RadioBackgroundBlocks");
+    private static final By DEPOSIT_FOR_GOS_PREM_CONFIRM_BUTTON = By.cssSelector(".Confirm-My-Bank.BackgroundBlock button");
+    public static final By OPERATION_FINISHED_SUCCESSFULLY = By.cssSelector(".UnionDepositsBody h3");
+    public static final By INVALID_OTP = By.cssSelector(".AttentionToBlockOfErrors > p");
+    public static final By ASSIGNMENT_GRATUITOUS_AMOUNT_VALIDATION = By.cssSelector("span#errorCheckCessioner");
+
+
+
     public static final By ASSIGNMENT_GRATUITOUS = By.cssSelector(".operBtn.deposit-relatives-cession");
     public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON = By.cssSelector(".right_button button");
     private static final By ASSIGNMENT_GRATUITOUS_RELATION_DEGREE = By.id("selectKinship");
     private static final By USER_IIN = By.id("iin-input");
     public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_ = By.cssSelector(".right_button.ob-mt-20px.web-block button");
     private static final By CONFIRM_SMS_BUTTON = By.id("continue-sms-cession");
+//    public static final By PROHIBITION_OF_OPEN_ACCOUNT = By.cssSelector(".accentXS");
+    public static final By PROHIBITION_OF_OPEN_ACCOUNT = By.xpath("//div[@id='arrestsDiv'] /div[@class='arrestDiv'][2] //span[@class='accentXS']");
 
 
     public DepositPage(WebDriver driver) {
@@ -133,6 +153,13 @@ public class DepositPage extends BasePage {
     @Step("Click select button")
     public DepositPage clickSelectButton() {
         button.btnClick(SELECT);
+        WaitUtils.wait(5);
+        return this;
+    }
+
+    @Step("Select first deposit")
+    public DepositPage _selectFirstDeposit() {
+        button.btnClick(SELECT_FIRST_DEPOSIT);
         return this;
     }
 
@@ -322,6 +349,65 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Select first deposit to unite")
+    public DepositPage selectFirstDepositToUnite() {
+        button.btnClick(FIRST_DEPOSIT_TO_UNITE);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select second deposit to unite")
+    public DepositPage selectSecondDepositToUnite() {
+        button.btnClick(SECOND_DEPOSIT_TO_UNITE);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Click confirm selected deposits button")
+    public DepositPage clickConfirmSelectedDepositsButton() {
+        button.btnClick(CONFIRM_SELECTED_DEPOSITS_BUTTON);
+        elementsAttributes.waitUntilVisible(UNITE_DEPOSIT_CONFIRM_BUTTON);
+        return this;
+    }
+
+    @Step("Click unite deposit confirm button")
+    public DepositPage clickUniteDepositsConfirmButton() {
+        move.scrollToElement(UNITE_DEPOSIT_CONFIRM_BUTTON);
+        button.btnClick(UNITE_DEPOSIT_CONFIRM_BUTTON);
+        elementsAttributes.waitUntilVisible(OPT_INPUT);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input otp")
+    public DepositPage inputOtp(String otp) {
+        move.scrollToElement(OPT_INPUT);
+        input.inputWithClear(OPT_INPUT, otp);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Click unite deposit continue button")
+    public DepositPage clickUniteDepositsContinueButton() {
+        button.btnClick(UNITE_DEPOSIT_CONTINUE_BUTTON);
+        WaitUtils.wait(10);
+        return this;
+    }
+
+    @Step("Select deposit for gosPrem")
+    public DepositPage selectDepositForGosPrem() {
+        button.btnClick(DEPOSIT_FOR_GOS_PREM);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Click confirm selection deposit for gosPrem ")
+    public DepositPage clickConfirmSelection() {
+        button.btnClick(DEPOSIT_FOR_GOS_PREM_CONFIRM_BUTTON);
+        WaitUtils.wait(1);
+        return this;
+    }
+
     @Step("Select assignment gratuitous operation")
     public DepositPage selectAssignmentGratuitousOperation() {
         button.hoverAndClick(ASSIGNMENT_GRATUITOUS);
@@ -395,6 +481,7 @@ public class DepositPage extends BasePage {
     @Step("Click open deposit button")
     public DepositPage clickOpenDepositButton() {
         button.btnClick(OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON);
+        WaitUtils.wait(5);
         elementsAttributes.waitUntilVisible(AGREEMENT_CHECKBOX);
         return this;
     }
@@ -402,20 +489,22 @@ public class DepositPage extends BasePage {
     @Step("Agreement")
     public DepositPage clickAgreementCheckbox() {
         button.btnClick(AGREEMENT_CHECKBOX);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Click continue")
     public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
-        WaitUtils.wait(5);
+        WaitUtils.wait(30);
+//        elementsAttributes.waitUntilVisible(CONFIRM);
         return this;
     }
 
     @Step("Clear agreed sum input fields")
     public DepositPage clearInputField() {
         input.cleanField(AGREED_SUM);
-        WaitUtils.wait(3);
+        WaitUtils.wait(30);
         return this;
     }
 
@@ -441,6 +530,7 @@ public class DepositPage extends BasePage {
 
     @Step("Input iin")
     public DepositPage inputSmsCode(String smsCode) {
+        WaitUtils.wait(8);
         input.inputWithClear(SMS_CODE, smsCode);
         return this;
     }
@@ -448,7 +538,7 @@ public class DepositPage extends BasePage {
     @Step("Click send")
     public DepositPage clickSend() {
         button.btnClick(SEND);
-        elementsAttributes.waitUntilVisible(DEPOSIT_CREATED_DATE);
+        elementsAttributes.waitUntilVisible(SUCCESS);
         return this;
     }
 
@@ -460,6 +550,7 @@ public class DepositPage extends BasePage {
 
     @Step("Select second deposit")
     public DepositPage selectSecondDeposit() {
+        WaitUtils.wait(8);
         button.btnClick(SECOND_DEPOSIT);
         return this;
     }

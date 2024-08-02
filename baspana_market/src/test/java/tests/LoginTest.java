@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest {
         step("Ввести авторизационные данные", () -> {
             loginSteps.login(config.clientLogin(), config.clientPassword());
         });
-        Assert.assertEquals(CharacterSetConstants.CLIENT_NAME, elementsAttributes.getValue(PROFILE_NAME));
+        Assert.assertEquals(elementsAttributes.getValue(PROFILE_NAME), CharacterSetConstants.CLIENT_NAME);
     }
 
     @Test(description="Авторизация клиента => Не корректный логин {номер телефона}", groups = {"automated"})

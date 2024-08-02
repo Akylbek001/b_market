@@ -8,7 +8,7 @@ public final class CharacterSetConstants {
     public static final String SPEC_CHARS = ",./?'|][{}()-_=+*&^:;#@$%\"";
     public static final String ALL_CHARS = ENGLISH_ALPHABET + NUMERIC + SPEC_CHARS;
     public static final String ALL_CHARS_AND_RUSSIAN = ENGLISH_ALPHABET + NUMERIC + SPEC_CHARS+RUSSIAN_ALPHABET;
-    public static final String CLIENT_NAME = "NurLeo";
+    public static final String CLIENT_NAME = "NurRaul";
     public static final String GUEST_NAME = "Alibek";
 
     public static final String INVALID_CLIENT_NAME_OR_PASSWORD = "Указанные имя пользователя или пароль не верны.";
@@ -69,7 +69,7 @@ public final class CharacterSetConstants {
     public static final String INVALID_IBAN = "Вы ввели некорректный IBAN счет!";
     public static final String INSUFFICIENT_FUNDS_FOR_TRANSFER = "Недостаточно средств для перевода";
 
-    public static final String CURRENT_ACCOUNT_OPEN_SUCCESSFULLY_TEXT ="Операция успешно завершена";
+    public static final String OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION ="Операция успешно завершена";
     public static final String OPEN_DEPOSIT_REFUSED = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
     public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Уважаемый клиент! Введенный Вами альтернативный код некорректный, просим проверить данные.";
     public static final String VALIDATION_OF_REGISTRATION = "Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Интернет банкинге/мобильном приложений, необходимо проверить наличие регистрации.";
@@ -86,6 +86,8 @@ public final class CharacterSetConstants {
     public static final String DEPOSIT_DIVISION_ACCEPTED = "Ваша заявка на деление депозита принята";
     public static final String DEPOSIT_DIVISION_NEED_TO_OPEN_ACCOUNT_VALIDATION = "Для деления депозита Вам необходимо открыть текущий счет. Поскольку на этот счет будет произведен перевод денежных средств с делимого депозита";
     public static final String DEPOSIT_DIVISION_SAVING_AMOUNT_VALIDATION = "Уважаемый клиент! Минимальная сумма накопления должна быть больше 50 МРП";
+    public static final String DEPOSIT_DIVISION_NEGOTIATION_AMOUNT = "Уважаемый клиент! Для продолжения операции необходимо изменить условия договорной суммы минимум 1000 МРП";
+    public static final String ASSIGNMENT_GRATUITOUS_SAVING_AMOUNT_VALIDATION = "Сумма накоплений депозита должна превышать 50 МРП";
 
     public static final String ONLY_ONE_DEPOSIT = "У вас недостаточное количество депозитов для совершения операции объединения";
     public static final String DEPOSIT_AMOUNT_MUST_BE_BETWEEN = "Договорная сумма должна быть между: 1846000,0₸ - 195154000,0₸";
