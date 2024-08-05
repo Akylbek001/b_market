@@ -43,13 +43,13 @@ public class AppointmentToDepartmentTest extends BaseTest {
         );
     }
 
-    @Test(description="Запись в отделение", groups = {"automated"}, enabled = false)
+    @Test(description="Запись в отделение", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Запись в отделение")
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_byCancelModal () {
         step("Авторизация", () -> {
-            loginSteps.auth("77016677419", config.clientPassword());
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {

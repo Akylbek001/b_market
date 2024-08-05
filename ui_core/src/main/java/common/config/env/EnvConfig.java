@@ -26,6 +26,12 @@ public interface EnvConfig extends Config{
     @Key("contacts.path")
     String contactsPath();
 
+    @Key("happyFamilyMortgage.path")
+    String happyFamilyMortgagePath();
+
+    @Key("new.buildings")
+    String newBuildings();
+
     @Key("faq.url")
     String faqUrl();
 

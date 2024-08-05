@@ -233,7 +233,6 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputBin_validation(config.clientIin());
-
         });
         Assert.assertEquals(elementsAttributes.getAttrInnerText(BIN_ERROR),
                 "Ошибка при получении информации об организации по БИН"

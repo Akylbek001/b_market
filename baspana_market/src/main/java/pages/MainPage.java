@@ -12,6 +12,11 @@ public class MainPage extends BasePage {
     private static final By CLIENT_PROFILE_NAME = By.id("ClientName");
     private static final By READ_BUTTON = By.cssSelector("[onclick=\"window.location.href = '/news-ads/ads'\"]");
     private static final By CALCULATE_BUTTON = By.cssSelector("[onclick=\"window.location.href = '/OnlineMortgage/IpotekaCalculate'\"]");
+    private static final By NAURIZ_MORTGAGE_MORTGAGE_PROGRAM = By.cssSelector("[href='/Nauriz'] .qamqor_button");
+    private static final By HAPPY_FAMILY_MORTGAGE_PROGRAM = By.id("EtspId");
+    private static final By ALL_NEW_BUILDINGS_BUTTON = By.cssSelector("#div_DirectSale .slider_box-titles--button");
+    private static final By ALL_SECONDARY_HOUSING_BUTTON = By.cssSelector("#div_SecondHouses .slider_box-titles--button");
+    private static final By ALL_STATE_PROGRAMS_BUTTON = By.cssSelector("#div_StatePrograms .slider_box-titles--button");
     private static final By REALITY_TYPE_TAB = By.id("RealtyType");
     private static final By REGION_LIST = By.id("regionSelect");
     private static final By REDEMPTION_TYPE = By.id("RedemptionMethod");
@@ -180,6 +185,42 @@ public class MainPage extends BasePage {
         button.btnClick(CALCULATE_BUTTON);
         return this;
     }
+
+    @Step("Click nauriz mortgage info button")
+    public MainPage clickNaurizMortgage() {
+        move.scrollToElement(NAURIZ_MORTGAGE_MORTGAGE_PROGRAM);
+        button.btnClick(NAURIZ_MORTGAGE_MORTGAGE_PROGRAM);
+        return this;
+    }
+
+    @Step("Click happy family mortgage info button")
+    public MainPage clickHappyFamilyMortgage() {
+        move.scrollToElement(HAPPY_FAMILY_MORTGAGE_PROGRAM);
+        button.btnClick(HAPPY_FAMILY_MORTGAGE_PROGRAM);
+        return this;
+    }
+
+    @Step("Click show all new buildings button")
+    public MainPage clickShowAllNewBuildingsButton() {
+        move.scrollToElement(ALL_NEW_BUILDINGS_BUTTON);
+        button.btnClick(ALL_NEW_BUILDINGS_BUTTON);
+        return this;
+    }
+
+    @Step("Click show all secondary housing button")
+    public MainPage clickShowAllSecondaryHousingButton() {
+        move.scrollToElement(ALL_SECONDARY_HOUSING_BUTTON);
+        button.btnClick(ALL_SECONDARY_HOUSING_BUTTON);
+        return this;
+    }
+
+    @Step("Click show all state programs button")
+    public MainPage clickShowAllStateProgramsButton() {
+        move.scrollToElement(ALL_STATE_PROGRAMS_BUTTON);
+        button.btnClick(ALL_STATE_PROGRAMS_BUTTON);
+        return this;
+    }
+
 
     @Step("Click reality tab")
     public MainPage clickRealityTab() {

@@ -147,4 +147,64 @@ public class MainTest extends BaseTest {
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.authPath()));
     }
+
+    @Test(description="Ипотека Наурвз", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Посмотреть информацию про программу Наурыз")
+    @Severity(SeverityLevel.MINOR)
+    public void navigateToNaurizMortgageProgram() {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
+        });
+        step("Навигация на страницу новости Baspana", () -> {
+            mainSteps.clickNaurizMortgage();
+        });
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Nauriz"));
+    }
+
+    @Test(description="Ипотека Бакытты Отбасы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Посмотреть информацию про программу Бакытты Отбасы")
+    @Severity(SeverityLevel.MINOR)
+    public void navigateToHappyFamilyMortgageProgram() {
+        step("Навигация на страницу новости Baspana", () -> {
+            mainSteps.clickHappyFamilyMortgage();
+        });
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.happyFamilyMortgagePath()));
+    }
+
+    @Test(description="Посмотреть все гос.программы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Посмотреть все гос.программы")
+    @Severity(SeverityLevel.MINOR)
+    public void navigateToAllGosPrograms() {
+        step("Навигация на страницу гос.программ", () -> {
+            mainSteps.clickShowAllStateProgramsButton();
+        });
+        Assert.assertEquals(
+                brManager.getCurrUrl().substring(0, 72),
+                envConfig.baseUrl().concat("pool/search?newOrSecond=new&realizeTypeNurlyZher"));
+    }
+
+    @Test(description="Посмотреть все новостройки", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Посмотреть все новостройки")
+    @Severity(SeverityLevel.MINOR)
+    public void navigateToAllNewBuildingsList() {
+        step("Навигация на страницу новостроек", () -> {
+            mainSteps.clickShowAllNewBuildingsButton();
+        });
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.newBuildings()));
+    }
+
+    @Test(description="Посмотреть все вторичое жилье", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Посмотреть все вторичое жилье")
+    @Severity(SeverityLevel.MINOR)
+    public void navigateToAllSecondaryHousing() {
+        step("Навигация на страницу вторичного жилья", () -> {
+            mainSteps.clickShowAllSecondaryHousingButton();
+        });
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("pool/search?neworsecond=second"));
+    }
 }

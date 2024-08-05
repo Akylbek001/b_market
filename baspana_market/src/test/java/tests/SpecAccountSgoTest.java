@@ -198,7 +198,6 @@ public class SpecAccountSgoTest extends BaseTest {
             specAccountSteps.inputSumToTransfer_forIndividual("77");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
-
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
@@ -251,8 +250,6 @@ public class SpecAccountSgoTest extends BaseTest {
         );
     }
 
-
-
     //not finished
     @Test(description = "Оплата аренды с последующим выкупом(ЮЛ)=>c номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -304,7 +301,6 @@ public class SpecAccountSgoTest extends BaseTest {
             specAccountSteps.inputSumToTransfer_forIndividual("77");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
-
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }

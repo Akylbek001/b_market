@@ -30,6 +30,31 @@ public class MainSteps {
                 .clickCalculateButton();
     }
 
+    public void clickNaurizMortgage() {
+        mainPage
+                .clickNaurizMortgage();
+    }
+
+    public void clickHappyFamilyMortgage() {
+        mainPage
+                .clickHappyFamilyMortgage();
+    }
+
+    public void clickShowAllNewBuildingsButton() {
+        mainPage
+                .clickShowAllNewBuildingsButton();
+    }
+
+    public void clickShowAllSecondaryHousingButton() {
+        mainPage
+                .clickShowAllSecondaryHousingButton();
+    }
+
+    public void clickShowAllStateProgramsButton() {
+        mainPage
+                .clickShowAllStateProgramsButton();
+    }
+
     public void checkSaldo(String amount) {
         mainPage
                 .inputDesireAmount(amount)
