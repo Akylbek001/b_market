@@ -93,7 +93,7 @@ public class BrowserManager {
         drManager.getDriver().switchTo().newWindow(WindowType.TAB);
         drManager.getDriver().get("chrome://settings/clearBrowserData");
         WaitUtils.wait(1);
-        WebElement clearData =  (WebElement) drManager.getJs().executeScript("return document.querySelector(\"body > settings-ui\").shadowRoot.querySelector(\"#main\").shadowRoot.querySelector(\"settings-basic-page\").shadowRoot.querySelector(\"#basicPage > settings-section[section='privacy'] > settings-privacy-page\").shadowRoot.querySelector(\"settings-clear-browsing-data-dialog\").shadowRoot.querySelector(\"#clearBrowsingDataConfirm\")");
+        WebElement clearData =  (WebElement) drManager.getJs().executeScript("return document.querySelector(\"body > settings-ui\").shadowRoot.querySelector(\"#main\").shadowRoot.querySelector(\"settings-basic-page\").shadowRoot.querySelector(\"#basicPage > settings-section[section='privacy'] > settings-privacy-page\").shadowRoot.querySelector(\"settings-clear-browsing-data-dialog\").shadowRoot.querySelector(\"#clearButton\")");
         drManager.getJs().executeScript("arguments[0].click();", clearData);
         WaitUtils.wait(1);
         drManager.getDriver().close();
