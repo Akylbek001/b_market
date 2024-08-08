@@ -57,13 +57,77 @@ public class LoansTest extends BaseTest {
         });
     }
 
+    @Test(description="Полное досрочное погашение(с расторжением депозита) => Валидация недостаточной суммы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Полное досрочное погашение")
+    @Severity(SeverityLevel.NORMAL)
+    public void fullEarlyRepayment_withTerminateDeposit_validateNotEnoughFund () {
+        step("Авторизация -> Запись в отдление", () -> {
+            loginSteps.auth("77076769290", "12345test");
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.fullEarlyRepaymentOperation();
+            loansSteps.selectFullRepaymentWithDepositTermination();
+            String s1 = elementsAttributes.getValue(DEPOSIT_TERMINATION_SUM);
+            String s2 = elementsAttributes.getValue(CURRENT_ACCOUNT_SUM);
+            String s3 = elementsAttributes.getValue(SUM_DIFF);
+            double f1 = Double.parseDouble(s1.replaceAll(
+                    "[^0-9?!\\,]","").replace(",", ".")
+            );
+            double f2 = Double.parseDouble(s2.replaceAll(
+                    "[^0-9?!\\,]","").replace(",", ".")
+            );
+            double f3 = Double.parseDouble(s3.replaceAll(
+                    "[^0-9?!\\,]","").replace(",", ".")
+            );
+            if (f1 - f2 > f3) {
+                Assert.assertTrue(elementsAttributes.getValue(SUM_DIFF).contains("Средств недостаточно: " + f3));
+            }
+        });
+    }
+
+    @Test(description="Полное досрочное погашение(без расторжением депозита) => Валидация недостаточной суммы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Полное досрочное погашение")
+    @Severity(SeverityLevel.NORMAL)
+    public void fullEarlyRepayment_withoutTerminateDeposit_validateNotEnoughFund () {
+        step("Авторизация -> Запись в отдление", () -> {
+            loginSteps.auth("77076769290", "12345test");
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.fullEarlyRepaymentOperation();
+            loansSteps.selectFullRepaymentWithDepositTermination();
+            String s1 = elementsAttributes.getValue(DEPOSIT_TERMINATION_SUM);
+            String s2 = elementsAttributes.getValue(CURRENT_ACCOUNT_SUM);
+            String s3 = elementsAttributes.getValue(SUM_DIFF);
+            double f1 = Double.parseDouble(s1.replaceAll(
+                    "[^0-9?!\\,]","").replace(",", ".")
+            );
+            double f2 = Double.parseDouble(s2.replaceAll(
+                    "[^0-9?!\\,]","").replace(",", ".")
+            );
+            double f3 = Double.parseDouble(s3.replaceAll(
+                    "[^0-9?!\\,]","").replace(",", ".")
+            );
+            if (f1 - f2 > f3) {
+                Assert.assertTrue(elementsAttributes.getValue(SUM_DIFF).contains("Средств недостаточно: " + f3));
+            }
+        });
+    }
+
     @Test(description="Частичное досрочное погашение", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepayment () {
         step("Авторизация -> Запись в отдление", () -> {
-            loginSteps.auth(config.loanClient_login(), config.loanClient_password());
+            loginSteps.auth("77773192656", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -226,7 +290,7 @@ public class LoansTest extends BaseTest {
         Assert.assertTrue(false);
     }
 
-    @Test(description="Замена залога", groups = {"automated"})
+    @Test(description="Замена залога => Валидация регистрации", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Замена залога")
     @Severity(SeverityLevel.NORMAL)

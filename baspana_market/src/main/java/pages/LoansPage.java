@@ -24,6 +24,10 @@ public class LoansPage extends BasePage {
     private static final By SIGN_FULL_EARLY_REPAYMENT_BUTTON = By.cssSelector("[data-target='#ModalToSend']");
     private static final By FULL_EARLY_REPAYMENT_OTP = By.cssSelector(".OtpBlocks--inputs");
     private static final By OTP_BUTTON = By.id("otp-button");
+    public static final By DEPOSIT_TERMINATION_SUM = By.id("deposit-termination-sum");
+    public static final By CURRENT_ACCOUNT_SUM = By.id("CurrentAccount");
+    public static final By SUM_DIFF = By.id("errorMessage");
+
 
     public static final By INTENDED_USE_OF_LOAN_NOTIFICATION = By.id("changePaymentDayModalBody");
 
@@ -94,6 +98,7 @@ public class LoansPage extends BasePage {
     @Step("Select partial early repayment operation")
     public LoansPage selectPartialEarlyRepaymentOperation() {
         button.btnClick(PARTIAL_EARLY_REPAYMENT_OPERATION);
+        elementsAttributes.waitUntilVisible(PARTIAL_REPAYMENT_SUM);
         WaitUtils.wait(1);
         return this;
     }
@@ -167,8 +172,6 @@ public class LoansPage extends BasePage {
         button.btnClick(OTP_BUTTON);
         return this;
     }
-
-
 
 
 

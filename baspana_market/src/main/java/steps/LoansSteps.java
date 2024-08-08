@@ -3,6 +3,8 @@ package steps;
 import org.openqa.selenium.WebDriver;
 import pages.LoansPage;
 
+import static pages.LoansPage.DEPOSIT_TERMINATION_SUM;
+
 public class LoansSteps {
 
     private final LoansPage loansPage;
@@ -85,10 +87,11 @@ public class LoansSteps {
 
     public void partialEarlyRepayment(String sum) {
         loansPage
-                .clickContinueButton()
-                .clickAgreementCheckbox()
-                .clickValidationButton()
+//                .clickContinueButton()
+//                .clickAgreementCheckbox()
+//                .clickValidationButton()
                 .inputSum(sum)
+                .clickContinueButton()
                 .clickSendButton()
                 .clickSignButton()
                 .inputSum(sum)
