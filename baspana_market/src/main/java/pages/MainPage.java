@@ -20,12 +20,17 @@ public class MainPage extends BasePage {
     private static final By REALITY_TYPE_TAB = By.id("RealtyType");
     private static final By REGION_LIST = By.id("regionSelect");
     private static final By REDEMPTION_TYPE = By.id("RedemptionMethod");
-    private static final By DESIRE_AMOUNT_INPUT = By.id("DesiredAmount");
+    private static final By DESIRE_AMOUNT_INPUT = By.id("DesiredAmountDisplay");
     public static final By SALDO = By.id("Saldo");
     private static final By SPOUSE_TYPE = By.id("SpouseType");
     private static final By NUMBER_OFF_FAMILY = By.id("NumberOfFamily");
-    private static final By INCOMES = By.id("ClientIncomes");
-    private static final By COSTS = By.id("ClientCosts");
+    private static final By INCOMES = By.id("ClientIncomesDisplay");
+    private static final By COSTS = By.id("ClientCostsDisplay");
+    private static final By CALCULATE_BUTTON_ = By.cssSelector("[value='Submit']");
+    public static final By NOTIFICATION = By.cssSelector(".scroller h3");
+
+
+
     private static final By POST_AD_BUTTON = By.cssSelector(".glow-on-hoverz");
     private static final By ROOM = By.cssSelector("[for='RoomsCount1']");
     private static final By TOTAL_AREA = By.cssSelector(".square-items.square-items--f.decimal");
@@ -43,7 +48,7 @@ public class MainPage extends BasePage {
     public static final By STATUS_OF_AD = By.cssSelector(".house-card-footer--t");
     private static final By REMOVE_AD_BUTTON = By.cssSelector(".btn.u");
     private static final By REMOVE_CONFIRM_BUTTON = By.cssSelector("button.button--r");
-    private static final By POST_AD_BUTTON_FROM_MY_AD = By.cssSelector(".addstates");
+    private static final By POST_AD_BUTTON_FROM_MY_AD = By.cssSelector(".addstates input");
 
 
     public MainPage(WebDriver driver) {
@@ -66,6 +71,7 @@ public class MainPage extends BasePage {
     @Step("Click post ad button")
     public MainPage clickPostAdButton() {
         button.btnClick(POST_AD_BUTTON);
+        elementsAttributes.waitUntilVisible(ROOM);
         return this;
     }
 
@@ -167,6 +173,7 @@ public class MainPage extends BasePage {
 
     @Step("Click post ad button")
     public MainPage clickPostAdButton_fromMyAdBlock() {
+        move.scrollToElement(POST_AD_BUTTON_FROM_MY_AD);
         button.btnClick(POST_AD_BUTTON_FROM_MY_AD);
         return this;
     }
@@ -269,7 +276,14 @@ public class MainPage extends BasePage {
 
     @Step("Input costs")
     public MainPage inputCosts(String costs) {
+        move.scrollToElement(COSTS);
         input.inputWithClear(COSTS, costs);
+        return this;
+    }
+
+    @Step("Click calculate button ")
+    public MainPage clickRealityTabCalculateButton() {
+        button.btnClick(CALCULATE_BUTTON_);
         return this;
     }
 }

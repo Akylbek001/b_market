@@ -29,8 +29,8 @@ public class CertificatesPage extends BasePage {
     private static final By LANGUAGE = By.xpath("//div[@class='select-items'] /div[1]");
     private static final By FOR_ALL_PERIOD = By.cssSelector(".btn-onoff");
     private static final By PERIOD = By.id("calendar-range");
-    private static final By START_DATE = By.cssSelector("[aria-label='Июль 1, 2024']");
-    private static final By END_DATE = By.cssSelector("[aria-label='Июль 30, 2024']");
+    private static final By START_DATE = By.cssSelector("[aria-label='Август 1, 2024']");
+    private static final By END_DATE = By.cssSelector("[aria-label='Август 8, 2024']");
 
     private static final By GET_CERTIFICATE_BUTTON = By.xpath("//button[@class='btn-form_app']");
     public static final By CERTIFICATE_GENERATED_NOTIFICATION = By.xpath("//div[@id='GetToCertificateFinale'] //b");

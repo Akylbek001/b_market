@@ -76,6 +76,7 @@ public class FooterTest extends BaseTest {
         step("Навигация на страницу Программы", () -> {
             footerSteps.navigateToProgramsPage();
         });
+        brManager.switchToLastTab();
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.programsPath()));
     }
 

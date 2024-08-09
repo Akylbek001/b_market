@@ -30,6 +30,7 @@ public final class CharacterSetConstants {
     public static final String EMAIL_UPDATED_TEXT = "Ваш e-mail успешно обновлен";
     public static final String PASSWORD_UPDATED = "Ваш пароль успешно обновлен";
     public static final String NEW_PASSWORD_SAME_WITH_CURRENT = "Новый пароль совпадает с текущим";
+
     public static final String PASSWORD_CONFIRM_ERROR_TEXT = "Пароли не совпадают";
     public static final String PASSWORDS_MUST_NOT_BE_SAME = "Старый и новый пароль не должны совпадать";
     public static final String PASSWORDS_MUST_CONTAIN_AT_LEAST_ONE_NUMBER = "Пароль должен содержать хотябы одну цифру";

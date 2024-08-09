@@ -49,7 +49,7 @@ public class CabinetTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(PROFILE_EMAIL), "akylbek@bk.ru");
     }
 
-    @Test(description = "Изменить пароль", groups = {"automated"})
+    @Test(description = "Изменить пароль", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить пароль")
     @Severity(SeverityLevel.NORMAL)

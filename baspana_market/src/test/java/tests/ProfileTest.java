@@ -21,7 +21,7 @@ public class ProfileTest extends BaseTest {
         WaitUtils.wait(1);
 
         mainSteps.loginButton();
-        loginSteps.login(config.userLogin(), config.userPass());
+        loginSteps.login("77773811409", "AkylbekovA9#");
         brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
     }
 
@@ -96,7 +96,7 @@ public class ProfileTest extends BaseTest {
     public void changePassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.userPass(), config.userNewPassword(), config.userNewPassword()
+                    "AkylbekovA9@", "AkylbekovA9#", "AkylbekovA9#"
             );
             profileSteps.confirmPasswordChange();
         });
@@ -115,9 +115,9 @@ public class ProfileTest extends BaseTest {
     public void validateNewPasswordConfirmation() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.userPass(),
-                    config.userPass(),
-                    config.userPass().concat("@")
+                    "AkylbekovA9#",
+                    "AkylbekovA9#",
+                    "AkylbekovA9#".concat("@")
             );
         });
         Assert.assertEquals(
@@ -127,20 +127,23 @@ public class ProfileTest extends BaseTest {
     }
 
     //BUG - валидация срабатывает после биометрии, перенести на страницу подтверждения пароля
-    @Test(description="Изменить пароль => Валидация текущего пароля", groups = {"automated"}, enabled = false)
+    @Test(description="Изменить пароль => Валидация текущего пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация текущего пароля")
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    config.userPass(), config.userPass(), config.userPass()
+                    "AkylbekovA9#", "AkylbekovA9#", "AkylbekovA9#"
             );
             profileSteps.confirmPasswordChange();
         });
         step("Биометрия", () -> {
             generalSteps.acceptAgreement_startBiometry();
         });
+        System.out.println(drManager.getDriver().switchTo().alert().getText());
+        System.out.println(CharacterSetConstants.NEW_PASSWORD_SAME_WITH_CURRENT);
+
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
                 CharacterSetConstants.NEW_PASSWORD_SAME_WITH_CURRENT

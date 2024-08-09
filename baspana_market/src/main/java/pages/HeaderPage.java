@@ -30,7 +30,8 @@ public class HeaderPage extends BasePage {
 
     @Step("Click bank programs button")
     public HeaderPage clickBankProgramsButton() {
-        button.btnClick(BANK_PROGRAMS);
+        move.hoverOverElem(BANK_PROGRAMS);
+//        button.btnClick(BANK_PROGRAMS);
         return this;
     }
 

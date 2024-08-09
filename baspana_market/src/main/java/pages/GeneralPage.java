@@ -29,7 +29,7 @@ public class GeneralPage extends BasePage {
     @Step("Click start biometry button")
     public GeneralPage clickStartBiometryButton() {
         button.btnClick(START_BIOMETRY_BUTTON);
-//        WaitUtils.wait(2);
+        WaitUtils.wait(5);
         return this;
     }
 

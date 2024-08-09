@@ -17,6 +17,9 @@ public class LoginPage extends BasePage {
     private static final By USER_PASSWORD_LOCATOR = By.id("PasswordLogin");
     private static final By SUBMIT_BUTTON_LOCATOR = By.cssSelector(".baspanaBusiness.bbreverse");
     public static final By PROFILE_NAME = By.xpath("//div[@class='clientName'] /a");
+    public static final By PROFILE_ICON = By.cssSelector("[src='/Images-baspana/cab_icons.svg']");
+
+
     private static final By FORGET_PASSWORD_LOCATOR = By.id("forgetPass");
     private static final By DOCUMENT_DATA_LOCATOR = By.id("documentData");
     public static final By USER_NOT_FOUND = By.cssSelector("#resultForgetTxtResult #resultForgetTxt");

@@ -226,6 +226,7 @@ public class FeedbackPage extends BasePage {
 
     @Step("Click appeal type")
     public FeedbackPage clickAppealType() {
+        move.scrollToElement(APPEAL_TYPE_LIST);
         button.btnClick(APPEAL_TYPE_LIST);
         WaitUtils.wait(1);
         return this;

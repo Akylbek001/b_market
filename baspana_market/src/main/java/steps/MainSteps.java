@@ -69,7 +69,8 @@ public class MainSteps {
                 .selectSpouseType()
                 .inputNumberOfFamily(numberOfFamily)
                 .inputIncomes(incomes)
-                .inputCosts(costs);
+                .inputCosts(costs)
+                .clickRealityTabCalculateButton();
     }
 
     public void postAd(String area, String floor, String street, String house, String description, String price) {

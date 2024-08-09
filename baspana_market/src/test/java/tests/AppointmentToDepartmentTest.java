@@ -22,7 +22,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Запись в отделение", groups = {"automated"})
+    @Test(description="Запись в отделение =", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Запись в отделение")
     @Severity(SeverityLevel.NORMAL)

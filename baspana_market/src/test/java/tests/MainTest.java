@@ -47,7 +47,7 @@ public class MainTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     public void postAd_fromMyAdBlock() {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
         });
         step("Перейти в раздел <Мои объявления>", () -> {
             brManager.navigateTo(envConfig.baseUrl().concat("SecondHouse/MySecondHouses"));
@@ -180,10 +180,13 @@ public class MainTest extends BaseTest {
             mainSteps.fillMortgageForm(
                     config.mortgageAmount(),
                     "2",
-                    config.priceTo(),
-                    config.priceFrom()
+                    "800000",
+                    "300000"
             );
         });
+        Assert.assertEquals(
+                elementsAttributes.getValue(NOTIFICATION),
+                "Уважаемый клиент, к сожалению, Банк не может предоставить Вам займ на основании указанных данных.");
     }
 
     @Test(description="Калькулятор ипотеки. Проверить редирект в форму авторизации", groups = {"automated"})

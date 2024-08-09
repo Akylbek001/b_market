@@ -23,11 +23,11 @@ public class HeaderTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Программа банка", groups = {"automated"})
+    @Test(description="Программа банка => Свой дом", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("программа - Свой дом")
+    @Description("Программа банка - Свой дом")
     @Severity(SeverityLevel.TRIVIAL)
-    public void navigateToBankProgram() {
+    public void navigateToBankProgram_ownHouse() {
         step("Перейти на страницу программы Свой дом", () -> {
             headerSteps.navigateToBankProgram();
         });

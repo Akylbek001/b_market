@@ -66,7 +66,7 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.openDeposit();
         });
         step("Заполнить данные и подтвердить", () -> {
-            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), "201212551391");
+            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), "090205652280");
         });
         Assert.assertEquals(elementsAttributes.getValue(REFUSE_TEXT), CharacterSetConstants.UNDER_18_YEARS_OLD_TEXT);
     }
@@ -102,7 +102,7 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.becomeClientByOpenAccountForNDF();
         });
         step("Заполнить данные", () -> {
-                    becomeClientSteps.verifyPhoneNumberAndIin("77770770707", "060328600678");
+                    becomeClientSteps.verifyPhoneNumberAndIin("77770770707", "990722400908");
         });
         Assert.assertEquals(
                 CharacterSetConstants.CLIENT_NUMBER_ALREADY_EXIST, elementsAttributes.getValue(REFUSE_TEXT));
