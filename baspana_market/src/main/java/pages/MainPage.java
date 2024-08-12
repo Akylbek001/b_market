@@ -10,9 +10,9 @@ import org.openqa.selenium.WebDriver;
 public class MainPage extends BasePage {
     private static final By LOGIN_BUTTON = By.id("OBLoginButtDiv");
     private static final By CLIENT_PROFILE_NAME = By.id("ClientName");
-    private static final By READ_BUTTON = By.cssSelector("[onclick=\"window.location.href = '/news-ads/ads'\"]");
+    private static final By READ_BUTTON = By.cssSelector("#div_MapBox .ob-news-box--blocks > a");
     private static final By CALCULATE_BUTTON = By.cssSelector("[onclick=\"window.location.href = '/OnlineMortgage/IpotekaCalculate'\"]");
-    private static final By NAURIZ_MORTGAGE_MORTGAGE_PROGRAM = By.cssSelector("[href='/Nauriz'] .qamqor_button");
+    private static final By NAURIZ_MORTGAGE_MORTGAGE_PROGRAM = By.cssSelector(".carousel-item.active .qamqor_button");
     private static final By HAPPY_FAMILY_MORTGAGE_PROGRAM = By.id("EtspId");
     private static final By ALL_NEW_BUILDINGS_BUTTON = By.cssSelector("#div_DirectSale .slider_box-titles--button");
     private static final By ALL_SECONDARY_HOUSING_BUTTON = By.cssSelector("#div_SecondHouses .slider_box-titles--button");

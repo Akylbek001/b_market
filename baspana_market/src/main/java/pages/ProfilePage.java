@@ -97,7 +97,7 @@ public class ProfilePage extends BasePage {
     @Step("Click change email button")
     public ProfilePage clickChangeEmailButton() {
         button.btnClick(CHANGE_EMAIL_BUTTON);
-        WaitUtils.wait(1);
+        WaitUtils.wait(10);
         return this;
     }
 
