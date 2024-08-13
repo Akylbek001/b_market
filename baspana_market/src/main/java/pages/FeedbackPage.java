@@ -221,6 +221,7 @@ public class FeedbackPage extends BasePage {
     @Step("Input feedback iin")
     public FeedbackPage inputFeedbackIin(String iin) {
         input.inputWithClear(FEEDBACK_IIN_INPUT, iin);
+        WaitUtils.wait(1);
         return this;
     }
 

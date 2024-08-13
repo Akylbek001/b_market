@@ -30,6 +30,8 @@ public class MortgageOnlinePage extends BasePage {
     @Step("Click confirm button")
     public MortgageOnlinePage clickConfirmButton() {
         button.btnClick(CONFIRM_BUTTON);
+        WaitUtils.wait(1);
+
         return this;
     }
 }

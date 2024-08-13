@@ -22,7 +22,7 @@ public class MortgageOnlineSteps {
 
     public void confirm() {
         mortgageOnlinePage
-                .clickConfirmButton()
+//                .clickConfirmButton()
                 .clickConfirmButton();
     }
 }
