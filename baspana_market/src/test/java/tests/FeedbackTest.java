@@ -287,7 +287,7 @@ public class FeedbackTest extends BaseTest {
             feedbackSteps.navigateToWhatsApp();
         });
         brManager.switchToLastTab();
-        Assert.assertEquals(brManager.getCurrUrl(), envConfig.whatsappUrl());
+        Assert.assertEquals(envConfig.whatsappUrl(), brManager.getCurrUrl());
     }
 
     @Test(description="Tg", groups = {"automated"})

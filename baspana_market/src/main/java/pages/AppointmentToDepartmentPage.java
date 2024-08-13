@@ -12,12 +12,15 @@ public class AppointmentToDepartmentPage extends BasePage {
     private static final By ODER_TYPE = By.id("MainOperList");
     private static final By VISIT_PURPOSE = By.cssSelector("select#bookingVisitPurpose");
     private static final By PERIOD = By.id("calendar-range");
-    private static final By DATE = By.cssSelector("[aria-label='Август 12, 2024']");
+    private static final By DATE = By.cssSelector("[aria-label='Август 29, 2024']");
     private static final By TIME = By.id("bookingTime");
     private static final By SUBMIT_BUTTON = By.id("submit_form");
     private static final By CANCEL_BUTTON = By.id("NotificationBookingcancelBookingBtn");
     private static final By RESERVE_BUTTON = By.id("NotificationBookingBookingBtn");
     public static final By RESULT = By.cssSelector(".booking-title.booking-default-text");
+    public static final By CANCEL_RESERVATION = By.cssSelector(".booking-div-btn #cancelBookingBtn");
+    private static final By CANCEL_RESERVATION_CONTINUE_BUTTON = By.id("cancelBookingBtnContinue");
+
 
     public AppointmentToDepartmentPage(WebDriver driver) {
         super(driver);

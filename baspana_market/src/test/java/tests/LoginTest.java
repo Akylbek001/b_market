@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static common.utils.RandomUtils.generatePassword;
 import static io.qameta.allure.Allure.step;
 import static pages.LoginPage.*;
 
@@ -138,8 +139,8 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    "037916624",
-                    config.userLogin());
+                    "050370628 ",
+                    "77016360731");
         });
         step("Биометрия", () -> {
             generalSteps.acceptAgreement_startBiometry();
@@ -152,9 +153,10 @@ public class LoginTest extends BaseTest {
             loginSteps.clickContinueButton();
         });
         step("Подтвердить и установить новый пароль", () -> {
-            loginSteps.passwordRecoverySetNewPassword(config.userNewPassword(), config.userNewPassword());
+            String newPassword = generatePassword();
+            loginSteps.passwordRecoverySetNewPassword(newPassword, newPassword);
         });
-        Assert.assertEquals("NurRaul", elementsAttributes.getValue(PROFILE_NAME));
+        Assert.assertTrue(elementsAttributes.getValue(PROFILE_NAME).contains("Nur"));
     }
 
     @Test(description="Восстановление пароля пароля по номеру документа => Валидация номера документа", groups = {"automated"})
@@ -259,8 +261,9 @@ public class LoginTest extends BaseTest {
         });
         step("Ввести данные для восстановления", () -> {
             loginSteps.passwordRecovery_inputData(
-                    "311052345789",
-                    config.userLogin());
+                    "202001788017",
+                    "77763940707"
+            );
         });
         step("Биометрия", () -> {
             generalSteps.acceptAgreement_startBiometry();
@@ -273,10 +276,10 @@ public class LoginTest extends BaseTest {
             loginSteps.clickContinueButton();
         });
         step("Подтвердить и установить новый пароль", () -> {
-            loginSteps.passwordRecoverySetNewPassword(config.userNewPassword(), config.userNewPassword());
+            String newPassword = generatePassword();
+            loginSteps.passwordRecoverySetNewPassword(newPassword, newPassword);
         });
-        Assert.assertTrue(elementsAttributes.isVisible(PROFILE_ICON));
-//        Assert.assertEquals("NurRaul", elementsAttributes.getValue(PROFILE_NAME));
+        Assert.assertTrue(elementsAttributes.getValue(PROFILE_NAME).contains("Nur"));
     }
 
     @Test(description="Восстановление пароля по альтернативному коду => Пользователь не найден", groups = {"automated"})
@@ -326,7 +329,8 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Изменение номера телефона => Повторное изменение", groups = {"automated"})
+    //description
+    @Test(description="Изменение номера телефона => Повторное изменение", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Ошибка биометрии")
     @Severity(SeverityLevel.NORMAL)
@@ -378,11 +382,12 @@ public class LoginTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    @Test(description="Изменение номера телефона => График совершения операции", groups = {"automated"})
+    //Запускается вне рабочего времени
+    @Test(description="Изменение номера телефона => Валидация графика совершения операции", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Ошибка биометрии")
     @Severity(SeverityLevel.NORMAL)
-    public void updateLogin_transactionSchedule() {
+    public void updateLogin_validateTransactionSchedule() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });

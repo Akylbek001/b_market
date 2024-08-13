@@ -71,6 +71,7 @@ public class LoginPage extends BasePage {
     public LoginPage clickGuestButton() {
         WaitUtils.wait(1);
         button.btnClick(GUEST_BUTTON);
+        elementsAttributes.waitUntilVisible(USER_PHONE_NUMBER_LOCATOR);
         return this;
     }
 

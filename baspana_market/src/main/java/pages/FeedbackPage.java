@@ -113,7 +113,7 @@ public class FeedbackPage extends BasePage {
     @Step("Click whatsApp icon")
     public FeedbackPage clickWhatsAppIcon() {
         button.btnClick(WHATSAPP);
-        WaitUtils.wait(1);
+        WaitUtils.wait(2);
         return this;
     }
 
@@ -226,7 +226,6 @@ public class FeedbackPage extends BasePage {
 
     @Step("Click appeal type")
     public FeedbackPage clickAppealType() {
-        move.scrollToElement(APPEAL_TYPE_LIST);
         button.btnClick(APPEAL_TYPE_LIST);
         WaitUtils.wait(1);
         return this;
@@ -269,6 +268,7 @@ public class FeedbackPage extends BasePage {
 
     @Step("Select floods")
     public FeedbackPage selectFloods() {
+        move.scrollToElement(FLOODS);
         button.btnClick(FLOODS);
         WaitUtils.wait(1);
         return this;

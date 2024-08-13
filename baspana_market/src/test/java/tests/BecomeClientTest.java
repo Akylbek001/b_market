@@ -66,7 +66,7 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.openDeposit();
         });
         step("Заполнить данные и подтвердить", () -> {
-            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), "090205652280");
+            becomeClientSteps.verifyPhoneNumberAndIin(config.clientLogin(), "121013502166");
         });
         Assert.assertEquals(elementsAttributes.getValue(REFUSE_TEXT), CharacterSetConstants.UNDER_18_YEARS_OLD_TEXT);
     }

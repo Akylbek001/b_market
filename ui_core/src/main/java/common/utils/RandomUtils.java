@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class RandomUtils {
     private static final SecureRandom RANDOM = new SecureRandom();
-    private static final String specialCharacters = "\\.[]{}()<>*+=!?^$|";
+    private static final String specialCharacters = "!#$%&*";
     private static final String numericCharacters = "0123456789";
 
     public static String randomCyrillic(int count) {
@@ -89,8 +89,10 @@ public class RandomUtils {
         int randIndex = rand.nextInt(list.size());
         return list.get(randIndex);
     }
-
-
+    public static String generatePassword() {
+        return randomLatin(1).toUpperCase() +
+                randomLatin(7).toLowerCase() + randomNumeric(1) + randomSpecial(1);
+    }
 }
 
 

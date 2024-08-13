@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static pages.AppointmentToDepartmentPage.CANCEL_RESERVATION;
 import static pages.AppointmentToDepartmentPage.RESULT;
 import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
 
@@ -28,7 +29,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_byAcceptModal () {
         step("Авторизация", () -> {
-            loginSteps.auth("77770077702", config.clientPassword());
+            loginSteps.auth("77011257080", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
@@ -49,9 +50,34 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_byCancelModal () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth("77014423131", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
+        step("Закрыть модальное окно", () -> {
+            appointmentToDepartmentSteps.clickCancelButton();
+        });
+        step("Заполнить форму", () -> {
+            appointmentToDepartmentSteps.fillForm(config.clientLogin());
+        });
+        Assert.assertEquals(
+                "Ваш запрос на бронирование очереди подтвержден",
+                elementsAttributes.getValue(RESULT)
+        );
+    }
+
+    @Test(description="Запись в отделение - Отмена брони", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Запись в отделение")
+    @Severity(SeverityLevel.NORMAL)
+    public void appointmentToDepartment_cancelReservation () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77014423131", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
+        });
+        boolean cancelReservationButtonActive = elementsAttributes.isDisplayed(CANCEL_RESERVATION);
+        if (cancelReservationButtonActive) {
+
+        }
         step("Закрыть модальное окно", () -> {
             appointmentToDepartmentSteps.clickCancelButton();
         });

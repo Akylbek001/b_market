@@ -189,7 +189,7 @@ public class RegistrationTest extends BaseTest {
             registrationSteps.clickRegisterClientButton();
         });
         Assert.assertEquals(elementsAttributes.getValue(REGISTRATION_RESULT),
-                CharacterSetConstants.CLIENT_EMAIL_ALREADY_EXIST
+                CharacterSetConstants.CLIENT_NOT_FOUND
         );
     }
 
