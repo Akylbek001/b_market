@@ -1,10 +1,11 @@
 package pages;
 
-import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 public class DepositPage extends BasePage {
 
@@ -16,10 +17,6 @@ public class DepositPage extends BasePage {
     private static final By OPEN_CONTRIBUTION_AQYL = By.id("openAqylDeposit");
     private static final By CONTINUE_OPEN_CONTRIBUTION_AQYL_BUTTON = By.xpath("//div[@class='modal fade show'] //button[@id='continueOpenChildDeposit']");
     public static final By REFUSED_NOTIFICATION = By.id("reasonAqyl");
-
-//    private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.xpath(
-//            "//div[@class='DepositBlock--background DepositBlock--infos'] //button[@id='FatcasSteps']"
-//    );
     private static final By OPEN_BASPANA_DEPOSIT_CONTINUE_BUTTON = By.id("FatcasSteps");
     private static final By AGREEMENT_CHECKBOX = By.cssSelector("#StandardConditionsAgreed");
 
@@ -29,12 +26,11 @@ public class DepositPage extends BasePage {
     public static final By CONFIRM = By.cssSelector("#NextSteps .ValSums");
 
     public static final By NOTIFICATION_VISIT_THE_BANK = By.xpath("//div[@id='NextSteps'] //p");
-    public static final By SUCCESS = By.cssSelector("#NextSteps p");
+    public static final By SUCCESS = By.cssSelector(".DepositBlock--background.OpenDepositsStepsEnds>p");
     private static final By SMS_CODE = By.id("CodeSmsId");
     private static final By SEND = By.id("EndsSteps");
     private static final By FIRST_DEPOSIT = By.cssSelector(".ob-deposit.depositCover.backgroundCover2.slick-slide.slick-current.slick-active");
     private static final By SECOND_DEPOSIT = By.cssSelector("label[aria-describedby='slick-slide01']");
-
 
     public static final By DEPOSIT_CREATED_DATE = By.cssSelector(".titlel");
     private static final By SHOW_DEPOSIT_DETAILS = By.id("text");
@@ -98,15 +94,12 @@ public class DepositPage extends BasePage {
     public static final By INVALID_OTP = By.cssSelector(".AttentionToBlockOfErrors > p");
     public static final By ASSIGNMENT_GRATUITOUS_AMOUNT_VALIDATION = By.cssSelector("span#errorCheckCessioner");
 
-
-
     public static final By ASSIGNMENT_GRATUITOUS = By.cssSelector(".operBtn.deposit-relatives-cession");
     public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON = By.cssSelector(".right_button button");
     private static final By ASSIGNMENT_GRATUITOUS_RELATION_DEGREE = By.id("selectKinship");
     private static final By USER_IIN = By.id("iin-input");
     public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_ = By.cssSelector(".right_button.ob-mt-20px.web-block button");
     private static final By CONFIRM_SMS_BUTTON = By.id("continue-sms-cession");
-//    public static final By PROHIBITION_OF_OPEN_ACCOUNT = By.cssSelector(".accentXS");
     public static final By PROHIBITION_OF_OPEN_ACCOUNT = By.xpath("//div[@id='arrestsDiv'] /div[@class='arrestDiv'][2] //span[@class='accentXS']");
 
 
@@ -189,12 +182,14 @@ public class DepositPage extends BasePage {
     @Step("Click terminate button")
     public DepositPage clickTerminateButton() {
         button.btnClick(TERMINATE_DEPOSIT_BUTTON);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Click continue terminate button")
     public DepositPage clickContinueTerminateButton() {
         button.btnClick(CONTINUE_TERMINATE_DEPOSIT_BUTTON);
+        WaitUtils.wait(5);
         return this;
     }
 
@@ -219,7 +214,6 @@ public class DepositPage extends BasePage {
         move.scrollToElement(CHANGE_DETAILS_BUTTON);
         button.btnClick(CHANGE_DETAILS_BUTTON);
         button.btnClick(CHANGE_DETAILS_BUTTON);
-
         return this;
     }
 
@@ -270,7 +264,6 @@ public class DepositPage extends BasePage {
 
     @Step("Open relation degree list")
     public DepositPage openRelationDegreeList() {
-//        dropDown.selectByIndex(RELATION_DEGREE_LIST, 2);  select is not available even by id
         button.btnClick(RELATION_DEGREE_LIST);
         WaitUtils.wait(1);
         return this;
@@ -443,7 +436,6 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-
     @Step("Click otp confirm button")
     public DepositPage clickOtpConfirmButton() {
         button.btnClick(CONFIRM_SMS_BUTTON);
@@ -496,28 +488,37 @@ public class DepositPage extends BasePage {
     @Step("Click continue")
     public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
-        WaitUtils.wait(30);
+        Duration.ofSeconds(30);
 //        elementsAttributes.waitUntilVisible(CONFIRM);
         return this;
     }
 
-    @Step("Clear agreed sum input fields")
-    public DepositPage clearInputField() {
+    @Step("Input agreed sum")
+    public DepositPage cleanField() {
+        WaitUtils.wait(1);
         input.cleanField(AGREED_SUM);
-        WaitUtils.wait(30);
+        WaitUtils.wait(2);
         return this;
     }
 
     @Step("Input agreed sum")
     public DepositPage inputAgreedSum(String sum) {
-        WaitUtils.wait(3);
-        input.inputWithClear(AGREED_SUM, sum);
+        input.input(AGREED_SUM, sum);
+        WaitUtils.wait(5);
         return this;
     }
 
     @Step("Select deposit term")
     public DepositPage selectDepositTerm() {
         button.btnClick(DEPOSIT_TERM);
+        return this;
+    }
+
+    @Step("Click confirm for validate sum")
+    public DepositPage clickConfirmForValidateSum() {
+        WaitUtils.wait(10);
+
+        button.btnClick(CONFIRM);
         return this;
     }
 
@@ -538,6 +539,7 @@ public class DepositPage extends BasePage {
     @Step("Click send")
     public DepositPage clickSend() {
         button.btnClick(SEND);
+        WaitUtils.wait(5);
         elementsAttributes.waitUntilVisible(SUCCESS);
         return this;
     }

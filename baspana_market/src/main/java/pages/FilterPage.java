@@ -16,11 +16,11 @@ public class FilterPage extends BasePage {
     public static final By RESULT_ON_MAP = By.xpath("//div[@class='SearchTitleBlocks '] //label[2]");
     public static final By MAP_OBJECT = By.id("yandexMapObjects");
     private static final By SEARCH_HOUSE_BUTTON = By.cssSelector("#mainMapButtonHolder #btnSearchHouse");
-    //    private static final By REGION = By.xpath("//div[@class='objects_all'] //button[@id='dropdownRegionButton'] //span");
-    //    private static final By REGION = By.cssSelector(".objects_all #dropdownRegionButton span.control-label.region-labels.ob__bodyL.ob__dark__black.placehold");
-    //    private static final By REGION = By.xpath("//div[@class='objects_all'] //img[@id='select-icon-region']");
-    //    private static final By REGION = By.cssSelector(".objects_all #select-icon-region");
+
     private static final By REGION = By.cssSelector("form#searchFromMain .objects_all #dropdownRegionButton");
+    private static final By PRICE = By.xpath("//form[@id='searchFromMain'] //button[@class=\"pricesBtn btn btn-secondary titleButton  d-flex justify-content-between align-items-center\"]");
+
+
 
 
     public FilterPage(WebDriver driver) {
@@ -66,12 +66,11 @@ public class FilterPage extends BasePage {
         return this;
     }
 
-    @Step("Select region")
-    public FilterPage selectRegion() {
-        WaitUtils.wait(2);
-        button.btnClick(REGION);
-        WaitUtils.wait(2);
-
+    @Step("Open price menu")
+    public FilterPage clickPrice() {
+        WaitUtils.wait(4);
+        button.btnClick(PRICE);
+        WaitUtils.wait(10);
         return this;
     }
 }

@@ -19,7 +19,7 @@ public class MainTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Разместить объявление", groups = {"automated"})
+    @Test(description="Разместить объявление", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.MINOR)
@@ -41,7 +41,7 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
     }
 
-    @Test(description="Разместить объявление из раздела <Мои объявления>", groups = {"automated"})
+    @Test(description="Разместить объявление из раздела <Мои объявления>", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.MINOR)

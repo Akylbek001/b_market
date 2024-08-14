@@ -15,6 +15,9 @@ public interface EnvConfig extends Config{
     @Key("base.url")
     String baseUrl();
 
+    @Key("prod.url")
+    String prodUrl();
+
     @Key("deposit.page")
     String depositPage();
 

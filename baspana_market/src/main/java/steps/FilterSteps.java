@@ -26,8 +26,8 @@ public class FilterSteps {
                 .clickOnMapButton();
     }
 
-    public void selectRegion() {
+    public void clickPrice() {
         filterPage
-                .selectRegion();
+                .clickPrice();
     }
 }

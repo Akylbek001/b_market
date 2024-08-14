@@ -241,7 +241,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void changeCoBorrower() {
         step("Авторизация -> Запись в отдление", () -> {
-            loginSteps.auth("77016360731", "12345test");
+            loginSteps.auth(config.loanClient_login(), config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -260,7 +260,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void exclusionOfCoBorrower() {
         step("Авторизация -> Запись в отдление", () -> {
-            loginSteps.auth("77016360731", "12345test");
+            loginSteps.auth(config.loanClient_login(), config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {

@@ -15,7 +15,6 @@ public class Navigation extends BasePage {
     public Navigation gotoLoginPage() {
         brManager.getPage(EnvConfigProvider.get().baseUrl());
         log.info("Navigate to login page");
-
         return this;
     }
 }

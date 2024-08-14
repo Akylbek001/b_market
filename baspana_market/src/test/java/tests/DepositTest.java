@@ -4,6 +4,10 @@ import base.BaseTest;
 import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -28,7 +32,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openBaspanaDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77078759590", "12345test");
+            loginSteps.auth("77760170303", config.clientPassword());
             mainSteps.clickProfileIcon();
             cabinetSteps.selectMyBankMenu();
             cabinetSteps.selectDepositsMenu();
@@ -57,10 +61,8 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openBaspanaDeposit_validateAgreedLessSum() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77003896225", config.client_for_password_recovery_newPassword());
-            mainSteps.clickProfileIcon();
-            cabinetSteps.selectMyBankMenu();
-            cabinetSteps.selectDepositsMenu();
+            loginSteps.auth("77774039707", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
@@ -68,7 +70,12 @@ public class DepositTest extends BaseTest {
             depositSteps.openBaspanaDeposit();
         });
         step("Подтвердить открытие депозита", () -> {
-            depositSteps.agreedSum("800000");
+
+            depositSteps.cleanField();
+
+            WaitUtils.wait(10);
+//            d = new FirefoxDriver(dc);
+//            depositSteps.agreedSum("150000");
 //            depositSteps.confirmBySms(config.smsCode());
 //            Assert.assertEquals(CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
 //                    elementsAttributes.getValue(SUCCESS));
@@ -87,9 +94,7 @@ public class DepositTest extends BaseTest {
     public void openBaspanaDeposit_validateAgreedMaxSum() {
         step("Авторизация -> Мои депозиты", () -> {
             loginSteps.auth("77003896225", config.client_for_password_recovery_newPassword());
-            mainSteps.clickProfileIcon();
-            cabinetSteps.selectMyBankMenu();
-            cabinetSteps.selectDepositsMenu();
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
             depositSteps.clickNewDepositButton();
@@ -193,9 +198,8 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openAqyl_insufficientFunds() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77774039707" +
+                    "", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Открыть депозит", () -> {
@@ -206,6 +210,7 @@ public class DepositTest extends BaseTest {
                 CharacterSetConstants.INSUFFICIENT_FOUND_TEXT, elementsAttributes.getValue(REFUSED_NOTIFICATION));
     }
 
+    //нужна учетка
     @Test(description="Открыть обр.вклад <AQYL> => отсутсвует в базе налогового органа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - отсутсвует в базе налогового органа")
@@ -283,9 +288,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void terminateDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77083007217", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -301,6 +304,32 @@ public class DepositTest extends BaseTest {
                 CharacterSetConstants.REQUEST_ACCEPTED_TEXT,
                 elementsAttributes.getValue(TERMINATE_DEPOSIT_REQUEST_ACCEPTED)
         );
+    }
+
+    @Test(description="Расторжение депозита => Валидация суммы депозита > 1000000", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отказ-Сумма депозита > 1000000")
+    @Severity(SeverityLevel.CRITICAL)
+    public void terminateDeposit_validateExceedsPermissibleLimit() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth("77775657007", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Расторгнуть", () -> {
+            depositSteps.terminateDeposit();
+        });
+        String alertText = drManager.getDriver().switchTo().alert().getText();
+        Assert.assertEquals(
+                alertText,
+                CharacterSetConstants.EXCEEDS_PERMISSIBLE_LIMIT
+        );
+        drManager.getDriver().switchTo().alert().accept();
     }
 
     //api or заявка на деление
@@ -322,7 +351,7 @@ public class DepositTest extends BaseTest {
         step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
-        step("Присвоить гос.премию", () -> {
+        step("Расторгнуть", () -> {
             depositSteps.terminateDeposit();
         });
         Assert.assertEquals(

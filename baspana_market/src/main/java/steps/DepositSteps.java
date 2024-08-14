@@ -32,19 +32,20 @@ public class DepositSteps {
                 .clickOpenAqylContinueButton();
     }
 
-    public void clearField() {
+    public void cleanField() {
         depositPage
-                .clearInputField();
+                .cleanField()
+                .clickConfirmForValidateSum();
     }
 
     public void agreedSum(String sum) {
         depositPage
                 .inputAgreedSum(sum);
+//                .clickConfirmForValidateSum();
     }
 
     public void confirmBySms(String smsCode) {
         depositPage
-//                .selectDepositTerm()
                 .clickConfirm()
                 .inputSmsCode(smsCode)
                 .clickSend();

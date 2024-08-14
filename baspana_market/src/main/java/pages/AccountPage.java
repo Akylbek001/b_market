@@ -6,9 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class AccountPage extends BasePage {
-    private static final By OPEN_ACCOUNTS_BUTTON = By.xpath(
-            "//div[@class='account_title'] //button[@data-target='#myAccModal']"
-    );
+    private static final By OPEN_ACCOUNTS_BUTTON = By.cssSelector(".pc_version [data-target='#arrestModal']");
     private static final By CURRENT_ACCOUNT = By.xpath(
             "//div[@id='myAccModal'] //a[@href='/CurrentAccount']"
     );
