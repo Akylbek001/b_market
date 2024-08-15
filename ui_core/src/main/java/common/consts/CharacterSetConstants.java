@@ -66,7 +66,8 @@ public final class CharacterSetConstants {
 
     public static final String UPDATE_LOGIN_NOTIFICATION = "Изменение номера телефона доступно 1 раз в течении 90 дней";
     public static final String OPERATION_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
-    public static final String ACTIVE_ORDER_FOR_DIVISION_MESSAGE ="Извините но у Вас уже есть актуальная заявка на деление вклада. Подробнее о заявке вы можете посмотреть во вкладке 'Заявки'.";
+    public static final String ACTIVE_ORDER_FOR_DIVISION_MESSAGE = "Извините но у Вас уже есть актуальная заявка на деление вклада. Подробнее о заявке вы можете посмотреть во вкладке 'Заявки'.";
+    public static final String EXCEEDS_PERMISSIBLE_LIMIT = "Сумма расторгаемого депозита превышает допустимый лимит в размере 1 000 000 тг.";
     public static final String INVALID_OTP_TEXT = "Уважаемый клиент! Убедитесь в правильности ввода кода из SMS";
     public static final String EPV_INVALID_OTP_TEXT = "Введенный вами код из СМС неправильный.";
     public static final String INVALID_IBAN = "Вы ввели некорректный IBAN счет!";
@@ -93,7 +94,8 @@ public final class CharacterSetConstants {
     public static final String ASSIGNMENT_GRATUITOUS_SAVING_AMOUNT_VALIDATION = "Сумма накоплений депозита должна превышать 50 МРП";
 
     public static final String ONLY_ONE_DEPOSIT = "У вас недостаточное количество депозитов для совершения операции объединения";
-    public static final String DEPOSIT_AMOUNT_MUST_BE_BETWEEN = "Договорная сумма должна быть между: 1846000,0₸ - 195154000,0₸";
+    public static final String DEPOSIT_AMOUNT_MUST_BE_BETWEEN = "Договорная сумма должна быть между 1846000,0 - 199999999,0";
+
     public static final String DEPOSIT_CONDITIONS_CHANGED_SUCCESSFULLY_TEXT ="Операция завершилась успешно";
     public static final String REQUEST_ACCEPTED_TEXT ="Ваша заявка на расторжение депозита принята";
     public static final String NOT_READY_TO_ACCEPT_REQUEST_TEXT = "Выбранный акимат еще не готов принять заявление";

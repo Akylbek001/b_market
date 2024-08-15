@@ -58,6 +58,7 @@ public abstract class BaseTest{
     protected AppConfig config;
     protected EnvConfig envConfig;
     protected DepositSteps depositSteps;
+    protected DepositFamilyPackageSteps depositFamilyPackageSteps;
     protected AccountSteps accountSteps;
     protected CertificatesSteps certificatesSteps;
     protected GovServicesSteps govServicesSteps;
@@ -120,6 +121,7 @@ public abstract class BaseTest{
         headerSteps = new HeaderSteps(driver);
         feedbackSteps =new FeedbackSteps(driver);
         depositSteps = new DepositSteps(driver);
+        depositFamilyPackageSteps = new DepositFamilyPackageSteps(driver);
         accountSteps = new AccountSteps(driver);
         govServicesSteps = new GovServicesSteps(driver);
         certificatesSteps = new CertificatesSteps(driver);
