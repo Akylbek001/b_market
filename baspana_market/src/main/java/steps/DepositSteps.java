@@ -11,6 +11,11 @@ public class DepositSteps {
         depositPage.selectOpenedDeposit();
     }
 
+    public void selectCreateFamilyPackageOperation() {
+        depositPage
+                .createFamilyPackageOperation();
+    }
+
     public void clickNewDepositButton() {
         depositPage.clickNewDepositButton();
     }
@@ -48,7 +53,7 @@ public class DepositSteps {
         depositPage
                 .clickConfirm()
                 .inputSmsCode(smsCode)
-                .clickSend();
+                .confirmOpeningDeposit();
     }
 
     public void selectFirstDeposit() {
@@ -91,57 +96,18 @@ public class DepositSteps {
                 .clickContinueTerminateButton();
     }
 
-    public void changeDepositConditions(String amount, String smsCode) {
+    public void changeDepositConditionsAmount(String amount) {
         depositPage
                 .changeDepositConditionsOperation()
-                .inputNegotiatedAmount(amount)
+                .inputNegotiatedAmount(amount);
+    }
+
+    public void confirmDepositConditionsChange(String smsCode) {
+        depositPage
                 .clickChangeDetailButton()
                 .clickSignChangeDetailButton()
                 .inputSmsCode(smsCode)
-                .clickSend();
-    }
-
-    public void selectCreateFamilyPackageOperation() {
-        depositPage
-                .createFamilyPackageOperation();
-    }
-
-    public void createFamilyPackage(String familyPackageName) {
-        depositPage
-                .selectDepositForPackage()
-                .clickContinueButton()
-                .inputFamilyPackageName(familyPackageName)
-                .clickCreateFamilyPackageButton();
-    }
-
-    public void addMemberToFamilyPackage(String invitedIin, String invitedAlternativeCode) {
-        depositPage
-                .clickInviteFamilyPackageMemberButton()
-                .openRelationDegreeList()
-                .selectRelationDegreeValue()
-                .inputInvitedIin(invitedIin)
-                .inputInvitedAlternativeCode(invitedAlternativeCode)
-                .clickAddMemberButton();
-    }
-
-    public void relationDegreeValidation(String invitedIin, String invitedAlternativeCode) {
-        depositPage
-                .clickInviteFamilyPackageMemberButton()
-                .inputInvitedIin(invitedIin)
-                .inputInvitedAlternativeCode(invitedAlternativeCode)
-                .clickAddMemberButton();
-    }
-
-    public void removeFamilyPackageMember() {
-        depositPage
-                .clickCancelInviteIcon()
-                .clickConfirmCancelInviteButton();
-    }
-
-    public void disbandFamilyPackage() {
-        depositPage
-                .clickDisbandFamilyPackageButton()
-                .clickConfirmDisbandFamilyPackageButton();
+                .confirmChangeDepositTerms();
     }
 
     public void selectDepositDivisionOperation() {

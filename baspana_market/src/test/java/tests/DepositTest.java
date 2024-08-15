@@ -4,6 +4,7 @@ import base.BaseTest;
 import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static common.consts.CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN;
 import static io.qameta.allure.Allure.step;
 import static pages.DepositPage.*;
 
@@ -23,215 +25,6 @@ public class DepositTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
-    }
-
-    //нужна учетка
-    @Test(description="Открыть депозит <Баспана>", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Открыть депозит Баспана")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openBaspanaDeposit() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77760170303", config.clientPassword());
-            mainSteps.clickProfileIcon();
-            cabinetSteps.selectMyBankMenu();
-            cabinetSteps.selectDepositsMenu();
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.clickOpenBaspanaDepositButton();
-            depositSteps.openBaspanaDeposit();
-        });
-        step("Подтвердить открытие депозита", () -> {
-//            depositSteps.clearField();
-//            drManager.getDriver().switchTo().alert().accept();
-//            depositSteps.agreedSum(config.priceFrom());
-            depositSteps.confirmBySms(config.smsCode());
-            Assert.assertEquals("Депозит успешно открыт", elementsAttributes.getValue(SUCCESS));
-        });
-//        step("Посмотреть открытый депозит", () -> {
-//            depositSteps.selectFirstDeposit();
-//            Assert.assertEquals(elementsAttributes.getValue(DEPOSIT_CREATED_DATE), DatesUtils.getCurrentDate());
-//        });
-    }
-
-    @Test(description="Открыть депозит <Баспана> => Валидация договорной суммы <", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Открыть депозит Баспана")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openBaspanaDeposit_validateAgreedLessSum() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77774039707", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.clickOpenBaspanaDepositButton();
-            depositSteps.openBaspanaDeposit();
-        });
-        step("Подтвердить открытие депозита", () -> {
-
-            depositSteps.cleanField();
-
-            WaitUtils.wait(10);
-//            d = new FirefoxDriver(dc);
-//            depositSteps.agreedSum("150000");
-//            depositSteps.confirmBySms(config.smsCode());
-//            Assert.assertEquals(CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
-//                    elementsAttributes.getValue(SUCCESS));
-        });
-//        Assert.assertEquals(
-//                drManager.getDriver().switchTo().alert().getText(),
-//                CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN
-//        );
-//        drManager.getDriver().switchTo().alert().accept();
-    }
-
-    @Test(description="Открыть депозит <Баспана> => Валидация договорной суммы >", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Открыть депозит Баспана")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openBaspanaDeposit_validateAgreedMaxSum() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77003896225", config.client_for_password_recovery_newPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.clickOpenBaspanaDepositButton();
-            depositSteps.openBaspanaDeposit();
-        });
-        step("Подтвердить открытие депозита", () -> {
-            depositSteps.agreedSum("198000000");
-//            depositSteps.confirmBySms(config.smsCode());
-//            Assert.assertEquals(CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
-//                    elementsAttributes.getValue(SUCCESS));
-        });
-        Assert.assertEquals(
-                drManager.getDriver().switchTo().alert().getText(),
-                CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN
-        );
-        drManager.getDriver().switchTo().alert().accept();
-    }
-
-    //Нужна соответствующая учетка
-    @Test(description="Открыть депозит <Баспана> => Обратитесь в отделение", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - Обратитесь в отделение")
-    @Severity(SeverityLevel.CRITICAL)
-    public void tryOpenBaspanaDeposit() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.clickOpenBaspanaDepositButton();
-            depositSteps.openBaspanaDeposit();
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.OPEN_DEPOSIT_REFUSED,
-                elementsAttributes.getValue(REFUSED_NOTIFICATION)
-        );
-    }
-
-    @Test(description="Открыть депозит => Валидация ареста", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - Обратитесь в отделение")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openDeposit_validate() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770077702", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        Assert.assertEquals(
-                "Запрет открытия счетов",
-                elementsAttributes.getValue(PROHIBITION_OF_OPEN_ACCOUNT)
-        );
-    }
-
-    //Нужна соответствующая учетка
-    @Test(description="Открыть образовательный вклад <AQYL>", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("AQYL")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openAqyl() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.openAqyl();
-        });
-        Assert.assertTrue(true);
-    }
-
-    @Test(description="Открыть обр.вклад <AQYL> => Валидация счета", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - отсутствует текущий счет")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openAqyl_needAccount() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.openAqyl();
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT,
-                elementsAttributes.getValue(REFUSED_NOTIFICATION)
-        );
-    }
-
-    @Test(description="Открыть обр.вклад <AQYL> => не достаточно средств", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - не достаточно средств")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openAqyl_insufficientFunds() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77774039707" +
-                    "", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.openAqyl();
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.INSUFFICIENT_FOUND_TEXT, elementsAttributes.getValue(REFUSED_NOTIFICATION));
-    }
-
-    //нужна учетка
-    @Test(description="Открыть обр.вклад <AQYL> => отсутсвует в базе налогового органа", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - отсутсвует в базе налогового органа")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openAqyl__NotInTaxAuthorityDatabase() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Открыть депозит", () -> {
-            depositSteps.clickNewDepositButton();
-            depositSteps.openAqyl();
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.NOT_IN_TAX_AUTHORITY_DATABASE_TEXT.replace(
-                        config.clientInvalidIin(), config.client_for_password_recovery_iin()
-                ),
-                elementsAttributes.getValue(REFUSED_NOTIFICATION)
-        );
     }
 
     @Test(description="Изменить <гос.премию> текущего депозита => Валидация имеющейся премии", groups = {"automated"})
@@ -333,7 +126,6 @@ public class DepositTest extends BaseTest {
     }
 
     //api or заявка на деление
-    //добавить кейс - невозможно расторгнуть если > million
     @Test(description="Расторжение депозита => Валидация актуальной заявки на деление", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ-Валидация актуальной заявки на деление")
@@ -381,20 +173,23 @@ public class DepositTest extends BaseTest {
             depositSteps.showAvailableOperations();
         });
         step("Изменить условия депозита", () -> {
-            depositSteps.changeDepositConditions("3700000", config.smsCode());
+            depositSteps.changeDepositConditionsAmount("3700000");
+        });
+        step("Подтвердить изменение условия депозита", () -> {
+            depositSteps.confirmDepositConditionsChange(config.smsCode());
         });
         Assert.assertEquals(CharacterSetConstants.DEPOSIT_CONDITIONS_CHANGED_SUCCESSFULLY_TEXT,
                 elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
         );
     }
 
-    @Test(description="Создать семейный пакет", groups = {"automated"})
+    @Test(description="Изменить условия депозита => Проврека изменения суммы ежемесечного взноса", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Создать семейный пакет")
-    @Severity(SeverityLevel.NORMAL)
-    public void createFamilyPackage() {
+    @Description("Изменить условия депозита")
+    @Severity(SeverityLevel.CRITICAL)
+    public void changeDepositConditions_validateContributionAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770366767", config.clientPassword());
+            loginSteps.auth("77754502772", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -403,130 +198,37 @@ public class DepositTest extends BaseTest {
         step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();
         });
-        step("Выбрать операцию <Создать семейный пакет>", () -> {
-            depositSteps.selectCreateFamilyPackageOperation();
+        step("Изменить условия депозита", () -> {
+            depositSteps.changeDepositConditionsAmount("9000000");
+            JavascriptExecutor js = (JavascriptExecutor) drManager.getDriver();
+            js.executeScript("setAttribute('style', 'left: 16.6667%;')", HOUSING_LOAN_TERM);
         });
-        step("Создать семейный пакет", () -> {
-            depositSteps.createFamilyPackage(config.familyDepositName());
-        });
-        Assert.assertEquals(config.familyDepositName(), elementsAttributes.getValue(CREATED_FAMILY_PACKAGE_NAME));
+        Assert.assertEquals("18 902 ₸", elementsAttributes.getValue(NEW_DEPOSIT_MONTH_PAY));
     }
 
-    @Test(description="Добавить участника семейного пакета => Валидация степени родства", groups = {"automated"})
+    @Test(description="Изменить условия депозита => Валидация договорной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация степени родства")
-    @Severity(SeverityLevel.NORMAL)
-    public void tryAddMember_WithoutSelectRelationDegree() {
+    @Description("Изменить условия депозита")
+    @Severity(SeverityLevel.CRITICAL)
+    public void changeDepositConditions_validateNegotiatedAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770366767", config.clientPassword());
+            loginSteps.auth("77754502772", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
             depositSteps.selectOpenedDeposit();
         });
-        step("Добавить учестника", () -> {
-            depositSteps.relationDegreeValidation(config.clientInvalidIin(), config.clientAlternativeCode());
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Изменить условия депозита", () -> {
+            depositSteps.changeDepositConditionsAmount("900000");
         });
         Assert.assertEquals(
-                CharacterSetConstants.RELATION_DEGREE_NOT_SELECTED_TEXT,
-                elementsAttributes.getValue(INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION)
+                CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
+                elementsAttributes.getValue(NEGOTIATED_AMOUNT_VALIDATION_TEXT)
         );
     }
-
-    @Test(description="Добавить участника семейного пакета => Валидация ИИН", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация ИИН")
-    @Severity(SeverityLevel.NORMAL)
-    public void tryAddFamilyPackageMember_WithInvalidIin() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770366767", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
-        });
-        step("Добавить учестника", () -> {
-            depositSteps.addMemberToFamilyPackage(config.clientInvalidIin(), config.clientAlternativeCode());
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.VALIDATION_OF_REGISTRATION,
-                elementsAttributes.getValue(INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION)
-        );
-    }
-
-    @Test(description="Добавить участника семейного пакета => Валидация алтернативного кода", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация алтернативного кода")
-    @Severity(SeverityLevel.NORMAL)
-    public void tryAddFamilyPackageMember_WithInvalidAltCode() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770366767", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
-        });
-        step("Добавить учестника", () -> {
-            depositSteps.addMemberToFamilyPackage(config.clientIin(), config.clientIin());
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.INVALID_INVITED_MEMBER_ALTERNATIVE_CODE,
-                elementsAttributes.getValue(INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION)
-        );
-    }
-
-    //добавить кейс проверить связку иин и аль кода добавляемого клиента
-    @Test(description="Добавить участника семейного пакета", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Добавить участника")
-    @Severity(SeverityLevel.NORMAL)
-    public void addFamilyPackageMember() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770366767", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
-        });
-        step("Добавить учестника", () -> {
-            depositSteps.addMemberToFamilyPackage(config.clientIin(), config.clientAlternativeCode());
-        });
-        Assert.assertEquals("Мамиев С. А.", elementsAttributes.getValue(ADDED_FAMILY_MEMBER_FIO));
-    }
-
-    @Test(description="Удалить участника семейного пакета", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Удалить участника")
-    @Severity(SeverityLevel.NORMAL)
-    public void removeFamilyPackageMember() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770366767", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
-        });
-        step("Удалить учестника", () -> {
-            depositSteps.removeFamilyPackageMember();
-        });
-    } //добавить проверку
-
-    @Test(description="Расформировать семейный пакет", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Расформировать семейный пакет")
-    @Severity(SeverityLevel.NORMAL)
-    public void disbandFamilyPackage() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77770366767", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
-        });
-        step("Удалить семейный пакет", () -> {
-            depositSteps.disbandFamilyPackage();
-        });
-    } //добавить проверку
 
     @Test(description="Деление депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
