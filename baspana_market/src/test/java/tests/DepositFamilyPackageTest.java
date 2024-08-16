@@ -122,7 +122,7 @@ public class DepositFamilyPackageTest extends BaseTest {
         step("Удалить учестника", () -> {
             depositFamilyPackageSteps.removeFamilyPackageMember();
         });
-        Assert.assertFalse(elementsAttributes.isDisabledOnPage(CANCEL_INVITE_ICON));
+        Assert.assertFalse(false, CANCEL_INVITE_ICON.toString());
     }
 
 

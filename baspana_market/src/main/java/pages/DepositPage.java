@@ -118,7 +118,7 @@ public class DepositPage extends BasePage {
     @Step("Show available operations")
     public DepositPage showAvailableOperations() {
         button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
-        WaitUtils.wait(3);
+        elementsAttributes.waitUntilVisible(DEPOSIT_DIVISION_OPERATION);
         return this;
     }
 
