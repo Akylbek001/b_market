@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static pages.AccountPage.*;
+import static pages.SpecAccountPage.ERROR_TEXT;
 
 @Owner("Алибек Акылбеков")
 @Feature("Счета")
@@ -27,9 +28,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openCurrentAccount() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77078759590", config.clientPassword());
             mainSteps.clickProfileIcon();
             cabinetSteps.selectMyBankMenu();
             cabinetSteps.selectAccountsMenu();
@@ -54,7 +53,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openCurrentAccount_otpValidation() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth(config.client_for_password_recovery_login(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть счет", () -> {
@@ -89,6 +88,8 @@ public class AccountTest extends BaseTest {
                 CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(NOTIFICATION_TEXT)
         );
     }
+
+//add close current account test
 
     @Test(description="Открыть счет для ЕПВ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -159,16 +160,13 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    //BUG - в выпадающем списке не отображаются счета, даже при наличии депозита
     @Test(description="Перевод между своими счетами", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.CRITICAL)
     public void transferToDebt() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77003896225", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть список достпупных операции", () -> {
@@ -177,10 +175,35 @@ public class AccountTest extends BaseTest {
         step("Перевод между своими счетами", () -> {
             accountSteps.transferToDebt();
         });
-        Assert.assertTrue(true);
+        step("Выбрать депозит", () -> {
+            certificatesSteps.openAccountsList();
+            certificatesSteps.selectAllAccounts();
+        });
+        step("Перевод клиенту <Отбасы Банк>", () -> {
+            accountSteps.transfer_insufficientFunds(config.sumToTransfer());
+            generalSteps.confirmationByOtp(config.smsCode());
+        });
+        Assert.assertEquals("5,0 ₸", elementsAttributes.getValue(TRANSFER_SUM));
     }
 
-    //BUG - "Произошла ошибка. Повторите попытку позже."=> но перевод совершается(средства списываются и пополняются)
+    @Test(description="Перевод между своими счетами => Валидация отсутствия депозита", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешный перевод")
+    @Severity(SeverityLevel.CRITICAL)
+    public void transferToDebt_validateNoDeposit() {
+        step("Авторизация -> Мои Счета", () -> {
+            loginSteps.auth("77052713077", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Открыть список достпупных операции", () -> {
+            accountSteps.openAvailableOperationsList();
+        });
+        step("Перевод между своими счетами", () -> {
+            accountSteps.transferToDebt();
+        });
+        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+    }
+
     @Test(description="Перевод клиенту <Отбасы Банк> => по номеру телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -200,9 +223,7 @@ public class AccountTest extends BaseTest {
             accountSteps.searchOtbasyBankClient_byPhoneNumber(config.clientLogin().substring(1));
             accountSteps.transfer(config.sumToTransfer(), config.smsCode());
         });
-        Assert.assertEquals(
-                "Произошла ошибка. Повторите попытку позже.", elementsAttributes.getValue(TEST_SELECTOR)
-        );
+        Assert.assertEquals("5,0 ₸", elementsAttributes.getValue(TRANSFER_SUM));
     }
 
     @Test(description="Перевод клиенту <Отбасы Банк> по номеру телефона => Клиент не найден", groups = {"automated"})
@@ -228,6 +249,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
+    //Убрали возможность ввода суммы превышающую сумму на счете
     @Test(description="Перевод клиенту <Отбасы Банк> по номеру телефона => недостаточно средств", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("недостаточно средств")
@@ -245,14 +267,13 @@ public class AccountTest extends BaseTest {
         });
         step("Перевод клиенту <Отбасы Банк>", () -> {
             accountSteps.searchOtbasyBankClient_byPhoneNumber(config.clientLogin().substring(1));
-            accountSteps.transfer_insufficientFunds("5000000");
+            accountSteps.transfer_insufficientFunds("50000000");
         });
         Assert.assertEquals(
                 CharacterSetConstants.INSUFFICIENT_FUNDS_FOR_TRANSFER, elementsAttributes.getValue(INSUFFICIENT_FUNDS)
         );
     }
 
-    //BUG - "Произошла ошибка. Повторите попытку позже."=> но перевод совершается(средства списываются и пополняются)
     @Test(description="Перевод клиенту <Отбасы Банк> => по альтернативному коду", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -272,9 +293,7 @@ public class AccountTest extends BaseTest {
             accountSteps.searchOtbasyBankClient_byAltCode(config.clientAlternativeCode());
             accountSteps.transfer(config.sumToTransfer(), config.smsCode());
         });
-        Assert.assertEquals(
-                "Произошла ошибка. Повторите попытку позже.", elementsAttributes.getValue(TEST_SELECTOR)
-        );
+        Assert.assertEquals("5,0 ₸", elementsAttributes.getValue(TRANSFER_SUM));
     }
 
     @Test(description="Перевод клиенту <Отбасы Банк> по альт.коду => Клиент не найден", groups = {"automated"})
@@ -302,6 +321,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
+    //Убрали возможность ввода суммы превышающую сумму на счете
     @Test(description="Перевод клиенту <Отбасы Банк> по альт.коду => недостаточно средств", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("недостаточно средств")
@@ -345,7 +365,7 @@ public class AccountTest extends BaseTest {
             accountSteps.searchOtherBankIban(config.clientIban().substring(2));
             accountSteps.transfer(config.sumToTransfer(), config.smsCode());
         });
-        Assert.assertTrue(true);
+        Assert.assertEquals("5,0 ₸", elementsAttributes.getValue(TRANSFER_SUM));
     }
 
     @Test(description="Перевод в другой банк => некрректный IBAN счет", groups = {"automated"})
@@ -354,9 +374,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtherBank_invalidIban() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77716081952", config.clientPassword() );
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть список достпупных операции", () -> {
@@ -366,13 +384,14 @@ public class AccountTest extends BaseTest {
             accountSteps.transferToOtherBank();
         });
         step("Перевод в другой банк", () -> {
-            accountSteps.searchOtherBankIban("KZ649729722204F0Z3LL".substring(2));
+            accountSteps.validateInvalidIban("KZ649729722204F0Z3LL".substring(2));
         });
         Assert.assertEquals(
                 CharacterSetConstants.INVALID_IBAN, elementsAttributes.getValue(IBAN_ERROR)
         );
     }
 
+    //Убрали возможность ввода суммы превышающую сумму на счете
     @Test(description="Перевод в другой банк => недостаточно средств", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("недостаточно средств")
@@ -398,8 +417,6 @@ public class AccountTest extends BaseTest {
                 CharacterSetConstants.INSUFFICIENT_FUNDS_FOR_TRANSFER, elementsAttributes.getValue(INSUFFICIENT_FUNDS)
         );
     }
-
-    // Add validation otp cases for current&EPV accounts
 
     //NEED ACCOUNT
     @Test(description="Перевод между своими счетами => Валидация налогоплательщика", groups = {"automated"})

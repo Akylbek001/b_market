@@ -83,6 +83,11 @@ public class AccountSteps {
                 .inputIban(iban);
     }
 
+    public void validateInvalidIban(String iban) {
+        accountPage
+                .inputIban_validation(iban);
+    }
+
     public void transfer(String sum, String otp) {
         accountPage
                 .inputSumToTransfer(sum)

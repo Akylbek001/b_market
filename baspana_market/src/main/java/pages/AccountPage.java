@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class AccountPage extends BasePage {
-    private static final By OPEN_ACCOUNTS_BUTTON = By.cssSelector(".pc_version [data-target='#arrestModal']");
+    private static final By OPEN_ACCOUNTS_BUTTON = By.cssSelector(".pc_version [data-target='#myAccModal']");
     private static final By CURRENT_ACCOUNT = By.xpath(
             "//div[@id='myAccModal'] //a[@href='/CurrentAccount']"
     );
@@ -31,7 +31,7 @@ public class AccountPage extends BasePage {
     public static final By AVAILABLE_OPERATIONS = By.cssSelector(".allOperBtn.cursor_pointer");
     private static final By TRANSFER_TO_DEBT = By.cssSelector(".operation-account#transferToDep");
     private static final By TRANSFER_TO_OTBASY_CLIENT = By.cssSelector(".operation-account#transferToOtbasyClient");
-    private static final By TRANSFER_TO_OTHER_BANK = By.cssSelector(".operation-account#transferToAnotherBank");
+    private static final By TRANSFER_TO_OTHER_BANK = By.cssSelector(".allOperWrap #transferToAnotherBank");
     public static final By OPERATION_NOT_AVAILABLE = By.cssSelector("span#errorText");
     private static final By PHONE_NUMBER = By.id("phoneNumber");
     private static final By FOUND_USER_BY_NUMBER = By.id("foundUserNameByNumber");
@@ -41,6 +41,7 @@ public class AccountPage extends BasePage {
     private static final By FOUND_USER_BY_CODE = By.id("foundUserNameByCode");
     public static final By NOT_FOUND_BY_CODE = By.id("notFoundByCode");
     private static final By IBAN = By.id("ibanCode");
+    private static final By FOUND_USER_BY_IBAN = By.cssSelector("#ibanBank.bodyM");
     public static final By IBAN_ERROR = By.id("ibanError");
     private static final By SUM_TO_TRANSFER = By.id("sumToTransfer");
 
@@ -50,7 +51,7 @@ public class AccountPage extends BasePage {
     private static final By CONFIRM_TRANSFER_BUTTON = By.id("confirmTransfer");
     private static final By TRANSFER_OTP = By.id("smsVerificationCodeInput");
     private static final By SEND_OTP_BUTTON = By.id("smsVerificationBtn");
-
+    public static final By TRANSFER_SUM = By.cssSelector(".checkTransfer .accentL");
     private static final By EPV_AGREEMENT_CHECKBOX = By.id("formCheckOne");
     private static final By EPV_CONFIRM_BUTTON = By.id("formButtonOne");
     private static final By EPV_SIGN_BUTTON = By.id("firstSendCode");
@@ -116,6 +117,7 @@ public class AccountPage extends BasePage {
     public AccountPage transferToOtherBank() {
         elementsAttributes.waitUntilVisible(TRANSFER_TO_OTHER_BANK);
         button.btnClick(TRANSFER_TO_OTHER_BANK);
+        WaitUtils.wait(3);
         return this;
     }
 
@@ -155,8 +157,15 @@ public class AccountPage extends BasePage {
     @Step("Input iban")
     public AccountPage inputIban(String iban) {
         input.inputWithClear(IBAN, iban);
-//        elementsAttributes.waitUntilVisible(FOUND_USER_BY_CODE);
+        elementsAttributes.waitUntilVisible(FOUND_USER_BY_IBAN);
         WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Input iban")
+    public AccountPage inputIban_validation(String iban) {
+        input.inputWithClear(IBAN, iban);
+        WaitUtils.wait(2);
         return this;
     }
 
