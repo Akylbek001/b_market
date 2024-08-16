@@ -58,7 +58,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
     }
 
-    @Test(description = "Перевод на аренду(ФЛ) => без номера договора", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ФЛ) => Без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -85,7 +85,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на аренду(ФЛ) => с номером договора", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ФЛ) => С номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -113,7 +113,7 @@ public class SpecAccountTest extends BaseTest {
     }
 
     //BUG - нет проверки на валидность ИИН
-    @Test(description = "Перевод на аренду(ФЛ) => валидация ИИН", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ФЛ) => Валидация ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация ИИН")
     @Severity(SeverityLevel.NORMAL)
@@ -137,7 +137,7 @@ public class SpecAccountTest extends BaseTest {
         );
     }
 
-    @Test(description = "Перевод на аренду(ФЛ) => валидация IBAN отбасы", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ФЛ) => Валидация IBAN отбасы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация IBAN отбасы")
     @Severity(SeverityLevel.NORMAL)
@@ -161,7 +161,7 @@ public class SpecAccountTest extends BaseTest {
         );
     }
 
-    @Test(description = "Перевод на аренду(ЮЛ) => без номера договора", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ЮЛ) => Без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -188,7 +188,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на аренду(ЮЛ) => с номером договора", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ЮЛ) => С номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -215,7 +215,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на аренду(ЮЛ) => валидация БИН", groups = {"automated"})
+    @Test(description = "Перевод на аренду(ЮЛ) => Валидация БИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация БИН")
     @Severity(SeverityLevel.NORMAL)
@@ -239,7 +239,7 @@ public class SpecAccountTest extends BaseTest {
         );
     }
 
-    @Test(description = "Погашение займа в другом банке(ФЛ) => без номера договора", groups = {"automated"})
+    @Test(description = "Погашение займа в другом банке(ФЛ) => Без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -266,7 +266,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Погашение займа в другом банке(ФЛ) => с номером договора", groups = {"automated"})
+    @Test(description = "Погашение займа в другом банке(ФЛ) => С номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -293,7 +293,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Погашение займа в другом банке(ЮЛ) => без номера договора", groups = {"automated"})
+    @Test(description = "Погашение займа в другом банке(ЮЛ) => Без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -322,7 +322,7 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Погашение займа в другом банке(ЮЛ) => с номером договора", groups = {"automated"})
+    @Test(description = "Погашение займа в другом банке(ЮЛ) => С номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)

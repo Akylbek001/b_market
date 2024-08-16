@@ -19,7 +19,7 @@ public class DepositFamilyPackagePage extends BasePage {
     public static final By INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION = By.cssSelector("label#modalNotificationBody");
     private static final By ADD_MEMBER_BUTTON = By.id("btnAddMember");
     public static final By ADDED_FAMILY_MEMBER_FIO = By.xpath("//div[@class='family-members'][2] //div[@class='col-sm-4'] /h6");
-    private static final By CANCEL_INVITE_ICON = By.id("cancelInvite");//?
+    public static final By CANCEL_INVITE_ICON = By.id("cancelInvite");//?
     private static final By CONFIRM_CANCEL_INVITE_BUTTON = By.xpath("//button[@id='btnCancelInvite'][2]");
     public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.cssSelector("[data-target='#modalDisbandFP']");//?
     private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
