@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static pages.DepositFamilyPackagePage.*;
-import static pages.DepositPage.MY_DEPOSIT_LABEL;
 
 @Owner("Алибек Акылбеков")
 @Feature("Депозиты => Семейный пакет")

@@ -67,7 +67,9 @@ public class DepositPage extends BasePage {
     private static final By DEPOSIT_DIVISION_OPERATION = By.xpath(" //div[@class='operTxt' and text()='Деление депозита']");
     private static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");
     public static final By DIVIDE_NO_ACCOUNT_VALIDATION = By.cssSelector(".modal-body.body-attention > p");
-    public static final By DIVIDE_SAVING_AMOUNT_VALIDATION = By.id("diffinfoHTML");
+
+    public static final By OPERATION_NOT_AVAILABLE = By.id("diffinfoHTML");
+    public static final By VISIT_BANK_BRANCH_NOTIFICATION = By.id("showMessageHTML");
     public static final By DIVIDE_DEPOSIT_ACCEPTED = By.cssSelector(".h5_22");//?
     private static final By UNITE_DEPOSIT_OPERATION = By.id("UniteDepositsButton");
     private static final By FIRST_DEPOSIT_TO_UNITE = By.xpath("//div[@class='DepositsChangeBlocks--items'] /div[1]");

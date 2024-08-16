@@ -74,7 +74,7 @@ public final class CharacterSetConstants {
     public static final String INSUFFICIENT_FUNDS_FOR_TRANSFER = "Недостаточно средств для перевода";
 
     public static final String OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION ="Операция успешно завершена";
-    public static final String OPEN_DEPOSIT_REFUSED = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
+    public static final String VISIT_BANK_BRANCH = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
     public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Уважаемый клиент! Введенный Вами альтернативный код некорректный, просим проверить данные.";
     public static final String VALIDATION_OF_REGISTRATION = "Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Интернет банкинге/мобильном приложений, необходимо проверить наличие регистрации.";
     public static final String RELATION_DEGREE_NOT_SELECTED_TEXT = "Уважаемый клиент! Выберите степень родства";
@@ -90,6 +90,8 @@ public final class CharacterSetConstants {
     public static final String DEPOSIT_DIVISION_ACCEPTED = "Ваша заявка на деление депозита принята";
     public static final String DEPOSIT_DIVISION_NEED_TO_OPEN_ACCOUNT_VALIDATION = "Для деления депозита Вам необходимо открыть текущий счет. Поскольку на этот счет будет произведен перевод денежных средств с делимого депозита";
     public static final String DEPOSIT_DIVISION_SAVING_AMOUNT_VALIDATION = "Уважаемый клиент! Минимальная сумма накопления должна быть больше 50 МРП";
+
+    public static final String ONLY_BASPANA_COULD_BE_DIVIDED = "Уважаемый клиент! Деление депозита допускается по тарифной программе Баспана";
     public static final String DEPOSIT_DIVISION_NEGOTIATION_AMOUNT = "Уважаемый клиент! Для продолжения операции необходимо изменить условия договорной суммы минимум 1000 МРП";
     public static final String ASSIGNMENT_GRATUITOUS_SAVING_AMOUNT_VALIDATION = "Сумма накоплений депозита должна превышать 50 МРП";
 
