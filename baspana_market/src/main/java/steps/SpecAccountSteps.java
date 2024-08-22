@@ -25,6 +25,11 @@ public class SpecAccountSteps {
                 .selectTransferToDepositOperation();
     }
 
+    public void transferToDepositOperation_validate() {
+        specAccountPage
+                .selectTransferToDepositOperation_validation();
+    }
+
     public void selectTransferToRentOperation() {
         specAccountPage
                 .selectTransferToRentOperation();

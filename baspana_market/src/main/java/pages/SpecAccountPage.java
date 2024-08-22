@@ -68,14 +68,22 @@ public class SpecAccountPage extends BasePage {
     @Step("Select transfer to deposit operation")
     public SpecAccountPage selectTransferToDepositOperation() {
         button.btnClick(TRANSFER_TO_DEPOSIT);
+        elementsAttributes.waitUntilVisible(RECIPIENT_TYPE);
         return this;
     }
-    @Step("Select transfer to deposit rent")
+    @Step("Select transfer to rent")
     public SpecAccountPage selectTransferToRentOperation() {
         button.btnClick(TRANSFER_TO_RENT);
         elementsAttributes.waitUntilVisible(RECIPIENT_TYPE);
         return this;
     }
+
+    @Step("Select transfer to deposit for validate")
+    public SpecAccountPage selectTransferToDepositOperation_validation() {
+        button.btnClick(TRANSFER_TO_RENT);
+        return this;
+    }
+
     @Step("Select transfer to mortgage operation")
     public SpecAccountPage selectTransferToMortgageOperation() {
         button.btnClick(TRANSFER_TO_MORTGAGE);

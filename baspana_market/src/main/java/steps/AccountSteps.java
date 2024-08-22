@@ -78,6 +78,11 @@ public class AccountSteps {
                 .transferToOtherBank();
     }
 
+    public void closeCurrentAccount() {
+        accountPage
+                .closeCurrentAccount();
+    }
+
     public void searchOtherBankIban(String iban) {
         accountPage
                 .inputIban(iban);

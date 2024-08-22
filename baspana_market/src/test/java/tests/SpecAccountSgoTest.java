@@ -25,7 +25,7 @@ public class SpecAccountSgoTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Полный расчет в Otbasy Bank => по номеру телефона с контарактом", groups = {"automated"})
+    @Test(description = "Полный расчет в Otbasy Bank => По номеру телефона с контарактом", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -50,7 +50,7 @@ public class SpecAccountSgoTest extends BaseTest {
     }
 
     //BUG - добавить обязательность полей(номер договора)
-    @Test(description = "Полный расчет в Otbasy Bank => по номеру телефона без контракта", groups = {"automated"})
+    @Test(description = "Полный расчет в Otbasy Bank => По номеру телефона без контракта", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -74,7 +74,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Полный расчет в Otbasy Bank => по альт коду с контарактом", groups = {"automated"})
+    @Test(description = "Полный расчет в Otbasy Bank => По альт коду с контарактом", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -98,7 +98,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Полный расчет в Otbasy Bank => по альт коду без контракта", groups = {"automated"})
+    @Test(description = "Полный расчет в Otbasy Bank => По альт коду без контракта", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -122,9 +122,9 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) = валидации суммы текущего счета", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) = Валидации суммы текущего счета", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Успешный перевод")
+    @Description("Валидации суммы текущего счета")
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_validateCurrentAccBalance () {
         step("Авторизация", () -> {
@@ -176,7 +176,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) =>без номера договора", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) => Без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -251,7 +251,7 @@ public class SpecAccountSgoTest extends BaseTest {
     }
 
     //not finished
-    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ)=>c номером договора", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ)=> С номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -279,7 +279,7 @@ public class SpecAccountSgoTest extends BaseTest {
     }
 
     //not finished
-    @Test(description = "Оплата аренды с последующим выкупом(ФЛ)=>без номера договора", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ)=> Без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)

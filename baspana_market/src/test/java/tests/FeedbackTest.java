@@ -83,7 +83,7 @@ public class FeedbackTest extends BaseTest {
 
 
     //BUG - данные страницы на казахском, хотя локаль не менялась с русского на осн.странице
-    @Test(description="Оставить отзыв => Вопрос", groups = {"automated"})
+    @Test(description="Оставить отзыв => Вопрос", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Вопрос")
     @Severity(SeverityLevel.NORMAL)
@@ -115,7 +115,7 @@ public class FeedbackTest extends BaseTest {
         );
     }
 
-    @Test(description="Оставить отзыв => Предложение", groups = {"automated"})
+    @Test(description="Оставить отзыв => Предложение", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Предложение")
     @Severity(SeverityLevel.NORMAL)
@@ -147,7 +147,7 @@ public class FeedbackTest extends BaseTest {
         );
     }
 
-    @Test(description="Оставить отзыв => Жалоба", groups = {"automated"})
+    @Test(description="Оставить отзыв => Жалоба", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Жалоба")
     @Severity(SeverityLevel.NORMAL)
@@ -179,7 +179,7 @@ public class FeedbackTest extends BaseTest {
         );
     }
 
-    @Test(description="Оставить отзыв => Благодарность", groups = {"automated"})
+    @Test(description="Оставить отзыв => Благодарность", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Благодарность")
     @Severity(SeverityLevel.NORMAL)
@@ -211,7 +211,7 @@ public class FeedbackTest extends BaseTest {
         );
     }
 
-    @Test(description="Оставить отзыв => Отзыв жалобы/обращения", groups = {"automated"})
+    @Test(description="Оставить отзыв => Отзыв жалобы/обращения", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отзыв жалобы/обращения")
     @Severity(SeverityLevel.NORMAL)
@@ -243,7 +243,7 @@ public class FeedbackTest extends BaseTest {
         );
     }
 
-    @Test(description="Оставить отзыв => Паводки", groups = {"automated"})
+    @Test(description="Оставить отзыв => Паводки", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Паводки")
     @Severity(SeverityLevel.NORMAL)

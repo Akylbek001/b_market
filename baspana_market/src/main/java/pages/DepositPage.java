@@ -234,7 +234,7 @@ public class DepositPage extends BasePage {
     @Step("Click divide button")
     public DepositPage clickDivideButton() {
         button.btnClick(DIVIDE_BUTTON);
-        WaitUtils.wait(3);
+        WaitUtils.wait(10);
         return this;
     }
 

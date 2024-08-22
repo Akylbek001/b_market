@@ -133,7 +133,7 @@ public class AccountTest extends BaseTest {
         });
         Assert.assertEquals(
                 CharacterSetConstants.EPV_INVALID_OTP_TEXT,
-                elementsAttributes.getValue(EPV_INVALID_OTP)
+                elementsAttributes.getValue(INVALID_OTP_NOTIFICATION)
         );
     }
 
@@ -188,7 +188,7 @@ public class AccountTest extends BaseTest {
 
     @Test(description="Перевод между своими счетами => Валидация отсутствия депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Успешный перевод")
+    @Description("Валидация отсутствия депозита")
     @Severity(SeverityLevel.CRITICAL)
     public void transferToDebt_validateNoDeposit() {
         step("Авторизация -> Мои Счета", () -> {
@@ -204,7 +204,7 @@ public class AccountTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
     }
 
-    @Test(description="Перевод клиенту <Отбасы Банк> => по номеру телефона", groups = {"automated"})
+    @Test(description="Перевод клиенту <Отбасы Банк> => По номеру телефона", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.BLOCKER)
@@ -274,7 +274,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    @Test(description="Перевод клиенту <Отбасы Банк> => по альтернативному коду", groups = {"automated"})
+    @Test(description="Перевод клиенту <Отбасы Банк> => По альтернативному коду", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.BLOCKER)
@@ -502,4 +502,24 @@ public class AccountTest extends BaseTest {
         });
         Assert.assertTrue(true);
     }
+
+    @Test(description="Перевод между своими счетами => Валидация наличия займа", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация наличия займа")
+    @Severity(SeverityLevel.CRITICAL)
+    public void closeCurrentAccount_validateLoan() {
+        step("Авторизация -> Мои Счета", () -> {
+            loginSteps.auth("77052713077", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Открыть список достпупных операции", () -> {
+            accountSteps.openAvailableOperationsList();
+        });
+        step("Перевод между своими счетами", () -> {
+            accountSteps.closeCurrentAccount();
+        });
+        Assert.assertEquals(CharacterSetConstants.CLIENT_HAS_LOAN, elementsAttributes.getValue(ERROR_TEXT));
+    }
 }
+
+//жду исправления проверок при попытке закрыть текущий счет - Раджан

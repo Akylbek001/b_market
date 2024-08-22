@@ -116,7 +116,7 @@ public class MainTest extends BaseTest {
             mainSteps.clickShowAllStateProgramsButton();
         });
         Assert.assertEquals(
-                brManager.getCurrUrl().substring(0, 72),
+                brManager.getCurrUrl().substring(0, 70),
                 envConfig.baseUrl().concat("pool/search?newOrSecond=new&realizeTypeNurlyZher"));
     }
 

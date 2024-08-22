@@ -56,7 +56,7 @@ public class AccountPage extends BasePage {
     private static final By EPV_CONFIRM_BUTTON = By.id("formButtonOne");
     private static final By EPV_SIGN_BUTTON = By.id("firstSendCode");
     private static final By EPV_OTP = By.id("smsVerificationCodeInput");
-    public static final By EPV_INVALID_OTP = By.id("errorSmsVerificationCode");
+    public static final By INVALID_OTP_NOTIFICATION = By.id("errorSmsVerificationCode");
     private static final By EPV_SEND_BUTTON = By.id("smsVerificationBtn");
     public static final By EPV_ERROR_MESSAGE = By.id("errorMessage");
 
@@ -65,7 +65,7 @@ public class AccountPage extends BasePage {
     private static final By OTHER_BANK_NAME = By.xpath("//div[@class='checkBox-Banks'] /div[2]");
     private static final By OTHER_BANK_CONTINUE_BUTTON_ = By.xpath("//div[@class='Button-SMS'] /button");
 
-    public static final By TEST_SELECTOR = By.cssSelector("#errorTransfer .bodyL");
+    public static final By CLOSE_CURRENT_ACCOUNT_OPERATION = By.cssSelector(".operation-account#closeAccount");
 
 
 
@@ -322,6 +322,13 @@ public class AccountPage extends BasePage {
     @Step("Click continue button")
     public AccountPage clickContinueOtherBank_() {
         button.btnClick(OTHER_BANK_CONTINUE_BUTTON_);
+        return this;
+    }
+
+    @Step("Select close current account operation")
+    public AccountPage closeCurrentAccount() {
+        elementsAttributes.waitUntilVisible(CLOSE_CURRENT_ACCOUNT_OPERATION);
+        button.btnClick(CLOSE_CURRENT_ACCOUNT_OPERATION);
         return this;
     }
 }

@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static pages.AccountPage.INVALID_OTP_NOTIFICATION;
 import static pages.SpecAccountPage.ERROR_TEXT;
 import static pages.SpecAccountPage.TRANSFER_DETAILS;
 import static pages.SpecAccountSgoPage.*;
@@ -24,24 +25,29 @@ public class SpecAccountTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Перевод на депозит", groups = {"automated"}, enabled = false)
+    @Test(description = "Перевод на депозит", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
     public void transferToDeposit () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            loginSteps.auth("77011257080", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
             specAccountSteps.transferToDepositOperation();
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSgoSteps.inputSumToTransfer("77");
+            elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+            generalSteps.confirmationByOtp(config.smsCode());
         });
-        Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+        Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Валидация отсутствия депозита", groups = {"automated"})
+    @Test(description = "Перевод на депозит => Валидация отсутствия депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отсутствует депозит для перевода")
     @Severity(SeverityLevel.NORMAL)
@@ -53,9 +59,31 @@ public class SpecAccountTest extends BaseTest {
         step("Добавить email", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
-            specAccountSteps.transferToDepositOperation();
+            specAccountSteps.transferToDepositOperation_validate();
         });
         Assert.assertEquals(CharacterSetConstants.NO_DEPOSIT, elementsAttributes.getValue(ERROR_TEXT));
+    }
+
+    @Test(description = "Перевод на депозит => Валидация OPT", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация OPT")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToDeposit_validateOtp () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Добавить email", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSteps.transferToDepositOperation();
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSgoSteps.inputSumToTransfer("77");
+            elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+            generalSteps.confirmationByOtp("444444");
+        });
+        Assert.assertEquals("Некорректный код", elementsAttributes.getValue(INVALID_OTP_NOTIFICATION));
     }
 
     @Test(description = "Перевод на аренду(ФЛ) => Без номера договора", groups = {"automated"})
@@ -110,6 +138,34 @@ public class SpecAccountTest extends BaseTest {
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
+    }
+
+    @Test(description = "Перевод на аренду(ФЛ) => Валидация ОТП", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешный перевод")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToRent_forIndividual_validateOtp () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSteps.selectTransferToRentOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSteps.inputRecipientInfo_individual(config.clientIin(), config.clientIban().substring(2));
+            specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
+            specAccountSteps.inputSumToTransfer_forIndividual("555");
+            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.confirmTransferOnModal();
+            elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+            generalSteps.confirmationByOtp("444444");
+        });
+        Assert.assertEquals("Некорректный код", elementsAttributes.getValue(INVALID_OTP_NOTIFICATION));
     }
 
     //BUG - нет проверки на валидность ИИН
@@ -293,6 +349,28 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
+    //добавить Assert
+    @Test(description = "Погашение займа в другом банке(ФЛ) => Валидация IBAN", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация IBAN")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToOtherBank_forIndividual_validateIban () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSteps.transferToMortgageOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectIndividualRecipientType();
+            specAccountSteps.inputRecipientIban(config.clientIban().substring(2));
+        });
+    }
+
     @Test(description = "Погашение займа в другом банке(ЮЛ) => Без номера договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
@@ -349,5 +427,29 @@ public class SpecAccountTest extends BaseTest {
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
+    }
+
+    //добавить Assert
+    @Test(description = "Погашение займа в другом банке(ЮЛ) => Валидация IBAN", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация IBAN")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToOtherBank_forRE_validateIban () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.specAccount_login(), config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на аренду", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSteps.transferToMortgageOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectRERecipientType();
+            specAccountSteps.inputRecipientInfo_RE_loanRepayment(
+                    config.clientIin(), config.clientIban().substring(2)
+            );
+        });
     }
 }

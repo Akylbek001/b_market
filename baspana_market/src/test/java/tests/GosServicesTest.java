@@ -19,18 +19,17 @@ public class GosServicesTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
-
-        loginSteps.auth(
-                config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-        );
-        brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
     }
 
-    @Test(description = "Получить справку об отсутствии недвижемого имущества", groups = {"automated"})
+    @Test(description = "Получить справку об отсутствии недвижемого имущества=> Сервис не доступен", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)
-    public void getCertificateOfAbsent () {
+    public void getCertificateOfAbsent_serviceNotAvailable () {
+        step("Авторизация -> гос.услуги", () -> {
+            loginSteps.auth(config.loanClient_login(), config.client_for_password_recovery_newPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
+        });
         step("Получить справку", () -> {
             govServicesSteps.getCertificateOfAbsenceOfRealEstatesButton();
         });
@@ -42,11 +41,55 @@ public class GosServicesTest extends BaseTest {
         });
     }
 
-    @Test(description = "Получить справку о наличии недвижимости и обременении", groups = {"automated"})
+    @Test(description = "Получить справку о наличии недвижимости и обременении=> Сервис не доступен", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)
-    public void getCertificateOfRegisteredRightsAndEncumbrances () {
+    public void getCertificateOfRegisteredRightsAndEncumbrances_serviceNotAvailable () {
+        step("Авторизация -> гос.услуги", () -> {
+            loginSteps.auth(config.loanClient_login(), config.client_for_password_recovery_newPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
+        });
+        step("Получить справку", () -> {
+            govServicesSteps.getCertificateOfRegisteredRightsAndEncumbrances();
+        });
+        Assert.assertEquals(CharacterSetConstants.SERVICE_NOT_AVAILABLE,
+                elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
+        );
+        step("Завершить", () -> {
+            govServicesSteps.complete();
+        });
+    }
+
+    @Test(description = "Получить справку об отсутствии недвижемого имущества=> Не найден в БМГ", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("справку об отсутствии недвижемого имущества")
+    @Severity(SeverityLevel.NORMAL)
+    public void getCertificateOfAbsent_notFoundInBMG () {
+        step("Авторизация -> гос.услуги", () -> {
+            loginSteps.auth("77011063133", config.client_for_password_recovery_newPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
+        });
+        step("Получить справку", () -> {
+            govServicesSteps.getCertificateOfAbsenceOfRealEstatesButton();
+        });
+        Assert.assertEquals(CharacterSetConstants.NOT_FOUND_IN_BMG,
+                elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
+        );
+        step("Завершить", () -> {
+            govServicesSteps.complete();
+        });
+    }
+
+    @Test(description = "Получить справку о наличии недвижимости и обременении=> Не найден в БМГ", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("справку об отсутствии недвижемого имущества")
+    @Severity(SeverityLevel.NORMAL)
+    public void getCertificateOfRegisteredRightsAndEncumbrances_notFoundInBMG () {
+        step("Авторизация -> гос.услуги", () -> {
+            loginSteps.auth("77011063133", config.client_for_password_recovery_newPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
+        });
         step("Получить справку", () -> {
             govServicesSteps.getCertificateOfRegisteredRightsAndEncumbrances();
         });
