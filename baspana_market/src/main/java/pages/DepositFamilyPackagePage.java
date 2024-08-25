@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class DepositFamilyPackagePage extends BasePage {
-    private static final By SELECT_DEPOSIT = By.cssSelector(".deposit_consolidation_step1_list_item");
+    public static final By SELECT_DEPOSIT = By.cssSelector(".deposit_consolidation_step1_list_item");
     private static final By CONTINUE_BUTTON = By.id("btnNext");
     private static final By FAMILY_PACKAGE_NAME = By.id("inptFPName");
     private static final By CREATE_FAMILY_PACKAGE_BUTTON = By.id("btnCreate");

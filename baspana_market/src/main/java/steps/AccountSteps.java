@@ -41,6 +41,11 @@ public class AccountSteps {
                 .openAvailableOperations();
     }
 
+    public void openAvailableOperationsList_smoke() {
+        accountPage
+                .openAvailableOperations();
+    }
+
     public void transferToDebt() {
         accountPage
                 .transferToDebt();

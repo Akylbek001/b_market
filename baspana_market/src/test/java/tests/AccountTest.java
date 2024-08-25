@@ -90,7 +90,6 @@ public class AccountTest extends BaseTest {
     }
 
 //add close current account test
-
     @Test(description="Открыть счет для ЕПВ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Счет для ЕПВ")
@@ -111,7 +110,7 @@ public class AccountTest extends BaseTest {
         });
         Assert.assertEquals(
                 CharacterSetConstants.OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION,
-                elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY)
+                elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY_EPV)
         );
     }
 
@@ -164,7 +163,7 @@ public class AccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.CRITICAL)
-    public void transferToDebt() {
+    public void transferBetweenYourAccounts() {
         step("Авторизация -> Мои Счета", () -> {
             loginSteps.auth("77003896225", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -190,7 +189,7 @@ public class AccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация отсутствия депозита")
     @Severity(SeverityLevel.CRITICAL)
-    public void transferToDebt_validateNoDeposit() {
+    public void transferBetweenYourAccounts_validateNoDeposit() {
         step("Авторизация -> Мои Счета", () -> {
             loginSteps.auth("77052713077", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -503,7 +502,7 @@ public class AccountTest extends BaseTest {
         Assert.assertTrue(true);
     }
 
-    @Test(description="Перевод между своими счетами => Валидация наличия займа", groups = {"automated"})
+    @Test(description="Закрыть текущий счет => Валидация наличия займа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация наличия займа")
     @Severity(SeverityLevel.CRITICAL)
@@ -515,7 +514,7 @@ public class AccountTest extends BaseTest {
         step("Открыть список достпупных операции", () -> {
             accountSteps.openAvailableOperationsList();
         });
-        step("Перевод между своими счетами", () -> {
+        step("Закрыть текущий счет", () -> {
             accountSteps.closeCurrentAccount();
         });
         Assert.assertEquals(CharacterSetConstants.CLIENT_HAS_LOAN, elementsAttributes.getValue(ERROR_TEXT));

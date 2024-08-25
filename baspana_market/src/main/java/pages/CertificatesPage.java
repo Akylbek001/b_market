@@ -13,7 +13,7 @@ public class CertificatesPage extends BasePage {
     private static final By CERTIFICATE_OF_LOAN_STATEMENT = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по займу']");
     private static final By CERTIFICATE_OF_LOAN_REPAYMENT_SCHEDULE = By.xpath("//div[@class='cert--blocks--items'] //p[text() = 'Выписка по графику погашения займа']");
 
-    private static final By ACCOUNTS_DROPDOWN_LIST = By.cssSelector(".custom-select--for--counts");
+    public static final By ACCOUNTS_DROPDOWN_LIST = By.cssSelector(".custom-select--for--counts");
     private static final By ALL_ACCOUNTS = By.xpath("//div[@class='select-items'] /div[1]");
     private static final By CURRENT_ACCOUNT = By.xpath("//div[@class='select-items'] /div[2]");
     private static final By EPV_ACCOUNT = By.xpath("//div[@class='select-items'] /div[3]");

@@ -8,8 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
-
 import static io.qameta.allure.Allure.step;
 import static pages.HeaderPage.*;
 
@@ -33,7 +31,6 @@ public class HeaderTest extends BaseTest {
         });
         brManager.switchToLastTab();
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.ownHouseProgramPath()));
-
     }
 
     @Test(description="Новости", groups = {"automated"})
@@ -47,7 +44,6 @@ public class HeaderTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.newsPath()));
     }
 
-    //BUG - loading
     @Test(description="Контакты", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Контакты")
@@ -91,7 +87,6 @@ public class HeaderTest extends BaseTest {
             headerSteps.postAd();
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl());
-        // добавить более конкретную проверку
     }
 
     @Test(description="Избранные объявления => Пользователь не авторизован", groups = {"automated"})

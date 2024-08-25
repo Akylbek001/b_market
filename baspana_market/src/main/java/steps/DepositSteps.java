@@ -82,6 +82,26 @@ public class DepositSteps {
                 .clickSelectButton();
     }
 
+    public void changeGosPrem_smoke() {
+        depositPage
+                .selectChangeGosPremOperation();
+    }
+
+    public void terminateDeposit_smoke() {
+        depositPage
+                .terminateDepositOperation();
+    }
+
+    public void changeDepositConditions_smoke() {
+        depositPage
+                .changeDepositConditionsOperation();
+    }
+
+    public void depositDivision_smoke() {
+        depositPage
+                .createDepositDivisionOperation();
+    }
+
     public void changeGosPrem_validation() {
         depositPage
                 .selectChangeGosPremOperation()

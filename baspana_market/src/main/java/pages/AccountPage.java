@@ -5,6 +5,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static pages.CertificatesPage.ACCOUNTS_DROPDOWN_LIST;
+
 public class AccountPage extends BasePage {
     private static final By OPEN_ACCOUNTS_BUTTON = By.cssSelector(".pc_version [data-target='#myAccModal']");
     private static final By CURRENT_ACCOUNT = By.xpath(
@@ -24,9 +26,9 @@ public class AccountPage extends BasePage {
     public static final By INVALID_OTP = By.id("modalNotificationBody");
     private static final By STATEMENT_CONTINUE_BUTTON = By.cssSelector(".deposit_check_submit button");
     private static final By SEND_RATE_BUTTON = By.cssSelector("[onclick='SendRate()']");
-    public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".form_step.act .title");
+    public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector("#account4 h2");
+    public static final By OPERATION_COMPLETED_SUCCESSFULLY_EPV = By.cssSelector(".form_step.act span.title");
     public static final By NOTIFICATION_TEXT = By.cssSelector("label#modalNotificationBody");
-
     public static final By EXISTED_CURRENT_ACCOUNT = By.cssSelector(".card.account");
     public static final By AVAILABLE_OPERATIONS = By.cssSelector(".allOperBtn.cursor_pointer");
     private static final By TRANSFER_TO_DEBT = By.cssSelector(".operation-account#transferToDep");
@@ -101,6 +103,7 @@ public class AccountPage extends BasePage {
     public AccountPage transferToDebt() {
         elementsAttributes.waitUntilVisible(TRANSFER_TO_DEBT);
         button.btnClick(TRANSFER_TO_DEBT);
+        WaitUtils.wait(3);
         return this;
     }
 

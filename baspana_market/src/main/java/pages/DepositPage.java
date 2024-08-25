@@ -46,7 +46,7 @@ public class DepositPage extends BasePage {
 
     private static final By SELECT = By.id("next-step");
     private static final By TERMINATE_DEPOSIT_OPERATION = By.id("terminateDeposit");
-    private static final By TERMINATE_DEPOSIT_BUTTON = By.cssSelector(
+    public static final By TERMINATE_DEPOSIT_BUTTON = By.cssSelector(
             "[data-target='#TerminationModal']"
     );
     private static final By CONTINUE_TERMINATE_DEPOSIT_BUTTON = By.cssSelector(
@@ -60,12 +60,12 @@ public class DepositPage extends BasePage {
 
 
     public static final By NEW_DEPOSIT_MONTH_PAY = By.id("NewDpsMonthPay");
-    private static final By CHANGE_DETAILS_BUTTON = By.id("changeDetailsButton");
+    public static final By CHANGE_DETAILS_BUTTON = By.id("changeDetailsButton");
     private static final By SIGN_CHANGE_DETAILS_BUTTON = By.id("signChangeDetailsButton");
     public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".finishHead .title");
     private static final By CREATE_FAMILY_PACKAGE_OPERATION = By.xpath("//div[@onclick='onGetDeposits()']");
     private static final By DEPOSIT_DIVISION_OPERATION = By.xpath(" //div[@class='operTxt' and text()='Деление депозита']");
-    private static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");
+    public static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");
     public static final By DIVIDE_NO_ACCOUNT_VALIDATION = By.cssSelector(".modal-body.body-attention > p");
 
     public static final By OPERATION_NOT_AVAILABLE = By.id("diffinfoHTML");
@@ -91,6 +91,8 @@ public class DepositPage extends BasePage {
     public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_ = By.cssSelector(".right_button.ob-mt-20px.web-block button");
     private static final By CONFIRM_SMS_BUTTON = By.id("continue-sms-cession");
     public static final By PROHIBITION_OF_OPEN_ACCOUNT = By.xpath("//div[@id='arrestsDiv'] /div[@class='arrestDiv'][2] //span[@class='accentXS']");
+    public static final By GOS_PREM_MODAL_TITLE = By.cssSelector(".changeTitle");
+
 
 
     public DepositPage(WebDriver driver) {
@@ -119,7 +121,8 @@ public class DepositPage extends BasePage {
 
     @Step("Show available operations")
     public DepositPage showAvailableOperations() {
-        button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
+        button.btnClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
+        button.btnClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
         elementsAttributes.waitUntilVisible(DEPOSIT_DIVISION_OPERATION);
         return this;
     }

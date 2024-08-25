@@ -19,7 +19,7 @@ public class MainTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Разместить объявление", groups = {"automated"}, enabled = false)
+    @Test(description="Разместить объявление", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.MINOR)
@@ -41,7 +41,7 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
     }
 
-    @Test(description="Разместить объявление из раздела <Мои объявления>", groups = {"automated"}, enabled = false)
+    @Test(description="Разместить объявление из раздела <Мои объявления>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.MINOR)
@@ -90,7 +90,7 @@ public class MainTest extends BaseTest {
         step("Авторизация", () -> {
             loginSteps.auth(config.clientLogin(), config.clientPassword());
         });
-        step("Навигация на страницу новости Baspana", () -> {
+        step("Навигация на страницу Ипотека Наурыз", () -> {
             mainSteps.clickNaurizMortgage();
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Nauriz"));
@@ -101,7 +101,7 @@ public class MainTest extends BaseTest {
     @Description("Посмотреть информацию про программу Бакытты Отбасы")
     @Severity(SeverityLevel.MINOR)
     public void navigateToHappyFamilyMortgageProgram() {
-        step("Навигация на страницу новости Baspana", () -> {
+        step("Навигация на страницу Бакытты Отбасы", () -> {
             mainSteps.clickHappyFamilyMortgage();
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.happyFamilyMortgagePath()));
@@ -116,7 +116,7 @@ public class MainTest extends BaseTest {
             mainSteps.clickShowAllStateProgramsButton();
         });
         Assert.assertEquals(
-                brManager.getCurrUrl().substring(0, 70),
+                brManager.getCurrUrl().substring(0, 72),
                 envConfig.baseUrl().concat("pool/search?newOrSecond=new&realizeTypeNurlyZher"));
     }
 
