@@ -176,12 +176,6 @@ public class SmokeTest extends BaseTest {
             loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToDeposit"));
         });
-//        step("Открыть список достпупных операции", () -> {
-//            accountSteps.openAvailableOperationsList_smoke();
-//        });
-//        step("Перевод между своими счетами", () -> {
-//            accountSteps.transferToDebt();
-//        });
         Assert.assertEquals(
                 brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount/TransferToDeposit")
         );
@@ -215,8 +209,6 @@ public class SmokeTest extends BaseTest {
                 brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount/TransferToAnotherBank")
         );
     }
-
-
 
     @Test(description="Раздел <Депозиты>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -370,6 +362,22 @@ public class SmokeTest extends BaseTest {
         );
     }
 
+    @Test(description = "Выписка о ссудной задолженности", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Выписка о ссудной задолженности")
+    @Severity(SeverityLevel.NORMAL)
+    public void getLoanDebtCertificate () {
+        step("Получить справку", () -> {
+            certificatesSteps.selectLoanDebtCertificate();
+            certificatesSteps.fillRequiresData();
+            certificatesSteps.getCertificate();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.CERTIFICATE_HAS_BEEN_GENERATED,
+                elementsAttributes.getValue(CERTIFICATE_GENERATED_NOTIFICATION)
+        );
+    }
+
     @Test(description="Раздел <Займы>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Займы")
@@ -380,6 +388,24 @@ public class SmokeTest extends BaseTest {
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Loan"));
+    }
+
+    @Test(description="Займы => Полное досрочное погашение", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Полное досрочное погашение")
+    @Severity(SeverityLevel.NORMAL)
+    public void fullEarlyRepayment_terminateDeposit () {
+        step("Авторизация -> Запись в отдление", () -> {
+            loginSteps.auth("77076769290", "12345test");
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.fullEarlyRepaymentOperation();
+            loansSteps.selectFullRepaymentWithDepositTermination();
+            loansSteps.fullEarlyRepayment(config.smsCode());
+        });
     }
 
     @Test(description="Раздел <Кабинет>", groups = {"automated"})

@@ -397,14 +397,6 @@ public class DepositPage extends BasePage {
     }
 
     @Step("Input agreed sum")
-    public DepositPage cleanField() {
-        WaitUtils.wait(1);
-        input.cleanField(AGREED_SUM);
-        WaitUtils.wait(2);
-        return this;
-    }
-
-    @Step("Input agreed sum")
     public DepositPage inputAgreedSum(String sum) {
         input.input(AGREED_SUM, sum);
         WaitUtils.wait(5);
