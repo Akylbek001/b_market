@@ -121,11 +121,11 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Частичное досрочное погашение", groups = {"automated"})
+    @Test(description="Частичное досрочное погашение через текущий счет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
-    public void partialEarlyRepayment () {
+    public void partialEarlyRepaymentByCurrentAccount () {
         step("Авторизация -> Запись в отдление", () -> {
             loginSteps.auth("77773192656", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
@@ -138,11 +138,29 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Частичное досрочное погашение=> Валидация недостаточной суммы", groups = {"automated"})
+    @Test(description="Частичное досрочное погашение через ЕПВ счет", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешно")
+    @Severity(SeverityLevel.NORMAL)
+    public void partialEarlyRepaymentByEPVAccount () {
+        step("Авторизация -> Запись в отдление", () -> {
+            loginSteps.auth("77773192656", config.loanClient_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.partialEarlyRepaymentOperation();
+            loansSteps.selectEPVAccount();
+            loansSteps.partialEarlyRepayment("124000");
+        });
+    }
+
+    @Test(description="Частичное досрочное погашение через текущий счет=> Валидация недостаточной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
-    public void partialEarlyRepayment_validateNotEnoughFund () {
+    public void partialEarlyRepaymentByCurrentAccount_validateNotEnoughFund () {
         step("Авторизация -> Запись в отдление", () -> {
             loginSteps.auth("77773192656", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
@@ -156,9 +174,27 @@ public class LoansTest extends BaseTest {
         Assert.assertEquals("Не хватает средств на счете.", elementsAttributes.getValue(MODAL_NOTIFICATION));
     }
 
+    @Test(description="Частичное досрочное погашение через ЕПВ счет=> Валидация недостаточной суммы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешно")
+    @Severity(SeverityLevel.NORMAL)
+    public void partialEarlyRepaymentByEPVAccount_validateNotEnoughFund () {
+        step("Авторизация -> Запись в отдление", () -> {
+            loginSteps.auth("77773192656", config.loanClient_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.partialEarlyRepaymentOperation();
+            loansSteps.selectEPVAccount();
+            loansSteps.partialEarlyRepayment("124000");
+        });
+    }
+
     @Test(description="Частичное досрочное погашение - нет целовое использование займа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepayment_validateIntendedUse () {
         step("Авторизация -> Запись в отдление", () -> {

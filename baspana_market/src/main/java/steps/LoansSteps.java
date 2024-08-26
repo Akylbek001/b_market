@@ -3,8 +3,6 @@ package steps;
 import org.openqa.selenium.WebDriver;
 import pages.LoansPage;
 
-import static pages.LoansPage.DEPOSIT_TERMINATION_SUM;
-
 public class LoansSteps {
 
     private final LoansPage loansPage;
@@ -72,6 +70,11 @@ public class LoansSteps {
     public void selectFullRepaymentWithoutDepositTermination() {
         loansPage
                 .selectFullRepaymentWithoutDepositTermination();
+    }
+
+    public void selectEPVAccount() {
+        loansPage
+                .selectAccount();
     }
 
     public void fullEarlyRepayment(String otp) {

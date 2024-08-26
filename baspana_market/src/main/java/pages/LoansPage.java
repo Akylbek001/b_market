@@ -28,7 +28,6 @@ public class LoansPage extends BasePage {
     public static final By CURRENT_ACCOUNT_SUM = By.id("CurrentAccount");
     public static final By SUM_DIFF = By.id("errorMessage");
 
-
     public static final By INTENDED_USE_OF_LOAN_NOTIFICATION = By.id("changePaymentDayModalBody");
 
     public static final By CHANGING_PAYMENT_DATE_NOTIFICATION = By.id("changePaymentDayModalBody");
@@ -45,11 +44,9 @@ public class LoansPage extends BasePage {
     private static final By START_EXCEPTION_BUTTON = By.cssSelector("#TheStepsId button");
     private static final By REQUEST_FAMILY_INFO_BUTTON = By.cssSelector(".FamilyInfoBlock.GreyBackgroundBlocks button");
 
-
     private static final By SIGN_SCHEDULE = By.cssSelector("[data-target='#ModalToSendApplication']");
     private static final By SIGN_OTP = By.cssSelector(".OtpBlocks--inputs");
     private static final By SEND_BUTTON = By.cssSelector("onclick='GoToFifthStep()'");
-
 
     private static final By NEXT_BUTTON = By.xpath("//div[@id='StartTheApplicationsId']//div[@class='modal-footer'] /button[2]");
     private static final By COLLATERAL_FOR_CHANGE = By.id("4EDC8A84DE07D1BBCE22A726769D803F");
@@ -57,7 +54,6 @@ public class LoansPage extends BasePage {
     public static final By MODAL_NOTIFICATION = By.id("ExchangesModalToAttenttionsBody");
     public static final By SWITCHING_TO_HOME_LOAN_ACCOUNT_VALIDATION = By.cssSelector("#transitionNotAvailableOperationNotAvailable #errorTransition");
     public static final By SWITCHING_TO_HOME_LOAN_DEPOSIT_VALIDATION = By.id("errorTransition");
-
 
     private static final By EXTENSION_INSURANCE_CONTRACT_CONTINUE_BUTTON = By.xpath("//div[@class='modal fade show']//button[@class='btn btn-green']");
     private static final By ESTATE_INSURANCE_CHECKBOX = By.cssSelector("[for='estateInsurance]");
@@ -69,9 +65,9 @@ public class LoansPage extends BasePage {
     public static final By OTP_VERIFICATION_BUTTON = By.id("smsVerificationBtn");
     public static final By NEXT_TO_APPLICATION_BUTTON = By.id("nextToApplication");
 
-
     private static final By PARTIAL_REPAYMENT_SUM = By.cssSelector(".InputBlocks input");
     private static final By CONTINUE_BUTTON = By.cssSelector("button.validate");
+    private static final By ACCOUNT_LIST = By.cssSelector(".InputBlockOption");
 
 
     public LoansPage(WebDriver driver) {
@@ -135,8 +131,6 @@ public class LoansPage extends BasePage {
         return this;
     }
 
-
-
     @Step("Select full repayment with deposit termination")
     public LoansPage selectFullRepaymentWithDepositTermination() {
         button.btnClick(FULL_EARLY_REPAYMENT_WITH_DEPOSIT_TERMINATION);
@@ -173,8 +167,6 @@ public class LoansPage extends BasePage {
         return this;
     }
 
-
-
     @Step("Click agreement checkbox")
     public LoansPage clickAgreementCheckbox() {
         button.btnClick(AGREEMENT_CHECKBOX);
@@ -190,8 +182,6 @@ public class LoansPage extends BasePage {
         button.btnClick(SIGN_BUTTON);
         return this;
     }
-
-
 
     @Step("Input search iin")
     public LoansPage inputSearchIin(String iin) {
@@ -230,8 +220,6 @@ public class LoansPage extends BasePage {
         button.btnClick(REQUEST_FAMILY_INFO_BUTTON);
         return this;
     }
-
-
 
     @Step("Click extension insurance contract continue button")
     public LoansPage clickExtensionInsuranceContractContinueButton() {
@@ -279,13 +267,6 @@ public class LoansPage extends BasePage {
         return this;
     }
 
-
-
-
-
-
-
-
     @Step("Click sign schedule button")
     public LoansPage clickSignScheduleButton() {
         button.btnClick(SIGN_SCHEDULE);
@@ -324,7 +305,6 @@ public class LoansPage extends BasePage {
         return this;
     }
 
-
     @Step("Input sum")
     public LoansPage inputSum(String sum) {
         input.inputWithClear(PARTIAL_REPAYMENT_SUM, sum);
@@ -334,6 +314,13 @@ public class LoansPage extends BasePage {
     @Step("Click continue button")
     public LoansPage clickContinueButton() {
         button.btnClick(CONTINUE_BUTTON);
+        return this;
+    }
+
+    @Step("Select filial")
+    public LoansPage selectAccount() {
+        dropDown.selectByIndex(ACCOUNT_LIST, 1);
+        WaitUtils.wait(2);
         return this;
     }
 }
