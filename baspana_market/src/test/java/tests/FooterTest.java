@@ -4,8 +4,6 @@ import base.BaseTest;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

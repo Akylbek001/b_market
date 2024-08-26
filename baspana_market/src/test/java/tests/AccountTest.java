@@ -22,7 +22,27 @@ public class AccountTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Открыть текущий счет", groups = {"automated"})
+    @Test(description="Открыть текущий счет => Валидация ОТР", groups = {"automated"}, priority = 0)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация ОТР")
+    @Severity(SeverityLevel.CRITICAL)
+    public void openCurrentAccount_otpValidation() {
+        step("Авторизация -> Мои Счета", () -> {
+            loginSteps.auth("77078759590", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Открыть счет", () -> {
+            accountSteps.openAccountButton();
+        });
+        step("Открыть текущий счет", () -> {
+            accountSteps.openCurrentAccount();
+            accountSteps.openCurrentAccountContinue(config.smsCode().substring(1));
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.INVALID_OTP_TEXT, elementsAttributes.getValue(INVALID_OTP));
+    }
+
+    @Test(description="Открыть текущий счет", groups = {"automated"}, priority = 1)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Текущий счет")
     @Severity(SeverityLevel.CRITICAL)
@@ -47,80 +67,13 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    @Test(description="Открыть текущий счет => Валидация ОТР", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Валидация ОТР")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openCurrentAccount_otpValidation() {
-        step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(config.client_for_password_recovery_login(), config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
-        });
-        step("Открыть счет", () -> {
-            accountSteps.openAccountButton();
-        });
-        step("Открыть текущий счет", () -> {
-            accountSteps.openCurrentAccount();
-            accountSteps.openCurrentAccountContinue(config.smsCode().substring(1));
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.INVALID_OTP_TEXT, elementsAttributes.getValue(INVALID_OTP));
-    }
-
-    @Test(description="Открыть текущий счет => Валидация налогоплательщика", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.BLOCKER)
-    public void tryOpenCurrentAccount() {
-        step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
-        });
-        step("Открыть счет", () -> {
-            accountSteps.openAccountButton();
-        });
-        step("Открыть текущий счет", () -> {
-            accountSteps.openCurrentAccount();
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(NOTIFICATION_TEXT)
-        );
-    }
-
-//add close current account test
-    @Test(description="Открыть счет для ЕПВ", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Счет для ЕПВ")
-    @Severity(SeverityLevel.CRITICAL)
-    public void openAccountForEPV() {
-        step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
-        });
-        step("Открыть счет", () -> {
-            accountSteps.openAccountButton();
-        });
-        step("Открыть счет для ЕПВ", () -> {
-            accountSteps.openAccountForEpvAcceptAgreement();
-            accountSteps.openAccountForEpvSignAndConfirm(config.smsCode());
-        });
-        Assert.assertEquals(
-                CharacterSetConstants.OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION,
-                elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY_EPV)
-        );
-    }
-
-    @Test(description="Открыть счет для ЕПВ => Валидация ОТР", groups = {"automated"})
+    @Test(description="Открыть счет для ЕПВ => Валидация ОТР", groups = {"automated"}, priority = 2)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация ОТР")
     @Severity(SeverityLevel.CRITICAL)
     public void openAccountForEPV_otpValidation() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth("77016677419", config.clientPassword());
+            loginSteps.auth("77078759590", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть счет", () -> {
@@ -136,16 +89,13 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    //NEED ACCOUNT - в базе бездействующих налогоплательщиков
-    @Test(description="Открыть счет для ЕПВ => Валидация налогоплательщика", groups = {"automated"})
+    @Test(description="Открыть счет для ЕПВ", groups = {"automated"}, priority = 3)
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ - бездействующий налогоплательщик")
-    @Severity(SeverityLevel.BLOCKER)
-    public void openAccountForEPV_clientValidation() {
+    @Description("Счет для ЕПВ")
+    @Severity(SeverityLevel.CRITICAL)
+    public void openAccountForEPV() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77078759590", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть счет", () -> {
@@ -153,9 +103,11 @@ public class AccountTest extends BaseTest {
         });
         step("Открыть счет для ЕПВ", () -> {
             accountSteps.openAccountForEpvAcceptAgreement();
+            accountSteps.openAccountForEpvSignAndConfirm(config.smsCode());
         });
         Assert.assertEquals(
-                CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(EPV_ERROR_MESSAGE)
+                CharacterSetConstants.OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION,
+                elementsAttributes.getValue(OPERATION_COMPLETED_SUCCESSFULLY_EPV)
         );
     }
 
@@ -209,7 +161,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byPhoneNumber() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth("77716081952", config.clientPassword() );
+            loginSteps.auth("77003896225", config.clientPassword() );
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть список достпупных операции", () -> {
@@ -301,9 +253,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     public void transferToOtbasyClient_byAlternativeCode_notFound() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77716081952", config.clientPassword() );
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть список достпупных операции", () -> {
@@ -418,7 +368,7 @@ public class AccountTest extends BaseTest {
     }
 
     //NEED ACCOUNT
-    @Test(description="Перевод между своими счетами => Валидация налогоплательщика", groups = {"automated"})
+    @Test(description="Перевод между своими счетами => Валидация налогоплательщика", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
@@ -440,7 +390,7 @@ public class AccountTest extends BaseTest {
         );
     }
     //NEED ACCOUNT
-    @Test(description="Перевод клиенту <Отбасы Банк> => Валидация налогоплательщика", groups = {"automated"})
+    @Test(description="Перевод клиенту <Отбасы Банк> => Валидация налогоплательщика", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
@@ -462,7 +412,7 @@ public class AccountTest extends BaseTest {
         );
     }
     //NEED ACCOUNT
-    @Test(description="Перевод в другой банк => Валидация налогоплательщика", groups = {"automated"})
+    @Test(description="Перевод в другой банк => Валидация налогоплательщика", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отказ - бездействующий налогоплательщик")
     @Severity(SeverityLevel.BLOCKER)
@@ -500,6 +450,49 @@ public class AccountTest extends BaseTest {
             accountSteps.addOtherBankAccount();
         });
         Assert.assertTrue(true);
+    }
+
+    @Test(description="Открыть текущий счет => Валидация налогоплательщика", groups = {"automated"}, enabled = false)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отказ - бездействующий налогоплательщик")
+    @Severity(SeverityLevel.BLOCKER)
+    public void tryOpenCurrentAccount() {
+        step("Авторизация -> Мои Счета", () -> {
+            loginSteps.auth("77078759590", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Открыть счет", () -> {
+            accountSteps.openAccountButton();
+        });
+        step("Открыть текущий счет", () -> {
+            accountSteps.openCurrentAccount();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(NOTIFICATION_TEXT)
+        );
+    }
+
+    //NEED ACCOUNT - в базе бездействующих налогоплательщиков
+    @Test(description="Открыть счет для ЕПВ => Валидация налогоплательщика", groups = {"automated"}, enabled = false)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отказ - бездействующий налогоплательщик")
+    @Severity(SeverityLevel.BLOCKER)
+    public void openAccountForEPV_clientValidation() {
+        step("Авторизация -> Мои Счета", () -> {
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Открыть счет", () -> {
+            accountSteps.openAccountButton();
+        });
+        step("Открыть счет для ЕПВ", () -> {
+            accountSteps.openAccountForEpvAcceptAgreement();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.OPERATION_REFUSED, elementsAttributes.getValue(EPV_ERROR_MESSAGE)
+        );
     }
 
     @Test(description="Закрыть текущий счет => Валидация наличия займа", groups = {"automated"})

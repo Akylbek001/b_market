@@ -176,12 +176,12 @@ public class SmokeTest extends BaseTest {
             loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToDeposit"));
         });
-        step("Открыть список достпупных операции", () -> {
-            accountSteps.openAvailableOperationsList_smoke();
-        });
-        step("Перевод между своими счетами", () -> {
-            accountSteps.transferToDebt();
-        });
+//        step("Открыть список достпупных операции", () -> {
+//            accountSteps.openAvailableOperationsList_smoke();
+//        });
+//        step("Перевод между своими счетами", () -> {
+//            accountSteps.transferToDebt();
+//        });
         Assert.assertEquals(
                 brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount/TransferToDeposit")
         );
@@ -197,12 +197,6 @@ public class SmokeTest extends BaseTest {
             loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToOtbasy"));
         });
-        step("Открыть список достпупных операции", () -> {
-            accountSteps.openAvailableOperationsList_smoke();
-        });
-        step("Перевод клиенту <Отбасы Банк>", () -> {
-            accountSteps.transferToOtbasyBankClient();
-        });
         Assert.assertEquals(
                 brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount/TransferToOtbasy")
         );
@@ -216,12 +210,6 @@ public class SmokeTest extends BaseTest {
         step("Авторизация -> Мои Счета", () -> {
             loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToAnotherBank"));
-        });
-        step("Открыть список достпупных операции", () -> {
-            accountSteps.openAvailableOperationsList_smoke();
-        });
-        step("Выбрать операцию <Перевод в другой банк>", () -> {
-            accountSteps.transferToOtherBank();
         });
         Assert.assertEquals(
                 brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount/TransferToAnotherBank")

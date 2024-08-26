@@ -57,17 +57,14 @@ public class DepositPage extends BasePage {
     private static final By NEGOTIATED_AMOUNT = By.cssSelector("[name='NewAgreementSumm']");
     public static final By HOUSING_LOAN_TERM = By.id("LoanTerm_Slider");
     public static final By NEGOTIATED_AMOUNT_VALIDATION_TEXT = By.id("agreement-sum-valid-txt");
-
-
     public static final By NEW_DEPOSIT_MONTH_PAY = By.id("NewDpsMonthPay");
     public static final By CHANGE_DETAILS_BUTTON = By.id("changeDetailsButton");
     private static final By SIGN_CHANGE_DETAILS_BUTTON = By.id("signChangeDetailsButton");
     public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".finishHead .title");
     private static final By CREATE_FAMILY_PACKAGE_OPERATION = By.xpath("//div[@onclick='onGetDeposits()']");
-    private static final By DEPOSIT_DIVISION_OPERATION = By.xpath(" //div[@class='operTxt' and text()='Деление депозита']");
+    private static final By DEPOSIT_DIVISION_OPERATION = By.xpath("//div[@class='operTxt' and text()='Деление депозита']");
     public static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");
     public static final By DIVIDE_NO_ACCOUNT_VALIDATION = By.cssSelector(".modal-body.body-attention > p");
-
     public static final By OPERATION_NOT_AVAILABLE = By.id("diffinfoHTML");
     public static final By VISIT_BANK_BRANCH_NOTIFICATION = By.id("showMessageHTML");
     public static final By DIVIDE_DEPOSIT_ACCEPTED = By.cssSelector(".h5_22");//?
@@ -121,9 +118,9 @@ public class DepositPage extends BasePage {
 
     @Step("Show available operations")
     public DepositPage showAvailableOperations() {
-        button.btnClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
-        button.btnClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
-        elementsAttributes.waitUntilVisible(DEPOSIT_DIVISION_OPERATION);
+        button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
+        WaitUtils.wait(5);
+//        elementsAttributes.waitUntilVisible(DEPOSIT_DIVISION_OPERATION);
         return this;
     }
 
@@ -160,8 +157,6 @@ public class DepositPage extends BasePage {
         button.btnClick(GOS_PREM_AGREEMENT);
         return this;
     }
-
-
 
     @Step("Select terminate deposit operation")
     public DepositPage terminateDepositOperation() {

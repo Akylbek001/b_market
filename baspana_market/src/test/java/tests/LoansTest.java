@@ -123,7 +123,7 @@ public class LoansTest extends BaseTest {
 
     @Test(description="Частичное досрочное погашение", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("")
+    @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepayment () {
         step("Авторизация -> Запись в отдление", () -> {
@@ -136,6 +136,24 @@ public class LoansTest extends BaseTest {
             loansSteps.partialEarlyRepaymentOperation();
             loansSteps.partialEarlyRepayment("124000");
         });
+    }
+
+    @Test(description="Частичное досрочное погашение=> Валидация недостаточной суммы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация недостаточной суммы")
+    @Severity(SeverityLevel.NORMAL)
+    public void partialEarlyRepayment_validateNotEnoughFund () {
+        step("Авторизация -> Запись в отдление", () -> {
+            loginSteps.auth("77773192656", config.loanClient_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.partialEarlyRepaymentOperation();
+            loansSteps.partialEarlyRepayment_validateAmount("100000");
+        });
+        Assert.assertEquals("Не хватает средств на счете.", elementsAttributes.getValue(MODAL_NOTIFICATION));
     }
 
     @Test(description="Частичное досрочное погашение - нет целовое использование займа", groups = {"automated"})
@@ -307,7 +325,7 @@ public class LoansTest extends BaseTest {
         });
         Assert.assertEquals(
                 "Ваш залогодатель не зарегестрирован. Зарегистрируйтесь и попробуйте еще раз.",
-                elementsAttributes.getValue(NOTIFICATION_OF_REGISTRATION)
+                elementsAttributes.getValue(MODAL_NOTIFICATION)
         );
     }
 }

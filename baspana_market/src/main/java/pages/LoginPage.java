@@ -90,7 +90,9 @@ public class LoginPage extends BasePage {
     @Step("Click submit button")
     public LoginPage clickSubmitButton() {
         button.btnClick(SUBMIT_BUTTON_LOCATOR);
-        WaitUtils.wait(2);
+//        new WebDriverWait(drManager.getDriver(), 10).until(
+//                webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        WaitUtils.wait(3);
         return this;
     }
 

@@ -54,7 +54,7 @@ public class LoansPage extends BasePage {
     private static final By NEXT_BUTTON = By.xpath("//div[@id='StartTheApplicationsId']//div[@class='modal-footer'] /button[2]");
     private static final By COLLATERAL_FOR_CHANGE = By.id("4EDC8A84DE07D1BBCE22A726769D803F");
     private static final By START_BUTTON = By.cssSelector("[onclick='Validations()']");
-    public static final By NOTIFICATION_OF_REGISTRATION = By.id("ExchangesModalToAttenttionsBody");
+    public static final By MODAL_NOTIFICATION = By.id("ExchangesModalToAttenttionsBody");
     public static final By SWITCHING_TO_HOME_LOAN_ACCOUNT_VALIDATION = By.cssSelector("#transitionNotAvailableOperationNotAvailable #errorTransition");
     public static final By SWITCHING_TO_HOME_LOAN_DEPOSIT_VALIDATION = By.id("errorTransition");
 

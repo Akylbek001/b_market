@@ -98,6 +98,12 @@ public class LoansSteps {
                 .clickSendButton();
     }
 
+    public void partialEarlyRepayment_validateAmount(String sum) {
+        loansPage
+                .inputSum(sum)
+                .clickContinueButton();
+    }
+
     public void replacementOfCoBorrower(String iin) {
         loansPage
                 .inputSearchIin(iin)
