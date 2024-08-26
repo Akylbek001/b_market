@@ -37,12 +37,6 @@ public class DepositSteps {
                 .clickOpenAqylContinueButton();
     }
 
-    public void cleanField() {
-        depositPage
-                .cleanField()
-                .clickConfirmForValidateSum();
-    }
-
     public void agreedSum(String sum) {
         depositPage
                 .inputAgreedSum(sum);

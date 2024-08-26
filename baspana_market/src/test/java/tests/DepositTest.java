@@ -147,7 +147,6 @@ public class DepositTest extends BaseTest {
     }
 
     // добавить кейс - изменить срок депозита
-    // добавить кейс указав сумму в рамках условии
     @Test(description="Изменить условия депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить условия депозита")
@@ -275,7 +274,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision_validateNoCurrentAccount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77083007217", config.client_for_password_recovery_newPassword());
+            loginSteps.auth("77755509188", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

@@ -216,6 +216,8 @@ public class SmokeTest extends BaseTest {
         );
     }
 
+
+
     @Test(description="Раздел <Депозиты>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Депозиты")

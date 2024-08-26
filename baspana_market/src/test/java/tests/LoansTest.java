@@ -162,7 +162,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByCurrentAccount_validateNotEnoughFund () {
         step("Авторизация -> Запись в отдление", () -> {
-            loginSteps.auth("77773192656", config.loanClient_password());
+            loginSteps.auth("77076769290", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -180,7 +180,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByEPVAccount_validateNotEnoughFund () {
         step("Авторизация -> Запись в отдление", () -> {
-            loginSteps.auth("77773192656", config.loanClient_password());
+            loginSteps.auth("77076769290", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
