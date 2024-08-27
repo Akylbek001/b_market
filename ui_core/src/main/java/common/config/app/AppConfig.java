@@ -1,6 +1,5 @@
 package common.config.app;
 
-import common.wrappers.SecretText;
 import org.aeonbits.owner.Config;
 @Config.Sources({"classpath:application.properties"})
 public interface AppConfig extends Config {
@@ -46,9 +45,6 @@ public interface AppConfig extends Config {
     String clientEmail();
 
 
-
-
-
     @Key("client_for_password_recovery.login")
     String client_for_password_recovery_login();
 
@@ -77,9 +73,6 @@ public interface AppConfig extends Config {
     String client_for_password_recovery_iin();
 
 
-
-
-
     @Key("guest.login")
     String guestLogin();
 
@@ -102,9 +95,6 @@ public interface AppConfig extends Config {
     String guestFakeName();
 
 
-
-
-
     @Key("client_for_.login")
     String client_for_login();
 
@@ -116,8 +106,6 @@ public interface AppConfig extends Config {
 
     @Key("client_for_.newEmail")
     String client_for_newEmail();
-
-
 
 
     @Key("sms.code")

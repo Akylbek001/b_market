@@ -196,6 +196,13 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Just click to update page data")
+    public DepositPage clickAmount() {
+        move.scrollToElement(NEW_DEPOSIT_MONTH_PAY);
+        button.btnClick(NEW_DEPOSIT_MONTH_PAY);
+        return this;
+    }
+
     //BUG - кнопка изменить не срабатывает с первого раза
     @Step("Click change detail button")
     public DepositPage clickChangeDetailButton() {

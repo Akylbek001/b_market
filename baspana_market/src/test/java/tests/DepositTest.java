@@ -181,7 +181,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions_validateContributionAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77754502772", config.clientPassword());
+            loginSteps.auth("77083007217", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -192,10 +192,9 @@ public class DepositTest extends BaseTest {
         });
         step("Изменить условия депозита", () -> {
             depositSteps.changeDepositConditionsAmount("9000000");
-            JavascriptExecutor js = (JavascriptExecutor) drManager.getDriver();
-            js.executeScript("setAttribute('style', 'left: 16.6667%;')", HOUSING_LOAN_TERM);
+            depositSteps.clickAmount();
         });
-        Assert.assertEquals("18 902 ₸", elementsAttributes.getValue(NEW_DEPOSIT_MONTH_PAY));
+        Assert.assertEquals("24 414 ₸", elementsAttributes.getValue(NEW_DEPOSIT_MONTH_PAY));
     }
 
     @Test(description="Изменить условия депозита => Валидация договорной суммы", groups = {"automated"})
@@ -204,7 +203,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions_validateNegotiatedAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77754502772", config.clientPassword());
+            loginSteps.auth("77774039707", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -217,8 +216,8 @@ public class DepositTest extends BaseTest {
             depositSteps.changeDepositConditionsAmount("900000");
         });
         Assert.assertEquals(
-                CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN,
-                elementsAttributes.getValue(NEGOTIATED_AMOUNT_VALIDATION_TEXT)
+                elementsAttributes.getValue(NEGOTIATED_AMOUNT_VALIDATION_TEXT),
+                CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN
         );
     }
 
@@ -274,7 +273,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision_validateNoCurrentAccount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77755509188", config.clientPassword());
+            loginSteps.auth(config.client_for_password_recovery_login(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

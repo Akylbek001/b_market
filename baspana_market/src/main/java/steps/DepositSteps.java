@@ -116,6 +116,11 @@ public class DepositSteps {
                 .inputNegotiatedAmount(amount);
     }
 
+    public void clickAmount() {
+        depositPage
+                .clickAmount();
+    }
+
     public void confirmDepositConditionsChange(String smsCode) {
         depositPage
                 .clickChangeDetailButton()

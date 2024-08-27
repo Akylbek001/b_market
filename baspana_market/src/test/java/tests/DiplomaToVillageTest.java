@@ -22,7 +22,7 @@ public class DiplomaToVillageTest extends BaseTest {
     }
 
     //нет тестовых данных цифрового УД и диплома
-    @Test(description = "Подать заявку", groups = {"automated"})
+    @Test(description = "Подать заявку", groups = {"automated"}, priority = 1)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Подать заявку")
     @Severity(SeverityLevel.NORMAL)
@@ -43,7 +43,7 @@ public class DiplomaToVillageTest extends BaseTest {
         elementsAttributes.isVisible(REQUEST_IN_PROGRESS);
     }
 
-    @Test(description = "Подать заявку => Акимат не готов принять заявку", groups = {"automated"})
+    @Test(description = "Подать заявку => Акимат не готов принять заявку", groups = {"automated"}, priority = 0)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Подать заявку")
     @Severity(SeverityLevel.NORMAL)
@@ -62,7 +62,7 @@ public class DiplomaToVillageTest extends BaseTest {
         );
     }
 
-    @Test(description = "Подать заявку => валидация существующей заявки", groups = {"automated"})
+    @Test(description = "Подать заявку => валидация существующей заявки", groups = {"automated"}, priority = 2)
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация существующей заявки")
     @Severity(SeverityLevel.NORMAL)
@@ -78,13 +78,13 @@ public class DiplomaToVillageTest extends BaseTest {
         elementsAttributes.isVisible(SAME_REQUEST_TYPE);
     }
 
-    @Test(description = "Аннулировать заявку", groups = {"automated"})
+    @Test(description = "Аннулировать заявку", groups = {"automated"}, priority = 3)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Аннулировать заявку")
     @Severity(SeverityLevel.NORMAL)
     public void cancelRequest () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
