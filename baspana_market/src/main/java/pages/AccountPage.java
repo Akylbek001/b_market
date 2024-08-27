@@ -5,8 +5,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static pages.CertificatesPage.ACCOUNTS_DROPDOWN_LIST;
-
 public class AccountPage extends BasePage {
     private static final By OPEN_ACCOUNTS_BUTTON = By.cssSelector(".pc_version [data-target='#myAccModal']");
     private static final By CURRENT_ACCOUNT = By.xpath(
@@ -23,7 +21,7 @@ public class AccountPage extends BasePage {
     private static final By CURRENT_ACCOUNT_CONFIRM = By.id("fatca-button");
     private static final By NOTIFICATION_BUTTON = By.cssSelector(".modal-footer [onclick='modalNotificationCloseClick()']");
     private static final By STATEMENT_OTP = By.id("inputOtpCode");
-    public static final By INVALID_OTP = By.id("modalNotificationBody");
+    public static final By MODAL_NOTIFICATION = By.id("modalNotificationBody");
     private static final By STATEMENT_CONTINUE_BUTTON = By.cssSelector(".deposit_check_submit button");
     private static final By SEND_RATE_BUTTON = By.cssSelector("[onclick='SendRate()']");
     public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector("#account4 h2");

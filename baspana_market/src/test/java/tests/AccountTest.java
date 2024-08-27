@@ -21,6 +21,24 @@ public class AccountTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
     }
+    @Test(description="Открыть текущий счет => Валидация отсутствия депозита", groups = {"automated"}, priority = 0)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация отсутствия депозита")
+    @Severity(SeverityLevel.CRITICAL)
+    public void openCurrentAccount_noDepositValidation() {
+        step("Авторизация -> Мои Счета", () -> {
+            loginSteps.auth("77755509188", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Открыть счет", () -> {
+            accountSteps.openAccountButton();
+        });
+        step("Открыть текущий счет", () -> {
+            accountSteps.openCurrentAccount();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.NO_DEPOSIT_TEXT, elementsAttributes.getValue(MODAL_NOTIFICATION));
+    }
 
     @Test(description="Открыть текущий счет => Валидация ОТР", groups = {"automated"}, priority = 0)
     @Issue("https://jira.kz/browse/QA-")
@@ -39,7 +57,7 @@ public class AccountTest extends BaseTest {
             accountSteps.openCurrentAccountContinue(config.smsCode().substring(1));
         });
         Assert.assertEquals(
-                CharacterSetConstants.INVALID_OTP_TEXT, elementsAttributes.getValue(INVALID_OTP));
+                CharacterSetConstants.INVALID_OTP_TEXT, elementsAttributes.getValue(MODAL_NOTIFICATION));
     }
 
     @Test(description="Открыть текущий счет", groups = {"automated"}, priority = 1)

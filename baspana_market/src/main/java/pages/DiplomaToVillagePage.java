@@ -33,7 +33,7 @@ public class DiplomaToVillagePage extends BasePage {
     public static final By UPLOAD_CERTIFICATE_OF_ABSENCE_OF_REAL_ESTATE = By.id("CERTIFICATE_OF_ABSENCE_OF_REAL_ESTATE");
     public static final By UPLOAD_EMPLOYMENT_CONTRACT = By.id("EMPLOYMENT_CONTRACT");
 
-    public static final By CREATED_REQUEST = By.cssSelector(".loanCard");
+    public static final By CREATED_REQUEST = By.cssSelector(".card-body");
     public static final By CANCEL_REQUEST = By.cssSelector("[data-target='#exampleModal-digital-cansel']");
     public static final By CANCEL_REQUEST_CONFIRM_BUTTON= By.cssSelector(".head_submitting_app .btn.btn-info.cansel-application");
 

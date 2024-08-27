@@ -69,6 +69,7 @@ public final class CharacterSetConstants {
     public static final String ACTIVE_ORDER_FOR_DIVISION_MESSAGE = "Извините но у Вас уже есть актуальная заявка на деление вклада. Подробнее о заявке вы можете посмотреть во вкладке 'Заявки'.";
     public static final String EXCEEDS_PERMISSIBLE_LIMIT = "Сумма расторгаемого депозита превышает допустимый лимит в размере 1 000 000 тг.";
     public static final String INVALID_OTP_TEXT = "Уважаемый клиент! Убедитесь в правильности ввода кода из SMS";
+    public static final String NO_DEPOSIT_TEXT = "Операция недоступна в связи с отсутствием у вас депозита в нашем банке. Открыть депозит вы можете в нашем мобильном приложении.";
     public static final String EPV_INVALID_OTP_TEXT = "Введенный вами код из СМС неправильный.";
     public static final String INVALID_IBAN = "Вы ввели некорректный IBAN счет!";
     public static final String INSUFFICIENT_FUNDS_FOR_TRANSFER = "Недостаточно средств для перевода";
