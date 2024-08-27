@@ -26,7 +26,7 @@ public class LoansTest extends BaseTest {
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
     public void fullEarlyRepayment_terminateDeposit () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77076769290", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -44,7 +44,7 @@ public class LoansTest extends BaseTest {
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
     public void fullEarlyRepayment_withoutTerminateDeposit () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77076769290", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -62,7 +62,7 @@ public class LoansTest extends BaseTest {
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
     public void fullEarlyRepayment_withTerminateDeposit_validateNotEnoughFund () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77076769290", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -94,7 +94,7 @@ public class LoansTest extends BaseTest {
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
     public void fullEarlyRepayment_withoutTerminateDeposit_validateNotEnoughFund () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77076769290", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -126,7 +126,7 @@ public class LoansTest extends BaseTest {
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByCurrentAccount () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77773192656", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -143,7 +143,7 @@ public class LoansTest extends BaseTest {
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByEPVAccount () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77773192656", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -161,7 +161,7 @@ public class LoansTest extends BaseTest {
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByCurrentAccount_validateNotEnoughFund () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77076769290", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -179,7 +179,7 @@ public class LoansTest extends BaseTest {
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByEPVAccount_validateNotEnoughFund () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77076769290", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -197,7 +197,7 @@ public class LoansTest extends BaseTest {
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepayment_validateIntendedUse () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77770077702", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -216,7 +216,7 @@ public class LoansTest extends BaseTest {
 //    @Description("аннулировать заявку")
 //    @Severity(SeverityLevel.NORMAL)
 //    public void partialEarlyRepayment_ () {
-//        step("Авторизация -> Запись в отдление", () -> {
+//        step("Авторизация -> Займы", () -> {
 //            loginSteps.auth(config.loanClient_login(), config.loanClient_password());
 //            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
 //        });
@@ -233,7 +233,7 @@ public class LoansTest extends BaseTest {
     @Description("валидация счетов(ограничения)")
     @Severity(SeverityLevel.NORMAL)
     public void changePaymentDate_validateAccounts () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth(config.loanClient_login(), config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -253,7 +253,7 @@ public class LoansTest extends BaseTest {
     @Description("валидация счетов(ограничения)")
     @Severity(SeverityLevel.NORMAL)
     public void selectSwitchingToHomeLoan_validateAccount() {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77772911272 ", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -273,7 +273,7 @@ public class LoansTest extends BaseTest {
     @Description("< 50%")
     @Severity(SeverityLevel.NORMAL)
     public void selectSwitchingToHomeLoan_validateDepositSum() {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth("77770366767", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -294,7 +294,7 @@ public class LoansTest extends BaseTest {
     @Description("Замена созаемщика)")
     @Severity(SeverityLevel.NORMAL)
     public void changeCoBorrower() {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth(config.loanClient_login(), config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -313,7 +313,7 @@ public class LoansTest extends BaseTest {
     @Description("Исключение созаемщика)")
     @Severity(SeverityLevel.NORMAL)
     public void exclusionOfCoBorrower() {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth(config.loanClient_login(), config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -331,7 +331,7 @@ public class LoansTest extends BaseTest {
     @Description("")
     @Severity(SeverityLevel.NORMAL)
     public void extensionInsuranceContract () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth(config.loanClient_login(), config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
@@ -349,7 +349,7 @@ public class LoansTest extends BaseTest {
     @Description("Замена залога")
     @Severity(SeverityLevel.NORMAL)
     public void changeCollateral_validateRegistration () {
-        step("Авторизация -> Запись в отдление", () -> {
+        step("Авторизация -> Займы", () -> {
             loginSteps.auth(config.loanClient_login(), config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });

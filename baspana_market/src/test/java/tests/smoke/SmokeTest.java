@@ -362,7 +362,7 @@ public class SmokeTest extends BaseTest {
         );
     }
 
-    @Test(description = "Выписка о ссудной задолженности", groups = {"automated"})
+    @Test(description = "Справки -> Выписка о ссудной задолженности", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Выписка о ссудной задолженности")
     @Severity(SeverityLevel.NORMAL)
@@ -390,21 +390,35 @@ public class SmokeTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Loan"));
     }
 
-    @Test(description="Займы => Полное досрочное погашение", groups = {"automated"})
+    @Test(description="Займы => Операция <Полное досрочное погашение>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
-    public void fullEarlyRepayment_terminateDeposit () {
-        step("Авторизация -> Запись в отдление", () -> {
-            loginSteps.auth("77076769290", "12345test");
+    public void fullEarlyRepayment () {
+        step("Авторизация -> Займы", () -> {
+            loginSteps.auth("77473239832", "Brv_28978206!");
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectThirdLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.fullEarlyRepaymentOperation_smoke();
+        });
+    }
+
+    @Test(description="Займы => Операция <Частичное досрочное погашение>", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Успешно")
+    @Severity(SeverityLevel.NORMAL)
+    public void partialEarlyRepayment () {
+        step("Авторизация -> Займы", () -> {
+            loginSteps.auth("77473239832", "Brv_28978206!");
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
             loansSteps.selectExistedLoan();
             loansSteps.openAvailableOperations();
-            loansSteps.fullEarlyRepaymentOperation();
-            loansSteps.selectFullRepaymentWithDepositTermination();
-            loansSteps.fullEarlyRepayment(config.smsCode());
+            loansSteps.partialEarlyRepaymentOperation();
         });
     }
 

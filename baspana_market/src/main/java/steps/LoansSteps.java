@@ -16,6 +16,10 @@ public class LoansSteps {
         loansPage
                 .selectExistedLoan();
     }
+    public void selectThirdLoan() {
+        loansPage
+                .selectThirdLoan();
+    }
 
     public void openAvailableOperations() {
         loansPage
@@ -25,6 +29,11 @@ public class LoansSteps {
     public void fullEarlyRepaymentOperation() {
         loansPage
                 .selectFullEarlyRepaymentOperation();
+    }
+
+    public void fullEarlyRepaymentOperation_smoke() {
+        loansPage
+                .selectFullEarlyRepaymentOperation_smoke();
     }
 
     public void partialEarlyRepaymentOperation() {

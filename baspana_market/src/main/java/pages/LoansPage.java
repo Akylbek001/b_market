@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 
 public class LoansPage extends BasePage {
     private static final By EXISTED_LOAN = By.cssSelector(".loanGritCover");
+    private static final By THIRD_LOAN = By.xpath("//div[@class='slick-track'] /a[3]");
+
     private static final By AVAILABLE_OPERATIONS = By.cssSelector("[onclick='collapseOper()']");
     private static final By FULL_EARLY_REPAYMENT_OPERATION = By.id("full-repayment-menu-block");
     private static final By PARTIAL_EARLY_REPAYMENT_OPERATION = By.xpath("//div[@class='allOperWrap'] /div[2]");
@@ -17,7 +19,7 @@ public class LoansPage extends BasePage {
     private static final By EXTENSION_INSURANCE_CONTRACT_OPERATION = By.xpath("//div[@class='operTxt' and text()='Продление договора страхования']");
     private static final By REPLACEMENT_OF_COLLATERAL_OPERATION = By.xpath("//div[@class='operTxt' and text()='Замена залога']");
 
-    private static final By FULL_EARLY_REPAYMENT_WITH_DEPOSIT_TERMINATION = By.xpath("//div[@id='depositChangeBlock'] /div[1] /label");
+    public static final By FULL_EARLY_REPAYMENT_WITH_DEPOSIT_TERMINATION = By.xpath("//div[@id='depositChangeBlock'] /div[1] /label");
     private static final By FULL_EARLY_REPAYMENT_WITHOUT_DEPOSIT_TERMINATION = By.xpath("//div[@id='depositChangeBlock'] /div[2] /label");
     private static final By FULL_EARLY_REPAYMENT_CONTINUE_BTN = By.id("val_button");
     private static final By AGREEMENT_OF_IMPOSSIBLE_CANCEL = By.cssSelector(".container.secondcheck.checkbox");
@@ -79,7 +81,11 @@ public class LoansPage extends BasePage {
         button.btnClick(EXISTED_LOAN);
         return this;
     }
-
+    @Step("Select third loan")
+    public LoansPage selectThirdLoan() {
+        button.btnClick(THIRD_LOAN);
+        return this;
+    }
     @Step("Open available operation")
     public LoansPage openAvailableOperations() {
         button.btnClick(AVAILABLE_OPERATIONS);
@@ -89,6 +95,12 @@ public class LoansPage extends BasePage {
     public LoansPage selectFullEarlyRepaymentOperation() {
         button.btnClick(FULL_EARLY_REPAYMENT_OPERATION);
         WaitUtils.wait(1);
+        return this;
+    }
+    @Step("Select full early repayment operation for smoke")
+    public LoansPage selectFullEarlyRepaymentOperation_smoke() {
+        button.btnClick(FULL_EARLY_REPAYMENT_OPERATION);
+        elementsAttributes.waitUntilVisible(FULL_EARLY_REPAYMENT_WITH_DEPOSIT_TERMINATION);
         return this;
     }
     @Step("Select partial early repayment operation")
@@ -130,7 +142,6 @@ public class LoansPage extends BasePage {
         button.btnClick(EXCLUSION_OF_CO_BORROWER);
         return this;
     }
-
     @Step("Select full repayment with deposit termination")
     public LoansPage selectFullRepaymentWithDepositTermination() {
         button.btnClick(FULL_EARLY_REPAYMENT_WITH_DEPOSIT_TERMINATION);
@@ -166,7 +177,6 @@ public class LoansPage extends BasePage {
         button.btnClick(OTP_BUTTON);
         return this;
     }
-
     @Step("Click agreement checkbox")
     public LoansPage clickAgreementCheckbox() {
         button.btnClick(AGREEMENT_CHECKBOX);
@@ -182,7 +192,6 @@ public class LoansPage extends BasePage {
         button.btnClick(SIGN_BUTTON);
         return this;
     }
-
     @Step("Input search iin")
     public LoansPage inputSearchIin(String iin) {
         input.inputWithClear(IIN_INPUT, iin);
@@ -220,7 +229,6 @@ public class LoansPage extends BasePage {
         button.btnClick(REQUEST_FAMILY_INFO_BUTTON);
         return this;
     }
-
     @Step("Click extension insurance contract continue button")
     public LoansPage clickExtensionInsuranceContractContinueButton() {
         button.btnClick(EXTENSION_INSURANCE_CONTRACT_CONTINUE_BUTTON);
@@ -266,57 +274,47 @@ public class LoansPage extends BasePage {
         button.btnClick(NEXT_TO_APPLICATION_BUTTON);
         return this;
     }
-
     @Step("Click sign schedule button")
     public LoansPage clickSignScheduleButton() {
         button.btnClick(SIGN_SCHEDULE);
         return this;
     }
-
     @Step("Input sign schedule otp")
     public LoansPage inputScheduleOtp(String otp) {
         input.inputWithClear(SIGN_OTP, otp);
         return this;
     }
-
     @Step("Click send button")
     public LoansPage clickSendButton() {
         button.btnClick(SEND_BUTTON);
         return this;
     }
-
     @Step("Click next button")
     public LoansPage clickNextButton() {
         button.btnClick(NEXT_BUTTON);
         WaitUtils.wait(10);
-
         return this;
     }
-
     @Step("Select collateral for change")
     public LoansPage selectCollateralForChange() {
         button.btnClick(COLLATERAL_FOR_CHANGE);
         return this;
     }
-
     @Step("Click start button")
     public LoansPage clickStartButton() {
         button.btnClick(START_BUTTON);
         return this;
     }
-
     @Step("Input sum")
     public LoansPage inputSum(String sum) {
         input.inputWithClear(PARTIAL_REPAYMENT_SUM, sum);
         return this;
     }
-
     @Step("Click continue button")
     public LoansPage clickContinueButton() {
         button.btnClick(CONTINUE_BUTTON);
         return this;
     }
-
     @Step("Select filial")
     public LoansPage selectAccount() {
         dropDown.selectByIndex(ACCOUNT_LIST, 1);

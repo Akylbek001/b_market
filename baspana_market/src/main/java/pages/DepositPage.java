@@ -398,8 +398,9 @@ public class DepositPage extends BasePage {
     @Step("Click continue")
     public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
-        Duration.ofSeconds(30);
-//        elementsAttributes.waitUntilVisible(CONFIRM);
+//        Duration.ofSeconds(30);
+        WaitUtils.wait(10);
+        elementsAttributes.waitUntilVisible(CONFIRM);
         return this;
     }
 
