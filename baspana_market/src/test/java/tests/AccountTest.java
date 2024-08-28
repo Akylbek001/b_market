@@ -21,6 +21,7 @@ public class AccountTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
     }
+
     @Test(description="Открыть текущий счет => Валидация отсутствия депозита", groups = {"automated"}, priority = 0)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация отсутствия депозита")

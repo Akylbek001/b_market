@@ -28,7 +28,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth("77785543870", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
@@ -49,7 +49,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validationAkimat () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth("77785543870", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
@@ -68,7 +68,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validateAlreadyExistedTypeOfRequest() {
         step("Авторизация", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth("77785543870", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Подать заявку", () -> {
@@ -84,7 +84,7 @@ public class DiplomaToVillageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void cancelRequest () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth("77785543870", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Village"));
         });
         step("Аннулировать заявку", () -> {
