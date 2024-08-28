@@ -95,6 +95,7 @@ public class BecomeClientPage extends BasePage {
     public BecomeClientPage clickVerifyButton() {
         button.btnClick(VERIFY_BUTTON);
         elementsAttributes.waitUntilVisible(REFUSE_TEXT);
+        WaitUtils.wait(10);
         return this;
     }
 

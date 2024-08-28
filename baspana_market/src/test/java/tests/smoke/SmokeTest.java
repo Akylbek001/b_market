@@ -367,6 +367,10 @@ public class SmokeTest extends BaseTest {
     @Description("Выписка о ссудной задолженности")
     @Severity(SeverityLevel.NORMAL)
     public void getLoanDebtCertificate () {
+        step("Авторизация -> Справки", () -> {
+            loginSteps.auth("77473239832", "Brv_28978206!");
+            brManager.navigateTo(envConfig.baseUrl().concat("Inquiry"));
+        });
         step("Получить справку", () -> {
             certificatesSteps.selectLoanDebtCertificate();
             certificatesSteps.fillRequiresData();
