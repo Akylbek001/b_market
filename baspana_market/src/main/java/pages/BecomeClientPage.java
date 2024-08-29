@@ -76,6 +76,7 @@ public class BecomeClientPage extends BasePage {
     @Step("Click account for EPV block")
     public BecomeClientPage clickAccountForEPVBlock() {
         button.btnClick(PENSION_BLOCK);
+        WaitUtils.wait(10);
         return this;
     }
 

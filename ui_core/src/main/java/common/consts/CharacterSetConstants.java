@@ -16,8 +16,8 @@ public final class CharacterSetConstants {
 
     public static final String UNEXPECTED_ERROR = "Возникла непредвиденная ошибка";
     public static final String USER_WITH_SUCH_DATA_NOT_FOUND = "Пользователь с такими данными не найден";
-//    public static final String INVALID_CODE = "Код не прошел проверку";
-    public static final String INVALID_CODE = "Ранее смс с кодом не был отправлен";
+    public static final String INVALID_CODE = "Код не прошел проверку";
+//    public static final String INVALID_CODE = "Ранее смс с кодом не был отправлен";
 
     public static final String IDENTITY_VERIFICATION_ERROR_TEXT = "Вы не прошли проверку подлинности личности";
 

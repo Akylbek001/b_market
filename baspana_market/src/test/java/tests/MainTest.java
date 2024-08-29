@@ -131,7 +131,7 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.newBuildings()));
     }
 
-    @Test(description="Посмотреть все вторичое жилье", groups = {"automated"})
+    @Test(description="Посмотреть все вторичное жилье", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Посмотреть все вторичое жилье")
     @Severity(SeverityLevel.MINOR)

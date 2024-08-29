@@ -31,7 +31,7 @@ public class SpecAccountTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToDeposit () {
         step("Авторизация", () -> {
-            loginSteps.auth("77011257080", config.specAccount_password());
+            loginSteps.auth("77018937706", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -40,7 +40,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.transferToDepositOperation();
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectIndividualRecipientType();
-            specAccountSgoSteps.inputSumToTransfer("77");
+            specAccountSgoSteps.inputSumToTransfer("7");
             elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
             generalSteps.confirmationByOtp(config.smsCode());
         });
@@ -79,7 +79,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.transferToDepositOperation();
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectIndividualRecipientType();
-            specAccountSgoSteps.inputSumToTransfer("77");
+            specAccountSgoSteps.inputSumToTransfer("7");
             elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
             generalSteps.confirmationByOtp("444444");
         });
@@ -105,7 +105,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientInfo_individual(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("77");
+            specAccountSteps.inputSumToTransfer_forIndividual("7");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
@@ -132,7 +132,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientInfo_individual(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("555");
+            specAccountSteps.inputSumToTransfer_forIndividual("5");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
@@ -159,7 +159,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientInfo_individual(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("555");
+            specAccountSteps.inputSumToTransfer_forIndividual("5");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSteps.confirmTransferOnModal();
             elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
@@ -236,7 +236,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("55");
+            specAccountSteps.inputSumToTransfer_forRE("5");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
@@ -263,7 +263,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("77");
+            specAccountSteps.inputSumToTransfer_forRE("7");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
@@ -314,7 +314,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientIban(config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("55");
+            specAccountSteps.inputSumToTransfer_forIndividual("5");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
@@ -341,7 +341,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientIban(config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("77");
+            specAccountSteps.inputSumToTransfer_forIndividual("7");
             specAccountSteps.acceptAgreementAndTransfer();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
@@ -392,7 +392,7 @@ public class SpecAccountTest extends BaseTest {
                     config.clientIin(), config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("55");
+            specAccountSteps.inputSumToTransfer_forRE("5");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
@@ -421,7 +421,7 @@ public class SpecAccountTest extends BaseTest {
                     config.clientIin(), config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forRE("77");
+            specAccountSteps.inputSumToTransfer_forRE("7");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
             specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());

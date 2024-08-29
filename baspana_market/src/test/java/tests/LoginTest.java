@@ -207,7 +207,7 @@ public class LoginTest extends BaseTest {
             loginSteps.clickContinueButton();
         });
         Assert.assertEquals(
-                CharacterSetConstants.INVALID_CODE, elementsAttributes.getValue(WRONG_SMS_CODE_TEXT)
+                elementsAttributes.getValue(WRONG_SMS_CODE_TEXT), CharacterSetConstants.INVALID_CODE
         );
     }
 
