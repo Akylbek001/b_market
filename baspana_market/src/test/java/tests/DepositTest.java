@@ -4,7 +4,6 @@ import base.BaseTest;
 import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -70,13 +69,13 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Расторжение депозита", groups = {"automated"})
+    @Test(description="Расторжение депозита", groups = {"automated"}, priority = 0)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Расторжение депозита")
     @Severity(SeverityLevel.CRITICAL)
     public void terminateDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77785543870", config.clientPassword());
+            loginSteps.auth("77016108074", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -120,14 +119,13 @@ public class DepositTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    //api or link to terminateDeposit(same login)
-    @Test(description="Расторжение депозита => Валидация актуальной заявки на деление", groups = {"automated"})
+    @Test(description="Расторжение депозита => Валидация актуальной заявки на расторжение", groups = {"automated"}, priority = 1)
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Отказ-Валидация актуальной заявки на деление")
+    @Description("Отказ-Валидация актуальной заявки на расторжение")
     @Severity(SeverityLevel.CRITICAL)
-    public void terminateDeposit_validateActiveOrderForDivision() {
+    public void terminateDeposit_validateActiveOrderForTerminate() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77785543870", config.clientPassword());
+            loginSteps.auth("77016108074", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -141,13 +139,12 @@ public class DepositTest extends BaseTest {
         });
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
-                CharacterSetConstants.ACTIVE_ORDER_FOR_DIVISION_MESSAGE
+                CharacterSetConstants.ACTIVE_ORDER_FOR_TERMINATE_MESSAGE
         );
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    // добавить кейс - изменить срок депозита
-    @Test(description="Изменить условия депозита", groups = {"automated"})
+    @Test(description="Изменить условия депозита", groups = {"automated"}, priority = 4)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить условия депозита")
     @Severity(SeverityLevel.CRITICAL)
@@ -165,7 +162,7 @@ public class DepositTest extends BaseTest {
             depositSteps.showAvailableOperations();
         });
         step("Изменить условия депозита", () -> {
-            depositSteps.changeDepositConditionsAmount("3700000");
+            depositSteps.changeDepositConditionsAmount("55000000");
         });
         step("Подтвердить изменение условия депозита", () -> {
             depositSteps.confirmDepositConditionsChange(config.smsCode());
@@ -175,6 +172,34 @@ public class DepositTest extends BaseTest {
         );
     }
 
+    @Test(description="Изменить условия депозита => Валидация существующей заявки на изменение", groups = {"automated"}, priority = 5)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация существующей заявки на изменение")
+    @Severity(SeverityLevel.CRITICAL)
+    public void changeDepositConditions_validateActiveOrderForChange() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(
+                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
+            );
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Выбрать операцию изменить условия депозита", () -> {
+            depositSteps.changeDepositConditionsOperation();
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.ACTIVE_ORDER_FOR_CHANGE_CONDITION
+        );
+        drManager.getDriver().switchTo().alert().accept();
+    }
+
+    //рассчитать рекомендуемый ежемесячный платеж по формуле
     @Test(description="Изменить условия депозита => Проврека изменения суммы ежемесечного взноса", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить условия депозита")
@@ -194,7 +219,7 @@ public class DepositTest extends BaseTest {
             depositSteps.changeDepositConditionsAmount("9000000");
             depositSteps.clickAmount();
         });
-        Assert.assertEquals("24 414 ₸", elementsAttributes.getValue(NEW_DEPOSIT_MONTH_PAY));
+        Assert.assertEquals("24 358 ₸", elementsAttributes.getValue(NEW_DEPOSIT_MONTH_PAY));
     }
 
     @Test(description="Изменить условия депозита => Валидация договорной суммы", groups = {"automated"})
@@ -221,7 +246,7 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Деление депозита", groups = {"automated"})
+    @Test(description="Деление депозита", groups = {"automated"}, priority = 2)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Деление депозита")
     @Severity(SeverityLevel.CRITICAL)
@@ -242,6 +267,31 @@ public class DepositTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.DEPOSIT_DIVISION_ACCEPTED,
                 elementsAttributes.getValue(DIVIDE_DEPOSIT_ACCEPTED)
         );
+    }
+
+    @Test(description="Расторжение депозита => Валидация актуальной заявки на деление", groups = {"automated"}, priority = 3)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Отказ-Валидация актуальной заявки на деление")
+    @Severity(SeverityLevel.CRITICAL)
+    public void depositDivision_validateActiveOrderForDivision() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth("77074497367", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Расторгнуть", () -> {
+            depositSteps.selectDepositDivisionOperation();
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.ACTIVE_ORDER_FOR_DIVISION_MESSAGE
+        );
+        drManager.getDriver().switchTo().alert().accept();
     }
 
     @Test(description="Деление депозита => Валидация депозита Kemel", groups = {"automated"})

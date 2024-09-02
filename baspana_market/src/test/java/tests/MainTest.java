@@ -41,8 +41,6 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
     }
 
-
-
     @Test(description="Разместить объявление из раздела <Мои объявления>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")

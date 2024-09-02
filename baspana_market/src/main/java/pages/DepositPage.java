@@ -28,6 +28,8 @@ public class DepositPage extends BasePage {
     public static final By NOTIFICATION_VISIT_THE_BANK = By.xpath("//div[@id='NextSteps'] //p");
     public static final By SUCCESS = By.cssSelector(".DepositBlock--background.OpenDepositsStepsEnds>p");
     private static final By SMS_CODE = By.id("CodeSmsId");
+    private static final By OTP = By.id("codeSms");
+
     private static final By SEND = By.id("EndsSteps");
     private static final By FIRST_DEPOSIT = By.cssSelector(".ob-deposit.depositCover.backgroundCover2.slick-slide.slick-current.slick-active");
     private static final By SECOND_DEPOSIT = By.cssSelector("label[aria-describedby='slick-slide01']");
@@ -37,6 +39,8 @@ public class DepositPage extends BasePage {
     private static final By CALCULATOR_OP_BUTTON = By.id("calculateOPButton");
 
     private static final By AVAILABLE_OPERATIONS_WITH_DEPOSIT = By.id("checBlock");
+//    private static final By AVAILABLE_OPERATIONS_WITH_DEPOSIT = By.cssSelector("#allOperWrap #checBlock");
+
     private static final By CHANGE_GOS_PREM_OPERATION = By.id("changeGosPremButton");
     private static final By SELECT_SECOND_DEPOSIT = By.cssSelector("[gos-prem-flag='False']");
     private static final By SELECT_FIRST_DEPOSIT = By.cssSelector("[gos-prem-flag='True']");
@@ -118,7 +122,8 @@ public class DepositPage extends BasePage {
 
     @Step("Show available operations")
     public DepositPage showAvailableOperations() {
-        button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
+        button.btnClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
+//        button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
         WaitUtils.wait(5);
 //        elementsAttributes.waitUntilVisible(DEPOSIT_DIVISION_OPERATION);
         return this;
@@ -432,10 +437,15 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-    @Step("Input iin")
+    @Step("Input sms")
     public DepositPage inputSmsCode(String smsCode) {
-        WaitUtils.wait(8);
         input.inputWithClear(SMS_CODE, smsCode);
+        return this;
+    }
+
+    @Step("Input otp")
+    public DepositPage inputOtpCode(String smsCode) {
+        input.inputWithClear(OTP, smsCode);
         return this;
     }
 

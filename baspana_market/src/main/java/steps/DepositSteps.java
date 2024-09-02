@@ -71,7 +71,7 @@ public class DepositSteps {
                 .clickSelectButton()
                 .clickGosPremAgreement()
                 .clickSelectButton()
-                .inputSmsCode(otp)
+                .inputOtpCode(otp)
 //                .clickOtpConfirmButton();
                 .clickSelectButton();
     }
@@ -114,6 +114,11 @@ public class DepositSteps {
         depositPage
                 .changeDepositConditionsOperation()
                 .inputNegotiatedAmount(amount);
+    }
+
+    public void changeDepositConditionsOperation() {
+        depositPage
+                .changeDepositConditionsOperation();
     }
 
     public void clickAmount() {
