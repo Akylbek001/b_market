@@ -73,6 +73,25 @@ public class BecomeClientTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(REFUSE_TEXT), CharacterSetConstants.UNDER_18_YEARS_OLD_TEXT);
     }
 
+    @Test(description="Стать клиентом_Депозит => ИИН отсутствует в базе налогового органа", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("ИИН отсутствует в базе налогового органа")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByDeposit_notInTaxAuthorityDatabase() {
+        step("Открыть депозит", () -> {
+            becomeClientSteps.openDeposit();
+        });
+        step("Заполнить данные и подтвердить", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77714849018", "060804688207");
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.NOT_IN_TAX_AUTHORITY_DATABASE_TEXT.replace(
+                        config.clientInvalidIin(), "060804688207"
+                ),
+                elementsAttributes.getValue(REFUSE_TEXT)
+        );
+    }
+
     @Test(description="Стать клиентом НФД", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Стать клиентом НФД")
@@ -82,7 +101,7 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.becomeClientByOpenAccountForNDF();
         });
         step("Заполнить данные", () -> {
-            becomeClientSteps.verifyPhoneNumberAndIin("77001117070", "060328600678");
+            becomeClientSteps.verifyPhoneNumberAndIin("77479069827", "060727651806");
             becomeClientSteps.confirmByOtp(config.smsCode());
             generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
@@ -102,10 +121,29 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.becomeClientByOpenAccountForNDF();
         });
         step("Заполнить данные", () -> {
-                    becomeClientSteps.verifyPhoneNumberAndIin("77770770707", "990722400908");
+                    becomeClientSteps.verifyPhoneNumberAndIin("77714849018", "900901300432");
         });
         Assert.assertEquals(
                 CharacterSetConstants.CLIENT_NUMBER_ALREADY_EXIST, elementsAttributes.getValue(REFUSE_TEXT));
+    }
+
+    @Test(description="Стать клиентом_НФД => ИИН отсутствует в базе налогового органа", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("ИИН отсутствует в базе налогового органа")
+    @Severity(SeverityLevel.NORMAL)
+    public void becomeClientByNDF_notInTaxAuthorityDatabase() {
+        step("Счет для НДФ", () -> {
+            becomeClientSteps.becomeClientByOpenAccountForNDF();
+        });
+        step("Заполнить данные", () -> {
+            becomeClientSteps.verifyPhoneNumberAndIin("77714849018", "060804688207");
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.NOT_IN_TAX_AUTHORITY_DATABASE_TEXT.replace(
+                        config.clientInvalidIin(), "060804688207"
+                ),
+                elementsAttributes.getValue(REFUSE_TEXT)
+        );
     }
 
     @Test(description="Стать клиентом_НФД => Валидация возраста", groups = {"automated"})
@@ -224,7 +262,7 @@ public class BecomeClientTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация формата ИИН")
     @Severity(SeverityLevel.NORMAL)
-    public void becomeClientByEPV_NotInTaxAuthorityDatabase() {
+    public void becomeClientByEPV_notInTaxAuthorityDatabase() {
         step("Счет для ЕПВ", () -> {
             becomeClientSteps.becomeClientByOpenAccountForEPV();
         });

@@ -185,6 +185,7 @@ public class AccountPage extends BasePage {
     @Step("Click confirm transfer button")
     public AccountPage clickConfirmTransferButton() {
         button.btnClick(CONFIRM_TRANSFER_BUTTON);
+        WaitUtils.wait(2);
         return this;
     }
 

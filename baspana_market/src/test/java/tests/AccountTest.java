@@ -47,7 +47,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openCurrentAccount_otpValidation() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth("77078759590", config.clientPassword());
+            loginSteps.auth("77755509188", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть счет", () -> {

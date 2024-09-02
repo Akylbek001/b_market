@@ -135,7 +135,7 @@ public class MainTest extends BaseTest {
 
     @Test(description="Посмотреть все вторичное жилье", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Посмотреть все вторичое жилье")
+    @Description("Посмотреть все вторичное жилье")
     @Severity(SeverityLevel.MINOR)
     public void navigateToAllSecondaryHousing() {
         step("Навигация на страницу вторичного жилья", () -> {

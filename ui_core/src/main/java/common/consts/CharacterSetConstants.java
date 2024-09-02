@@ -23,7 +23,7 @@ public final class CharacterSetConstants {
 
     public static final String CLIENT_ALREADY_EXIST = "Клиент с ИИН 140114600413 уже существует";
 
-    public static final String CLIENT_NUMBER_ALREADY_EXIST = "Клиент с номером телефона +77770770707 уже существует. Проверьте правильность введенного номера или зайдите в свой личный кабинет.";
+    public static final String CLIENT_NUMBER_ALREADY_EXIST = "Клиент с номером телефона +77714849018 уже существует. Проверьте правильность введенного номера или зайдите в свой личный кабинет.";
     public static final String UNDER_18_YEARS_OLD_TEXT = "Вам нет 18 лет";
     public static final String CLIENT_AGE_IS_NOT_SUITABLE = "Возраст клиента не подходит для продолжения операции по открытию счета НФД";
     public static final String INVALID_IIN_FORMAT = "ИИН имеет неверный формат";
