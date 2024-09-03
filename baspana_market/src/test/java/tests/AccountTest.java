@@ -47,7 +47,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openCurrentAccount_otpValidation() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth("77755509188", config.clientPassword());
+            loginSteps.auth(config.client_for_password_recovery_login(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Открыть счет", () -> {
@@ -67,7 +67,7 @@ public class AccountTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void openCurrentAccount() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth("77078759590", config.clientPassword());
+            loginSteps.auth(config.client_for_password_recovery_login(), config.clientPassword());
             mainSteps.clickProfileIcon();
             cabinetSteps.selectMyBankMenu();
             cabinetSteps.selectAccountsMenu();
@@ -150,8 +150,7 @@ public class AccountTest extends BaseTest {
             certificatesSteps.selectAllAccounts();
         });
         step("Перевод клиенту <Отбасы Банк>", () -> {
-            accountSteps.transfer_insufficientFunds(config.sumToTransfer());
-            generalSteps.confirmationByOtp(config.smsCode());
+            accountSteps.transfer_(config.sumToTransfer(), config.smsCode());
         });
         Assert.assertEquals("5,0 ₸", elementsAttributes.getValue(TRANSFER_SUM));
     }

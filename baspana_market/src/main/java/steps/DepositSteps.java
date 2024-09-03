@@ -43,9 +43,13 @@ public class DepositSteps {
 //                .clickConfirmForValidateSum();
     }
 
+    public void clickConfirm() {
+        depositPage
+                .clickConfirm();
+    }
+
     public void confirmBySms(String smsCode) {
         depositPage
-                .clickConfirm()
                 .inputSmsCode(smsCode)
                 .confirmOpeningDeposit();
     }

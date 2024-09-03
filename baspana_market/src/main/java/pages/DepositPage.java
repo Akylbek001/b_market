@@ -403,7 +403,6 @@ public class DepositPage extends BasePage {
     @Step("Click continue")
     public DepositPage clickSubmit() {
         button.btnClick(SUBMIT);
-//        Duration.ofSeconds(30);
         WaitUtils.wait(10);
         elementsAttributes.waitUntilVisible(CONFIRM);
         return this;
@@ -433,7 +432,9 @@ public class DepositPage extends BasePage {
     @Step("Click confirm")
     public DepositPage clickConfirm() {
         button.btnClick(CONFIRM);
-        elementsAttributes.waitUntilClickable(SEND);
+        WaitUtils.wait(5);
+
+//        elementsAttributes.waitUntilClickable(SEND);
         return this;
     }
 

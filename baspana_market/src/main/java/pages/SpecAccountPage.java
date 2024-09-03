@@ -233,7 +233,7 @@ public class SpecAccountPage extends BasePage {
     @Step("Click send transfer button")
     public SpecAccountPage clickSendTransferButton() {
         button.btnClick(SEND_TRANSFER_BUTTON);
-        elementsAttributes.waitUntilVisible(CONFIRM_TRANSFER);
+        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
         return this;
     }
 
@@ -246,8 +246,8 @@ public class SpecAccountPage extends BasePage {
     @Step("Click confirm transfer button")
     public SpecAccountPage clickConfirmTransferButton() {
         button.btnClick(CONFIRM_TRANSFER);
-        WaitUtils.wait(10);
-//        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
+        WaitUtils.wait(5);
+        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
         return this;
     }
 }

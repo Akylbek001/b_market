@@ -44,6 +44,7 @@ public class GeneralPage extends BasePage {
     public GeneralPage clickSendOtpButton() {
         button.btnClick(SEND_OTP_BUTTON);
         elementsAttributes.waitUntilVisible(TRANSFER_DETAILS);
+//        elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
         return this;
     }
 }

@@ -146,6 +146,7 @@ public class CertificateTest extends BaseTest {
             certificatesSteps.fillRequiresData();
             certificatesSteps.selectEntirePeriod();
             certificatesSteps.getCertificateForWhile();
+            WaitUtils.wait(10);
         });
         Assert.assertEquals(
                 CharacterSetConstants.STATEMENT_HAS_BEEN_GENERATED,

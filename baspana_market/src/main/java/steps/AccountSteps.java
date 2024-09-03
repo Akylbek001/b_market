@@ -107,6 +107,15 @@ public class AccountSteps {
                 .clickSendOtpButton();
     }
 
+    public void transfer_(String sum, String otp) {
+        accountPage
+                .inputSumToTransfer(sum)
+                .clickSendTransferButton()
+//                .clickConfirmTransferButton()
+                .inputTransferOtp(otp)
+                .clickSendOtpButton();
+    }
+
     public void transfer_insufficientFunds(String sum) {
         accountPage
                 .inputSumToTransfer(sum)

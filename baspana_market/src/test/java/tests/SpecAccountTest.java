@@ -107,7 +107,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("7");
             specAccountSteps.acceptAgreementAndTransfer();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
