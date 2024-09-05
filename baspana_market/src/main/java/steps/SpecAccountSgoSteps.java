@@ -50,7 +50,7 @@ public class SpecAccountSgoSteps {
 
     public void confirmTransferByOtp(String otp) {
         specAccountSgoPage
-                .confirmTransferButton()
+//                .confirmTransferButton()
                 .inputOtp(otp)
                 .clickSendOtpButton();
     }

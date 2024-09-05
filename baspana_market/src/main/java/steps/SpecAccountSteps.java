@@ -71,8 +71,6 @@ public class SpecAccountSteps {
                 .inputBin_validation(bin);
     }
 
-
-
     public void inputRecipientInfo_RE(String bin, String iban) {
         specAccountPage
                 .inputBin(bin)
@@ -94,6 +92,12 @@ public class SpecAccountSteps {
         specAccountPage
                 .clickWithNumberSwitch()
                 .inputContractDate(date);
+    }
+
+    public void indicateSign_withContractNumber_sgo(String date) {
+        specAccountPage
+                .clickWithNumberSwitch_sgo()
+                .inputContractDate_sgo(date);
     }
 
     public void indicateSign_withContractNumber_re(String date) {

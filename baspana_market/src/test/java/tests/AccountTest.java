@@ -103,7 +103,7 @@ public class AccountTest extends BaseTest {
             accountSteps.openAccountForEpvSignAndConfirm(config.smsCode().substring(1));
         });
         Assert.assertEquals(
-                CharacterSetConstants.EPV_INVALID_OTP_TEXT,
+                CharacterSetConstants.INVALID_OTP,
                 elementsAttributes.getValue(INVALID_OTP_NOTIFICATION)
         );
     }

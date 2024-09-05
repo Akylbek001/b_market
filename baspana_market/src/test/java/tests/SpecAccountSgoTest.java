@@ -31,7 +31,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToFullPayment_byPhone_withContract () {
         step("Авторизация", () -> {
-            loginSteps.auth("77073650565", config.specAccount_password());
+            loginSteps.auth("77713695396", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать операцию", () -> {
@@ -56,7 +56,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToFullPayment_byPhone_withoutContract () {
         step("Авторизация", () -> {
-            loginSteps.auth("77073650565", config.specAccount_password());
+            loginSteps.auth("77713695396", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать операцию", () -> {
@@ -80,7 +80,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToFullPayment_byAltCode_withContract () {
         step("Авторизация", () -> {
-            loginSteps.auth("77073650565", config.specAccount_password());
+            loginSteps.auth("77713695396", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать операцию", () -> {
@@ -104,7 +104,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToFullPayment_byAltCode_withoutContract () {
         step("Авторизация", () -> {
-            loginSteps.auth("77073650565", config.specAccount_password());
+            loginSteps.auth("77713695396", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать операцию", () -> {
@@ -128,7 +128,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_validateCurrentAccBalance () {
         step("Авторизация", () -> {
-            loginSteps.auth("77073650565", config.specAccount_password());
+            loginSteps.auth("77713695396", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -141,7 +141,7 @@ public class SpecAccountSgoTest extends BaseTest {
             specAccountSteps.selectIndividualRecipientType();
             specAccountSteps.inputRecipientInfo_individual(config.clientIin(), config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("55");
+            specAccountSteps.inputSumToTransfer_forIndividual("600000");
             specAccountSteps.acceptAgreementAndTransfer_forValidate();
         });
         Assert.assertEquals("На текущем счете недостаточно средств!",
@@ -155,7 +155,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_fl_withoutContract () {
         step("Авторизация", () -> {
-            loginSteps.auth("77022636672", config.specAccount_password());
+            loginSteps.auth("77013404785", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -170,7 +170,7 @@ public class SpecAccountSgoTest extends BaseTest {
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("55");
             specAccountSteps.acceptAgreementAndTransfer();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
@@ -182,7 +182,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_withoutContractNumber () {
         step("Авторизация", () -> {
-            loginSteps.auth("77022636672", config.specAccount_password());
+            loginSteps.auth("77013404785", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -208,7 +208,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_validateIin () {
         step("Авторизация", () -> {
-            loginSteps.auth("77022636672", config.specAccount_password());
+            loginSteps.auth("77013404785", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -232,7 +232,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_validationOtbasyIban () {
         step("Авторизация", () -> {
-            loginSteps.auth("77022636672", config.specAccount_password());
+            loginSteps.auth("77013404785", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -257,7 +257,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_ul_withContract () {
         step("Авторизация", () -> {
-            loginSteps.auth("77022636672", config.specAccount_password());
+            loginSteps.auth("77013404785", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -268,11 +268,11 @@ public class SpecAccountSgoTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
+            specAccountSteps.inputRecipientInfo_RE_loanRepayment("971240001315", config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("55");
             specAccountSteps.acceptAgreementAndTransfer();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
@@ -285,7 +285,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_ul_withoutContract () {
         step("Авторизация", () -> {
-            loginSteps.auth("77022636672", config.specAccount_password());
+            loginSteps.auth("77013404785", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {
@@ -296,10 +296,10 @@ public class SpecAccountSgoTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
-            specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
-            specAccountSteps.inputSumToTransfer_forIndividual("77");
-            specAccountSteps.acceptAgreementAndTransfer();
+            specAccountSteps.inputRecipientInfo_RE_loanRepayment("971240001315", config.clientIban().substring(2));
+            specAccountSteps.indicateSign_withContractNumber_sgo(DatesUtils.getCurrentDate());
+            specAccountSteps.inputSumToTransfer_forRE("77");
+            specAccountSteps.acceptAgreementAndTransfer_forRE();
             specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
@@ -312,7 +312,7 @@ public class SpecAccountSgoTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void transferToPaymentWithRedemption_validateBin () {
         step("Авторизация", () -> {
-            loginSteps.auth("77022636672", config.specAccount_password());
+            loginSteps.auth("77013404785", config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         step("Выбрать перевод на аренду", () -> {

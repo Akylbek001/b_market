@@ -21,6 +21,7 @@ public class DiplomaToVillageTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
+    //bug
     //нет тестовых данных цифрового УД и диплома
     @Test(description = "Подать заявку", groups = {"automated"}, priority = 1)
     @Issue("https://jira.kz/browse/QA-")

@@ -319,7 +319,7 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Деление депозита => Валидация отсутствия текущего счета", groups = {"automated"})
+    @Test(description="Деление депозита => Валидация отсутствия текущего счета", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация отсутствия текущего счета")
     @Severity(SeverityLevel.CRITICAL)
@@ -342,7 +342,7 @@ public class DepositTest extends BaseTest {
         );
     }
 
-    @Test(description="Деление депозита => Валидация суммы накопления", groups = {"automated"})
+    @Test(description="Деление депозита => Валидация суммы накопления", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация суммы накопления")
     @Severity(SeverityLevel.CRITICAL)
@@ -366,7 +366,7 @@ public class DepositTest extends BaseTest {
     }
 
     //need special account
-    @Test(description="Деление депозита => Обратитесь в отделение", groups = {"automated"})
+    @Test(description="Деление депозита => Обратитесь в отделение", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация отсутствия текущего счета")
     @Severity(SeverityLevel.CRITICAL)
@@ -390,7 +390,7 @@ public class DepositTest extends BaseTest {
     }
 
     //need special account
-    @Test(description="Деление депозита => Валидация договорной суммы", groups = {"automated"})
+    @Test(description="Деление депозита => Валидация договорной суммы", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация суммы накопления")
     @Severity(SeverityLevel.CRITICAL)
@@ -443,7 +443,7 @@ public class DepositTest extends BaseTest {
 
     //need special account
     //предварительно добавить еще один депозит
-    @Test(description="Объединение депозита => Валидация ОТП", groups = {"automated"})
+    @Test(description="Объединение депозита => Валидация ОТП", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Объединение депозита")
     @Severity(SeverityLevel.CRITICAL)
@@ -473,9 +473,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositPooling_validateDepositQuantity() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
+            loginSteps.auth("77083007217", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

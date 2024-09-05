@@ -20,6 +20,11 @@ public class AppointmentToDepartmentSteps {
                 .clickReserveButton();
     }
 
+    public void clickRebookButton() {
+        appointmentToDepartmentPage
+                .clickRebookButton();
+    }
+
     public void fillForm(String phone) {
         appointmentToDepartmentPage
 //                .clickBookingButton()

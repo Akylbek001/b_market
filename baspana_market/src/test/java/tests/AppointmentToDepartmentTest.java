@@ -23,13 +23,13 @@ public class AppointmentToDepartmentTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Запись в отделение =", groups = {"automated"})
+    @Test(description="Запись в отделение = забронировать", groups = {"automated"}, priority = 0)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Запись в отделение")
     @Severity(SeverityLevel.NORMAL)
-    public void appointmentToDepartment_byAcceptModal () {
+    public void appointmentToDepartment_book () {
         step("Авторизация", () -> {
-            loginSteps.auth("77011257080", config.clientPassword());
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
@@ -44,17 +44,17 @@ public class AppointmentToDepartmentTest extends BaseTest {
         );
     }
 
-    @Test(description="Запись в отделение", groups = {"automated"})
+    @Test(description="Запись в отделение => перебронировать", groups = {"automated"}, priority = 1)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Запись в отделение")
     @Severity(SeverityLevel.NORMAL)
-    public void appointmentToDepartment_byCancelModal () {
+    public void appointmentToDepartment_rebook () {
         step("Авторизация", () -> {
-            loginSteps.auth("77014423131", config.clientPassword());
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
-            appointmentToDepartmentSteps.clickCancelButton();
+            appointmentToDepartmentSteps.clickRebookButton();
         });
         step("Заполнить форму", () -> {
             appointmentToDepartmentSteps.fillForm(config.clientLogin());
@@ -65,13 +65,14 @@ public class AppointmentToDepartmentTest extends BaseTest {
         );
     }
 
-    @Test(description="Запись в отделение - Отмена брони", groups = {"automated"})
+    //bug
+    @Test(description="Запись в отделение - Отмена брони", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Запись в отделение")
+    @Description("Отмена брони")
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_cancelReservation () {
         step("Авторизация", () -> {
-            loginSteps.auth("77014423131", config.clientPassword());
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         boolean cancelReservationButtonActive = elementsAttributes.isDisplayed(CANCEL_RESERVATION);

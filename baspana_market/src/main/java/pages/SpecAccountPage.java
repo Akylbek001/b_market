@@ -28,12 +28,16 @@ public class SpecAccountPage extends BasePage {
     private static final By BANK_NAME_RE = By.id("ibanBank");
 
     public static final By WITH_NUMBER_SWITCH = By.cssSelector("#naturalPersonDiv .slider.round");
+    public static final By WITH_NUMBER_SWITCH_SGO = By.cssSelector("#legalEntityDiv .switch");
+
+
     public static final By WITH_NUMBER_SWITCH_RE = By.cssSelector("#legalEntityDiv .slider.round");
 
     public static final By CONTRACT_NUMBER = By.id("inputNormalApplicationNumber");
     public static final By CONTRACT_NUMBER_RE = By.id("inputLegalApplicationNumber");
 
     public static final By CONTRACT_DATE = By.id("inputNormalApplicationDate");
+    public static final By CONTRACT_DATE_SGO = By.id("inputLegalApplicationDate");
     public static final By CONTRACT_DATE_RE = By.id("inputLegalApplicationDate");
 
     public static final By SUM_TO_TRANSFER_FOR_INDIVIDUAL = By.id("sumToTransferNormal");
@@ -150,7 +154,7 @@ public class SpecAccountPage extends BasePage {
 
     @Step("Input bin")
     public SpecAccountPage inputBin_validation(String bin) {
-        input.inputWithClear(BIN, bin);
+        input.inputWithClear(BIN_OF_LOAN_REPAYMENT, bin);
         elementsAttributes.waitUntilVisible(BIN_ERROR);
         return this;
     }
@@ -167,6 +171,14 @@ public class SpecAccountPage extends BasePage {
         button.btnClick(WITH_NUMBER_SWITCH);
         return this;
     }
+
+    @Step("Click <with number> switch sgo")
+    public SpecAccountPage clickWithNumberSwitch_sgo() {
+        button.btnClick(WITH_NUMBER_SWITCH_SGO);
+        return this;
+    }
+
+
 
     @Step("Click <with number> switch of RE")
     public SpecAccountPage clickWithNumberSwitch_re() {
@@ -191,6 +203,14 @@ public class SpecAccountPage extends BasePage {
         input.inputWithClear(CONTRACT_DATE, date);
         return this;
     }
+
+    @Step("Input contract date sgo")
+    public SpecAccountPage inputContractDate_sgo(String date) {
+        input.inputWithClear(CONTRACT_DATE_SGO, date);
+        return this;
+    }
+
+
 
     @Step("Input contract date")
     public SpecAccountPage inputContractDate_re(String date) {

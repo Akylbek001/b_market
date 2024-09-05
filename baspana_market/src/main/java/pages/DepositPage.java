@@ -71,6 +71,7 @@ public class DepositPage extends BasePage {
     public static final By DIVIDE_NO_ACCOUNT_VALIDATION = By.cssSelector(".modal-body.body-attention > p");
     public static final By OPERATION_NOT_AVAILABLE = By.id("diffinfoHTML");
     public static final By VISIT_BANK_BRANCH_NOTIFICATION = By.id("showMessageHTML");
+
     public static final By DIVIDE_DEPOSIT_ACCEPTED = By.cssSelector(".h5_22");//?
     private static final By UNITE_DEPOSIT_OPERATION = By.id("UniteDepositsButton");
     private static final By FIRST_DEPOSIT_TO_UNITE = By.xpath("//div[@class='DepositsChangeBlocks--items'] /div[1]");
@@ -104,7 +105,7 @@ public class DepositPage extends BasePage {
     @Step("Select my opened deposit")
     public DepositPage selectOpenedDeposit() {
         button.btnClick(MY_DEPOSIT_LABEL);
-        WaitUtils.wait(1);
+        WaitUtils.wait(3);
         return this;
     }
 
@@ -124,7 +125,7 @@ public class DepositPage extends BasePage {
     public DepositPage showAvailableOperations() {
         button.btnClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
 //        button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
-        WaitUtils.wait(5);
+        WaitUtils.wait(10);
 //        elementsAttributes.waitUntilVisible(DEPOSIT_DIVISION_OPERATION);
         return this;
     }

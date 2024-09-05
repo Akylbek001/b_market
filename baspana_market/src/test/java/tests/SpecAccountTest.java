@@ -134,7 +134,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("5");
             specAccountSteps.acceptAgreementAndTransfer();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
@@ -161,11 +161,11 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("5");
             specAccountSteps.acceptAgreementAndTransfer();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
-            generalSteps.confirmationByOtp("444444");
+            generalSteps.confirmationByOtp_("444444");
         });
-        Assert.assertEquals("Некорректный код", elementsAttributes.getValue(INVALID_OTP_NOTIFICATION));
+        Assert.assertEquals(CharacterSetConstants.INVALID_OTP, elementsAttributes.getValue(INVALID_OTP_NOTIFICATION));
     }
 
     //BUG - нет проверки на валидность ИИН
@@ -234,11 +234,11 @@ public class SpecAccountTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
+            specAccountSteps.inputRecipientInfo_RE_loanRepayment("971240001315", config.clientIban().substring(2));
             specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forRE("5");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
@@ -261,11 +261,11 @@ public class SpecAccountTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.inputRecipientInfo_RE(config.clientIin(), config.clientIban().substring(2));
+            specAccountSteps.inputRecipientInfo_RE_loanRepayment("971240001315", config.clientIban().substring(2));
             specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forRE("7");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
@@ -316,7 +316,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.indicateSign_withoutContractNumber("00-019", DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("5");
             specAccountSteps.acceptAgreementAndTransfer();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
@@ -343,7 +343,7 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("7");
             specAccountSteps.acceptAgreementAndTransfer();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
@@ -389,12 +389,12 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE_loanRepayment(
-                    config.clientIin(), config.clientIban().substring(2)
+                    "971240001315", config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withoutContractNumber_RE("00-019", DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forRE("5");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
@@ -418,12 +418,12 @@ public class SpecAccountTest extends BaseTest {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
             specAccountSteps.inputRecipientInfo_RE_loanRepayment(
-                    config.clientIin(), config.clientIban().substring(2)
+                    "971240001315", config.clientIban().substring(2)
             );
             specAccountSteps.indicateSign_withContractNumber_re(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forRE("7");
             specAccountSteps.acceptAgreementAndTransfer_forRE();
-            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
             generalSteps.confirmationByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));

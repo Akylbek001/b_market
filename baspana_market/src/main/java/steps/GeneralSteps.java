@@ -32,5 +32,9 @@ public class GeneralSteps {
                 .clickSendOtpButton();
     }
 
-
+    public void confirmationByOtp_(String otp) {
+        generalPage
+                .inputOtp(otp)
+                .clickSendOtpButton_();
+    }
 }

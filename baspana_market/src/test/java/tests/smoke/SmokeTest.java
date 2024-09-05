@@ -228,7 +228,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void deposit_gosPrem() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth("77473239832", "Brv_28978206!");
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
