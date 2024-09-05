@@ -354,7 +354,7 @@ public class AccountTest extends BaseTest {
             accountSteps.validateInvalidIban("KZ649729722204F0Z3LL".substring(2));
         });
         Assert.assertEquals(
-                CharacterSetConstants.INVALID_IBAN, elementsAttributes.getValue(IBAN_ERROR)
+                CharacterSetConstants.INVALID_IBAN, elementsAttributes.getValue(IBAN_ERROR_)
         );
     }
 

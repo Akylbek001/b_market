@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static pages.AccountPage.IBAN_ERROR_;
 import static pages.SpecAccountSgoPage.*;
 
 public class SpecAccountPage extends BasePage {
@@ -29,10 +30,7 @@ public class SpecAccountPage extends BasePage {
 
     public static final By WITH_NUMBER_SWITCH = By.cssSelector("#naturalPersonDiv .slider.round");
     public static final By WITH_NUMBER_SWITCH_SGO = By.cssSelector("#legalEntityDiv .switch");
-
-
     public static final By WITH_NUMBER_SWITCH_RE = By.cssSelector("#legalEntityDiv .slider.round");
-
     public static final By CONTRACT_NUMBER = By.id("inputNormalApplicationNumber");
     public static final By CONTRACT_NUMBER_RE = By.id("inputLegalApplicationNumber");
 
@@ -75,6 +73,7 @@ public class SpecAccountPage extends BasePage {
         elementsAttributes.waitUntilVisible(RECIPIENT_TYPE);
         return this;
     }
+
     @Step("Select transfer to rent")
     public SpecAccountPage selectTransferToRentOperation() {
         button.btnClick(TRANSFER_TO_RENT);
@@ -166,6 +165,13 @@ public class SpecAccountPage extends BasePage {
         return this;
     }
 
+    @Step("Validate IBAN")
+    public SpecAccountPage validateIBAN(String iban) {
+        input.inputWithClear(IBAN_RE, iban);
+        elementsAttributes.waitUntilVisible(IBAN_ERROR_);
+        return this;
+    }
+
     @Step("Click <with number> switch")
     public SpecAccountPage clickWithNumberSwitch() {
         button.btnClick(WITH_NUMBER_SWITCH);
@@ -177,8 +183,6 @@ public class SpecAccountPage extends BasePage {
         button.btnClick(WITH_NUMBER_SWITCH_SGO);
         return this;
     }
-
-
 
     @Step("Click <with number> switch of RE")
     public SpecAccountPage clickWithNumberSwitch_re() {
@@ -209,8 +213,6 @@ public class SpecAccountPage extends BasePage {
         input.inputWithClear(CONTRACT_DATE_SGO, date);
         return this;
     }
-
-
 
     @Step("Input contract date")
     public SpecAccountPage inputContractDate_re(String date) {
@@ -252,7 +254,7 @@ public class SpecAccountPage extends BasePage {
 
     @Step("Click send transfer button")
     public SpecAccountPage clickSendTransferButton() {
-        button.btnClick(SEND_TRANSFER_BUTTON);
+        button.btnClick(SEND_TRANSFER_BUTTON_);
         elementsAttributes.waitUntilVisible(OTP_CODE_FOR_TRANSFER);
         return this;
     }

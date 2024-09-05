@@ -14,9 +14,19 @@ public class SpecAccountSgoSteps {
                 .selectTransferToFullPaymentOperation();
     }
 
+    public void selectTransferToInitialPaymentOperation() {
+        specAccountSgoPage
+                .selectTransferToInitialPaymentOperation();
+    }
+
     public void selectTransferToPaymentWithRedemptionOperation() {
         specAccountSgoPage
                 .selectTransferToPaymentWithRedemptionOperation();
+    }
+
+    public void selectTransferToPurchaseHomeOperation() {
+        specAccountSgoPage
+                .selectTransferToPurchaseHomeOperation();
     }
 
     public void inputPhone(String number) {
@@ -24,10 +34,21 @@ public class SpecAccountSgoSteps {
                 .inputPhone(number);
     }
 
+    public void validateClientByPhone(String number) {
+        specAccountSgoPage
+                .validateClientByPhone(number);
+    }
+
     public void inputAltCode(String code) {
         specAccountSgoPage
                 .clickAltCodeLabel()
                 .inputAltCode(code);
+    }
+
+    public void validateClientByAlt(String code) {
+        specAccountSgoPage
+                .clickAltCodeLabel()
+                .validateClientByAltCode(code);
     }
 
     public void inputTransferData(String contractNumber, String date) {
@@ -42,6 +63,12 @@ public class SpecAccountSgoSteps {
                 .inputContractDate(date);
     }
 
+    public void inputTransferData_withContract(String date) {
+        specAccountSgoPage
+                .clickWithoutContractSwitch()
+                .inputContractDate_sgo(date);
+    }
+
     public void inputSumToTransfer(String sum) {
         specAccountSgoPage
                 .inputSumToTransfer(sum)
@@ -54,4 +81,11 @@ public class SpecAccountSgoSteps {
                 .inputOtp(otp)
                 .clickSendOtpButton();
     }
+
+    public void transfer() {
+        specAccountSgoPage
+                .clickAgreement_re()
+                .transferButton();
+    }
+
 }

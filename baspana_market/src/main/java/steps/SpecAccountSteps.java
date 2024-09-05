@@ -61,6 +61,11 @@ public class SpecAccountSteps {
                 .inputIban_validation(iban);
     }
 
+    public void validateIBAN(String iban) {
+        specAccountPage
+                .validateIBAN(iban);
+    }
+
     public void inputIin_validation(String iin) {
         specAccountPage
                 .inputIin_validation(iin);
@@ -138,6 +143,12 @@ public class SpecAccountSteps {
         specAccountPage
                 .clickAgreement_re()
                 .clickSendTransferButton_re();
+    }
+
+    public void acceptAgreementAndTransfer_() {
+        specAccountPage
+                .clickAgreement_re()
+                .clickSendTransferButton();
     }
 
     public void confirmTransferOnModal() {

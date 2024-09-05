@@ -42,7 +42,7 @@ public class AccountPage extends BasePage {
     public static final By NOT_FOUND_BY_CODE = By.id("notFoundByCode");
     private static final By IBAN = By.id("ibanCode");
     private static final By FOUND_USER_BY_IBAN = By.cssSelector("#ibanBank.bodyM");
-    public static final By IBAN_ERROR = By.id("ibanError");
+    public static final By IBAN_ERROR_ = By.id("ibanError");
     private static final By SUM_TO_TRANSFER = By.id("sumToTransfer");
 
     public static final By INSUFFICIENT_FUNDS = By.cssSelector(".transferError.bodyM");
