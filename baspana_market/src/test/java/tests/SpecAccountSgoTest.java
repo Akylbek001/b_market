@@ -717,7 +717,7 @@ public class SpecAccountSgoTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.validateIBAN("KZ649729722204F0Z3LP");
+            specAccountSteps.validateIBAN("KZ649729722204F0Z3LP".substring(1));
         });
         Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR_),
                 CharacterSetConstants.IBAN_OTBASY_ERROR_TEXT

@@ -350,7 +350,6 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    //добавить Assert
     @Test(description = "Погашение займа в другом банке(ФЛ) => Валидация IBAN", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация IBAN")
@@ -368,9 +367,9 @@ public class SpecAccountTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectIndividualRecipientType();
-            specAccountSteps.inputRecipientIban("KZ649729722204F0Z3LU");
+            specAccountSteps.inputIban_validation("KZ649729722204F0Z3LU");
         });
-        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR_),
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR),
                 "Вы ввели некорректный IBAN счет!"
         );
     }
@@ -433,7 +432,6 @@ public class SpecAccountTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isVisible(TRANSFER_DETAILS));
     }
 
-    //добавить Assert
     @Test(description = "Погашение займа в другом банке(ЮЛ) => Валидация IBAN", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация IBAN")
