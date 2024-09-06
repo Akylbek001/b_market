@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static pages.AccountPage.IBAN_ERROR_;
 import static pages.AccountPage.INVALID_OTP_NOTIFICATION;
 import static pages.SpecAccountPage.ERROR_TEXT;
 import static pages.SpecAccountPage.TRANSFER_DETAILS;
@@ -304,7 +305,7 @@ public class SpecAccountTest extends BaseTest {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
-        step("Выбрать перевод на аренду", () -> {
+        step("Выбрать Погашение займа в другом банке", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
             specAccountSteps.transferToMortgageOperation();
@@ -331,7 +332,7 @@ public class SpecAccountTest extends BaseTest {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
-        step("Выбрать перевод на аренду", () -> {
+        step("Выбрать Погашение займа в другом банке", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
             specAccountSteps.transferToMortgageOperation();
@@ -359,7 +360,7 @@ public class SpecAccountTest extends BaseTest {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
-        step("Выбрать перевод на аренду", () -> {
+        step("Выбрать Погашение займа в другом банке", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
             specAccountSteps.transferToMortgageOperation();
@@ -367,8 +368,11 @@ public class SpecAccountTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectIndividualRecipientType();
-            specAccountSteps.inputRecipientIban(config.clientIban().substring(2));
+            specAccountSteps.inputRecipientIban("KZ649729722204F0Z3LU");
         });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR_),
+                "Вы ввели некорректный IBAN счет!"
+        );
     }
 
     @Test(description = "Погашение займа в другом банке(ЮЛ) => Без номера договора", groups = {"automated"})
@@ -380,7 +384,7 @@ public class SpecAccountTest extends BaseTest {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
-        step("Выбрать перевод на аренду", () -> {
+        step("Выбрать Погашение займа в другом банке", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
             specAccountSteps.transferToMortgageOperation();
@@ -409,7 +413,7 @@ public class SpecAccountTest extends BaseTest {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
-        step("Выбрать перевод на аренду", () -> {
+        step("Выбрать Погашение займа в другом банке", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
             specAccountSteps.transferToMortgageOperation();
@@ -439,7 +443,7 @@ public class SpecAccountTest extends BaseTest {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
-        step("Выбрать перевод на аренду", () -> {
+        step("Выбрать Погашение займа в другом банке", () -> {
             specAccountSteps.selectSpecAccount();
             specAccountSteps.openSpecAccountOperations();
             specAccountSteps.transferToMortgageOperation();
@@ -447,9 +451,10 @@ public class SpecAccountTest extends BaseTest {
         step("Указать получателя и выполнить перевод", () -> {
             specAccountSteps.openRecipientTypeList();
             specAccountSteps.selectRERecipientType();
-            specAccountSteps.inputRecipientInfo_RE_loanRepayment(
-                    config.clientIin(), config.clientIban().substring(2)
-            );
+            specAccountSteps.validateIBAN("KZ649729722204F0Z3LU");
         });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR_),
+                "Вы ввели некорректный IBAN счет!"
+        );
     }
 }
