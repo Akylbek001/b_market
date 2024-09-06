@@ -56,6 +56,7 @@ public class MainPage extends BasePage {
     @Step("Click login button")
     public MainPage clickLoginButton() {
         button.btnClick(LOGIN_BUTTON);
+        WaitUtils.wait(1);
         return this;
     }
 

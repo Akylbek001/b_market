@@ -11,8 +11,7 @@ import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static pages.AccountPage.*;
-import static pages.CabinetPage.CHANGE_PASSWORD_RESULT;
-import static pages.MainPage.SALDO;
+
 import static pages.SpecAccountPage.TRANSFER_DETAILS;
 import static pages.SpecAccountSgoPage.*;
 
@@ -638,7 +637,7 @@ public class SpecAccountSgoTest extends BaseTest {
             specAccountSteps.indicateSign_withContractNumber(DatesUtils.getCurrentDate());
             specAccountSteps.inputSumToTransfer_forIndividual("55");
             specAccountSgoSteps.transfer();
-////            specAccountSteps.confirmTransferOnModal();
+//            specAccountSteps.confirmTransferOnModal();
         });
         Assert.assertEquals(
                 elementsAttributes.getValue(SUM_TO_TRANSFER_VALIDATE_FL), "Недостаточно средств для перевода"
@@ -699,6 +698,54 @@ public class SpecAccountSgoTest extends BaseTest {
             specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
         });
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
+    }
+
+    @Test(description = "Перевод на покупку жилья(ЮЛ) => валидация IBAN отбасы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация IBAN отбасы")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToPurchaseHome_ul_validateOtbasyIBAN () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77013404785", config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на покупку жилья", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSgoSteps.selectTransferToPurchaseHomeOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectRERecipientType();
+            specAccountSteps.validateIBAN("KZ649729722204F0Z3LP");
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR_),
+                CharacterSetConstants.IBAN_OTBASY_ERROR_TEXT
+        );
+    }
+
+    @Test(description = "Перевод на покупку жилья(ЮЛ) => валидация IBAN", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация IBAN отбасы")
+    @Severity(SeverityLevel.NORMAL)
+    public void transferToPurchaseHome_ul_validateIBAN () {
+        step("Авторизация", () -> {
+            loginSteps.auth("77013404785", config.specAccount_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
+        });
+        step("Выбрать перевод на покупку жилья", () -> {
+            specAccountSteps.selectSpecAccount();
+            specAccountSteps.openSpecAccountOperations();
+            specAccountSgoSteps.selectTransferToPurchaseHomeOperation();
+        });
+        step("Указать получателя и выполнить перевод", () -> {
+            specAccountSteps.openRecipientTypeList();
+            specAccountSteps.selectRERecipientType();
+            specAccountSteps.validateIBAN("KZ649729722204F0Z3LU");
+        });
+        Assert.assertEquals(elementsAttributes.getAttrInnerText(IBAN_ERROR_),
+                "Вы ввели некорректный IBAN счет!"
+        );
     }
 
     @Test(description = "Перевод на покупку жилья(ЮЛ)=> Недостаточно средств", groups = {"automated"})

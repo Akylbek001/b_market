@@ -112,7 +112,7 @@ public final class CharacterSetConstants {
     public static final String DENIED_DEPOSIT_SUM  = "На депозите меньше 50% от Договорной суммы;";
     public static final String INTENDED_USE_OF_LOAN  = "Операция недоступна. По данному займу не предоставлены документы, подтверждающие целевое использование займа.";
     public static final String REFUSED_REASON  = "Ваше участие в программе невозможно, так как остаток средств на вашем депозите/депозитах составляет менее 1 000 000 тенге";
-//    public static final String IBAN_ERROR_TEXT ="Вы ввели IBAN Отбасы Банка";
+    public static final String IBAN_OTBASY_ERROR_TEXT ="Вы ввели IBAN Отбасы Банка";
     public static final String IBAN_ERROR_TEXT ="Вы ввели некорректный IBAN счет!";
 
 }
