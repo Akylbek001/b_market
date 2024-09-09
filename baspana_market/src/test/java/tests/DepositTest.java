@@ -202,11 +202,11 @@ public class DepositTest extends BaseTest {
     //рассчитать рекомендуемый ежемесячный платеж по формуле
     @Test(description="Изменить условия депозита => Проврека изменения суммы ежемесечного взноса", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Изменить условия депозита")
+    @Description("Проврека изменения суммы ежемесечного взноса")
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions_validateContributionAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77083007217", config.clientPassword());
+            loginSteps.auth("77016108074", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -219,12 +219,37 @@ public class DepositTest extends BaseTest {
             depositSteps.changeDepositConditionsAmount("9000000");
             depositSteps.clickAmount();
         });
-        Assert.assertEquals("24 358 ₸", elementsAttributes.getValue(NEW_DEPOSIT_MONTH_PAY));
+        Assert.assertEquals("24 554 ₸", elementsAttributes.getValue(NEW_DEPOSIT_MONTH_PAY));
+    }
+
+    @Test(description="Изменить условия депозита => Обратитесь в отделение", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Обратитесь в отделение")
+    @Severity(SeverityLevel.CRITICAL)
+    public void changeDepositConditions_visitBank() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth("77777520071", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Изменить условия депозита", () -> {
+            depositSteps.changeDepositConditionsOperation();
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.VISIT_BANK_BRANCH
+        );
+        drManager.getDriver().switchTo().alert().accept();
     }
 
     @Test(description="Изменить условия депозита => Валидация договорной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Изменить условия депозита")
+    @Description("Валидация договорной суммы")
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions_validateNegotiatedAmount() {
         step("Авторизация -> Мои депозиты", () -> {
@@ -244,6 +269,31 @@ public class DepositTest extends BaseTest {
                 elementsAttributes.getValue(NEGOTIATED_AMOUNT_VALIDATION_TEXT),
                 CharacterSetConstants.DEPOSIT_AMOUNT_MUST_BE_BETWEEN
         );
+    }
+
+    @Test(description="Изменить условия депозита => Валидация привязки к займу", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация привязки к займу")
+    @Severity(SeverityLevel.CRITICAL)
+    public void changeDepositConditions_validateDepositTiedToLoan() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth("77785543870", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Изменить условия депозита", () -> {
+            depositSteps.changeDepositConditionsOperation();
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                "Депозит привязан к действующему займу!"
+        );
+        drManager.getDriver().switchTo().alert().accept();
     }
 
     //need account
@@ -421,7 +471,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositPooling() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77083007217", config.clientPassword());
+            loginSteps.auth("77001867334", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -443,13 +493,13 @@ public class DepositTest extends BaseTest {
 
     //need special account
     //предварительно добавить еще один депозит
-    @Test(description="Объединение депозита => Валидация ОТП", groups = {"automated"}, enabled = false)
+    @Test(description="Объединение депозита => Валидация ОТП", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Объединение депозита")
     @Severity(SeverityLevel.CRITICAL)
     public void depositPooling_otpValidation() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77083007217", config.clientPassword());
+            loginSteps.auth("77001867334", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -462,7 +512,7 @@ public class DepositTest extends BaseTest {
             depositSteps.selectUniteDepositOperation();
         });
         step("Объединение депозита", () -> {
-            depositSteps.depositPolling_otpValidation(config.smsCode());
+            depositSteps.depositPolling_otpValidation("444444");
         });
         Assert.assertEquals("Введенный вами код из СМС неправильный.", elementsAttributes.getValue(INVALID_OTP));
     }
@@ -473,7 +523,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositPooling_validateDepositQuantity() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77083007217", config.clientPassword());
+            loginSteps.auth("77777520071", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -523,7 +573,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void assignmentGratuitous_validateSavingAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77083007217", config.clientPassword());
+            loginSteps.auth("77777520071", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

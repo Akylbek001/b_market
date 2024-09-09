@@ -82,22 +82,27 @@ public class DepositSteps {
 
     public void changeGosPrem_smoke() {
         depositPage
-                .selectChangeGosPremOperation();
+                .changeGosPremOperation();
     }
 
     public void terminateDeposit_smoke() {
         depositPage
-                .terminateDepositOperation();
+                .terminateDepositOperation_();
     }
 
     public void changeDepositConditions_smoke() {
         depositPage
-                .changeDepositConditionsOperation();
+                .changeDepositConditionsOperation_();
     }
 
     public void depositDivision_smoke() {
         depositPage
                 .createDepositDivisionOperation();
+    }
+
+    public void depositDivisionOperation() {
+        depositPage
+                .depositDivisionOperation();
     }
 
     public void changeGosPrem_validation() {

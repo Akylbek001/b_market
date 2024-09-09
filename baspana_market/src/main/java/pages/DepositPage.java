@@ -134,6 +134,13 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Select change gos prem operation on prod")
+    public DepositPage changeGosPremOperation() {
+        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
+        WaitUtils.wait(3);
+        return this;
+    }
+
     @Step("Click select button")
     public DepositPage clickSelectButton() {
         button.btnClick(SELECT);
@@ -168,6 +175,13 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Select terminate deposit operation on prod")
+    public DepositPage terminateDepositOperation_() {
+        button.hoverAndClick(TERMINATE_DEPOSIT_OPERATION);
+        WaitUtils.wait(3);
+        return this;
+    }
+
     @Step("Click terminate button")
     public DepositPage clickTerminateButton() {
         button.btnClick(TERMINATE_DEPOSIT_BUTTON);
@@ -188,6 +202,13 @@ public class DepositPage extends BasePage {
         WaitUtils.wait(1);
         button.btnClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
         WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Select change deposit conditions operation on prod")
+    public DepositPage changeDepositConditionsOperation_() {
+        button.hoverAndClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
+        WaitUtils.wait(3);
         return this;
     }
 
@@ -237,6 +258,13 @@ public class DepositPage extends BasePage {
         return this;
     }
 
+    @Step("Select deposit division operation on prd")
+    public DepositPage depositDivisionOperation() {
+        button.hoverAndClick(DEPOSIT_DIVISION_OPERATION);
+        WaitUtils.wait(3);
+        return this;
+    }
+
     @Step("Click divide button")
     public DepositPage clickDivideButton() {
         button.btnClick(DIVIDE_BUTTON);
@@ -269,6 +297,7 @@ public class DepositPage extends BasePage {
 
     @Step("Click confirm selected deposits button")
     public DepositPage clickConfirmSelectedDepositsButton() {
+        move.scrollToElement(CONFIRM_SELECTED_DEPOSITS_BUTTON);
         button.btnClick(CONFIRM_SELECTED_DEPOSITS_BUTTON);
         elementsAttributes.waitUntilVisible(UNITE_DEPOSIT_CONFIRM_BUTTON);
         return this;
@@ -307,6 +336,7 @@ public class DepositPage extends BasePage {
 
     @Step("Click confirm selection deposit for gosPrem ")
     public DepositPage clickConfirmSelection() {
+        move.scrollToElement(DEPOSIT_FOR_GOS_PREM_CONFIRM_BUTTON);
         button.btnClick(DEPOSIT_FOR_GOS_PREM_CONFIRM_BUTTON);
         WaitUtils.wait(1);
         return this;

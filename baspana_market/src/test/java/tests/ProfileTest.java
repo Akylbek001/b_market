@@ -141,9 +141,6 @@ public class ProfileTest extends BaseTest {
         step("Биометрия", () -> {
             generalSteps.acceptAgreement_startBiometry();
         });
-        System.out.println(drManager.getDriver().switchTo().alert().getText());
-        System.out.println(CharacterSetConstants.NEW_PASSWORD_SAME_WITH_CURRENT);
-
         Assert.assertEquals(
                 drManager.getDriver().switchTo().alert().getText(),
                 CharacterSetConstants.NEW_PASSWORD_SAME_WITH_CURRENT
