@@ -25,8 +25,6 @@ public class CabinetTest extends BaseTest {
         brManager.navigateTo(envConfig.baseUrl().concat("cabinet"));
     }
 
-//    SecretText userPass = new SecretText(config.userPass());
-
     @Test(description = "Добавить email", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Добавить email")

@@ -44,9 +44,7 @@ public class AccountPage extends BasePage {
     private static final By FOUND_USER_BY_IBAN = By.cssSelector("#ibanBank.bodyM");
     public static final By IBAN_ERROR_ = By.id("ibanError");
     private static final By SUM_TO_TRANSFER = By.id("sumToTransfer");
-
     public static final By INSUFFICIENT_FUNDS = By.cssSelector(".transferError.bodyM");
-
     private static final By SEND_TRANSFER_BUTTON = By.id("sendTransferButton");
     private static final By CONFIRM_TRANSFER_BUTTON = By.id("confirmTransfer");
     private static final By TRANSFER_OTP = By.id("smsVerificationCodeInput");
@@ -64,10 +62,7 @@ public class AccountPage extends BasePage {
     private static final By OTHER_BANK_CONTINUE_BUTTON = By.xpath("//button[@class='button-mybank green']");
     private static final By OTHER_BANK_NAME = By.xpath("//div[@class='checkBox-Banks'] /div[2]");
     private static final By OTHER_BANK_CONTINUE_BUTTON_ = By.xpath("//div[@class='Button-SMS'] /button");
-
     public static final By CLOSE_CURRENT_ACCOUNT_OPERATION = By.cssSelector(".operation-account#closeAccount");
-
-
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -110,7 +105,6 @@ public class AccountPage extends BasePage {
         elementsAttributes.waitUntilVisible(TRANSFER_TO_OTBASY_CLIENT);
         button.btnClick(TRANSFER_TO_OTBASY_CLIENT);
         WaitUtils.wait(1);
-
         return this;
     }
 
@@ -200,7 +194,6 @@ public class AccountPage extends BasePage {
         button.btnClick(SEND_OTP_BUTTON);
         return this;
     }
-
 
     @Step("Select account for epv")
     public AccountPage selectAccountForEpv() {

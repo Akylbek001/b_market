@@ -6,13 +6,6 @@ import io.qameta.allure.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.FileInputStream;
-import java.security.KeyStore;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.Signature;
-import java.security.cert.X509Certificate;
-
 import static io.qameta.allure.Allure.step;
 import static pages.HousingCenterPage.FILE_TO_SIGN;
 
@@ -25,7 +18,6 @@ public class HousingCenterTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
     }
-//    String filePath = System.getProperty("user.dir") + "/src/test/resources/documents/.p12";
 
     @Test(description = "Подать заявку => Валидация ncaLayer", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")

@@ -21,7 +21,6 @@ public class OtauPage extends BasePage {
     private static final By AGREEMENT_FOR_PERSONAL_DATA = By.cssSelector("[for='checkboxAgree2']");
     private static final By CONFIRM_BUTTON = By.id("confirmBMG");
 
-
     public OtauPage(WebDriver driver) {
         super(driver);
     }
@@ -58,7 +57,6 @@ public class OtauPage extends BasePage {
     public OtauPage clickContinueButton() {
         button.btnClick(CONTINUE_BUTTON);
         WaitUtils.wait(2);
-
         return this;
     }
 

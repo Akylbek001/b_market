@@ -43,13 +43,10 @@ public class SpecAccountPage extends BasePage {
     public static final By AGREEMENT = By.cssSelector("[for='NaturalCheckbox']");
     public static final By AGREEMENT_RE = By.cssSelector("[for='legalConfirmCheckbox']");
     public static final By SEND_TRANSFER_BUTTON_FOR_VALIDATE = By.cssSelector("button#sendTransferNaturalPerson");
-
     public static final By SEND_TRANSFER_BUTTON = By.id("sendTransferNaturalPerson");
     public static final By SEND_TRANSFER_BUTTON_RE = By.id("sendTransferLegalEntity");
-
     public static final By CONFIRM_TRANSFER = By.cssSelector(".btn.btn-green#confirmTransfer");
     public static final By TRANSFER_DETAILS = By.cssSelector(".checkTransfer");
-
 
     public SpecAccountPage(WebDriver driver) {
         super(driver);
@@ -83,7 +80,7 @@ public class SpecAccountPage extends BasePage {
 
     @Step("Select transfer to deposit for validate")
     public SpecAccountPage selectTransferToDepositOperation_validation() {
-        button.btnClick(TRANSFER_TO_RENT);
+        button.btnClick(TRANSFER_TO_DEPOSIT);
         return this;
     }
 

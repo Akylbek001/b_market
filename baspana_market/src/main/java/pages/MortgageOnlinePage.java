@@ -31,7 +31,6 @@ public class MortgageOnlinePage extends BasePage {
     public MortgageOnlinePage clickConfirmButton() {
         button.btnClick(CONFIRM_BUTTON);
         WaitUtils.wait(1);
-
         return this;
     }
 }

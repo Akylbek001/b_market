@@ -1,13 +1,10 @@
 package pages;
 
 import common.utils.WaitUtils;
-import common.wrappers.SecretText;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-
 
 @Slf4j
 public class CabinetPage extends BasePage {

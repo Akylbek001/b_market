@@ -11,10 +11,8 @@ public class FeedbackPage extends BasePage {
     private static final By VIDEO_CONSULTATION = By.id("video-call--item");
     private static final By WHATSAPP = By.id("whatsapp--item");
     private static final By TG = By.id("telegram--item");
-
     private static final By REQUEST_TYPE_LIST = By.id("form_dropdown_type_picker");
     private static final By REQUEST_GOAL_LIST = By.id("form_dropdown_vopros_type");
-
     public static final By SERVICE_TYPE = By.xpath("//select[@class='form-select']");
     public static final By PHONE = By.xpath("//input[@name='phone']");
     public static final By IIN = By.xpath("//input[@name='iin']");
@@ -28,9 +26,7 @@ public class FeedbackPage extends BasePage {
     private static final By CALLBACK_PHONE_INPUT = By.id("phone");
     private static final By ORDER_CALL_SEND_BUTTON = By.xpath("//*[text()='Отправить']");
     private static final By FEEDBACK_SEND_BUTTON = By.xpath("//*[text()='Жіберу']");
-
     public static final By CALLBACK_SUCCESSFUL_SENT = By.id("getCallbackLongTitle");
-
     private static final By LEAVE_FEEDBACK_BUTTON = By.xpath("//img[@src='/Images-baspana/email.svg']");
     private static final By FEEDBACK_LAST_NAME_INPUT = By.xpath("//*[label='Тегі']/input");
     private static final By FEEDBACK_NAME_INPUT = By.xpath("//*[label='Аты']/input");
@@ -47,11 +43,9 @@ public class FeedbackPage extends BasePage {
     private static final By GRATITUDE = By.xpath("//*[text()='Алғыс']");
     private static final By WITHDRAWAL_COMPLAINT_APPEAL = By.xpath("//*[text()='Шағымды/өтінішті кері қайтарып алу']");
     private static final By FLOODS = By.xpath("//*[text()='Су тасқыны']");
-
     public static final By CAPTCHA = By.xpath("//span[@class='captcha']");
     private static final By CAPTCHA_VALUE_INPUT = By.xpath("//*[label='Мәтінді енгізіңіз']/input");
     public static final By REQUEST_NOTIFICATION = By.cssSelector(".tw-text-center");
-
 
     public FeedbackPage(WebDriver driver) {
         super(driver);
@@ -180,7 +174,6 @@ public class FeedbackPage extends BasePage {
         WaitUtils.wait(2);
         return this;
     }
-
 
     @Step("Click leave feedback button")
     public FeedbackPage clickLeaveFeedbackButton() {

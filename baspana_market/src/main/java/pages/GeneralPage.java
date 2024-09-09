@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static pages.AccountPage.INVALID_OTP_NOTIFICATION;
 import static pages.SpecAccountPage.TRANSFER_DETAILS;
 
 public class GeneralPage extends BasePage {
@@ -13,7 +14,6 @@ public class GeneralPage extends BasePage {
     private static final By START_BIOMETRY_BUTTON = By.id("startBiometry");
     public static final By OTP_CODE_FOR_TRANSFER = By.id("smsVerificationCodeInput");
     private static final By SEND_OTP_BUTTON = By.id("smsVerificationBtn");
-
 
     public GeneralPage(WebDriver driver) {
         super(driver);
@@ -51,6 +51,7 @@ public class GeneralPage extends BasePage {
     @Step("Click send otp button")
     public GeneralPage clickSendOtpButton_() {
         button.btnClick(SEND_OTP_BUTTON);
+        elementsAttributes.waitUntilVisible(INVALID_OTP_NOTIFICATION);
         return this;
     }
 }

@@ -36,11 +36,9 @@ public class CertificatesPage extends BasePage {
     public static final By CERTIFICATE_GENERATED_NOTIFICATION = By.xpath("//div[@id='GetToCertificateFinale'] //b");
     public static final By GENERATED_CERTIFICATE = By.cssSelector(".certificate_info--b");
 
-
     public CertificatesPage(WebDriver driver) {
         super(driver);
     }
-
 
     @Step("Select certificate of account availability")
     public CertificatesPage selectAccountAvailabilityCertificate() {

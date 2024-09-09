@@ -87,5 +87,4 @@ public class SpecAccountSgoSteps {
                 .clickAgreement_re()
                 .transferButton();
     }
-
 }

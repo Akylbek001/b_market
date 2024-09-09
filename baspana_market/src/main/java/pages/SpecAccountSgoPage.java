@@ -18,10 +18,8 @@ public class SpecAccountSgoPage extends BasePage {
     private static final By PHONE_NUMBER = By.id("phoneNumber");
     private static final By ALT_CODE_LABEL = By.cssSelector("[for='option2']");
     private static final By ALT_CODE_VALUE = By.cssSelector("input#numberOnly");
-
     private static final By FOUND_USER_BY_NUMBER = By.id("foundUserNameByNumber");
     private static final By FOUND_USER_BY_CODE = By.id("foundUserNameByCode");
-
     private static final By WITHOUT_NUMBER_SLIDER = By.cssSelector(".row .slider.round");
     private static final By CONTRACT_NUMBER = By.id("applicationNumber");
     private static final By CONTRACT_DATE = By.id("applicationDate");
@@ -39,7 +37,6 @@ public class SpecAccountSgoPage extends BasePage {
     public static final By BIN_ERROR = By.cssSelector("span#BinError");
     public static final By SUM_TO_TRANSFER_VALIDATE = By.cssSelector("#legalEntityDiv .transferError.bodyM");
     public static final By SUM_TO_TRANSFER_VALIDATE_FL = By.cssSelector(".sumToTransferDiv.error .transferError.bodyM");
-
 
     public SpecAccountSgoPage(WebDriver driver) {
         super(driver);
@@ -119,7 +116,6 @@ public class SpecAccountSgoPage extends BasePage {
     @Step("Input sum to transfer")
     public SpecAccountSgoPage inputSumToTransfer(String sum) {
         input.inputWithClear(SUM_TO_TRANSFER, sum);
-
         return this;
     }
 
@@ -170,6 +166,4 @@ public class SpecAccountSgoPage extends BasePage {
         button.btnClick(TRANSFER_TO_PURCHASE_HOME);
         return this;
     }
-
-
 }

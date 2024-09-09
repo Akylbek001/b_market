@@ -28,7 +28,6 @@ import org.openqa.selenium.WebDriver;
     private static final By APPSTORE_LINK = By.cssSelector("a[href='https://apps.apple.com/us/app/zssb-24/id1148478653']");
     private static final By GOOGLEPLAY_LINK = By.cssSelector("a[href='https://play.google.com/store/apps/details?id=kz.sdk.hcsbk']");
 
-
     public FooterPage(WebDriver driver) {
         super(driver);
     }

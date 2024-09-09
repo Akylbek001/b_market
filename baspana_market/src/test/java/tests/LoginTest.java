@@ -159,7 +159,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.getValue(PROFILE_NAME).contains("Nur"));
     }
 
-    @Test(description="Восстановление пароля пароля по номеру документа => Валидация номера документа", groups = {"automated"})
+    @Test(description="Восстановление пароля по номеру документа => Валидация номера документа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация номера документа")
     @Severity(SeverityLevel.NORMAL)
@@ -282,7 +282,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.getValue(PROFILE_NAME).contains("Nur"));
     }
 
-    @Test(description="Восстановление пароля по альтернативному коду => Пользователь не найден", groups = {"automated"})
+    @Test(description="Восстановление пароля по альт.коду => Пользователь не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Пользователь не найден")
     @Severity(SeverityLevel.NORMAL)

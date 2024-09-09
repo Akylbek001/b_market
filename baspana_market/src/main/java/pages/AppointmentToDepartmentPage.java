@@ -21,7 +21,6 @@ public class AppointmentToDepartmentPage extends BasePage {
     public static final By CANCEL_RESERVATION = By.cssSelector(".booking-div-btn #cancelBookingBtn");
     private static final By REBOOK_BUTTON = By.id("submit_form_repin");
 
-
     public AppointmentToDepartmentPage(WebDriver driver) {
         super(driver);
     }

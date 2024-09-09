@@ -19,7 +19,6 @@ import pages.*;
 import pages.BecomeClientPage;
 import pages.LoginPage;
 import pages.RegistrationPage;
-import pages.FilterPage;
 import steps.*;
 import steps.BecomeClientSteps;
 import steps.LoginSteps;
@@ -49,7 +48,6 @@ public abstract class BaseTest{
     protected FeedbackSteps feedbackSteps;
     protected MainSteps mainSteps;
     protected FooterSteps footerSteps;
-    protected FilterPage filterPage;
     protected FilterSteps filterSteps;
     protected ProfileSteps profileSteps;
     protected DigitalMortgageSteps digitalMortgageSteps;

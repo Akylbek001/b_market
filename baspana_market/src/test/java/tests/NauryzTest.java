@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import static io.qameta.allure.Allure.step;
 import static pages.OtauPage.REFUSED_REASON_TEXT;
 
-
 @Owner("Алибек Акылбеков")
 @Feature("Наурыз")
 public class NauryzTest extends BaseTest {

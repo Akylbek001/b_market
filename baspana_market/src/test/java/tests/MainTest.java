@@ -142,7 +142,7 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("pool/search?neworsecond=second"));
     }
 
-    @Test(description="Калькулятор ипотеки. Проверка рассчета первоначального взноса", groups = {"automated"})
+    @Test(description="Калькулятор ипотеки => Проверка рассчета первоначального взноса", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Проверка рассчета первоначального взноса")
     @Severity(SeverityLevel.NORMAL)

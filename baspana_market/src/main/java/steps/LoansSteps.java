@@ -138,7 +138,6 @@ public class LoansSteps {
                 .inputInsuranceOtp(otp)
                 .clickOtpVerificationButton()
                 .clickNextToApplicationButton();
-
     }
 
     public void replacementOfCollateral() {

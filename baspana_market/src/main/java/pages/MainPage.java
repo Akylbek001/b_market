@@ -48,7 +48,6 @@ public class MainPage extends BasePage {
     private static final By REMOVE_CONFIRM_BUTTON = By.cssSelector("button.button--r");
     private static final By POST_AD_BUTTON_FROM_MY_AD = By.cssSelector(".addstates input");
 
-
     public MainPage(WebDriver driver) {
         super(driver);
     }
@@ -227,7 +226,6 @@ public class MainPage extends BasePage {
         button.btnClick(ALL_STATE_PROGRAMS_BUTTON);
         return this;
     }
-
 
     @Step("Click reality tab")
     public MainPage clickRealityTab() {

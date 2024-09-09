@@ -21,7 +21,7 @@ public class GosServicesTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Получить справку об отсутствии недвижемого имущества=> Сервис не доступен", groups = {"automated"})
+    @Test(description = "Справка об отсутствии недвижемого имущества=> Сервис не доступен", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)
@@ -41,7 +41,7 @@ public class GosServicesTest extends BaseTest {
         });
     }
 
-    @Test(description = "Получить справку о наличии недвижимости и обременении=> Сервис не доступен", groups = {"automated"})
+    @Test(description = "Справка о наличии недвижимости и обременении=> Сервис не доступен", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)
@@ -61,7 +61,7 @@ public class GosServicesTest extends BaseTest {
         });
     }
 
-    @Test(description = "Получить справку об отсутствии недвижимого имущества=> Не найден в БМГ", groups = {"automated"})
+    @Test(description = "Справка об отсутствии недвижимого имущества=> Не найден в БМГ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)
@@ -81,7 +81,7 @@ public class GosServicesTest extends BaseTest {
         });
     }
 
-    @Test(description = "Получить справку о наличии недвижимости и обременении=> Не найден в БМГ", groups = {"automated"})
+    @Test(description = "Справка о наличии недвижимости и обременении=> Не найден в БМГ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)

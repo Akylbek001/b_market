@@ -31,7 +31,6 @@ public class LoansPage extends BasePage {
     public static final By SUM_DIFF = By.id("errorMessage");
 
     public static final By INTENDED_USE_OF_LOAN_NOTIFICATION = By.id("changePaymentDayModalBody");
-
     public static final By CHANGING_PAYMENT_DATE_NOTIFICATION = By.id("changePaymentDayModalBody");
     private static final By AGREEMENT_CHECKBOX = By.cssSelector(".container.firstcheck.checkbox");
     private static final By VALIDATION_BUTTON = By.xpath(".validation");
@@ -70,7 +69,6 @@ public class LoansPage extends BasePage {
     private static final By PARTIAL_REPAYMENT_SUM = By.cssSelector(".InputBlocks input");
     private static final By CONTINUE_BUTTON = By.cssSelector("button.validate");
     private static final By ACCOUNT_LIST = By.cssSelector(".InputBlockOption");
-
 
     public LoansPage(WebDriver driver) {
         super(driver);

@@ -124,7 +124,6 @@ public class DepositFamilyPackageTest extends BaseTest {
         Assert.assertFalse(false, CANCEL_INVITE_ICON.toString());
     }
 
-
     @Test(description="Расформировать семейный пакет", groups = {"automated"}, priority = 6)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Расформировать семейный пакет")

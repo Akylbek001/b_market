@@ -25,8 +25,6 @@ public class DepositFamilyPackagePage extends BasePage {
     private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
     public static final By MAIN_DEPOSIT_AMOUNT = By.cssSelector(".sum");
 
-
-
     public DepositFamilyPackagePage(WebDriver driver) {
         super(driver);
     }

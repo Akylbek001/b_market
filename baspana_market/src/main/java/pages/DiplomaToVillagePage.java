@@ -46,7 +46,6 @@ public class DiplomaToVillagePage extends BasePage {
     private static final By SEND_OTP_BUTTON = By.cssSelector("#exampleModalSMSVillage .btn.btn-primary");
     private static final By GENERATE_REQUEST_BUTTON = By.cssSelector(".btn.btn-primary.celo-ipoteka.btn-form_app.sign_and_send");
 
-
     public DiplomaToVillagePage(WebDriver driver) {
         super(driver);
     }

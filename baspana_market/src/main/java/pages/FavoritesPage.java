@@ -10,11 +10,9 @@ public class FavoritesPage extends BasePage {
             "//label[@class='like-label']"
     );
     public static final By FAVORITE_OBJECT = By.cssSelector(".card.mb-3.object--news");
-
     public FavoritesPage(WebDriver driver) {
         super(driver);
     }
-
 
     @Step("Click add to favorites icon")
     public FavoritesPage clickAddToFavoritesIcon() {

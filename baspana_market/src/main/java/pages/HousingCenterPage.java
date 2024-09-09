@@ -14,8 +14,6 @@ public class HousingCenterPage extends BasePage {
     private static final By AGREEMENT = By.cssSelector("[for='AgreeWithAgreement']");
     public static final By FILE_TO_SIGN = By.cssSelector(".cozh_news--clients--doc--i_s");
 
-
-
     public HousingCenterPage(WebDriver driver) {
         super(driver);
     }
@@ -32,7 +30,6 @@ public class HousingCenterPage extends BasePage {
         move.scrollToElement(AGREEMENT_CHECKBOX);
         button.btnClick(AGREEMENT_CHECKBOX);
         WaitUtils.wait(1);
-
         return this;
     }
 

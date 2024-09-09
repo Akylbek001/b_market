@@ -21,7 +21,7 @@ public class LoansTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Полное досрочное погашение => с расторжением депозита", groups = {"automated"})
+    @Test(description="ПДП => с расторжением депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
@@ -39,7 +39,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Полное досрочное погашение => без расторжением депозита", groups = {"automated"})
+    @Test(description="ПДП => без расторжением депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
@@ -57,7 +57,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Полное досрочное погашение(с расторжением депозита) => Валидация недостаточной суммы", groups = {"automated"})
+    @Test(description="ПДП(с расторжением депозита) => Валидация недостаточной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
@@ -89,7 +89,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Полное досрочное погашение(без расторжением депозита) => Валидация недостаточной суммы", groups = {"automated"})
+    @Test(description="ПДП(без расторжением депозита) => Валидация недостаточной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
@@ -121,7 +121,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Частичное досрочное погашение через текущий счет", groups = {"automated"})
+    @Test(description="ЧДП через текущий счет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
@@ -138,7 +138,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Частичное досрочное погашение через ЕПВ счет", groups = {"automated"})
+    @Test(description="ЧДП через ЕПВ счет", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
@@ -156,7 +156,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Частичное досрочное погашение через текущий счет=> Валидация недостаточной суммы", groups = {"automated"})
+    @Test(description="ЧДП через текущий счет=> Валидация недостаточной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
@@ -174,7 +174,7 @@ public class LoansTest extends BaseTest {
         Assert.assertEquals("Не хватает средств на счете.", elementsAttributes.getValue(MODAL_NOTIFICATION));
     }
 
-    @Test(description="Частичное досрочное погашение через ЕПВ счет=> Валидация недостаточной суммы", groups = {"automated"})
+    @Test(description="ЧДП через ЕПВ счет=> Валидация недостаточной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
@@ -192,7 +192,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="Частичное досрочное погашение - нет целовое использование займа", groups = {"automated"})
+    @Test(description="ЧДП - нет целового использования займа", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
@@ -211,7 +211,7 @@ public class LoansTest extends BaseTest {
         );
     }
 
-//    @Test(description="Частичное досрочное погашение => аннулировать заявку", groups = {"automated"})
+//    @Test(description="ЧДП => аннулировать заявку", groups = {"automated"})
 //    @Issue("https://jira.kz/browse/QA-")
 //    @Description("аннулировать заявку")
 //    @Severity(SeverityLevel.NORMAL)

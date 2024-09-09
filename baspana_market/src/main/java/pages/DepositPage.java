@@ -5,8 +5,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import java.time.Duration;
-
 public class DepositPage extends BasePage {
 
     public static final By MY_DEPOSIT_LABEL = By.cssSelector("[role='option']");
@@ -95,12 +93,9 @@ public class DepositPage extends BasePage {
     public static final By PROHIBITION_OF_OPEN_ACCOUNT = By.xpath("//div[@id='arrestsDiv'] /div[@class='arrestDiv'][2] //span[@class='accentXS']");
     public static final By GOS_PREM_MODAL_TITLE = By.cssSelector(".changeTitle");
 
-
-
     public DepositPage(WebDriver driver) {
         super(driver);
     }
-
 
     @Step("Select my opened deposit")
     public DepositPage selectOpenedDeposit() {
@@ -434,7 +429,6 @@ public class DepositPage extends BasePage {
     public DepositPage clickConfirm() {
         button.btnClick(CONFIRM);
         WaitUtils.wait(5);
-
 //        elementsAttributes.waitUntilClickable(SEND);
         return this;
     }

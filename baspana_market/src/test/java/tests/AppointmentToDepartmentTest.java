@@ -1,7 +1,6 @@
 package tests;
 
 import base.BaseTest;
-import common.consts.CharacterSetConstants;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -11,7 +10,6 @@ import org.testng.annotations.Test;
 import static io.qameta.allure.Allure.step;
 import static pages.AppointmentToDepartmentPage.CANCEL_RESERVATION;
 import static pages.AppointmentToDepartmentPage.RESULT;
-import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
 
 @Owner("Алибек Акылбеков")
 @Feature("Запись в отделение")

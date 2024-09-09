@@ -18,8 +18,6 @@ public class LoginPage extends BasePage {
     private static final By SUBMIT_BUTTON_LOCATOR = By.cssSelector(".baspanaBusiness.bbreverse");
     public static final By PROFILE_NAME = By.xpath("//div[@class='clientName'] /a");
     public static final By PROFILE_ICON = By.cssSelector("[src='/Images-baspana/cab_icons.svg']");
-
-
     private static final By FORGET_PASSWORD_LOCATOR = By.id("forgetPass");
     private static final By DOCUMENT_DATA_LOCATOR = By.id("documentData");
     public static final By USER_NOT_FOUND = By.cssSelector("#resultForgetTxtResult #resultForgetTxt");
@@ -33,8 +31,6 @@ public class LoginPage extends BasePage {
     private static final By SEND_SMS_BUTTON_LOCATOR = By.cssSelector("#sendSmsForget #sendSmsBtnForgetPass");
     public static final By WRONG_SMS_CODE_TEXT = By.id("otpResult");
     public static final By WRONG_PASSWORD_CONFIRMATION = By.cssSelector(".content.forgetPassModalContent.biometry__forget__password #newPassInpConfirmErr");
-
-
     private static final By CHANGE_PHONE_NUMBER_LOCATOR = By.xpath(
             "//*[contains(text(), 'Изменить номер телефона')]"
     );
@@ -54,7 +50,6 @@ public class LoginPage extends BasePage {
     private static final By BECOME_CLIENT_BUTTON = By.xpath(
             "//div[@class='general-info-about-accession'] //button[contains(text(), 'Стать клиентом ')]"
     );
-
 
     public LoginPage(WebDriver driver) {
         super(driver);

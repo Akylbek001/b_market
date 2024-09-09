@@ -112,7 +112,6 @@ public class ProfilePage extends BasePage {
     public ProfilePage inputOldPassword(String oldPassword) {
         input.inputWithClear(OLD_PASSWORD, oldPassword);
 //        WaitUtils.wait(2);
-
         return this;
     }
 

@@ -531,5 +531,3 @@ public class AccountTest extends BaseTest {
         Assert.assertEquals(CharacterSetConstants.CLIENT_HAS_LOAN, elementsAttributes.getValue(ERROR_TEXT));
     }
 }
-
-//жду исправления проверок при попытке закрыть текущий счет - Раджан

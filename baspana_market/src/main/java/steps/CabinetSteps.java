@@ -1,9 +1,7 @@
 package steps;
 
-import common.wrappers.SecretText;
 import org.openqa.selenium.WebDriver;
 import pages.CabinetPage;
-
 
 public class CabinetSteps {
     private final CabinetPage cabinetPage;
@@ -59,8 +57,6 @@ public class CabinetSteps {
         cabinetPage
                 .selectAppointmentToDepartmentMenu();
     }
-
-
 
     public void addEditEmail(String email) {
         cabinetPage

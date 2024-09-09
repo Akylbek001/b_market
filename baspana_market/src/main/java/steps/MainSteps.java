@@ -96,7 +96,6 @@ public class MainSteps {
                 .clickRemoveConfirmButton();
     }
 
-
     public void clickPostAdButton() {
         mainPage
                 .clickPostAdButton();
