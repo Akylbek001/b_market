@@ -75,7 +75,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void terminateDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77016108074", config.clientPassword());
+            loginSteps.auth("77077204839", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

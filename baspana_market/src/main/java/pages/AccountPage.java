@@ -173,6 +173,7 @@ public class AccountPage extends BasePage {
     @Step("Click send transfer button")
     public AccountPage clickSendTransferButton() {
         button.btnClick(SEND_TRANSFER_BUTTON);
+        WaitUtils.wait(2);
         return this;
     }
 

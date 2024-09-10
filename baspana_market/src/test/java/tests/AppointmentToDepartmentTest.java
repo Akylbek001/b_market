@@ -27,7 +27,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_book () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth("77052713077", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
@@ -48,7 +48,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_rebook () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth("77052713077", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
@@ -70,13 +70,10 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_cancelReservation () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth("77052713077", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
-        boolean cancelReservationButtonActive = elementsAttributes.isDisplayed(CANCEL_RESERVATION);
-        if (cancelReservationButtonActive) {
 
-        }
         step("Закрыть модальное окно", () -> {
             appointmentToDepartmentSteps.clickCancelButton();
         });

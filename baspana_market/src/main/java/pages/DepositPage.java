@@ -136,7 +136,7 @@ public class DepositPage extends BasePage {
 
     @Step("Select change gos prem operation on prod")
     public DepositPage changeGosPremOperation() {
-        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
+        button.btnDoubleClick(CHANGE_GOS_PREM_OPERATION);
         WaitUtils.wait(3);
         return this;
     }
@@ -177,7 +177,7 @@ public class DepositPage extends BasePage {
 
     @Step("Select terminate deposit operation on prod")
     public DepositPage terminateDepositOperation_() {
-        button.hoverAndClick(TERMINATE_DEPOSIT_OPERATION);
+        button.btnDoubleClick(TERMINATE_DEPOSIT_OPERATION);
         WaitUtils.wait(3);
         return this;
     }
@@ -207,7 +207,7 @@ public class DepositPage extends BasePage {
 
     @Step("Select change deposit conditions operation on prod")
     public DepositPage changeDepositConditionsOperation_() {
-        button.hoverAndClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
+        button.btnDoubleClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
         WaitUtils.wait(3);
         return this;
     }
@@ -260,7 +260,7 @@ public class DepositPage extends BasePage {
 
     @Step("Select deposit division operation on prd")
     public DepositPage depositDivisionOperation() {
-        button.hoverAndClick(DEPOSIT_DIVISION_OPERATION);
+        button.btnDoubleClick(DEPOSIT_DIVISION_OPERATION);
         WaitUtils.wait(3);
         return this;
     }

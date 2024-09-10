@@ -55,7 +55,8 @@ import org.openqa.selenium.WebDriver;
 
     @Step("Click news link")
     public FooterPage clickNewsLink() {
-        move.moveToElemAndClick(NEWS_LINK);
+        move.scrollToElement(NEWS_LINK);
+        button.btnClick(NEWS_LINK);
         WaitUtils.wait(3);
         return this;
     }
