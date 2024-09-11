@@ -109,10 +109,12 @@ public final class CharacterSetConstants {
     public static final String NOT_FOUND_IN_BMG = "не_найден_в_бмг";
 
     public static final String DENIED_RESTRICTION_ON_ACCOUNTS  = "Уважаемый клиент! Вам отказано, в связи с наличием ограничений на ваших счетах. Подробнее можете узнать по номеру 300 (звонок бесплатный).";
+//    public static final String DENIED_RESTRICTION_ON_ACCOUNTS  = "Уважаемый клиент! Вам отказано, в связи с наличием ограничений на ваших счетах";
+
     public static final String DENIED_DEPOSIT_SUM  = "На депозите меньше 50% от Договорной суммы;";
     public static final String INTENDED_USE_OF_LOAN  = "Операция недоступна. По данному займу не предоставлены документы, подтверждающие целевое использование займа.";
     public static final String REFUSED_REASON  = "Ваше участие в программе невозможно, так как остаток средств на вашем депозите/депозитах составляет менее 1 000 000 тенге";
     public static final String IBAN_OTBASY_ERROR_TEXT ="Вы ввели IBAN Отбасы Банка";
     public static final String IBAN_ERROR_TEXT ="Вы ввели некорректный IBAN счет!";
-
+    public static final String UPDATE_DOCUMENT_NOTIFICATION = "Уважаемый клиент! Вам необходимо обновить данные по документу, удостоверяющему личность, это можно сделать посредством услуги видеобанкинга на нашем сайте";
 }

@@ -57,9 +57,9 @@ public class LoansPage extends BasePage {
     public static final By SWITCHING_TO_HOME_LOAN_DEPOSIT_VALIDATION = By.id("errorTransition");
 
     private static final By EXTENSION_INSURANCE_CONTRACT_CONTINUE_BUTTON = By.xpath("//div[@class='modal fade show']//button[@class='btn btn-green']");
-    private static final By ESTATE_INSURANCE_CHECKBOX = By.cssSelector("[for='estateInsurance]");
-    private static final By TITLE_INSURANCE_CHECKBOX = By.cssSelector("[for='titleInsurance]");
-    private static final By AGREEMENT_TO_TRANSFER_CHECKBOX = By.cssSelector("[for='consentFirst]");
+    private static final By ESTATE_INSURANCE_CHECKBOX = By.cssSelector("[for='estateInsurance']");
+    private static final By TITLE_INSURANCE_CHECKBOX = By.cssSelector("[for='titleInsurance']");
+    private static final By AGREEMENT_TO_TRANSFER_CHECKBOX = By.cssSelector("[for='consentFirst']");
     public static final By CONFIRM_AGREEMENT_BUTTON = By.id("generalInfoButton");
     public static final By UPLOAD_DOCUMENT_BUTTON = By.id("uploadDocForTwo");
     public static final By INSURANCE_OTP_INPUT = By.id("smsVerificationCodeInput");
@@ -69,6 +69,10 @@ public class LoansPage extends BasePage {
     private static final By PARTIAL_REPAYMENT_SUM = By.cssSelector(".InputBlocks input");
     private static final By CONTINUE_BUTTON = By.cssSelector("button.validate");
     private static final By ACCOUNT_LIST = By.cssSelector(".InputBlockOption");
+    public static final By MODAL_NOTIFICATION_ = By.id("FullRepaymentErrorModalBody");
+    public static final By OVERDUE_MODAL_NOTIFICATION = By.id("overduePayment");
+    private static final By MODAL = By.cssSelector("#insurancePayAttention [onclick='createInsurance()']");
+
 
     public LoansPage(WebDriver driver) {
         super(driver);
@@ -87,6 +91,7 @@ public class LoansPage extends BasePage {
     @Step("Open available operation")
     public LoansPage openAvailableOperations() {
         button.btnClick(AVAILABLE_OPERATIONS);
+        WaitUtils.wait(1);
         return this;
     }
     @Step("Select full early repayment operation")
@@ -235,15 +240,18 @@ public class LoansPage extends BasePage {
     @Step("Click estate insurance checkbox")
     public LoansPage clickEstateInsuranceCheckbox() {
         button.btnClick(ESTATE_INSURANCE_CHECKBOX);
+        WaitUtils.wait(2);
         return this;
     }
     @Step("Click title insurance checkbox")
     public LoansPage clickTitleInsuranceCheckbox() {
         button.btnClick(TITLE_INSURANCE_CHECKBOX);
+        WaitUtils.wait(2);
         return this;
     }
     @Step("Click agreement to transfer checkbox")
     public LoansPage clickAgreementToTransferCheckbox() {
+        move.scrollToElement(AGREEMENT_TO_TRANSFER_CHECKBOX);
         button.btnClick(AGREEMENT_TO_TRANSFER_CHECKBOX);
         return this;
     }
@@ -319,4 +327,10 @@ public class LoansPage extends BasePage {
         WaitUtils.wait(2);
         return this;
     }
+    @Step("Click continue button on modal")
+    public LoansPage clickContinueButtonOnModal() {
+        button.btnClick(MODAL);
+        return this;
+    }
+
 }

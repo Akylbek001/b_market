@@ -86,6 +86,11 @@ public class LoansSteps {
                 .selectAccount();
     }
 
+    public void clickContinueButtonOnModal() {
+        loansPage
+                .clickContinueButtonOnModal();
+    }
+
     public void fullEarlyRepayment(String otp) {
         loansPage
                 .clickContinueFullRepaymentButton()
@@ -129,7 +134,7 @@ public class LoansSteps {
 
     public void extensionInsuranceContract(String otp) {
         loansPage
-                .clickExtensionInsuranceContractContinueButton()
+//                .clickExtensionInsuranceContractContinueButton()
                 .clickEstateInsuranceCheckbox()
                 .clickTitleInsuranceCheckbox()
                 .clickAgreementToTransferCheckbox()

@@ -21,13 +21,13 @@ public class NauryzTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Подать заявку", groups = {"automated"})
+    @Test(description = "Подать заявку => Валидация суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Подать заявку")
+    @Description("Валидация суммы")
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validateSum () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth(config.loanClient_login(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Nauriz"));
         });
         step("Ввод данных по локации", () -> {
@@ -38,9 +38,9 @@ public class NauryzTest extends BaseTest {
         );
     }
 
-    @Test(description = "Подать заявку", groups = {"automated"})
+    @Test(description = "Подать заявку => Валидация клиента", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Подать заявку")
+    @Description("Валидация клиента")
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validateClient () {
         step("Авторизация", () -> {

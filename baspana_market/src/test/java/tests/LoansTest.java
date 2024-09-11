@@ -21,13 +21,14 @@ public class LoansTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="ПДП => с расторжением депозита", groups = {"automated"})
+    //not enough amount to PDP
+    @Test(description="ПДП => с расторжением депозита", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
-    public void fullEarlyRepayment_terminateDeposit () {
+    public void fullEarlyRepayment_withTerminateDeposit () {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth("77076769290", "12345test");
+            loginSteps.auth("77770174280", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -39,13 +40,13 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="ПДП => без расторжением депозита", groups = {"automated"})
+    @Test(description="ПДП => без расторжением депозита", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
     public void fullEarlyRepayment_withoutTerminateDeposit () {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth("77076769290", "12345test");
+            loginSteps.auth("77770174280", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -55,6 +56,57 @@ public class LoansTest extends BaseTest {
             loansSteps.selectFullRepaymentWithoutDepositTermination();
             loansSteps.fullEarlyRepayment(config.smsCode());
         });
+    }
+
+    @Test(description="ПДП => Валдация активной заявки", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Полное досрочное погашение")
+    @Severity(SeverityLevel.NORMAL)
+    public void fullEarlyRepayment_validateActiveRequest () {
+        step("Авторизация -> Займы", () -> {
+            loginSteps.auth("77076769290", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.fullEarlyRepaymentOperation();
+        });
+        Assert.assertEquals(
+                "активная_операция_по_займу", elementsAttributes.getValue(MODAL_NOTIFICATION_)
+        );
+    }
+
+    @Test(description="ПДП => Необходимо обновить данные по документу", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Полное досрочное погашение")
+    @Severity(SeverityLevel.NORMAL)
+    public void fullEarlyRepayment_needToUpdateDocument () {
+        step("Авторизация -> Займы", () -> {
+            loginSteps.auth("77017183533", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.fullEarlyRepaymentOperation();
+        });
+        Assert.assertTrue(
+                elementsAttributes.getValue(MODAL_NOTIFICATION_)
+                        .contains(CharacterSetConstants.UPDATE_DOCUMENT_NOTIFICATION)
+        );
+    }
+
+    @Test(description="ПДП => Валдация активной просрочки", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Полное досрочное погашение")
+    @Severity(SeverityLevel.NORMAL)
+    public void fullEarlyRepayment_validateActiveOverdue () {
+        step("Авторизация -> Займы", () -> {
+            loginSteps.auth("77071530089", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        Assert.assertTrue(elementsAttributes.isVisible(OVERDUE_MODAL_NOTIFICATION));
     }
 
     @Test(description="ПДП(с расторжением депозита) => Валидация недостаточной суммы", groups = {"automated"})
@@ -127,7 +179,8 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByCurrentAccount () {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth("77773192656", config.loanClient_password());
+//            loginSteps.auth("77773192656", config.loanClient_password());
+            loginSteps.auth("77754207346", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -198,7 +251,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepayment_validateIntendedUse () {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth("77770077702", "12345test");
+            loginSteps.auth("77770077702", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -234,7 +287,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void changePaymentDate_validateAccounts () {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth(config.loanClient_login(), config.loanClient_password());
+            loginSteps.auth("77770077702", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -254,7 +307,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void selectSwitchingToHomeLoan_validateAccount() {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth("77772911272 ", "12345test");
+            loginSteps.auth("77772911272 ", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -339,6 +392,7 @@ public class LoansTest extends BaseTest {
             loansSteps.selectExistedLoan();
             loansSteps.openAvailableOperations();
             loansSteps.extensionInsuranceContractOperation();
+            loansSteps.clickContinueButtonOnModal();
             loansSteps.extensionInsuranceContract(config.smsCode());
         });
         Assert.assertTrue(false);

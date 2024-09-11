@@ -52,7 +52,7 @@ public class SpecAccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Отсутствует депозит для перевода")
     @Severity(SeverityLevel.NORMAL)
-    public void transferToDeposit_validateDeposit () {
+    public void transferToDeposit_validateNoDeposit () {
         step("Авторизация", () -> {
             loginSteps.auth(config.specAccount_login(), config.specAccount_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
