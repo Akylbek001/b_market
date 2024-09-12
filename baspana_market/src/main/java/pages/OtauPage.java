@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class OtauPage extends BasePage {
-    private static final By APPLY_BUTTON = By.cssSelector(".ob-btn.ob-btn-tangerine.ob-h-36px.createApplication");
-    private static final By REGION_OF_REAL_ESTATE = By.id("regionOfRealEstate");
+    public static final By APPLY_BUTTON = By.cssSelector(".ob-btn.ob-btn-tangerine.ob-h-36px.createApplication");
+    public static final By REGION_OF_REAL_ESTATE = By.id("regionOfRealEstate");
     private static final By CITY_OF_REAL_ESTATE = By.id("cityOfRealEstate");
     private static final By REGION_OF_RESIDENCE = By.id("regionOfResidence");
     private static final By CITY_OF_RESIDENCE = By.id("cityOfResidence");
@@ -20,6 +20,11 @@ public class OtauPage extends BasePage {
     private static final By AGREEMENT_FOR_PUBLIC = By.cssSelector("[for='checkboxAgree1']");
     private static final By AGREEMENT_FOR_PERSONAL_DATA = By.cssSelector("[for='checkboxAgree2']");
     private static final By CONFIRM_BUTTON = By.id("confirmBMG");
+    public static final By BANNER_TEXT = By.cssSelector(".ob-banner-text .ob-bodyM");
+    private static final By ACTIVE_REQUEST = By.xpath("//div[@id='deposit'] //a[@class='application'] [1]");
+    private static final By CANCEL_BUTTON = By.id("cancelButton");
+    private static final By CONFIRM_CANCEL_BUTTON = By.id("application-annulment");
+
 
     public OtauPage(WebDriver driver) {
         super(driver);
@@ -90,7 +95,6 @@ public class OtauPage extends BasePage {
     public OtauPage clickAgreementForSharePersonalData() {
         button.btnClick(AGREEMENT_FOR_PERSONAL_DATA);
         WaitUtils.wait(2);
-
         return this;
     }
 
@@ -98,6 +102,24 @@ public class OtauPage extends BasePage {
     public OtauPage clickConfirmButton() {
         move.scrollToElement(CONFIRM_BUTTON);
         button.btnClick(CONFIRM_BUTTON);
+        return this;
+    }
+
+    @Step("Select active request")
+    public OtauPage selectActiveRequest() {
+        button.btnClick(ACTIVE_REQUEST);
+        return this;
+    }
+
+    @Step("Click cancel button")
+    public OtauPage clickCancelButton() {
+        button.btnClick(CANCEL_BUTTON);
+        return this;
+    }
+
+    @Step("Click confirm cancel button")
+    public OtauPage clickConfirmCancelButton() {
+        button.btnClick(CONFIRM_CANCEL_BUTTON);
         return this;
     }
 }

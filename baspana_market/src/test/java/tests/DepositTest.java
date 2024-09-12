@@ -199,7 +199,7 @@ public class DepositTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    //рассчитать рекомендуемый ежемесячный платеж по формуле
+    //добавить формулу рассчета рекомендуемого ежемесячного платежа
     @Test(description="Изменить условия депозита => Проврека изменения суммы ежемесечного взноса", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Проврека изменения суммы ежемесечного взноса")

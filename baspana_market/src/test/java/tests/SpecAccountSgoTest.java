@@ -144,7 +144,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Полный расчет в Otbasy Bank => По альт коду=>Клиент не найден", groups = {"automated"})
+    @Test(description = "Полный расчет в Otbasy Bank => По альт коду => Клиент не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Клиент не найден")
     @Severity(SeverityLevel.NORMAL)

@@ -162,11 +162,11 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getAttrValueElemPresent(SALDO), "25000000");
     }
 
-    @Test(description="Калькулятор ипотеки => Проверить рассчет", groups = {"automated"})
+    @Test(description="Калькулятор ипотеки => Валидация отказа со стороны банка", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.NORMAL)
-    public void calculateMortgage() {
+    public void calculateMortgage_validateRefuseFromBank() {
         step("Перейти на страницу авторизации", () -> {
             mainSteps.loginButton();
         });

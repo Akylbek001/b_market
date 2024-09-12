@@ -20,6 +20,11 @@ public class OtauSteps {
                 .clickContinueButton();
     }
 
+    public void clickApplyButton() {
+        otauPage
+                .clickApplyButton();
+    }
+
     public void selectDeposit() {
         otauPage
                 .clickSelectDepositButton()
@@ -29,5 +34,12 @@ public class OtauSteps {
                 .clickAgreementForSharePersonalData()
                 .clickContinueButton()
                 .clickConfirmButton();
+    }
+
+    public void cancelRequest() {
+        otauPage
+                .selectActiveRequest()
+                .clickCancelButton()
+                .clickConfirmCancelButton();
     }
 }

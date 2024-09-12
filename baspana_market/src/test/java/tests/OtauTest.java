@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.OtauPage.REFUSED_REASON_TEXT;
+import static pages.OtauPage.*;
 
 @Owner("Алибек Акылбеков")
 @Feature("Отау")
@@ -21,13 +21,13 @@ public class OtauTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description = "Подать заявку => Валидация суммы", groups = {"automated"})
+    @Test(description = "Подать заявку => Валидация суммы < 1 000 000", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация суммы")
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validateSum () {
         step("Авторизация", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
+            loginSteps.auth("77056552753", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
         step("Ввод данных по локации", () -> {
@@ -38,13 +38,13 @@ public class OtauTest extends BaseTest {
         );
     }
 
-    @Test(description = "Подать заявку => Валидация клиента", groups = {"automated"})
+    @Test(description = "Подать заявку => Валидация клиента <не найден в БМГ>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация клиента")
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest_validateClient () {
         step("Авторизация", () -> {
-            loginSteps.auth("77011063133", "12345test");
+            loginSteps.auth("77754502772", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
         step("Ввод данных по локации", () -> {
@@ -62,7 +62,7 @@ public class OtauTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void applyRequest () {
         step("Авторизация", () -> {
-            loginSteps.auth("77477172709", "12345test");
+            loginSteps.auth("77477172709", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
         step("Ввод данных по локации", () -> {
@@ -71,5 +71,37 @@ public class OtauTest extends BaseTest {
         step("Выбрать депозит", () -> {
             otauSteps.selectDeposit();
         });
+    }
+
+    @Test(description = "Подать заявку => Валидация активной заявки Nauryz", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация активной заявки Nauryz")
+    @Severity(SeverityLevel.NORMAL)
+    public void applyRequest_validateActiveNauryzRequest () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.loanClient_login(), config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
+        });
+        step("Ввод данных по локации", () -> {
+            otauSteps.clickApplyButton();
+        });
+        Assert.assertTrue(elementsAttributes.getValue(BANNER_TEXT)
+                .contains("У вас уже имеется активная заявка по программе Nauriz с номером ")
+        );
+    }
+
+    @Test(description = "Аннулировать заявку", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Аннулировать заявку")
+    @Severity(SeverityLevel.NORMAL)
+    public void cancelRequest() {
+        step("Авторизация", () -> {
+            loginSteps.auth("77754502772", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
+        });
+        step("Ввод данных по локации", () -> {
+            otauSteps.cancelRequest();
+        });
+        Assert.assertTrue(elementsAttributes.isVisible(APPLY_BUTTON));
     }
 }
