@@ -95,11 +95,6 @@ public class DepositSteps {
                 .changeDepositConditionsOperation_();
     }
 
-    public void depositDivision_smoke() {
-        depositPage
-                .createDepositDivisionOperation();
-    }
-
     public void depositDivisionOperation() {
         depositPage
                 .depositDivisionOperation();
@@ -152,6 +147,10 @@ public class DepositSteps {
     public void selectUniteDepositOperation() {
         depositPage
                 .selectUniteDepositOperation();
+    }
+    public void uniteDepositOperation() {
+        depositPage
+                .uniteDepositOperation();
     }
 
     public void uniteDeposits(String otp) {

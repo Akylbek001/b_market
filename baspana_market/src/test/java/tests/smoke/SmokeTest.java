@@ -345,7 +345,7 @@ public class SmokeTest extends BaseTest {
             depositSteps.showAvailableOperations();
         });
         step("Выбрать операцию <Объединение депозита>", () -> {
-            depositSteps.selectUniteDepositOperation();
+            depositSteps.uniteDepositOperation();
         });
         elementsAttributes.waitUntilVisible(SELECT_DEPOSITS_BUTTON);
     }

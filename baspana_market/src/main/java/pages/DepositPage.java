@@ -259,7 +259,7 @@ public class DepositPage extends BasePage {
         return this;
     }
 
-    @Step("Select deposit division operation on prd")
+    @Step("Select deposit division operation on prod")
     public DepositPage depositDivisionOperation() {
         button.btnDoubleClick(DEPOSIT_DIVISION_OPERATION);
         WaitUtils.wait(3);
@@ -279,6 +279,13 @@ public class DepositPage extends BasePage {
         WaitUtils.wait(1);
         button.btnClick(UNITE_DEPOSIT_OPERATION);
         WaitUtils.wait(5);
+        return this;
+    }
+
+    @Step("Select deposit division operation on prod")
+    public DepositPage uniteDepositOperation() {
+        button.btnDoubleClick(UNITE_DEPOSIT_OPERATION);
+        WaitUtils.wait(3);
         return this;
     }
 
