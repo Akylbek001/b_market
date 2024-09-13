@@ -65,9 +65,18 @@ public class LoansSteps {
                 .selectSwitchingToHomeLoanOperation();
     }
 
-    public void replacementOfCoBorrowerOperation() {
+    public void selectReplacementOfCoBorrowerOperation() {
         loansPage
                 .selectReplacementOfCoBorrowerOperation();
+    }
+    public void selectResettingDepositOperation() {
+        loansPage
+                .selectResettingDepositOperation();
+    }
+
+    public void replacementOfCoBorrowerOperation() {
+        loansPage
+                .replacementOfCoBorrowerOperation();
     }
 
     public void exclusionOfCoBorrowerOperation() {
@@ -83,6 +92,18 @@ public class LoansSteps {
     public void selectFullRepaymentWithoutDepositTermination() {
         loansPage
                 .selectFullRepaymentWithoutDepositTermination();
+    }
+
+    public void clickTopUpAccountButton() {
+        loansPage
+                .clickTopUpAccountButton();
+    }
+
+    public void topUpAccount(String email, String amount) {
+        loansPage
+                .inputEmail(email)
+                .inputAmount(amount)
+                .clickTopUpContinueButton();
     }
 
     public void selectEPVAccount() {
@@ -108,15 +129,25 @@ public class LoansSteps {
 
     public void partialEarlyRepayment(String sum) {
         loansPage
-//                .clickContinueButton()
-//                .clickAgreementCheckbox()
-//                .clickValidationButton()
                 .inputSum(sum)
                 .clickContinueButton()
-                .clickSendButton()
-                .clickSignButton()
-                .inputSum(sum)
-                .clickSendButton();
+                .clickAgreementCheckbox()
+                .clickValidationButton()
+                .clickSignButton();
+    }
+
+    public void otp(String otp) {
+        loansPage
+                .inputOtp_(otp)
+                .clickConfirmOtpButton();
+    }
+
+    public void signTheSchedule(String otp) {
+        loansPage
+                .clickContinueToScheduleButton()
+                .clickSignScheduleButton_()
+                .inputOtp(otp)
+                .clickSendOtpButton();
     }
 
     public void partialEarlyRepayment_validateAmount(String sum) {

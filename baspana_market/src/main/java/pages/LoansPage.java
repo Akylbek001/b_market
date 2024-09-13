@@ -10,6 +10,13 @@ public class LoansPage extends BasePage {
     private static final By THIRD_LOAN = By.xpath("//div[@class='slick-track'] /a[3]");
 
     private static final By AVAILABLE_OPERATIONS = By.cssSelector("[onclick='collapseOper()']");
+
+    private static final By TOP_UP_CURRENT_ACCOUNT = By.cssSelector(".operBtn.LoanPayButton");
+    private static final By EMAIL_INPUT = By.cssSelector("input[type='email']");
+    private static final By AMOUNT_INPUT = By.cssSelector("input#PaymentAmount");
+    private static final By TOP_UP_CONTINUE_BUTTON = By.cssSelector(".btnText.btnh28");
+
+
     private static final By FULL_EARLY_REPAYMENT_OPERATION = By.id("full-repayment-menu-block");
     private static final By PARTIAL_EARLY_REPAYMENT_OPERATION = By.xpath("//div[@class='allOperWrap'] /div[2]");
     private static final By CHANGING_PAYMENT_DATE_OPERATION = By.xpath("//div[@class='operTxt' and text()='Изменение даты платежа']");
@@ -18,14 +25,15 @@ public class LoansPage extends BasePage {
     private static final By EXCLUSION_OF_CO_BORROWER = By.xpath("//div[@class='operTxt' and text()='Исключение созаемщика']");
     private static final By EXTENSION_INSURANCE_CONTRACT_OPERATION = By.xpath("//div[@class='operTxt' and text()='Продление договора страхования']");
     private static final By REPLACEMENT_OF_COLLATERAL_OPERATION = By.xpath("//div[@class='operTxt' and text()='Замена залога']");
+    private static final By RESET_DEPOSIT_OPERATION = By.cssSelector("[onclick=\"ResetDeposit('1430_272528561')\"]");
+
 
     public static final By FULL_EARLY_REPAYMENT_WITH_DEPOSIT_TERMINATION = By.xpath("//div[@id='depositChangeBlock'] /div[1] /label");
     private static final By FULL_EARLY_REPAYMENT_WITHOUT_DEPOSIT_TERMINATION = By.xpath("//div[@id='depositChangeBlock'] /div[2] /label");
     private static final By FULL_EARLY_REPAYMENT_CONTINUE_BTN = By.id("val_button");
     private static final By AGREEMENT_OF_IMPOSSIBLE_CANCEL = By.cssSelector(".container.secondcheck.checkbox");
     private static final By SIGN_FULL_EARLY_REPAYMENT_BUTTON = By.cssSelector("[data-target='#ModalToSend']");
-    private static final By FULL_EARLY_REPAYMENT_OTP = By.cssSelector(".OtpBlocks--inputs");
-    private static final By OTP_BUTTON = By.id("otp-button");
+
     public static final By DEPOSIT_TERMINATION_SUM = By.id("deposit-termination-sum");
     public static final By CURRENT_ACCOUNT_SUM = By.id("CurrentAccount");
     public static final By SUM_DIFF = By.id("errorMessage");
@@ -33,7 +41,7 @@ public class LoansPage extends BasePage {
     public static final By INTENDED_USE_OF_LOAN_NOTIFICATION = By.id("changePaymentDayModalBody");
     public static final By CHANGING_PAYMENT_DATE_NOTIFICATION = By.id("changePaymentDayModalBody");
     private static final By AGREEMENT_CHECKBOX = By.cssSelector(".container.firstcheck.checkbox");
-    private static final By VALIDATION_BUTTON = By.xpath(".validation");
+    private static final By VALIDATION_BUTTON = By.cssSelector(".validation");
     private static final By SIGN_BUTTON = By.cssSelector("[onclick='SendOtp()']");
 
     private static final By IIN_INPUT = By.id("searchInput");
@@ -72,7 +80,16 @@ public class LoansPage extends BasePage {
     public static final By MODAL_NOTIFICATION_ = By.id("FullRepaymentErrorModalBody");
     public static final By OVERDUE_MODAL_NOTIFICATION = By.id("overduePayment");
     private static final By MODAL = By.cssSelector("#insurancePayAttention [onclick='createInsurance()']");
-
+    public static final By NO_CO_BORROWER_NOTIFICATION = By.id("errorExclusion");
+    private static final By OTP_INPUT = By.cssSelector(".OtpBlocks--inputs");
+    private static final By CONFIRM_OTP_BUTTON = By.cssSelector("[onclick='GoToFourthStep();']");
+    public static final By SUCCESSFUL_RESULT = By.cssSelector("#status-box p");
+    private static final By CONTINUE_BUTTON_TO_SCHEDULE = By.id("StepsSigningTheApplicationSigned");
+    private static final By SIGN_SCHEDULE_BUTTON = By.cssSelector("[data-target='#ModalToSendApplication']");
+    private static final By FULL_EARLY_REPAYMENT_OTP = By.cssSelector(".OtpBlocks--inputs");
+    private static final By SEND_OTP_BUTTON = By.cssSelector("[onclick='GoToFifthStep()']");
+    public static final By FINAL_RESULT = By.cssSelector(".EndStep--HeaderBlock h3");
+    private static final By OTP_BUTTON = By.id("otp-button");
 
     public LoansPage(WebDriver driver) {
         super(driver);
@@ -94,6 +111,29 @@ public class LoansPage extends BasePage {
         WaitUtils.wait(1);
         return this;
     }
+    @Step("Click top up account operation")
+    public LoansPage clickTopUpAccountButton() {
+        button.btnClick(TOP_UP_CURRENT_ACCOUNT);
+        elementsAttributes.waitUntilVisible(EMAIL_INPUT);
+        return this;
+    }
+    @Step("Input email")
+    public LoansPage inputEmail(String email) {
+        input.inputWithClear(EMAIL_INPUT, email);
+        return this;
+    }
+    @Step("Input amount")
+    public LoansPage inputAmount(String amount) {
+        input.inputWithClear(AMOUNT_INPUT, amount);
+        return this;
+    }
+    @Step("Click top up continue button")
+    public LoansPage clickTopUpContinueButton() {
+        button.btnClick(TOP_UP_CONTINUE_BUTTON);
+        return this;
+    }
+
+
     @Step("Select full early repayment operation")
     public LoansPage selectFullEarlyRepaymentOperation() {
         button.btnClick(FULL_EARLY_REPAYMENT_OPERATION);
@@ -140,9 +180,23 @@ public class LoansPage extends BasePage {
         button.btnClick(REPLACEMENT_OF_CO_BORROWER);
         return this;
     }
+    @Step("Select resetting deposit operation")
+    public LoansPage selectResettingDepositOperation() {
+        move.scrollToElement(RESET_DEPOSIT_OPERATION);
+        button.btnClick(RESET_DEPOSIT_OPERATION);
+        return this;
+    }
+
+    @Step("Select replacement of co-borrower operation")
+    public LoansPage replacementOfCoBorrowerOperation() {
+        button.btnClick(REPLACEMENT_OF_CO_BORROWER);
+        elementsAttributes.waitUntilVisible(NO_CO_BORROWER_NOTIFICATION);
+        return this;
+    }
     @Step("Select exclusion of co-borrower operation")
     public LoansPage selectExclusionOfCoBorrowerOperation() {
         button.btnClick(EXCLUSION_OF_CO_BORROWER);
+        elementsAttributes.waitUntilVisible(NO_CO_BORROWER_NOTIFICATION);
         return this;
     }
     @Step("Select full repayment with deposit termination")
@@ -170,29 +224,10 @@ public class LoansPage extends BasePage {
         button.btnClick(SIGN_FULL_EARLY_REPAYMENT_BUTTON);
         return this;
     }
-    @Step("Input otp")
-    public LoansPage inputOtp(String otp) {
-        input.inputWithClear(FULL_EARLY_REPAYMENT_OTP, otp);
-        return this;
-    }
-    @Step("Click send otp button")
-    public LoansPage clickSendOtpButton() {
-        button.btnClick(OTP_BUTTON);
-        return this;
-    }
-    @Step("Click agreement checkbox")
-    public LoansPage clickAgreementCheckbox() {
-        button.btnClick(AGREEMENT_CHECKBOX);
-        return this;
-    }
-    @Step("Click validation button")
-    public LoansPage clickValidationButton() {
-        button.btnClick(VALIDATION_BUTTON);
-        return this;
-    }
     @Step("Click sign button")
     public LoansPage clickSignButton() {
         button.btnClick(SIGN_BUTTON);
+        elementsAttributes.waitUntilVisible(OTP_INPUT);
         return this;
     }
     @Step("Input search iin")
@@ -319,8 +354,53 @@ public class LoansPage extends BasePage {
     @Step("Click continue button")
     public LoansPage clickContinueButton() {
         button.btnClick(CONTINUE_BUTTON);
+        elementsAttributes.waitUntilVisible(AGREEMENT_CHECKBOX);
         return this;
     }
+    @Step("Click agreement checkbox")
+    public LoansPage clickAgreementCheckbox() {
+        move.scrollToElement(AGREEMENT_CHECKBOX);
+        button.btnClick(AGREEMENT_CHECKBOX);
+        return this;
+    }
+    @Step("Click validation button")
+    public LoansPage clickValidationButton() {
+        button.btnClick(VALIDATION_BUTTON);
+        return this;
+    }
+    @Step("Input otp")
+    public LoansPage inputOtp_(String otp) {
+        input.inputWithClear(OTP_INPUT, otp);
+        return this;
+    }
+    @Step("Click confirm otp button")
+    public LoansPage clickConfirmOtpButton() {
+        button.btnClick(CONFIRM_OTP_BUTTON);
+        elementsAttributes.waitUntilVisible(SUCCESSFUL_RESULT);
+        return this;
+    }
+    @Step("Click continue to schedule button")
+    public LoansPage clickContinueToScheduleButton() {
+        button.btnClick(CONTINUE_BUTTON_TO_SCHEDULE);
+        return this;
+    }
+    @Step("Click sign schedule button")
+    public LoansPage clickSignScheduleButton_() {
+        move.scrollToElement(SIGN_SCHEDULE_BUTTON);
+        button.btnClick(SIGN_SCHEDULE_BUTTON);
+        return this;
+    }
+    @Step("Input otp")
+    public LoansPage inputOtp(String otp) {
+        input.inputWithClear(FULL_EARLY_REPAYMENT_OTP, otp);
+        return this;
+    }
+    @Step("Click send otp button")
+    public LoansPage clickSendOtpButton() {
+        button.btnClick(SEND_OTP_BUTTON);
+        return this;
+    }
+
     @Step("Select filial")
     public LoansPage selectAccount() {
         dropDown.selectByIndex(ACCOUNT_LIST, 1);
