@@ -25,6 +25,10 @@ public class LoansSteps {
         loansPage
                 .openAvailableOperations();
     }
+    public void openAvailableOperations_onProd() {
+        loansPage
+                .openAvailableOperations_onProd();
+    }
 
     public void fullEarlyRepaymentOperation() {
         loansPage

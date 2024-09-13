@@ -329,6 +329,27 @@ public class SmokeTest extends BaseTest {
         elementsAttributes.waitUntilVisible(DIVIDE_BUTTON);
     }
 
+    @Test(description="Объединение депозита", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Объединение депозита")
+    @Severity(SeverityLevel.CRITICAL)
+    public void depositPooling() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth("77473239832", "Brv_28978206!");
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Выбрать операцию <Объединение депозита>", () -> {
+            depositSteps.selectUniteDepositOperation();
+        });
+        elementsAttributes.waitUntilVisible(SELECT_DEPOSITS_BUTTON);
+    }
+
     @Test(description="Раздел <Справки>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Справки")
@@ -405,7 +426,7 @@ public class SmokeTest extends BaseTest {
         });
         step("Заполнить форму", () -> {
             loansSteps.selectThirdLoan();
-            loansSteps.openAvailableOperations();
+            loansSteps.openAvailableOperations_onProd();
             loansSteps.fullEarlyRepaymentOperation_smoke();
         });
     }
@@ -421,7 +442,7 @@ public class SmokeTest extends BaseTest {
         });
         step("Заполнить форму", () -> {
             loansSteps.selectExistedLoan();
-            loansSteps.openAvailableOperations();
+            loansSteps.openAvailableOperations_onProd();
             loansSteps.partialEarlyRepaymentOperation();
         });
     }

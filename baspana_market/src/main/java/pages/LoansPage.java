@@ -332,5 +332,10 @@ public class LoansPage extends BasePage {
         button.btnClick(MODAL);
         return this;
     }
-
+    @Step("Open available operation on prod")
+    public LoansPage openAvailableOperations_onProd() {
+        button.btnClick(AVAILABLE_OPERATIONS);
+        WaitUtils.wait(3);
+        return this;
+    }
 }

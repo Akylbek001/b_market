@@ -75,6 +75,7 @@ public class DepositPage extends BasePage {
     private static final By FIRST_DEPOSIT_TO_UNITE = By.xpath("//div[@class='DepositsChangeBlocks--items'] /div[1]");
     private static final By SECOND_DEPOSIT_TO_UNITE = By.xpath("//div[@class='DepositsChangeBlocks--items'] /div[2]");
     private static final By CONFIRM_SELECTED_DEPOSITS_BUTTON = By.cssSelector(".ChangeDepositsValidations");
+    public static final By SELECT_DEPOSITS_BUTTON = By.cssSelector(".ChangeDepositsValidations");
     private static final By UNITE_DEPOSIT_CONFIRM_BUTTON = By.cssSelector(".ConfirmationSteps");
     private static final By OPT_INPUT = By.cssSelector(".input_code input.code");
     private static final By UNITE_DEPOSIT_CONTINUE_BUTTON = By.cssSelector(".continue-button button");
