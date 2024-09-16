@@ -153,7 +153,7 @@ public class LoansSteps {
     public void partialEarlyRepayment_validateAmount(String sum) {
         loansPage
                 .inputSum(sum)
-                .clickContinueButton();
+                .clickContinueButton_validate();
     }
 
     public void replacementOfCoBorrower(String iin) {

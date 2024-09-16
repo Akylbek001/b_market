@@ -206,7 +206,7 @@ public class LoansTest extends BaseTest {
             loansSteps.selectExistedLoan();
             loansSteps.openAvailableOperations();
             loansSteps.partialEarlyRepaymentOperation();
-            loansSteps.partialEarlyRepayment("69000");
+            loansSteps.partialEarlyRepayment("71500");
         });
         step("ОТП", () -> {
             loansSteps.otp(config.smsCode());
@@ -214,7 +214,9 @@ public class LoansTest extends BaseTest {
         Assert.assertEquals(
                 elementsAttributes.getValue(SUCCESSFUL_RESULT), CharacterSetConstants.PARTIAL_REPAYMENT_SUCCESS
         );
+        WaitUtils.wait(5);
         drManager.getDriver().navigate().refresh();
+        elementsAttributes.waitUntilVisible(SUCCESSFUL_RESULT);
         step("Подписать новый график", () -> {
             loansSteps.signTheSchedule(config.smsCode());
         });
@@ -227,7 +229,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByEPVAccount () {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth("77773192656", config.loanClient_password());
+            loginSteps.auth("77754207346", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -237,6 +239,19 @@ public class LoansTest extends BaseTest {
             loansSteps.selectEPVAccount();
             loansSteps.partialEarlyRepayment("124000");
         });
+        step("ОТП", () -> {
+            loansSteps.otp(config.smsCode());
+        });
+        Assert.assertEquals(
+                elementsAttributes.getValue(SUCCESSFUL_RESULT), CharacterSetConstants.PARTIAL_REPAYMENT_SUCCESS
+        );
+        WaitUtils.wait(5);
+        drManager.getDriver().navigate().refresh();
+        elementsAttributes.waitUntilVisible(SUCCESSFUL_RESULT);
+        step("Подписать новый график", () -> {
+            loansSteps.signTheSchedule(config.smsCode());
+        });
+        Assert.assertEquals(elementsAttributes.getValue(FINAL_RESULT), "Операция успешно проведена");
     }
 
     @Test(description="ЧДП через текущий счет=> Валидация недостаточной суммы", groups = {"automated"})
@@ -245,7 +260,7 @@ public class LoansTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void partialEarlyRepaymentByCurrentAccount_validateNotEnoughFund () {
         step("Авторизация -> Займы", () -> {
-            loginSteps.auth("77076769290", config.loanClient_password());
+            loginSteps.auth("77078766439", config.loanClient_password());
             brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
         });
         step("Заполнить форму", () -> {
@@ -257,7 +272,8 @@ public class LoansTest extends BaseTest {
         Assert.assertEquals("Не хватает средств на счете.", elementsAttributes.getValue(MODAL_NOTIFICATION));
     }
 
-    @Test(description="ЧДП через ЕПВ счет=> Валидация недостаточной суммы", groups = {"automated"})
+    //need acc
+    @Test(description="ЧДП через ЕПВ счет=> Валидация недостаточной суммы", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
@@ -275,7 +291,8 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="ЧДП - нет целового использования займа", groups = {"automated"})
+    //need acc
+    @Test(description="ЧДП - нет целового использования займа", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
@@ -327,6 +344,26 @@ public class LoansTest extends BaseTest {
         });
         Assert.assertEquals(
                 CharacterSetConstants.DENIED_RESTRICTION_ON_ACCOUNTS,
+                elementsAttributes.getValue(CHANGING_PAYMENT_DATE_NOTIFICATION)
+        );
+    }
+
+    @Test(description="Изменение даты платежа => валидация недостаточной суммы для оплаты комиссии", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация недостаточной суммы для оплаты комиссии")
+    @Severity(SeverityLevel.NORMAL)
+    public void changePaymentDate_validateSumForPayCommission () {
+        step("Авторизация -> Займы", () -> {
+            loginSteps.auth("77770077702", config.loanClient_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Выбрать операцию <Изменение даты платежа>", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.changingPaymentDateOperation();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.NOT_ENOUGH_SUM_TO_PAY_COMMISSION,
                 elementsAttributes.getValue(CHANGING_PAYMENT_DATE_NOTIFICATION)
         );
     }

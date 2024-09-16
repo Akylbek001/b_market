@@ -85,7 +85,7 @@ public class LoansPage extends BasePage {
     private static final By CONFIRM_OTP_BUTTON = By.cssSelector("[onclick='GoToFourthStep();']");
     public static final By SUCCESSFUL_RESULT = By.cssSelector("#status-box p");
     private static final By CONTINUE_BUTTON_TO_SCHEDULE = By.id("StepsSigningTheApplicationSigned");
-    private static final By SIGN_SCHEDULE_BUTTON = By.cssSelector("[data-target='#ModalToSendApplication']");
+    private static final By SIGN_SCHEDULE_BUTTON = By.cssSelector("button[data-target='#ModalToSendApplication']");
     private static final By FULL_EARLY_REPAYMENT_OTP = By.cssSelector(".OtpBlocks--inputs");
     private static final By SEND_OTP_BUTTON = By.cssSelector("[onclick='GoToFifthStep()']");
     public static final By FINAL_RESULT = By.cssSelector(".EndStep--HeaderBlock h3");
@@ -149,7 +149,7 @@ public class LoansPage extends BasePage {
     @Step("Select partial early repayment operation")
     public LoansPage selectPartialEarlyRepaymentOperation() {
         button.btnClick(PARTIAL_EARLY_REPAYMENT_OPERATION);
-        elementsAttributes.waitUntilVisible(PARTIAL_REPAYMENT_SUM);
+//        elementsAttributes.waitUntilVisible(PARTIAL_REPAYMENT_SUM);
         WaitUtils.wait(1);
         return this;
     }
@@ -357,6 +357,11 @@ public class LoansPage extends BasePage {
         elementsAttributes.waitUntilVisible(AGREEMENT_CHECKBOX);
         return this;
     }
+    @Step("Click continue button validate")
+    public LoansPage clickContinueButton_validate() {
+        button.btnClick(CONTINUE_BUTTON);
+        return this;
+    }
     @Step("Click agreement checkbox")
     public LoansPage clickAgreementCheckbox() {
         move.scrollToElement(AGREEMENT_CHECKBOX);
@@ -376,12 +381,15 @@ public class LoansPage extends BasePage {
     @Step("Click confirm otp button")
     public LoansPage clickConfirmOtpButton() {
         button.btnClick(CONFIRM_OTP_BUTTON);
+        WaitUtils.wait(10);
         elementsAttributes.waitUntilVisible(SUCCESSFUL_RESULT);
         return this;
     }
     @Step("Click continue to schedule button")
     public LoansPage clickContinueToScheduleButton() {
         button.btnClick(CONTINUE_BUTTON_TO_SCHEDULE);
+        elementsAttributes.waitUntilVisible(SIGN_SCHEDULE_BUTTON);
+//        WaitUtils.wait(2);
         return this;
     }
     @Step("Click sign schedule button")
