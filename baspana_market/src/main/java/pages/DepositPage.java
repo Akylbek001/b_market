@@ -511,4 +511,11 @@ public class DepositPage extends BasePage {
         button.btnClick(SECOND_DEPOSIT);
         return this;
     }
+
+    @Step("Select second deposit")
+    public DepositPage selectSecondDeposit_prod() {
+        WaitUtils.wait(3);
+        button.btnClick(SECOND_DEPOSIT);
+        return this;
+    }
 }

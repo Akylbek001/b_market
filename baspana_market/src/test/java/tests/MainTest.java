@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import common.utils.RandomUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -30,8 +31,8 @@ public class MainTest extends BaseTest {
         step("Разместить объявление", () -> {
             mainSteps.clickPostAdButton();
             mainSteps.postAd(
-                    "50",
-                    "4",
+                    RandomUtils.randomNumeric(2),
+                    RandomUtils.randomNumeric(1),
                     "ул.Абылайхана",
                     "91",
                     "description",
@@ -55,8 +56,8 @@ public class MainTest extends BaseTest {
         step("Разместить объявление", () -> {
             mainSteps.clickPostAdButton_fromMyAdBlock();
             mainSteps.postAd(
-                    "50",
-                    "4",
+                    RandomUtils.randomNumeric(2),
+                    RandomUtils.randomNumeric(1),
                     "ул.Абылайхана",
                     "91",
                     "description",
@@ -82,9 +83,9 @@ public class MainTest extends BaseTest {
         });
     }
 
-    @Test(description="Ипотека Наурыз", groups = {"automated"})
+    @Test(description="Ипотека <Наурыз и Отау>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("Посмотреть информацию про программу Наурыз")
+    @Description("Информация по <Наурыз и Отау>")
     @Severity(SeverityLevel.MINOR)
     public void navigateToNaurizMortgageProgram() {
         step("Авторизация", () -> {
@@ -93,7 +94,7 @@ public class MainTest extends BaseTest {
         step("Навигация на страницу Ипотека Наурыз", () -> {
             mainSteps.clickNaurizMortgage();
         });
-        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Nauriz"));
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("OtauNauriz"));
     }
 
     @Test(description="Ипотека Бакытты Отбасы", groups = {"automated"})

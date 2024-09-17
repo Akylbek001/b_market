@@ -93,7 +93,7 @@ public class LoansTest extends BaseTest {
             loansSteps.fullEarlyRepaymentOperation();
         });
         Assert.assertEquals(
-                "активная_операция_по_займу", elementsAttributes.getValue(MODAL_NOTIFICATION_)
+                CharacterSetConstants.ACTIVE_LOAN_REQUEST, elementsAttributes.getValue(MODAL_NOTIFICATION_)
         );
     }
 
@@ -206,7 +206,7 @@ public class LoansTest extends BaseTest {
             loansSteps.selectExistedLoan();
             loansSteps.openAvailableOperations();
             loansSteps.partialEarlyRepaymentOperation();
-            loansSteps.partialEarlyRepayment("71500");
+            loansSteps.partialEarlyRepayment("73000");
         });
         step("ОТП", () -> {
             loansSteps.otp(config.smsCode());
@@ -220,7 +220,7 @@ public class LoansTest extends BaseTest {
         step("Подписать новый график", () -> {
             loansSteps.signTheSchedule(config.smsCode());
         });
-        Assert.assertEquals(elementsAttributes.getValue(FINAL_RESULT), "Операция успешно проведена");
+        Assert.assertEquals(elementsAttributes.getValue(FINAL_RESULT), CharacterSetConstants.SUCCESSFULLY_COMPLETE);
     }
 
     @Test(description="ЧДП через ЕПВ счет", groups = {"automated"})
@@ -251,7 +251,7 @@ public class LoansTest extends BaseTest {
         step("Подписать новый график", () -> {
             loansSteps.signTheSchedule(config.smsCode());
         });
-        Assert.assertEquals(elementsAttributes.getValue(FINAL_RESULT), "Операция успешно проведена");
+        Assert.assertEquals(elementsAttributes.getValue(FINAL_RESULT), CharacterSetConstants.SUCCESSFULLY_COMPLETE);
     }
 
     @Test(description="ЧДП через текущий счет=> Валидация недостаточной суммы", groups = {"automated"})
@@ -269,7 +269,9 @@ public class LoansTest extends BaseTest {
             loansSteps.partialEarlyRepaymentOperation();
             loansSteps.partialEarlyRepayment_validateAmount("100000");
         });
-        Assert.assertEquals("Не хватает средств на счете.", elementsAttributes.getValue(MODAL_NOTIFICATION));
+        Assert.assertEquals(
+                CharacterSetConstants.NOT_ENOUGH_AMOUNT_ON_ACCOUNT, elementsAttributes.getValue(MODAL_NOTIFICATION)
+        );
     }
 
     //need acc
@@ -479,7 +481,8 @@ public class LoansTest extends BaseTest {
             loansSteps.selectResettingDepositOperation();
         });
         Assert.assertEquals(
-                CharacterSetConstants.DEPOSIT_SUM_LESS_THAN_50, elementsAttributes.getValue(INTENDED_USE_OF_LOAN_NOTIFICATION)
+                CharacterSetConstants.DEPOSIT_SUM_LESS_THAN_50,
+                elementsAttributes.getValue(INTENDED_USE_OF_LOAN_NOTIFICATION)
         );
     }
 
@@ -520,8 +523,7 @@ public class LoansTest extends BaseTest {
             loansSteps.replacementOfCollateral();
         });
         Assert.assertEquals(
-                "Ваш залогодатель не зарегестрирован. Зарегистрируйтесь и попробуйте еще раз.",
-                elementsAttributes.getValue(MODAL_NOTIFICATION)
+                CharacterSetConstants.PLEDGOR_NOT_REGISTERED, elementsAttributes.getValue(MODAL_NOTIFICATION)
         );
     }
 }

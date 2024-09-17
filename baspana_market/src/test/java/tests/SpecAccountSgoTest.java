@@ -454,7 +454,8 @@ public class SpecAccountSgoTest extends BaseTest {
 //            specAccountSgoSteps.confirmTransferByOtp(config.smsCode());
         });
         Assert.assertEquals(
-                elementsAttributes.getValue(SUM_TO_TRANSFER_VALIDATE), "Недостаточно средств для перевода"
+                elementsAttributes.getValue(SUM_TO_TRANSFER_VALIDATE),
+                CharacterSetConstants.INSUFFICIENT_FUNDS_FOR_TRANSFER
         );
     }
 
@@ -642,7 +643,8 @@ public class SpecAccountSgoTest extends BaseTest {
 //            specAccountSteps.confirmTransferOnModal();
         });
         Assert.assertEquals(
-                elementsAttributes.getValue(SUM_TO_TRANSFER_VALIDATE_FL), "Недостаточно средств для перевода"
+                elementsAttributes.getValue(SUM_TO_TRANSFER_VALIDATE_FL),
+                CharacterSetConstants.INSUFFICIENT_FUNDS_FOR_TRANSFER
         );
     }
 
@@ -776,7 +778,8 @@ public class SpecAccountSgoTest extends BaseTest {
 ////            specAccountSteps.confirmTransferOnModal();
         });
         Assert.assertEquals(
-                elementsAttributes.getValue(SUM_TO_TRANSFER_VALIDATE), "Недостаточно средств для перевода"
+                elementsAttributes.getValue(SUM_TO_TRANSFER_VALIDATE),
+                CharacterSetConstants.INSUFFICIENT_FUNDS_FOR_TRANSFER
         );
     }
 }

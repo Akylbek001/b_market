@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import common.consts.CharacterSetConstants;
+import common.utils.RandomUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -38,9 +39,11 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.confirmByOtp(config.smsCode());
             generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
-            becomeClientSteps.selectRegAddress("91", "91");
-            becomeClientSteps.selectLivingAddress("21", "21");
-            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", "codeWord");
+            becomeClientSteps.selectRegAddress(RandomUtils.randomNumeric(3), RandomUtils.randomNumeric(3));
+            becomeClientSteps.selectLivingAddress(
+                    RandomUtils.randomNumeric(3), RandomUtils.randomNumeric(3)
+            );
+            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", RandomUtils.randomLatin(5));
         });
         Assert.assertTrue(true);
     }
@@ -105,9 +108,11 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.confirmByOtp(config.smsCode());
             generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
-            becomeClientSteps.selectRegAddress("91", "91");
-            becomeClientSteps.selectLivingAddress("21", "21");
-            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", "codeWord");
+            becomeClientSteps.selectRegAddress(RandomUtils.randomNumeric(3), RandomUtils.randomNumeric(3));
+            becomeClientSteps.selectLivingAddress(
+                    RandomUtils.randomNumeric(3), RandomUtils.randomNumeric(3)
+            );
+            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", RandomUtils.randomLatin(5));
         });
         Assert.assertTrue(true);
     }
@@ -188,9 +193,11 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.confirmByOtp(config.smsCode());
             generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
-            becomeClientSteps.selectRegAddress("91", "91");
-            becomeClientSteps.selectLivingAddress("21", "21");
-            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", "codeWord");
+            becomeClientSteps.selectRegAddress(RandomUtils.randomNumeric(3), RandomUtils.randomNumeric(3));
+            becomeClientSteps.selectLivingAddress(
+                    RandomUtils.randomNumeric(3), RandomUtils.randomNumeric(3)
+            );
+            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", RandomUtils.randomLatin(5));
         });
         Assert.assertTrue(true);
     }
@@ -209,9 +216,9 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.confirmByOtp(config.smsCode());
             generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");
-            becomeClientSteps.selectRegAddress("91", "91");
+            becomeClientSteps.selectRegAddress(RandomUtils.randomNumeric(3), RandomUtils.randomNumeric(3));
             becomeClientSteps.selectSameAddressCheckbox();
-            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", "codeWord");
+            becomeClientSteps.inputPersonalDataSecondPart("birthSurname", RandomUtils.randomLatin(5));
         });
         Assert.assertTrue(true);
     }

@@ -23,18 +23,18 @@ public class SmokeTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Главная -> Ипотека Наурыз", groups = {"automated"})
+    @Test(description="Главная -> Ипотека <Наурыз и Отау>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Ипотека Наурыз")
     @Severity(SeverityLevel.MINOR)
-    public void nauriz() {
+    public void mainPage_naurizOtauMortgage() {
         step("Авторизация", () -> {
             loginSteps.auth(config.userLogin(), config.userPass());
         });
-        step("Навигация на страницу Nauriz", () -> {
+        step("Навигация на страницу <Наурыз и Отау>", () -> {
             mainSteps.clickNaurizMortgage();
         });
-        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Nauriz"));
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("OtauNauriz"));
     }
 
     @Test(description="Главная -> Ипотека <Бакытты Отбасы>", groups = {"automated"})
@@ -276,7 +276,7 @@ public class SmokeTest extends BaseTest {
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
+            depositSteps.selectSecondDeposit_prod();
         });
         step("Показать доступные операции", () -> {
             depositSteps.showAvailableOperations();

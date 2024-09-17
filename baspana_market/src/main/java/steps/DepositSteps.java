@@ -64,6 +64,11 @@ public class DepositSteps {
                 .selectSecondDeposit();
     }
 
+    public void selectSecondDeposit_prod() {
+        depositPage
+                .selectSecondDeposit_prod();
+    }
+
     public void showAvailableOperations() {
         depositPage.showAvailableOperations();
     }

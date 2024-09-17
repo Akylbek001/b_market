@@ -12,7 +12,7 @@ public class MainPage extends BasePage {
     private static final By CLIENT_PROFILE_NAME = By.id("ClientName");
     private static final By READ_BUTTON = By.cssSelector("#div_MapBox .ob-news-box--blocks > a");
     private static final By CALCULATE_BUTTON = By.cssSelector("[onclick=\"window.location.href = '/OnlineMortgage/IpotekaCalculate'\"]");
-    private static final By NAURIZ_MORTGAGE_MORTGAGE_PROGRAM = By.cssSelector(".carousel-item.active div.qamqor_button");
+    private static final By NAURIZ_OTAU_MORTGAGE_PROGRAM = By.cssSelector(".carousel-item.active div.qamqor_button");
     private static final By HAPPY_FAMILY_MORTGAGE_PROGRAM = By.id("EtspId");
     private static final By ALL_NEW_BUILDINGS_BUTTON = By.cssSelector("#div_DirectSale .slider_box-titles--button");
     private static final By ALL_SECONDARY_HOUSING_BUTTON = By.cssSelector("#div_SecondHouses .slider_box-titles--button");
@@ -192,10 +192,9 @@ public class MainPage extends BasePage {
 
     @Step("Click nauriz mortgage info button")
     public MainPage clickNaurizMortgage() {
-        move.scrollToElement(NAURIZ_MORTGAGE_MORTGAGE_PROGRAM);
-        move.scrollToElement(NAURIZ_MORTGAGE_MORTGAGE_PROGRAM);
-
-        button.btnClick(NAURIZ_MORTGAGE_MORTGAGE_PROGRAM);
+        move.scrollToElement(NAURIZ_OTAU_MORTGAGE_PROGRAM);
+        move.scrollToElement(NAURIZ_OTAU_MORTGAGE_PROGRAM);
+        button.btnClick(NAURIZ_OTAU_MORTGAGE_PROGRAM);
         return this;
     }
 
