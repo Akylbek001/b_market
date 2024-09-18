@@ -138,7 +138,7 @@ public class DepositPage extends BasePage {
     @Step("Select change gos prem operation on prod")
     public DepositPage changeGosPremOperation() {
         button.btnDoubleClick(CHANGE_GOS_PREM_OPERATION);
-        WaitUtils.wait(3);
+        WaitUtils.wait(4);
         return this;
     }
 
@@ -466,8 +466,8 @@ public class DepositPage extends BasePage {
     @Step("Click confirm")
     public DepositPage clickConfirm() {
         button.btnClick(CONFIRM);
-        WaitUtils.wait(5);
-//        elementsAttributes.waitUntilClickable(SEND);
+        WaitUtils.wait(10);
+//        elementsAttributes.waitUntilVisible(SMS_CODE);
         return this;
     }
 

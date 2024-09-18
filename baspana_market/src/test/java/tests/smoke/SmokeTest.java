@@ -149,7 +149,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void account() {
         step("Авторизация -> Счета", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Cabinet/MyAccounts"));
@@ -161,7 +161,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void currentAccount() {
         step("Авторизация -> Текущий счет", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount"));
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount"));
@@ -173,7 +173,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void currentAccount_transferBetweenYourAccounts() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToDeposit"));
         });
         Assert.assertEquals(
@@ -202,7 +202,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void currentAccount_transferToAnotherBank() {
         step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToAnotherBank"));
         });
         Assert.assertEquals(
@@ -216,7 +216,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void deposit() {
         step("Авторизация -> Депозиты", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Cabinet/MyDeposits"));
@@ -228,7 +228,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void deposit_gosPrem() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -251,7 +251,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void terminateDeposit() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -272,7 +272,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -287,13 +287,13 @@ public class SmokeTest extends BaseTest {
         elementsAttributes.waitUntilVisible(CHANGE_DETAILS_BUTTON);
     }
 
-    @Test(description="Депозиты -> Операция <Создать семейный пакет>", groups = {"automated"}, enabled = false)
+    @Test(description="Депозиты -> Операция <Создать семейный пакет>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Создать семейный пакет")
     @Severity(SeverityLevel.NORMAL)
     public void createFamilyPackage() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -314,7 +314,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -335,7 +335,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositPooling() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77473239832", "Brv_28978206!");
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

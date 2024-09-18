@@ -135,9 +135,13 @@ public class DepositSteps {
                 .clickAmount();
     }
 
-    public void confirmDepositConditionsChange(String smsCode) {
+    public void confirmDepositConditionsChange() {
         depositPage
-                .clickChangeDetailButton()
+                .clickChangeDetailButton();
+    }
+
+    public void signByOtp(String smsCode) {
+        depositPage
                 .clickSignChangeDetailButton()
                 .inputSmsCode(smsCode)
                 .confirmChangeDepositTerms();

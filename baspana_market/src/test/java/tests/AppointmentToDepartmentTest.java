@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
-import static pages.AppointmentToDepartmentPage.CANCEL_RESERVATION;
 import static pages.AppointmentToDepartmentPage.RESULT;
 
 @Owner("Алибек Акылбеков")
@@ -27,7 +26,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_book () {
         step("Авторизация", () -> {
-            loginSteps.auth("77052713077", config.clientPassword());
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
@@ -48,7 +47,7 @@ public class AppointmentToDepartmentTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void appointmentToDepartment_rebook () {
         step("Авторизация", () -> {
-            loginSteps.auth("77052713077", config.clientPassword());
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
         });
         step("Закрыть модальное окно", () -> {
