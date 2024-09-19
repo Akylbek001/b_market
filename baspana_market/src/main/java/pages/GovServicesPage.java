@@ -10,6 +10,8 @@ public class GovServicesPage extends BasePage {
     private static final By CERTIFICATE_OF_REGISTERED_RIGHTS_AND_ENCUMBRANCES = By.id("RegisteredRightsAndEncumbrances");
     public static final By CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE = By.id("failed-error-custom-message");
     private static final By COMPLETE_BUTTON = By.cssSelector(".btn.btn-green.bodyL");
+    public static final By SMS_CODE_CONFIRMATION_NOTIFICATION = By.cssSelector(".check-notification");
+    private static final By I_CONFIRMED_BUTTON = By.id("succes-btn");
 
     public GovServicesPage (WebDriver driver) {super(driver);}
 
@@ -32,4 +34,12 @@ public class GovServicesPage extends BasePage {
         button.btnClick(COMPLETE_BUTTON);
         return this;
     }
+
+    @Step("Click confirmed button")
+    public GovServicesPage clickConfirmedButton() {
+        button.btnClick(I_CONFIRMED_BUTTON);
+        return this;
+    }
+
+
 }

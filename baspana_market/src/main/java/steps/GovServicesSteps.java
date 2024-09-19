@@ -23,4 +23,9 @@ public class GovServicesSteps {
         govServicesPage
                 .clickCompleteButton();
     }
+
+    public void clickConfirmedButton() {
+        govServicesPage
+                .clickConfirmedButton();
+    }
 }

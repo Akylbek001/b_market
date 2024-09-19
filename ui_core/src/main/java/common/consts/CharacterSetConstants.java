@@ -108,6 +108,7 @@ public final class CharacterSetConstants {
     public static final String NOT_READY_TO_ACCEPT_REQUEST_TEXT = "Выбранный акимат еще не готов принять заявление";
     public static final String SERVICE_NOT_AVAILABLE = "Изивините, сервис временно недоступен! Повторите попытку позже";
     public static final String NOT_FOUND_IN_BMG = "не_найден_в_бмг";
+    public static final String GOS_SERVICE_NOTIFICATION = "Обратите внимание!";
 
     public static final String DENIED_RESTRICTION_ON_ACCOUNTS  = "Уважаемый клиент! Вам отказано, в связи с наличием ограничений на ваших счетах. Подробнее можете узнать по номеру 300 (звонок бесплатный).";
 //    public static final String DENIED_RESTRICTION_ON_ACCOUNTS  = "Уважаемый клиент! Вам отказано, в связи с наличием ограничений на ваших счетах";

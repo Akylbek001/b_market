@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static pages.GovServicesPage.CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE;
+import static pages.GovServicesPage.SMS_CODE_CONFIRMATION_NOTIFICATION;
 
 @Owner("Алибек Акылбеков")
 @Feature("Гос.Услуги")
@@ -20,14 +21,33 @@ public class GosServicesTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
     }
-
-    @Test(description = "Справка об отсутствии недвижемого имущества=> Сервис не доступен", groups = {"automated"})
+    @Test(description = "Справка об отсутствии недвижемого имущества", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)
-    public void getCertificateOfAbsent_serviceNotAvailable () {
+    public void getCertificateOfAbsent () {
         step("Авторизация -> гос.услуги", () -> {
             loginSteps.auth(config.loanClient_login(), config.client_for_password_recovery_newPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
+        });
+        step("Получить справку", () -> {
+            govServicesSteps.getCertificateOfAbsenceOfRealEstatesButton();
+        });
+        Assert.assertEquals(CharacterSetConstants.GOS_SERVICE_NOTIFICATION,
+                elementsAttributes.getValue(SMS_CODE_CONFIRMATION_NOTIFICATION)
+        );
+        step("Подтвердить", () -> {
+            govServicesSteps.clickConfirmedButton();
+        });
+    }
+
+    @Test(description = "Справка об отсутствии недвижемого имущества=> Сервис не доступен", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Сервис не доступен")
+    @Severity(SeverityLevel.NORMAL)
+    public void getCertificateOfAbsent_serviceNotAvailable () {
+        step("Авторизация -> гос.услуги", () -> {
+            loginSteps.auth("77016677419", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
         });
         step("Получить справку", () -> {
@@ -43,11 +63,11 @@ public class GosServicesTest extends BaseTest {
 
     @Test(description = "Справка о наличии недвижимости и обременении=> Сервис не доступен", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("справку об отсутствии недвижемого имущества")
+    @Description("Сервис не доступен")
     @Severity(SeverityLevel.NORMAL)
     public void getCertificateOfRegisteredRightsAndEncumbrances_serviceNotAvailable () {
         step("Авторизация -> гос.услуги", () -> {
-            loginSteps.auth(config.loanClient_login(), config.client_for_password_recovery_newPassword());
+            loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
         });
         step("Получить справку", () -> {
@@ -63,11 +83,11 @@ public class GosServicesTest extends BaseTest {
 
     @Test(description = "Справка об отсутствии недвижимого имущества=> Не найден в БМГ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("справку об отсутствии недвижемого имущества")
+    @Description("Не найден в БМГ")
     @Severity(SeverityLevel.NORMAL)
     public void getCertificateOfAbsent_notFoundInBMG () {
         step("Авторизация -> гос.услуги", () -> {
-            loginSteps.auth("77011063133", config.client_for_password_recovery_newPassword());
+            loginSteps.auth("77716081952", config.client_for_password_recovery_newPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
         });
         step("Получить справку", () -> {
@@ -83,7 +103,7 @@ public class GosServicesTest extends BaseTest {
 
     @Test(description = "Справка о наличии недвижимости и обременении=> Не найден в БМГ", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
-    @Description("справку об отсутствии недвижемого имущества")
+    @Description("Не найден в БМГ")
     @Severity(SeverityLevel.NORMAL)
     public void getCertificateOfRegisteredRightsAndEncumbrances_notFoundInBMG () {
         step("Авторизация -> гос.услуги", () -> {

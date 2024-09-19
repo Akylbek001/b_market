@@ -49,6 +49,7 @@ public final class InitOptions {
         //optChrome.addArguments("--incognito");
         //optChrome.addArguments("--disable-popup-blocking");
         optChrome.addArguments("--safebrowsing-disable-download-protection");
+
         optChrome.addArguments("--safebrowsing-disable-extension-blacklist");
         optChrome.addArguments("--kiosk-printing");
         optChrome.addArguments("--disable-extensions");
