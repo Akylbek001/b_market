@@ -286,7 +286,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void changeDepositConditions_validateNegotiatedAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77774039707", config.clientPassword());
+            loginSteps.auth("77763032332", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {
@@ -479,7 +479,7 @@ public class DepositTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void depositDivision_validateNegotiatedAmount() {
         step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(config.clientLogin(), config.clientPassword());
+            loginSteps.auth(config.client_for_password_recovery_login(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Выбрать открытый депозит", () -> {

@@ -43,13 +43,13 @@ public final class InitOptions {
         optChrome.addArguments("--allow-file-access-from-files");
         optChrome.addArguments("--start-maximized");
         optChrome.addArguments("--window-size=1680, 1050");
+        optChrome.addArguments("--window-size=1680, 1050");
         optChrome.addArguments("--headless=new");
         optChrome.addArguments("--no-sandbox");
         optChrome.addArguments("--disable-gpu");
         //optChrome.addArguments("--incognito");
         //optChrome.addArguments("--disable-popup-blocking");
         optChrome.addArguments("--safebrowsing-disable-download-protection");
-
         optChrome.addArguments("--safebrowsing-disable-extension-blacklist");
         optChrome.addArguments("--kiosk-printing");
         optChrome.addArguments("--disable-extensions");

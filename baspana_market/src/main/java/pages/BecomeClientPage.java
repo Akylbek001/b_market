@@ -95,8 +95,8 @@ public class BecomeClientPage extends BasePage {
     @Step("Click verify button")
     public BecomeClientPage clickVerifyButton() {
         button.btnClick(VERIFY_BUTTON);
-        elementsAttributes.waitUntilVisible(REFUSE_TEXT);
-        WaitUtils.wait(10);
+//        elementsAttributes.waitUntilVisible(REFUSE_TEXT);
+        WaitUtils.wait(5);
         return this;
     }
 

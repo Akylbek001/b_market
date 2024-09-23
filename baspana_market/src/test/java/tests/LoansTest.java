@@ -42,7 +42,7 @@ public class LoansTest extends BaseTest {
     }
 
     //need account with enough amount for repayment
-    @Test(description="ПДП => с расторжением депозита", groups = {"automated"}, enabled = false)
+    @Test(description="ПДП => С расторжением депозита", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
@@ -60,7 +60,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="ПДП => без расторжением депозита", groups = {"automated"}, enabled = false)
+    @Test(description="ПДП => Без расторжением депозита", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
@@ -78,7 +78,7 @@ public class LoansTest extends BaseTest {
         });
     }
 
-    @Test(description="ПДП => Валдация активной заявки", groups = {"automated"})
+    @Test(description="ПДП => Валдация активной заявки", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Полное досрочное погашение")
     @Severity(SeverityLevel.NORMAL)
@@ -223,7 +223,7 @@ public class LoansTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(FINAL_RESULT), CharacterSetConstants.SUCCESSFULLY_COMPLETE);
     }
 
-    @Test(description="ЧДП через ЕПВ счет", groups = {"automated"})
+    @Test(description="ЧДП через ЕПВ счет", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
@@ -254,7 +254,7 @@ public class LoansTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(FINAL_RESULT), CharacterSetConstants.SUCCESSFULLY_COMPLETE);
     }
 
-    @Test(description="ЧДП через текущий счет=> Валидация недостаточной суммы", groups = {"automated"})
+    @Test(description="ЧДП через текущий счет => Валидация недостаточной суммы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
@@ -275,7 +275,7 @@ public class LoansTest extends BaseTest {
     }
 
     //need acc
-    @Test(description="ЧДП через ЕПВ счет=> Валидация недостаточной суммы", groups = {"automated"}, enabled = false)
+    @Test(description="ЧДП через ЕПВ счет => Валидация недостаточной суммы", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешно")
     @Severity(SeverityLevel.NORMAL)
@@ -294,7 +294,7 @@ public class LoansTest extends BaseTest {
     }
 
     //need acc
-    @Test(description="ЧДП - нет целового использования займа", groups = {"automated"}, enabled = false)
+    @Test(description="ЧДП => Нет целового использования займа", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация недостаточной суммы")
     @Severity(SeverityLevel.NORMAL)
@@ -330,7 +330,7 @@ public class LoansTest extends BaseTest {
 //        });
 //    }
 
-    @Test(description="Изменение даты платежа => валидация счетов(ограничения)", groups = {"automated"})
+    @Test(description="Изменение даты платежа => Валидация счетов(ограничения)", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация счетов(ограничения)")
     @Severity(SeverityLevel.NORMAL)
@@ -350,7 +350,7 @@ public class LoansTest extends BaseTest {
         );
     }
 
-    @Test(description="Изменение даты платежа => валидация недостаточной суммы для оплаты комиссии", groups = {"automated"})
+    @Test(description="Изменение даты платежа => Валидация недостаточной суммы для оплаты комиссии", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация недостаточной суммы для оплаты комиссии")
     @Severity(SeverityLevel.NORMAL)
@@ -370,7 +370,7 @@ public class LoansTest extends BaseTest {
         );
     }
 
-    @Test(description="Переход на жилищный заем => валидация счетов(ограничения)", groups = {"automated"})
+    @Test(description="Переход на жилищный заем => Валидация счетов(ограничения)", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация счетов(ограничения)")
     @Severity(SeverityLevel.NORMAL)
@@ -390,7 +390,7 @@ public class LoansTest extends BaseTest {
         );
     }
 
-    @Test(description="Переход на жилищный заем => валидация договорной суммы(< 50%)", groups = {"automated"})
+    @Test(description="Переход на жилищный заем => Валидация договорной суммы(< 50%)", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("< 50%")
     @Severity(SeverityLevel.NORMAL)
@@ -447,6 +447,23 @@ public class LoansTest extends BaseTest {
         );
     }
 
+    @Test(description="Исключение созаемщика", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Исключение созаемщика")
+    @Severity(SeverityLevel.NORMAL)
+    public void exclusionOfCoBorrower() {
+        step("Авторизация -> Займы", () -> {
+            loginSteps.auth(config.loanClient_login(), config.loanClient_password());
+            brManager.navigateTo(envConfig.baseUrl().concat("Loan"));
+        });
+        step("Заполнить форму", () -> {
+            loansSteps.selectExistedLoan();
+            loansSteps.openAvailableOperations();
+            loansSteps.exclusionOfCoBorrowerOperation();
+        });
+        Assert.assertTrue(true);
+    }
+
     @Test(description="Исключение созаемщика => Созаемщик не найден", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Созаемщик не найден)")
@@ -488,7 +505,7 @@ public class LoansTest extends BaseTest {
 
     //stop step - input document digital code
     //bug - непредвиденная ошибка
-    @Test(description="Продление договора страхования", groups = {"automated"})
+    @Test(description="Продление договора страхования", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.NORMAL)

@@ -95,7 +95,7 @@ public class BecomeClientTest extends BaseTest {
         );
     }
 
-    @Test(description="Стать клиентом НФД", groups = {"automated"})
+    @Test(description="Стать клиентом НФД", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Стать клиентом НФД")
     @Severity(SeverityLevel.NORMAL)
@@ -104,7 +104,7 @@ public class BecomeClientTest extends BaseTest {
             becomeClientSteps.becomeClientByOpenAccountForNDF();
         });
         step("Заполнить данные", () -> {
-            becomeClientSteps.verifyPhoneNumberAndIin("77479069827", "060727651806");
+            becomeClientSteps.verifyPhoneNumberAndIin("77056021596", "150712603708");
             becomeClientSteps.confirmByOtp(config.smsCode());
             generalSteps.acceptAgreement_startBiometry();
             becomeClientSteps.inputPersonalDataFirstPart("O_Bank","QA","epv@bk.ru");

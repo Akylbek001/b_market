@@ -21,7 +21,7 @@ public class GosServicesTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
     }
-    @Test(description = "Справка об отсутствии недвижемого имущества", groups = {"automated"})
+    @Test(description = "Справка об отсутствии недвижимого имущества", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("справку об отсутствии недвижемого имущества")
     @Severity(SeverityLevel.NORMAL)
@@ -41,37 +41,17 @@ public class GosServicesTest extends BaseTest {
         });
     }
 
-    @Test(description = "Справка об отсутствии недвижемого имущества=> Сервис не доступен", groups = {"automated"})
+    @Test(description = "Справка об отсутствии недвижимого имущества=> Сервис не доступен", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Сервис не доступен")
     @Severity(SeverityLevel.NORMAL)
     public void getCertificateOfAbsent_serviceNotAvailable () {
         step("Авторизация -> гос.услуги", () -> {
-            loginSteps.auth("77016677419", config.clientPassword());
+            loginSteps.auth("77716081952", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
         });
         step("Получить справку", () -> {
             govServicesSteps.getCertificateOfAbsenceOfRealEstatesButton();
-        });
-        Assert.assertEquals(CharacterSetConstants.SERVICE_NOT_AVAILABLE,
-                elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
-        );
-        step("Завершить", () -> {
-            govServicesSteps.complete();
-        });
-    }
-
-    @Test(description = "Справка о наличии недвижимости и обременении=> Сервис не доступен", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Сервис не доступен")
-    @Severity(SeverityLevel.NORMAL)
-    public void getCertificateOfRegisteredRightsAndEncumbrances_serviceNotAvailable () {
-        step("Авторизация -> гос.услуги", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
-            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
-        });
-        step("Получить справку", () -> {
-            govServicesSteps.getCertificateOfRegisteredRightsAndEncumbrances();
         });
         Assert.assertEquals(CharacterSetConstants.SERVICE_NOT_AVAILABLE,
                 elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
@@ -94,6 +74,46 @@ public class GosServicesTest extends BaseTest {
             govServicesSteps.getCertificateOfAbsenceOfRealEstatesButton();
         });
         Assert.assertEquals(CharacterSetConstants.NOT_FOUND_IN_BMG,
+                elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
+        );
+        step("Завершить", () -> {
+            govServicesSteps.complete();
+        });
+    }
+
+    @Test(description = "Справка о наличии недвижимости и обременении", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Сервис не доступен")
+    @Severity(SeverityLevel.NORMAL)
+    public void getCertificateOfRegisteredRightsAndEncumbrances () {
+        step("Авторизация -> гос.услуги", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
+        });
+        step("Получить справку", () -> {
+            govServicesSteps.getCertificateOfRegisteredRightsAndEncumbrances();
+        });
+        Assert.assertEquals(CharacterSetConstants.GOS_SERVICE_NOTIFICATION,
+                elementsAttributes.getValue(SMS_CODE_CONFIRMATION_NOTIFICATION)
+        );
+        step("Подтвердить", () -> {
+            govServicesSteps.clickConfirmedButton();
+        });
+    }
+
+    @Test(description = "Справка о наличии недвижимости и обременении=> Сервис не доступен", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Сервис не доступен")
+    @Severity(SeverityLevel.NORMAL)
+    public void getCertificateOfRegisteredRightsAndEncumbrances_serviceNotAvailable () {
+        step("Авторизация -> гос.услуги", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("StateApplication"));
+        });
+        step("Получить справку", () -> {
+            govServicesSteps.getCertificateOfRegisteredRightsAndEncumbrances();
+        });
+        Assert.assertEquals(CharacterSetConstants.SERVICE_NOT_AVAILABLE,
                 elementsAttributes.getValue(CERTIFICATE_OF_ABSENCE_FAILED_MESSAGE)
         );
         step("Завершить", () -> {

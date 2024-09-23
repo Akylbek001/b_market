@@ -96,7 +96,7 @@ public class ProfileTest extends BaseTest {
     public void changePassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    "AkylbekovA9@", "AkylbekovA9#", "AkylbekovA9#"
+                    "AkylbekovA9#", "Baidaliev1@", "Baidaliev1@"
             );
             profileSteps.confirmPasswordChange();
         });

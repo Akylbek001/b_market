@@ -350,7 +350,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) => валидация ИИН", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) => Валидация ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация ИИН")
     @Severity(SeverityLevel.NORMAL)
@@ -374,7 +374,7 @@ public class SpecAccountSgoTest extends BaseTest {
         );
     }
 
-    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) => валидация IBAN отбасы", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ФЛ) => Валидация IBAN отбасы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация IBAN отбасы")
     @Severity(SeverityLevel.NORMAL)
@@ -398,7 +398,7 @@ public class SpecAccountSgoTest extends BaseTest {
         );
     }
 
-    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ)=> С номером договора", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ) => С номером договора", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.NORMAL)
@@ -487,7 +487,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ) => валидация БИН", groups = {"automated"})
+    @Test(description = "Оплата аренды с последующим выкупом(ЮЛ) => Валидация БИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация IBAN отбасы")
     @Severity(SeverityLevel.NORMAL)
@@ -569,7 +569,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на покупку жилья(ФЛ) => валидация ИИН", groups = {"automated"})
+    @Test(description = "Перевод на покупку жилья(ФЛ) => Валидация ИИН", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация ИИН")
     @Severity(SeverityLevel.NORMAL)
@@ -593,7 +593,7 @@ public class SpecAccountSgoTest extends BaseTest {
         );
     }
 
-    @Test(description = "Перевод на покупку жилья(ФЛ) => валидация IBAN отбасы", groups = {"automated"})
+    @Test(description = "Перевод на покупку жилья(ФЛ) => Валидация IBAN отбасы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация IBAN отбасы")
     @Severity(SeverityLevel.NORMAL)
@@ -704,7 +704,7 @@ public class SpecAccountSgoTest extends BaseTest {
         Assert.assertTrue(elementsAttributes.isDisplayed(TRANSFER_DETAILS));
     }
 
-    @Test(description = "Перевод на покупку жилья(ЮЛ) => валидация IBAN отбасы", groups = {"automated"})
+    @Test(description = "Перевод на покупку жилья(ЮЛ) => Валидация IBAN отбасы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация IBAN отбасы")
     @Severity(SeverityLevel.NORMAL)
@@ -728,7 +728,7 @@ public class SpecAccountSgoTest extends BaseTest {
         );
     }
 
-    @Test(description = "Перевод на покупку жилья(ЮЛ) => валидация IBAN", groups = {"automated"})
+    @Test(description = "Перевод на покупку жилья(ЮЛ) => Валидация IBAN", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация IBAN отбасы")
     @Severity(SeverityLevel.NORMAL)

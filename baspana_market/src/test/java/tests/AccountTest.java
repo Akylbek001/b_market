@@ -41,7 +41,7 @@ public class AccountTest extends BaseTest {
                 CharacterSetConstants.NO_DEPOSIT_TEXT, elementsAttributes.getValue(MODAL_NOTIFICATION));
     }
 
-    @Test(description="Открыть текущий счет => Валидация ОТР", groups = {"automated"}, priority = 0)
+    @Test(description="Открыть текущий счет => Валидация ОТР", groups = {"automated"}, priority = 1)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация ОТР")
     @Severity(SeverityLevel.CRITICAL)
@@ -61,7 +61,7 @@ public class AccountTest extends BaseTest {
                 CharacterSetConstants.INVALID_OTP_TEXT, elementsAttributes.getValue(MODAL_NOTIFICATION));
     }
 
-    @Test(description="Открыть текущий счет", groups = {"automated"}, priority = 1)
+    @Test(description="Открыть текущий счет", groups = {"automated"}, priority = 2)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Текущий счет")
     @Severity(SeverityLevel.CRITICAL)
@@ -86,7 +86,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    @Test(description="Открыть счет для ЕПВ => Валидация ОТР", groups = {"automated"}, priority = 2)
+    @Test(description="Открыть счет для ЕПВ => Валидация ОТР", groups = {"automated"}, priority = 3)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация ОТР")
     @Severity(SeverityLevel.CRITICAL)
@@ -108,7 +108,7 @@ public class AccountTest extends BaseTest {
         );
     }
 
-    @Test(description="Открыть счет для ЕПВ", groups = {"automated"}, priority = 3)
+    @Test(description="Открыть счет для ЕПВ", groups = {"automated"}, priority = 4)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Счет для ЕПВ")
     @Severity(SeverityLevel.CRITICAL)
@@ -317,7 +317,7 @@ public class AccountTest extends BaseTest {
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешный перевод")
     @Severity(SeverityLevel.BLOCKER)
-    public void transferToOtherBank() {
+        public void transferToOtherBank() {
         step("Авторизация -> Мои Счета", () -> {
             loginSteps.auth("77716081952", config.clientPassword() );
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyAccounts"));

@@ -12,7 +12,7 @@ public class AppointmentToDepartmentPage extends BasePage {
     private static final By ODER_TYPE = By.id("MainOperList");
     private static final By VISIT_PURPOSE = By.cssSelector("select#bookingVisitPurpose");
     private static final By PERIOD = By.id("calendar-range");
-    private static final By DATE = By.cssSelector("[aria-label='Сентябрь 30, 2024']");
+    private static final By DATE = By.cssSelector("[aria-label='Сентябрь 24, 2024']");
     private static final By TIME = By.id("bookingTime");
     private static final By SUBMIT_BUTTON = By.id("submit_form");
     private static final By CANCEL_BUTTON = By.id("NotificationBookingcancelBookingBtn");
@@ -34,7 +34,8 @@ public class AppointmentToDepartmentPage extends BasePage {
 
     @Step("Click reserve modal button")
     public AppointmentToDepartmentPage clickReserveButton() {
-        WaitUtils.wait(1);
+        WaitUtils.wait(10);
+        elementsAttributes.waitUntilVisible(RESERVE_BUTTON);
         button.btnClick(RESERVE_BUTTON);
         WaitUtils.wait(1);
         return this;
@@ -44,6 +45,14 @@ public class AppointmentToDepartmentPage extends BasePage {
     public AppointmentToDepartmentPage clickRebookButton() {
         WaitUtils.wait(1);
         button.btnClick(REBOOK_BUTTON);
+        WaitUtils.wait(1);
+        return this;
+    }
+
+    @Step("Click cancel reservation button")
+    public AppointmentToDepartmentPage clickCancelReservationButton() {
+        WaitUtils.wait(1);
+        button.btnClick(CANCEL_RESERVATION);
         WaitUtils.wait(1);
         return this;
     }
@@ -63,21 +72,21 @@ public class AppointmentToDepartmentPage extends BasePage {
 
     @Step("Select filial")
     public AppointmentToDepartmentPage selectFilial() {
-        dropDown.selectByIndex(BOOKING_FILIAL, 2);
+        dropDown.selectByIndex(BOOKING_FILIAL, 1);
         WaitUtils.wait(2);
         return this;
     }
 
     @Step("Select order type")
     public AppointmentToDepartmentPage selectOrderType() {
-        dropDown.selectByIndex(ODER_TYPE, 1);
+        dropDown.selectByIndex(ODER_TYPE, 3);
         WaitUtils.wait(2);
         return this;
     }
 
     @Step("Select visit purpose")
     public AppointmentToDepartmentPage selectVisitPurpose() {
-        dropDown.selectByIndex(VISIT_PURPOSE, 2);
+        dropDown.selectByIndex(VISIT_PURPOSE, 1);
         WaitUtils.wait(2);
         return this;
     }
@@ -96,7 +105,7 @@ public class AppointmentToDepartmentPage extends BasePage {
 
     @Step("Select visit time")
     public AppointmentToDepartmentPage selectVisitTime() {
-        dropDown.selectByIndex(TIME, 1);
+        dropDown.selectByIndex(TIME, 0);
         WaitUtils.wait(2);
         return this;
     }
@@ -104,6 +113,7 @@ public class AppointmentToDepartmentPage extends BasePage {
     @Step("Click submit button")
     public AppointmentToDepartmentPage clickSubmitButton() {
         button.btnClick(SUBMIT_BUTTON);
+        WaitUtils.wait(10);
         elementsAttributes.waitUntilVisible(RESULT);
         return this;
     }

@@ -25,9 +25,13 @@ public class AppointmentToDepartmentSteps {
                 .clickRebookButton();
     }
 
+    public void clickCancelReservationButton() {
+        appointmentToDepartmentPage
+                .clickCancelReservationButton();
+    }
+
     public void fillForm(String phone) {
         appointmentToDepartmentPage
-//                .clickBookingButton()
                 .inputPhone(phone)
                 .selectFilial()
                 .selectOrderType()

@@ -128,21 +128,23 @@ public class DepositPage extends BasePage {
 
     @Step("Select change gos prem operation")
     public DepositPage selectChangeGosPremOperation() {
-        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
-        WaitUtils.wait(1);
-        button.btnClick(CHANGE_GOS_PREM_OPERATION);
+//        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
+//        WaitUtils.wait(1);
+//        button.btnClick(CHANGE_GOS_PREM_OPERATION);
+//        WaitUtils.wait(5);
+        button.btnDoubleClick(CHANGE_GOS_PREM_OPERATION);
         WaitUtils.wait(5);
         return this;
     }
 
     @Step("Select change gos prem operation on prod")
     public DepositPage changeGosPremOperation() {
-//        button.btnDoubleClick(CHANGE_GOS_PREM_OPERATION);
-//        WaitUtils.wait(4);
-        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
-        WaitUtils.wait(1);
-        button.btnClick(CHANGE_GOS_PREM_OPERATION);
-        WaitUtils.wait(5);
+//        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
+//        WaitUtils.wait(1);
+//        button.btnClick(CHANGE_GOS_PREM_OPERATION);
+//        WaitUtils.wait(5);
+        button.btnDoubleClick(CHANGE_GOS_PREM_OPERATION);
+        WaitUtils.wait(4);
         return this;
     }
 
@@ -173,9 +175,11 @@ public class DepositPage extends BasePage {
 
     @Step("Select terminate deposit operation")
     public DepositPage terminateDepositOperation() {
-        button.hoverAndClick(TERMINATE_DEPOSIT_OPERATION);
-        WaitUtils.wait(1);
-        button.btnClick(TERMINATE_DEPOSIT_OPERATION);
+//        button.hoverAndClick(TERMINATE_DEPOSIT_OPERATION);
+//        WaitUtils.wait(1);
+//        button.btnClick(TERMINATE_DEPOSIT_OPERATION);
+//        WaitUtils.wait(5);
+        button.btnDoubleClick(TERMINATE_DEPOSIT_OPERATION);
         WaitUtils.wait(5);
         return this;
     }
@@ -203,9 +207,11 @@ public class DepositPage extends BasePage {
 
     @Step("Select change deposit conditions operation")
     public DepositPage changeDepositConditionsOperation() {
-        button.hoverAndClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
-        WaitUtils.wait(1);
-        button.btnClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
+//        button.hoverAndClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
+//        WaitUtils.wait(1);
+//        button.btnClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
+//        WaitUtils.wait(4);
+        button.btnDoubleClick(CHANGE_DEPOSIT_CONDITIONS_OPERATION);
         WaitUtils.wait(1);
         return this;
     }
@@ -247,18 +253,23 @@ public class DepositPage extends BasePage {
 
     @Step("Select create family package operation")
     public DepositPage createFamilyPackageOperation() {
-        button.hoverAndClick(CREATE_FAMILY_PACKAGE_OPERATION);
-        WaitUtils.wait(1);
-        button.btnClick(CREATE_FAMILY_PACKAGE_OPERATION);
+//        button.hoverAndClick(CREATE_FAMILY_PACKAGE_OPERATION);
+//        WaitUtils.wait(1);
+//        button.btnClick(CREATE_FAMILY_PACKAGE_OPERATION);
+//        WaitUtils.wait(5);
+        button.btnDoubleClick(CREATE_FAMILY_PACKAGE_OPERATION);
         WaitUtils.wait(5);
         return this;
     }
 
     @Step("Select deposit division operation")
     public DepositPage createDepositDivisionOperation() {
-        button.hoverAndClick(DEPOSIT_DIVISION_OPERATION);
-        WaitUtils.wait(1);
-        button.btnClick(DEPOSIT_DIVISION_OPERATION);
+//        button.hoverAndClick(DEPOSIT_DIVISION_OPERATION);
+//        WaitUtils.wait(1);
+//        button.btnClick(DEPOSIT_DIVISION_OPERATION);
+//        WaitUtils.wait(5);
+
+        button.btnDoubleClick(DEPOSIT_DIVISION_OPERATION);
         WaitUtils.wait(5);
         return this;
     }
@@ -279,9 +290,11 @@ public class DepositPage extends BasePage {
 
     @Step("Select unite deposit operation")
     public DepositPage selectUniteDepositOperation() {
-        button.hoverAndClick(UNITE_DEPOSIT_OPERATION);
-        WaitUtils.wait(1);
-        button.btnClick(UNITE_DEPOSIT_OPERATION);
+//        button.hoverAndClick(UNITE_DEPOSIT_OPERATION);
+//        WaitUtils.wait(1);
+//        button.btnClick(UNITE_DEPOSIT_OPERATION);
+//        WaitUtils.wait(5);
+        button.btnDoubleClick(UNITE_DEPOSIT_OPERATION);
         WaitUtils.wait(5);
         return this;
     }
@@ -360,9 +373,11 @@ public class DepositPage extends BasePage {
 
     @Step("Select assignment gratuitous operation")
     public DepositPage selectAssignmentGratuitousOperation() {
-        button.hoverAndClick(ASSIGNMENT_GRATUITOUS);
-        WaitUtils.wait(1);
-        button.btnClick(ASSIGNMENT_GRATUITOUS);
+//        button.hoverAndClick(ASSIGNMENT_GRATUITOUS);
+//        WaitUtils.wait(1);
+//        button.btnClick(ASSIGNMENT_GRATUITOUS);
+//        WaitUtils.wait(3);
+        button.btnDoubleClick(ASSIGNMENT_GRATUITOUS);
         WaitUtils.wait(3);
         return this;
     }

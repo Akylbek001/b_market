@@ -21,7 +21,7 @@ public class CabinetTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
-        loginSteps.auth("77760170303", config.clientPassword());
+        loginSteps.auth("77760170303", "Baidaliev1@");
         brManager.navigateTo(envConfig.baseUrl().concat("cabinet"));
     }
 
@@ -53,11 +53,11 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void changePassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.userPass(), config.userPass());
+            cabinetSteps.changePassword(config.clientPassword(), "Baidaliev1@");
         });
     }
 
-    @Test(description = "Изменить пароль => валидация текущего пароля", groups = {"automated"})
+    @Test(description = "Изменить пароль => Валидация текущего пароля", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация текущего пароля")
     @Severity(SeverityLevel.NORMAL)
@@ -70,7 +70,7 @@ public class CabinetTest extends BaseTest {
         );
     }
 
-    @Test(description = "Изменить пароль -> валидация формата пароля => цифра", groups = {"automated"})
+    @Test(description = "Изменить пароль -> Валидация формата пароля => цифра", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация формата пароля => цифра")
     @Severity(SeverityLevel.NORMAL)
@@ -83,7 +83,7 @@ public class CabinetTest extends BaseTest {
         );
     }
 
-    @Test(description = "Изменить пароль -> валидация формата пароля => заглавная буква", groups = {"automated"})
+    @Test(description = "Изменить пароль -> Валидация формата пароля => заглавная буква", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация формата пароля => заглавная буква")
     @Severity(SeverityLevel.NORMAL)
@@ -96,7 +96,7 @@ public class CabinetTest extends BaseTest {
         );
     }
 
-    @Test(description = "Изменить пароль -> валидация формата пароля => спецсимвол", groups = {"automated"})
+    @Test(description = "Изменить пароль -> Валидация формата пароля => спецсимвол", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("валидация формата пароля")
     @Severity(SeverityLevel.NORMAL)
