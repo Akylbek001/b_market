@@ -130,5 +130,5 @@ public final class CharacterSetConstants {
     public static final String SUCCESSFULLY_COMPLETE = "Операция успешно проведена";
     public static final String NOT_ENOUGH_AMOUNT_ON_ACCOUNT = "Не хватает средств на счете.";
     public static final String PLEDGOR_NOT_REGISTERED = "Ваш залогодатель не зарегестрирован. Зарегистрируйтесь и попробуйте еще раз.";
-
+    public static final String NO_RENTAL_ACCOUNT = "У вас нет текущего счета для аренды";
 }

@@ -47,6 +47,10 @@ public class MainPage extends BasePage {
     private static final By REMOVE_AD_BUTTON = By.cssSelector(".btn.u");
     private static final By REMOVE_CONFIRM_BUTTON = By.cssSelector("button.button--r");
     private static final By POST_AD_BUTTON_FROM_MY_AD = By.cssSelector(".addstates input");
+    public static final By POST_AD_TITLE = By.cssSelector(".title.title-new-i h1");
+    private static final By LOGOUT = By.xpath("//div[@class='menu-item'] /form[@id='logoutForm']");
+    public static final By LOGIN_BUTTON_ = By.cssSelector("#OBLoginButtDiv span");
+
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -281,6 +285,13 @@ public class MainPage extends BasePage {
     @Step("Click calculate button ")
     public MainPage clickRealityTabCalculateButton() {
         button.btnClick(CALCULATE_BUTTON_);
+        return this;
+    }
+
+    @Step("Click logout button ")
+    public MainPage clickLogOutButton() {
+        move.scrollToElement(LOGOUT);
+        button.btnClick(LOGOUT);
         return this;
     }
 }

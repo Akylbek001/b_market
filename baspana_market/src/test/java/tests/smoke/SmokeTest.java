@@ -2,6 +2,7 @@ package tests.smoke;
 
 import base.BaseTest;
 import common.consts.CharacterSetConstants;
+import common.utils.RandomUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -9,9 +10,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static pages.AccountPage.NO_CURRENT_RENTAL_ACCOUNT;
+import static pages.AppointmentToDepartmentPage.RESULT;
 import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
 import static pages.DepositFamilyPackagePage.SELECT_DEPOSIT;
 import static pages.DepositPage.*;
+import static pages.MainPage.*;
 
 @Owner("Алибек Акылбеков")
 @Feature("Smoke")
@@ -37,16 +41,16 @@ public class SmokeTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("OtauNauriz"));
     }
 
-    @Test(description="Главная -> Ипотека <Бакытты Отбасы>", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Посмотреть информацию про программу Бакытты Отбасы")
-    @Severity(SeverityLevel.MINOR)
-    public void mainPage_happyFamilyMortgage() {
-        step("Навигация на страницу Бакытты Отбасы", () -> {
-            mainSteps.clickHappyFamilyMortgage();
-        });
-        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.happyFamilyMortgagePath()));
-    }
+//    @Test(description="Главная -> Ипотека <Бакытты Отбасы>", groups = {"automated"})
+//    @Issue("https://jira.kz/browse/QA-")
+//    @Description("Посмотреть информацию про программу Бакытты Отбасы")
+//    @Severity(SeverityLevel.MINOR)
+//    public void mainPage_happyFamilyMortgage() {
+//        step("Навигация на страницу Бакытты Отбасы", () -> {
+//            mainSteps.clickHappyFamilyMortgage();
+//        });
+//        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.happyFamilyMortgagePath()));
+//    }
 
     @Test(description="Главная -> Посмотреть все гос.программы", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -182,19 +186,19 @@ public class SmokeTest extends BaseTest {
     }
 
     //функционал на бою временно отключен
-    @Test(description="Текущий счет -> Операция <Перевод клиенту Отбасы банк>", groups = {"automated"}, enabled = false)
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Перевод в другой банк")
-    @Severity(SeverityLevel.CRITICAL)
-    public void currentAccount_transferToOtbasyClient() {
-        step("Авторизация -> Мои Счета", () -> {
-            loginSteps.auth(config.userLogin(), config.userPass());
-            brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToOtbasy"));
-        });
-        Assert.assertEquals(
-                brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount/TransferToOtbasy")
-        );
-    }
+//    @Test(description="Текущий счет -> Операция <Перевод клиенту Отбасы банк>", groups = {"automated"}, enabled = false)
+//    @Issue("https://jira.kz/browse/QA-")
+//    @Description("Перевод в другой банк")
+//    @Severity(SeverityLevel.CRITICAL)
+//    public void currentAccount_transferToOtbasyClient() {
+//        step("Авторизация -> Мои Счета", () -> {
+//            loginSteps.auth(config.userLogin(), config.userPass());
+//            brManager.navigateTo(envConfig.baseUrl().concat("CurrentAccount/TransferToOtbasy"));
+//        });
+//        Assert.assertEquals(
+//                brManager.getCurrUrl(), envConfig.baseUrl().concat("CurrentAccount/TransferToOtbasy")
+//        );
+//    }
 
     @Test(description="Текущий счет -> Операция <Перевод в другой банк>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
@@ -329,7 +333,7 @@ public class SmokeTest extends BaseTest {
         elementsAttributes.waitUntilVisible(DIVIDE_BUTTON);
     }
 
-    @Test(description="Объединение депозита", groups = {"automated"})
+    @Test(description="Депозиты -> Операция <Объединение депозита>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Объединение депозита")
     @Severity(SeverityLevel.CRITICAL)
@@ -348,6 +352,29 @@ public class SmokeTest extends BaseTest {
             depositSteps.uniteDepositOperation();
         });
         elementsAttributes.waitUntilVisible(SELECT_DEPOSITS_BUTTON);
+    }
+
+    @Test(description="Депозиты -> Уступка безвозмездная => Валидация суммы накопления", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Уступка безвозмездная")
+    @Severity(SeverityLevel.CRITICAL)
+    public void assignmentGratuitous_validateSavingAmount() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Уступка безвозмездная", () -> {
+            depositSteps.selectAssignmentGratuitousOperation();
+        });
+        Assert.assertEquals(CharacterSetConstants.ASSIGNMENT_GRATUITOUS_SAVING_AMOUNT_VALIDATION,
+                elementsAttributes.getValue(ASSIGNMENT_GRATUITOUS_AMOUNT_VALIDATION)
+        );
     }
 
     @Test(description="Раздел <Справки>", groups = {"automated"})
@@ -447,6 +474,20 @@ public class SmokeTest extends BaseTest {
         });
     }
 
+    @Test(description = "Текущий счет для аренды", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Текущий счет для аренды")
+    @Severity(SeverityLevel.NORMAL)
+    public void currentRentalAccount () {
+        step("Авторизация -> Текущий счет для аренды", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/RentSubsidyAccount"));
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.NO_RENTAL_ACCOUNT, elementsAttributes.getValue(NO_CURRENT_RENTAL_ACCOUNT)
+        );
+    }
+
     @Test(description="Раздел <Кабинет>", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Кабинет")
@@ -480,6 +521,59 @@ public class SmokeTest extends BaseTest {
             loginSteps.auth(config.userLogin(), config.userPass());
             brManager.navigateTo(envConfig.baseUrl().concat("Cozh"));
         });
-        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("Cozh"));
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("SecondFactorAuthorization"));
+    }
+
+    @Test(description="Ипотека онлайн", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Ипотека онлайн")
+    @Severity(SeverityLevel.NORMAL)
+    public void onlineMortgage() {
+        step("Авторизация -> Ипотека онлайн", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("OnlineMortgage/Videocall"));
+        });
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("OnlineMortgage/Videocall"));
+    }
+
+    @Test(description="Раздел <Запись в отделение>", groups = {"automated"}, priority = 0)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Запись в отделение")
+    @Severity(SeverityLevel.MINOR)
+    public void appointmentToDepartment () {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("QueueBooking"));
+        });
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat("QueueBooking"));
+    }
+
+    @Test(description="+Разместить объявление", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("")
+    @Severity(SeverityLevel.MINOR)
+    public void postAd() {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+        });
+        step("Разместить объявление", () -> {
+            mainSteps.clickPostAdButton();
+        });
+        Assert.assertEquals(elementsAttributes.getValue(POST_AD_TITLE), "Новое объявление");
+    }
+
+    @Test(description="Выйти из системы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Выйти из системы")
+    @Severity(SeverityLevel.NORMAL)
+    public void logout() {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("cabinet/MyStatement"));
+        });
+        step("Выйти", () -> {
+            mainSteps.clickLogOutButton();
+        });
+        Assert.assertEquals(elementsAttributes.getValue(LOGIN_BUTTON_), "Войти");
     }
 }

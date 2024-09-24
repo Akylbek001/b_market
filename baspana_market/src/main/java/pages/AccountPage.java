@@ -63,6 +63,8 @@ public class AccountPage extends BasePage {
     private static final By OTHER_BANK_NAME = By.xpath("//div[@class='checkBox-Banks'] /div[2]");
     private static final By OTHER_BANK_CONTINUE_BUTTON_ = By.xpath("//div[@class='Button-SMS'] /button");
     public static final By CLOSE_CURRENT_ACCOUNT_OPERATION = By.cssSelector(".operation-account#closeAccount");
+    public static final By NO_CURRENT_RENTAL_ACCOUNT = By.cssSelector(".ob__accentL");
+
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -199,6 +201,7 @@ public class AccountPage extends BasePage {
     @Step("Select account for epv")
     public AccountPage selectAccountForEpv() {
         button.btnClick(ACCOUNT_FOR_EPV);
+        elementsAttributes.waitUntilVisible(EPV_AGREEMENT_CHECKBOX);
         return this;
     }
 
@@ -211,6 +214,7 @@ public class AccountPage extends BasePage {
     @Step("Click confirm button")
     public AccountPage clickConfirmButton() {
         button.btnClick(EPV_CONFIRM_BUTTON);
+        WaitUtils.wait(3);
         return this;
     }
 

@@ -21,7 +21,7 @@ public class ProfileTest extends BaseTest {
         WaitUtils.wait(1);
 
         mainSteps.loginButton();
-        loginSteps.login("77773811409", "AkylbekovA9#");
+        loginSteps.login("77773811409", "Baspana_1@");
         brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
     }
 
@@ -115,7 +115,7 @@ public class ProfileTest extends BaseTest {
     public void validateNewPasswordConfirmation() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    "AkylbekovA9#",
+                    "Baspana_1@",
                     "AkylbekovA9#",
                     "AkylbekovA9#".concat("@")
             );
@@ -134,7 +134,7 @@ public class ProfileTest extends BaseTest {
     public void validateCurrentPassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    "AkylbekovA9#", "AkylbekovA9#", "AkylbekovA9#"
+                    "Baspana_1@", "Baspana_1@", "Baspana_1@"
             );
             profileSteps.confirmPasswordChange();
         });

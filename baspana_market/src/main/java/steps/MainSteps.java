@@ -105,4 +105,9 @@ public class MainSteps {
         mainPage
                 .clickPostAdButton_fromMyAdBlock();
     }
+
+    public void clickLogOutButton() {
+        mainPage
+                .clickLogOutButton();
+    }
 }

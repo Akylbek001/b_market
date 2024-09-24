@@ -21,7 +21,7 @@ public class CabinetTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
-        loginSteps.auth("77760170303", "Baidaliev1@");
+        loginSteps.auth("77760170303", "Bmarket_1#");
         brManager.navigateTo(envConfig.baseUrl().concat("cabinet"));
     }
 
@@ -63,7 +63,7 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.userPass(), config.userPass());
+            cabinetSteps.changePassword("Bmarket_1#", "Bmarket_1#");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
                 CharacterSetConstants.PASSWORDS_MUST_NOT_BE_SAME
