@@ -139,12 +139,12 @@ public class DepositPage extends BasePage {
 
     @Step("Select change gos prem operation on prod")
     public DepositPage changeGosPremOperation() {
-//        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
-//        WaitUtils.wait(1);
-//        button.btnClick(CHANGE_GOS_PREM_OPERATION);
-//        WaitUtils.wait(5);
-        button.btnDoubleClick(CHANGE_GOS_PREM_OPERATION);
-        WaitUtils.wait(4);
+        button.hoverAndClick(CHANGE_GOS_PREM_OPERATION);
+        WaitUtils.wait(1);
+        button.btnClick(CHANGE_GOS_PREM_OPERATION);
+        WaitUtils.wait(5);
+//        button.btnDoubleClick(CHANGE_GOS_PREM_OPERATION);
+//        WaitUtils.wait(4);
         return this;
     }
 

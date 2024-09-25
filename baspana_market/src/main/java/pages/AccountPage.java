@@ -221,18 +221,22 @@ public class AccountPage extends BasePage {
     @Step("Click sign button")
     public AccountPage clickSignButton() {
         button.btnClick(EPV_SIGN_BUTTON);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Input code")
     public AccountPage inputCode(String smsCode) {
         input.inputWithClear(EPV_OTP, smsCode);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Click send button")
     public AccountPage clickSendButton() {
         button.btnClick(EPV_SEND_BUTTON);
+        WaitUtils.wait(10);
+        elementsAttributes.waitUntilVisible(OPERATION_COMPLETED_SUCCESSFULLY_EPV);
         return this;
     }
 

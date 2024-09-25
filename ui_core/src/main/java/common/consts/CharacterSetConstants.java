@@ -67,7 +67,7 @@ public final class CharacterSetConstants {
 
     public static final String UPDATE_LOGIN_NOTIFICATION = "Изменение номера телефона доступно 1 раз в течении 90 дней";
     public static final String OPERATION_REFUSED = "Уважаемый клиент! Вам отказано, так как вы находитесь в базе бездействующих налогоплательщиков, подробнее можете узнать по номеру 300";
-    public static final String ACTIVE_ORDER_FOR_TERMINATE_MESSAGE = "Извините но у Вас уже есть актуальная заявка на расторжение вклада. Подробнее о заявке вы можете посмотреть во вкладке 'Заявки'.";
+    public static final String ACTIVE_ORDER_FOR_TERMINATE_MESSAGE = "Извините но у Вас уже есть актуальная заявка на расторжение вклада. Подробнее о заявке вы можете посмотреть во вкладке 'Депозитные заявки'.";
     public static final String ACTIVE_ORDER_FOR_DIVISION_MESSAGE = "Извините но у Вас уже есть актуальная заявка на деление вклада. Подробнее о заявке вы можете посмотреть во вкладке 'Заявки'.";
     public static final String ACTIVE_ORDER_FOR_CHANGE_CONDITION = "У вас есть заявления, поданные в течении последних суток. Подача нового заявления возможна раз в сутки";
     public static final String CHANGE_END_DATE_OR_SUM = "Необходимо изменить договорную сумму или дату завершения депозита.";

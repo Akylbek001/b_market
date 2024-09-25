@@ -89,14 +89,14 @@ public class ProfileTest extends BaseTest {
     }
 
     //нужна учетка - повторно изменить пороль после запуска теста
-    @Test(description="Изменить пароль", groups = {"automated"}, enabled = false)
+    @Test(description="Изменить пароль", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение пароля клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changePassword() {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    "AkylbekovA9#", "Baidaliev1@", "Baidaliev1@"
+                    "Baspana_1@", "Standartpass1@", "Standartpass1@"
             );
             profileSteps.confirmPasswordChange();
         });

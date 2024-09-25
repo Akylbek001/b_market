@@ -47,13 +47,13 @@ public class CabinetTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(PROFILE_EMAIL), "akylbek@bk.ru");
     }
 
-    @Test(description = "Изменить пароль", groups = {"automated"}, enabled = false)
+    @Test(description = "Изменить пароль", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить пароль")
     @Severity(SeverityLevel.NORMAL)
     public void changePassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword(config.clientPassword(), "Baidaliev1@");
+            cabinetSteps.changePassword("Bmarket_1#", "Standartpass1@");
         });
     }
 
