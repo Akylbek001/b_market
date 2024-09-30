@@ -44,7 +44,7 @@ public final class InitOptions {
         optChrome.addArguments("--start-maximized");
         optChrome.addArguments("--window-size=1680, 1050");
         optChrome.addArguments("--window-size=1680, 1050");
-        optChrome.addArguments("--headless=new");
+//        optChrome.addArguments("--headless=new");
         optChrome.addArguments("--no-sandbox");
         optChrome.addArguments("--disable-gpu");
         //optChrome.addArguments("--incognito");

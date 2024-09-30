@@ -30,7 +30,6 @@ import steps.DepositSteps;
 @Slf4j
 @Listeners(TestListener.class)
 public abstract class BaseTest{
-
     private WebDriver driver = InitDriver.initDriver();
 
     protected BrowserManager brManager;

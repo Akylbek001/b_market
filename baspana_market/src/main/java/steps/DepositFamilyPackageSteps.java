@@ -15,6 +15,11 @@ public class DepositFamilyPackageSteps {
                 .clickCreateFamilyPackageButton();
     }
 
+    public void clickNavigateToCreatedFamilyPackageButton() {
+        depositFamilyPackagePage
+                .clickNavigateToCreatedFamilyPackageButton();
+    }
+
     public void addMemberToFamilyPackage(String invitedAlternativeCode, String invitedIin) {
         depositFamilyPackagePage
                 .clickAddMemberButton()
@@ -35,9 +40,11 @@ public class DepositFamilyPackageSteps {
                 .clickAddMemberButton_();
     }
 
-    public void clickAcceptInvitationButton() {
+    public void clickAcceptInvitationButton(String otp) {
         depositFamilyPackagePage
-                .clickAcceptInvitationButton();
+                .clickAcceptInvitationButton()
+                .inputOtp(otp)
+                .clickContinueOtpConfirmationButton();
     }
 
     public void clickRejectInvitationButton() {
@@ -57,6 +64,7 @@ public class DepositFamilyPackageSteps {
     public void disbandFamilyPackage() {
         depositFamilyPackagePage
                 .clickDisbandFamilyPackageButton()
+                .clickConfirmDisbandFamilyPackageCheckbox()
                 .clickConfirmDisbandFamilyPackageButton();
     }
 }

@@ -81,7 +81,7 @@ public class DepositSteps {
     public void changeGosPrem(String otp) {
         depositPage
                 .selectChangeGosPremOperation()
-                ._selectSecondDeposit()
+//                ._selectSecondDeposit()
                 .clickSelectButton()
                 .clickGosPremAgreement()
                 .clickSelectButton()

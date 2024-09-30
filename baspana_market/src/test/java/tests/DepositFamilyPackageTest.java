@@ -7,8 +7,6 @@ import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-
 import static io.qameta.allure.Allure.step;
 import static pages.DepositFamilyPackagePage.*;
 
@@ -46,7 +44,7 @@ public class DepositFamilyPackageTest extends BaseTest {
         Assert.assertEquals(
                 "Семейный пакет успешно создан", elementsAttributes.getValue(FAMILY_PACKAGE_CREATED_TEXT)
         );
-        brManager.navigateTo(envConfig.baseUrl().concat("PackageFamily"));
+        depositFamilyPackageSteps.clickNavigateToCreatedFamilyPackageButton();
         Assert.assertEquals(config.familyDepositName(), elementsAttributes.getValue(CREATED_FAMILY_PACKAGE_NAME));
     }
 
@@ -202,8 +200,11 @@ public class DepositFamilyPackageTest extends BaseTest {
             brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
         });
         step("Согалсие на добавление в Семейный пакет", () -> {
-            depositFamilyPackageSteps.clickAcceptInvitationButton();
+            depositFamilyPackageSteps.clickAcceptInvitationButton(config.smsCode());
         });
+        Assert.assertEquals(
+                elementsAttributes.getValue(REQUEST_ACCEPTED_NOTIFICATION),
+                "Ваш депозит добавлен в семейный пакет");
     }
 
     @Test(description="Проверить что участник добавился к семейному пакету", groups = {"automated"}, priority = 9)
@@ -211,7 +212,8 @@ public class DepositFamilyPackageTest extends BaseTest {
     @Description("Проверить что участник добавился к семейному пакету")
     @Severity(SeverityLevel.NORMAL)
     public void checkMemberAddedToFamilyPackage() {
-        step("Перейти в раздел <Семейный пакет>", () -> {
+        step("Авторизация -> Перейти в раздел <Семейный пакет>", () -> {
+            loginSteps.auth(config.clientLogin(), config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("PackageFamily"));
         });
         Assert.assertEquals(
@@ -224,7 +226,8 @@ public class DepositFamilyPackageTest extends BaseTest {
     @Description("Удалить участника")
     @Severity(SeverityLevel.NORMAL)
     public void removeFamilyPackageMember() {
-        step("Перейти в раздел <Семейный пакет>", () -> {
+        step("Авторизация -> Перейти в раздел <Семейный пакет>", () -> {
+            loginSteps.auth("77476230252", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("PackageFamily"));
         });
         step("Удалить участника", () -> {
@@ -233,12 +236,38 @@ public class DepositFamilyPackageTest extends BaseTest {
         Assert.assertFalse(false, CANCEL_INVITE_ICON.toString());
     }
 
-    @Test(description="Расформировать семейный пакет", groups = {"automated"}, priority = 11)
+    @Test(description="Присвоить гос.премию семейному пакету", groups = {"automated"}, priority = 11)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Изменить гос.премию - Премия пристуствует")
+    @Severity(SeverityLevel.CRITICAL)
+    public void tryChangeGosPrem() {
+        step("Авторизация -> Мои депозиты", () -> {
+            loginSteps.auth("77476230252", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
+        });
+        step("Выбрать открытый депозит", () -> {
+            depositSteps.selectOpenedDeposit();
+        });
+        step("Показать доступные операции", () -> {
+            depositSteps.showAvailableOperations();
+        });
+        step("Присвоить гос.премию", () -> {
+            depositSteps.changeGosPrem_validation();
+        });
+        Assert.assertEquals(
+                drManager.getDriver().switchTo().alert().getText(),
+                CharacterSetConstants.GOS_PREM_ALREADY_EXIST_TEXT
+        );
+        drManager.getDriver().switchTo().alert().accept();
+    }
+
+    @Test(description="Расформировать семейный пакет", groups = {"automated"}, priority = 12)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Расформировать семейный пакет")
     @Severity(SeverityLevel.NORMAL)
     public void disbandFamilyPackage() {
-        step("Перейти в раздел <Семейный пакет>", () -> {
+        step("Авторизация -> Перейти в раздел <Семейный пакет>", () -> {
+            loginSteps.auth("77476230252", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("PackageFamily"));
         });
         step("Удалить семейный пакет", () -> {
