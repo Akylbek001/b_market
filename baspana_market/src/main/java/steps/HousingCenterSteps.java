@@ -15,12 +15,49 @@ public class HousingCenterSteps {
         housingCenterPage = new HousingCenterPage(driver);
     }
 
-    public void applyRequest_validateNcaLayer() {
+    public void applyRequest_selfSubmission() {
         housingCenterPage
                 .clickApplyRequest()
-                .clickAgreementCheckBox();
-//                .clickSignButton();
+                .clickSendButton()
+                .clickAgreementCheckbox()
+                .clickSignButton();
     }
+
+    public void applyRequest_ward() {
+        housingCenterPage
+                .clickApplyRequest()
+                .selectWardOption()
+                .clickSendButton();
+    }
+
+    public void  fillWardData(String fio, String iin, String number, String issuedBy, String date, String address) {
+        housingCenterPage
+                .inputFio(fio)
+                .inputIin(iin)
+                .inputDocumentNumber(number)
+                .inputDocumentIssuedBy(issuedBy)
+                .inputDocumentCreatedDate(date)
+                .inputAddress(address)
+                .clickContinueButton();
+    }
+
+    public void sendRequest_ward() {
+        housingCenterPage
+                .clickWardAgreementCheckbox()
+                .clickWardSignButton();
+    }
+
+    public void clickWaitingListTab() {
+        housingCenterPage
+                .clickWaitingListTab();
+    }
+
+    public void clickOkModalButton() {
+        housingCenterPage
+                .clickOkModalButton();
+    }
+
+
 
     public void sign(String filePath, String fileForSign, String password) throws Exception {
         String alias = "RSA256";

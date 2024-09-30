@@ -30,8 +30,11 @@ public class OtauTest extends BaseTest {
             loginSteps.auth("77056552753", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
+        step("Подать заявку", () -> {
+            otauSteps.clickApplyButton();
+        });
         step("Ввод данных по локации", () -> {
-            otauSteps.apply();
+            otauSteps.fillFormAndContinue();
         });
         Assert.assertEquals(
                 CharacterSetConstants.REFUSED_REASON, elementsAttributes.getValue(REFUSED_REASON_TEXT)
@@ -47,8 +50,11 @@ public class OtauTest extends BaseTest {
             loginSteps.auth("77754502772", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
+        step("Подать заявку", () -> {
+            otauSteps.clickApplyButton();
+        });
         step("Ввод данных по локации", () -> {
-            otauSteps.apply();
+            otauSteps.fillFormAndContinue();
         });
         Assert.assertEquals(
                 "Клиент не найден в БМГ", elementsAttributes.getValue(REFUSED_REASON_TEXT)
@@ -65,8 +71,11 @@ public class OtauTest extends BaseTest {
             loginSteps.auth("77477172709", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
+        step("Подать заявку", () -> {
+            otauSteps.clickApplyButton();
+        });
         step("Ввод данных по локации", () -> {
-            otauSteps.apply();
+            otauSteps.fillFormAndContinue();
         });
         step("Выбрать депозит", () -> {
             otauSteps.selectDeposit();

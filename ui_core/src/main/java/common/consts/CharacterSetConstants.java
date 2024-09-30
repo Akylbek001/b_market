@@ -80,9 +80,9 @@ public final class CharacterSetConstants {
 
     public static final String OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION ="Операция успешно завершена";
     public static final String VISIT_BANK_BRANCH = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
-    public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Уважаемый клиент! Введенный Вами альтернативный код некорректный, просим проверить данные.";
+    public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Введенный Вами альтернативный код некорректный";
+    public static final String INVALID_INVITED_MEMBER_IIN = "Введенный Вами ИИН некорректный";
     public static final String VALIDATION_OF_REGISTRATION = "Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Интернет банкинге/мобильном приложений, необходимо проверить наличие регистрации.";
-    public static final String RELATION_DEGREE_NOT_SELECTED_TEXT = "Уважаемый клиент! Выберите степень родства";
     public static final String NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT = "Для продолжения операции Вам необходимо открыть текущий счет, далее необходимо обеспечить наличии минимального взноса в размере 3 МРП.";
     public static final String CERTIFICATE_HAS_BEEN_GENERATED = "Справка сформирована";
     public static final String STATEMENT_HAS_BEEN_GENERATED = "Выписка сформирована";
@@ -102,6 +102,9 @@ public final class CharacterSetConstants {
 
     public static final String ONLY_ONE_DEPOSIT = "У вас недостаточное количество депозитов для совершения операции объединения";
     public static final String DEPOSIT_AMOUNT_MUST_BE_BETWEEN = "Договорная сумма должна быть между 1846000,0 - 199999999,0";
+    public static final String REQUEST_SENT_NOTIFICATION = "Участнику отправлен запрос на добавление в семейный пакет";
+//    public static final String DEPOSIT_ALREADY_ADDED_OR_REQUEST_SENT_NOTIFICATION = "Депозит уже добавлен или приглашен в семейный пакет";
+    public static final String CLIENT_ALREADY_ADDED_TO_THIS_FAMILY_PACKAGE = "Клиент уже включен в этот семейный пакет";
 
     public static final String DEPOSIT_CONDITIONS_CHANGED_SUCCESSFULLY_TEXT ="Операция завершилась успешно";
     public static final String REQUEST_ACCEPTED_TEXT ="Ваша заявка на расторжение депозита принята";

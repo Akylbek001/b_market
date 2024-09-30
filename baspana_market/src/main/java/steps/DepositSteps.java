@@ -16,6 +16,11 @@ public class DepositSteps {
                 .createFamilyPackageOperation();
     }
 
+    public void selectCreateFamilyPackageOperation_() {
+        depositPage
+                .createFamilyPackageOperation_();
+    }
+
     public void clickNewDepositButton() {
         depositPage.clickNewDepositButton();
     }

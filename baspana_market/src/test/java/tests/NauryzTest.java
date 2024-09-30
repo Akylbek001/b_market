@@ -28,10 +28,13 @@ public class NauryzTest extends BaseTest {
     public void applyRequest_validateSum () {
         step("Авторизация", () -> {
             loginSteps.auth("77056552753", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Nauriz"));
+            brManager.navigateTo(envConfig.baseUrl().concat("OtauNauriz"));
+        });
+        step("Подать заявку", () -> {
+            otauSteps.clickApplyButton();
         });
         step("Ввод данных по локации", () -> {
-            otauSteps.apply();
+            otauSteps.fillFormAndContinue();
         });
         Assert.assertEquals(
                 CharacterSetConstants.REFUSED_REASON, elementsAttributes.getValue(REFUSED_REASON_TEXT)
@@ -47,8 +50,11 @@ public class NauryzTest extends BaseTest {
             loginSteps.auth("77752512222", config.clientPassword());
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
+        step("Подать заявку", () -> {
+            otauSteps.clickApplyButton();
+        });
         step("Ввод данных по локации", () -> {
-            otauSteps.apply();
+            otauSteps.fillFormAndContinue();
         });
         Assert.assertEquals(
                 "Клиент не найден в БМГ", elementsAttributes.getValue(REFUSED_REASON_TEXT)
@@ -65,8 +71,11 @@ public class NauryzTest extends BaseTest {
             loginSteps.auth("77477172709", "12345test");
             brManager.navigateTo(envConfig.baseUrl().concat("Ansagan/MyApplications"));
         });
+        step("Подать заявку", () -> {
+            otauSteps.clickApplyButton();
+        });
         step("Ввод данных по локации", () -> {
-            otauSteps.apply();
+            otauSteps.fillFormAndContinue();
         });
         step("Выбрать депозит", () -> {
             otauSteps.selectDeposit();

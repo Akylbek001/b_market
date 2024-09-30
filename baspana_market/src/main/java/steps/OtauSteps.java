@@ -11,18 +11,17 @@ public class OtauSteps {
         otauPage = new OtauPage(driver);
     }
 
-    public void apply() {
+    public void clickApplyButton() {
         otauPage
-                .clickApplyButton()
+                .clickApplyButton();
+    }
+
+    public void fillFormAndContinue() {
+        otauPage
                 .selectRealEstateRegion()
                 .selectResidenceRegion()
                 .clickAgreement()
                 .clickContinueButton();
-    }
-
-    public void clickApplyButton() {
-        otauPage
-                .clickApplyButton();
     }
 
     public void selectDeposit() {

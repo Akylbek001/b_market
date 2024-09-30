@@ -116,8 +116,8 @@ public class ProfileTest extends BaseTest {
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
                     "Baspana_1@",
-                    "AkylbekovA9#",
-                    "AkylbekovA9#".concat("@")
+                    "Barisbekova1@",
+                    "Barisbekova1@".concat("@")
             );
         });
         Assert.assertEquals(

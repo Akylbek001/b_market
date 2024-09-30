@@ -11,29 +11,42 @@ public class DepositFamilyPackageSteps {
 
     public void createFamilyPackage(String familyPackageName) {
         depositFamilyPackagePage
-                .selectDepositForPackage()
-                .clickContinueButton()
                 .inputFamilyPackageName(familyPackageName)
                 .clickCreateFamilyPackageButton();
     }
 
-    public void addMemberToFamilyPackage(String invitedIin, String invitedAlternativeCode) {
+    public void addMemberToFamilyPackage(String invitedAlternativeCode, String invitedIin) {
         depositFamilyPackagePage
-                .clickInviteFamilyPackageMemberButton()
-                .openRelationDegreeList()
-                .selectRelationDegreeValue()
-                .inputInvitedIin(invitedIin)
+                .clickAddMemberButton()
+                .selectRelationDegree()
                 .inputInvitedAlternativeCode(invitedAlternativeCode)
-                .clickAddMemberButton();
+                .inputInvitedIin(invitedIin);
     }
 
-    public void relationDegreeValidation(String invitedIin, String invitedAlternativeCode) {
+    public void addMemberToFamilyPackage_validateRelationDegree(String invitedIin, String invitedAlternativeCode) {
         depositFamilyPackagePage
-                .clickInviteFamilyPackageMemberButton()
-                .inputInvitedIin(invitedIin)
+                .clickAddMemberButton()
                 .inputInvitedAlternativeCode(invitedAlternativeCode)
-                .clickAddMemberButton();
+                .inputInvitedIin(invitedIin);
     }
+
+    public void clickAddMemberButton_() {
+        depositFamilyPackagePage
+                .clickAddMemberButton_();
+    }
+
+    public void clickAcceptInvitationButton() {
+        depositFamilyPackagePage
+                .clickAcceptInvitationButton();
+    }
+
+    public void clickRejectInvitationButton() {
+        depositFamilyPackagePage
+                .clickRejectInvitationButton()
+                .clickConfirmRejectionButton();
+    }
+
+
 
     public void removeFamilyPackageMember() {
         depositFamilyPackagePage

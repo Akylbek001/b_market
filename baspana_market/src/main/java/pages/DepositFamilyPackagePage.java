@@ -8,22 +8,37 @@ import org.openqa.selenium.WebDriver;
 public class DepositFamilyPackagePage extends BasePage {
     public static final By SELECT_DEPOSIT = By.cssSelector(".deposit_consolidation_step1_list_item");
     private static final By CONTINUE_BUTTON = By.id("btnNext");
-    private static final By FAMILY_PACKAGE_NAME = By.id("inptFPName");
-    private static final By CREATE_FAMILY_PACKAGE_BUTTON = By.id("btnCreate");
-    public static final By CREATED_FAMILY_PACKAGE_NAME = By.xpath("//h2");
-    private static final By INVITE_FAMILY_PACKAGE_MEMBER_BUTTON = By.cssSelector("[data-target='#modalInvite']");//?
-    private static final By RELATION_DEGREE_LIST = By.cssSelector(".col-4 div.select");
-    private static final By RELATION_DEGREE_VALUE = By.cssSelector("ul.select-options li[rel='SPOS']");
-    private static final By INVITED_IIN = By.id("inputInviteIIN");
-    private static final By INVITED_ALTERNATIVE_CODE = By.id("inputInviteAlterCode");
-    public static final By INVALID_INVITED_MEMBER_ALTERNATIVE_CODE_NOTIFICATION = By.cssSelector("label#modalNotificationBody");
-    private static final By ADD_MEMBER_BUTTON = By.id("btnAddMember");
-    public static final By ADDED_FAMILY_MEMBER_FIO = By.xpath("//div[@class='family-members'][2] //div[@class='col-sm-4'] /h6");
+    private static final By FAMILY_PACKAGE_NAME = By.id("name-input");
+    private static final By CREATE_FAMILY_PACKAGE_BUTTON = By.cssSelector(".ob__btn.ob__btn__teal");
+    public static final By FAMILY_PACKAGE_CREATED_TEXT = By.cssSelector(".ob__accentL.accentL");
+    private static final By NAVIGATE_TO_CREATED_FAMILY_PACKAGE = By.cssSelector(".ob__btn.ob__btn__teal.ob__h__48px");
+    public static final By CREATED_FAMILY_PACKAGE_NAME = By.cssSelector(".PackageFamilyInfoName p");
+    private static final By ADD_MEMBER_BUTTON = By.cssSelector(".ob__PackageFamily__Main--Participants--Add--Button");
+    private static final By RELATION_DEGREE_LIST = By.id("relationship");
+    private static final By INVITED_ALTERNATIVE_CODE = By.cssSelector("#alt-code.PackageFamilyToAdd__Input");
+    private static final By INVITED_IIN = By.cssSelector("#iin.PackageFamilyToAdd__Input");
+    public static final By SEARCHING_FAMILY_MEMBER_FIO = By.id("part-name");
+
+    private static final By ADD_MEMBER_BUTTON_ = By.cssSelector("button#part-submit.PackageFamilyToAdd__Button");
+    public static final By INVITED_MEMBER_STATUS = By.cssSelector("div.ob__PackageFamily__Main--Participants--Items > div > div > p:nth-child(1)");
+
+    private static final By ACCEPT_INVITATION_TO_FAMILY_PACKAGE_BUTTON = By.id("btnAccept");
+    private static final By REJECT_INVITATION_TO_FAMILY_PACKAGE_BUTTON = By.id("btnReject");
+    private static final By CONFIRM_REJECT_INVITATION_BUTTON = By.id("btnRejectStage");
+    public static final By REQUEST_REJECTED_NOTIFICATION = By.id("#modalInviteReject h5.modal-title.IncludeFamilyPackageHeader.text-center");
+
+    public static final By REQUEST_HAS_BEEN_SENT = By.cssSelector(".ob__PackageFamily__Block--Texts .ob__bodyL");
+    public static final By DEPOSIT_ALREADY_ADDED_OR_REQUEST_SENT = By.id("error-text");
+    public static final By RELATION_DEGREE_NOT_SELECTED = By.id("relation-error");
+    public static final By INVALID_IIN = By.id("iin-error");
+    public static final By INVALID_ALT_CODE = By.id("alt-error");
+    private static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.cssSelector(".ob__PackageFamily__Main--Title--Close");
+    private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.cssSelector(".modal-footer .btn.btn-primary");
+    public static final By FAMILY_PACKAGE_DISBANDED = By.cssSelector("#ToFamilyPackageDisbandedModalDone .modal-title.IncludeFamilyPackageHeader");
+
     public static final By CANCEL_INVITE_ICON = By.id("cancelInvite");//?
     private static final By CONFIRM_CANCEL_INVITE_BUTTON = By.xpath("//button[@id='btnCancelInvite'][2]");
-    public static final By DISBAND_FAMILY_PACKAGE_BUTTON = By.cssSelector("[data-target='#modalDisbandFP']");//?
-    private static final By CONFIRM_DISBAND_FAMILY_PACKAGE_BUTTON = By.id("btnCreateFP");
-    public static final By MAIN_DEPOSIT_AMOUNT = By.cssSelector(".sum");
+
 
     public DepositFamilyPackagePage(WebDriver driver) {
         super(driver);
@@ -53,28 +68,24 @@ public class DepositFamilyPackagePage extends BasePage {
         return this;
     }
 
-    @Step("Click invite family package member button")
-    public DepositFamilyPackagePage clickInviteFamilyPackageMemberButton() {
-        button.btnClick(INVITE_FAMILY_PACKAGE_MEMBER_BUTTON);
-        return this;
-    }
-
-    @Step("Open relation degree list")
-    public DepositFamilyPackagePage openRelationDegreeList() {
-        button.btnClick(RELATION_DEGREE_LIST);
-        WaitUtils.wait(1);
+    @Step("Click add member button")
+    public DepositFamilyPackagePage clickAddMemberButton() {
+        button.btnClick(ADD_MEMBER_BUTTON);
+        WaitUtils.wait(3);
         return this;
     }
 
     @Step("Select relation degree")
-    public DepositFamilyPackagePage selectRelationDegreeValue() {
-        button.btnClick(RELATION_DEGREE_VALUE);
+    public DepositFamilyPackagePage selectRelationDegree() {
+        dropDown.selectByIndex(RELATION_DEGREE_LIST, 3);
+        WaitUtils.wait(1);
         return this;
     }
 
     @Step("Input invited iin")
     public DepositFamilyPackagePage inputInvitedIin(String invitedIin) {
         input.inputWithClear(INVITED_IIN, invitedIin);
+        WaitUtils.wait(3);
         return this;
     }
 
@@ -85,8 +96,26 @@ public class DepositFamilyPackagePage extends BasePage {
     }
 
     @Step("Click add member button")
-    public DepositFamilyPackagePage clickAddMemberButton() {
-        button.btnClick(ADD_MEMBER_BUTTON);
+    public DepositFamilyPackagePage clickAddMemberButton_() {
+        button.btnClick(ADD_MEMBER_BUTTON_);
+        return this;
+    }
+
+    @Step("Click accept invitation button")
+    public DepositFamilyPackagePage clickAcceptInvitationButton() {
+        button.btnClick(ACCEPT_INVITATION_TO_FAMILY_PACKAGE_BUTTON);
+        return this;
+    }
+
+    @Step("Click reject invitation button")
+    public DepositFamilyPackagePage clickRejectInvitationButton() {
+        button.btnClick(REJECT_INVITATION_TO_FAMILY_PACKAGE_BUTTON);
+        return this;
+    }
+
+    @Step("Click confirm rejection button")
+    public DepositFamilyPackagePage clickConfirmRejectionButton() {
+        button.btnClick(CONFIRM_REJECT_INVITATION_BUTTON);
         return this;
     }
 

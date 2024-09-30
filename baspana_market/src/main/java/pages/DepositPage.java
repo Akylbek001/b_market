@@ -64,6 +64,7 @@ public class DepositPage extends BasePage {
     private static final By SIGN_CHANGE_DETAILS_BUTTON = By.id("signChangeDetailsButton");
     public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".finishHead .title");
     private static final By CREATE_FAMILY_PACKAGE_OPERATION = By.xpath("//div[@onclick='onGetDeposits()']");
+    private static final By CREATE_FAMILY_PACKAGE_OPERATION_ = By.xpath("//div[@class='operTxt' and text()='Создать семейный пакет']");
     private static final By DEPOSIT_DIVISION_OPERATION = By.xpath("//div[@class='operTxt' and text()='Деление депозита']");
     public static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");
     public static final By DIVIDE_NO_ACCOUNT_VALIDATION = By.cssSelector(".modal-body.body-attention > p");
@@ -121,6 +122,7 @@ public class DepositPage extends BasePage {
     public DepositPage showAvailableOperations() {
         button.btnClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
 //        button.btnDoubleClick(AVAILABLE_OPERATIONS_WITH_DEPOSIT);
+//        WaitUtils.wait(10);
         WaitUtils.wait(10);
 //        elementsAttributes.waitUntilVisible(DEPOSIT_DIVISION_OPERATION);
         return this;
@@ -259,6 +261,17 @@ public class DepositPage extends BasePage {
 //        WaitUtils.wait(5);
         button.btnDoubleClick(CREATE_FAMILY_PACKAGE_OPERATION);
         WaitUtils.wait(5);
+        return this;
+    }
+
+    @Step("Create family package operation")
+    public DepositPage createFamilyPackageOperation_() {
+//        button.hoverAndClick(CREATE_FAMILY_PACKAGE_OPERATION_);
+//        WaitUtils.wait(1);
+//        button.btnClick(CREATE_FAMILY_PACKAGE_OPERATION_);
+//        WaitUtils.wait(5);
+        button.btnDoubleClick(CREATE_FAMILY_PACKAGE_OPERATION_);
+        WaitUtils.wait(3);
         return this;
     }
 

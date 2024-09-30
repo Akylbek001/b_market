@@ -40,6 +40,13 @@ public class Button extends Elements {
         action.click(element).build().perform();
     }
 
+    @Step("Mouse click on an element: [{element}]")
+    public void mouseClick(By locator) {
+        Actions action = new Actions(driver);
+        waitUntilClickable(locator);
+        action.click((WebElement) locator).build().perform();
+    }
+
     @Step("Double click on an element: [{element}]")
     public void btnDoubleClick(WebElement element) {
         Actions action = new Actions(driver);
