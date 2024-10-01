@@ -56,6 +56,7 @@ public abstract class BaseTest{
     protected EnvConfig envConfig;
     protected DepositSteps depositSteps;
     protected DepositFamilyPackageSteps depositFamilyPackageSteps;
+    protected DepositAssignmentGratuitousStep depositAssignmentGratuitousStep;
     protected AccountSteps accountSteps;
     protected CertificatesSteps certificatesSteps;
     protected GovServicesSteps govServicesSteps;
@@ -120,6 +121,7 @@ public abstract class BaseTest{
         feedbackSteps =new FeedbackSteps(driver);
         depositSteps = new DepositSteps(driver);
         depositFamilyPackageSteps = new DepositFamilyPackageSteps(driver);
+        depositAssignmentGratuitousStep = new DepositAssignmentGratuitousStep(driver);
         accountSteps = new AccountSteps(driver);
         govServicesSteps = new GovServicesSteps(driver);
         certificatesSteps = new CertificatesSteps(driver);

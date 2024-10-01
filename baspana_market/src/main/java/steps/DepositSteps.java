@@ -194,21 +194,47 @@ public class DepositSteps {
                 .selectAssignmentGratuitousOperation();
     }
 
-    public void assignmentGratuitousOperation(String iin, String otp) {
-        depositPage
-                .selectAssignmentGratuitousOperation()
-                .clickAssignmentGratuitousContinueButton()
-                .selectRelationDegree()
-                .inputIin(iin)
-                .clickAssignmentGratuitousContinueButton_();
-    }
-
-    public void confirmByOtp(String otp) {
-        depositPage
-                .clickAssignmentGratuitousContinueButton_()
-                .inputSmsCode(otp)
-                .clickOtpConfirmButton();
-    }
+//    public void assignmentGratuitousOperation(String iin, String otp) {
+//        depositPage
+//                .selectAssignmentGratuitousOperation()
+//                .clickAssignmentGratuitousContinueButton()
+//                .selectRelationDegree()
+//                .inputIin(iin)
+//                .clickAssignmentGratuitousContinueButton_();
+//    }
+//
+//    public void navigateToRequestForSign() {
+//        depositPage
+//                .navigateToRequestForSign()
+//                .clickRequestBlock();
+//    }
+//
+//    public void rejectRequest() {
+//        depositPage
+//                .clickRejectRequestButton();
+//    }
+//
+//    public void acceptRequest() {
+//        depositPage
+//                .clickAcceptRequestButton()
+//                .clickAcceptRequestCheckbox()
+//                .clickAcceptRequestContinueButton()
+//                .clickSignButton()
+//                .clickContinueRequestConfirmationButton();
+//    }
+//
+//    public void acceptRequest_otp(String otp) {
+//        depositPage
+//                .inputAcceptConfirmationOtp(otp)
+//                .clickConfirmOtpButton();
+//    }
+//
+//    public void confirmByOtp(String otp) {
+//        depositPage
+//                .clickAssignmentGratuitousContinueButton_()
+//                .inputSmsCode(otp)
+//                .clickOtpConfirmButton();
+//    }
 
     public void calculator() {
         depositPage

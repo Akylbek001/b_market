@@ -211,4 +211,19 @@ public class MainTest extends BaseTest {
         });
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.baseUrl().concat(envConfig.baspanaNewsPath()));
     }
+
+    @Test(description="Выйти из системы", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Выйти из системы")
+    @Severity(SeverityLevel.NORMAL)
+    public void logout() {
+        step("Авторизация", () -> {
+            loginSteps.auth(config.userLogin(), config.userPass());
+            brManager.navigateTo(envConfig.baseUrl().concat("cabinet/MyStatement"));
+        });
+        step("Выйти", () -> {
+            mainSteps.clickLogOutButton();
+        });
+        Assert.assertEquals(elementsAttributes.getValue(LOGIN_BUTTON_), "Войти");
+    }
 }

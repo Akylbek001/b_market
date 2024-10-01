@@ -2,7 +2,6 @@ package tests.smoke;
 
 import base.BaseTest;
 import common.consts.CharacterSetConstants;
-import common.utils.RandomUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -11,8 +10,9 @@ import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static pages.AccountPage.NO_CURRENT_RENTAL_ACCOUNT;
-import static pages.AppointmentToDepartmentPage.RESULT;
 import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
+import static pages.DepositAssignmentGratuitousPage.ASSIGNMENT_GRATUITOUS_AMOUNT_VALIDATION;
+import static pages.DepositAssignmentGratuitousPage.GOS_PREM_MODAL_TITLE;
 import static pages.DepositFamilyPackagePage.SELECT_DEPOSIT;
 import static pages.DepositPage.*;
 import static pages.MainPage.*;

@@ -575,54 +575,6 @@ public class DepositTest extends BaseTest {
         drManager.getDriver().switchTo().alert().accept();
     }
 
-    //BUG-implement other side accept
-    @Test(description="Уступка безвозмездная", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Уступка безвозмездная")
-    @Severity(SeverityLevel.CRITICAL)
-    public void assignmentGratuitous() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth(
-                    config.client_for_password_recovery_login(), config.client_for_password_recovery_newPassword()
-            );
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
-        });
-        step("Показать доступные операции", () -> {
-            depositSteps.showAvailableOperations();
-        });
-        step("Уступка безвозмездная", () -> {
-            depositSteps.assignmentGratuitousOperation(config.clientIin(), config.smsCode());
-            generalSteps.acceptAgreement_startBiometry();
-            depositSteps.confirmByOtp(config.smsCode());
-        });
-    }
-
-    @Test(description="Уступка безвозмездная => Валидация суммы накопления", groups = {"automated"})
-    @Issue("https://jira.kz/browse/QA-")
-    @Description("Уступка безвозмездная")
-    @Severity(SeverityLevel.CRITICAL)
-    public void assignmentGratuitous_validateSavingAmount() {
-        step("Авторизация -> Мои депозиты", () -> {
-            loginSteps.auth("77777520071", config.clientPassword());
-            brManager.navigateTo(envConfig.baseUrl().concat("Cabinet/MyDeposits"));
-        });
-        step("Выбрать открытый депозит", () -> {
-            depositSteps.selectOpenedDeposit();
-        });
-        step("Показать доступные операции", () -> {
-            depositSteps.showAvailableOperations();
-        });
-        step("Уступка безвозмездная", () -> {
-            depositSteps.selectAssignmentGratuitousOperation();
-        });
-        Assert.assertEquals(CharacterSetConstants.ASSIGNMENT_GRATUITOUS_SAVING_AMOUNT_VALIDATION,
-                elementsAttributes.getValue(ASSIGNMENT_GRATUITOUS_AMOUNT_VALIDATION)
-        );
-    }
-
     @Test(description="Калькулятор депозита", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Калькулятор депозита")

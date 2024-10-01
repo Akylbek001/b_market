@@ -84,16 +84,9 @@ public class DepositPage extends BasePage {
     private static final By DEPOSIT_FOR_GOS_PREM_CONFIRM_BUTTON = By.cssSelector(".Confirm-My-Bank.BackgroundBlock button");
     public static final By OPERATION_FINISHED_SUCCESSFULLY = By.cssSelector(".UnionDepositsBody h3");
     public static final By INVALID_OTP = By.cssSelector(".AttentionToBlockOfErrors > p");
-    public static final By ASSIGNMENT_GRATUITOUS_AMOUNT_VALIDATION = By.cssSelector("span#errorCheckCessioner");
-
     public static final By ASSIGNMENT_GRATUITOUS = By.cssSelector(".operBtn.deposit-relatives-cession");
-    public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON = By.cssSelector(".right_button button");
-    private static final By ASSIGNMENT_GRATUITOUS_RELATION_DEGREE = By.id("selectKinship");
-    private static final By USER_IIN = By.id("iin-input");
-    public static final By ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_ = By.cssSelector(".right_button.ob-mt-20px.web-block button");
-    private static final By CONFIRM_SMS_BUTTON = By.id("continue-sms-cession");
     public static final By PROHIBITION_OF_OPEN_ACCOUNT = By.xpath("//div[@id='arrestsDiv'] /div[@class='arrestDiv'][2] //span[@class='accentXS']");
-    public static final By GOS_PREM_MODAL_TITLE = By.cssSelector(".changeTitle");
+
 
     public DepositPage(WebDriver driver) {
         super(driver);
@@ -392,38 +385,6 @@ public class DepositPage extends BasePage {
 //        WaitUtils.wait(3);
         button.btnDoubleClick(ASSIGNMENT_GRATUITOUS);
         WaitUtils.wait(3);
-        return this;
-    }
-
-    @Step("Click assignment gratuitous continue button")
-    public DepositPage clickAssignmentGratuitousContinueButton() {
-        button.btnClick(ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON);
-        WaitUtils.wait(1);
-        return this;
-    }
-
-    @Step("Select relation degree")
-    public DepositPage selectRelationDegree() {
-        dropDown.selectByIndex(ASSIGNMENT_GRATUITOUS_RELATION_DEGREE, 1);
-        return this;
-    }
-
-    @Step("Input iin")
-    public DepositPage inputIin(String iin) {
-        input.inputWithClear(USER_IIN, iin);
-        return this;
-    }
-
-    @Step("Click assignment gratuitous continue button")
-    public DepositPage clickAssignmentGratuitousContinueButton_() {
-        button.btnClick(ASSIGNMENT_GRATUITOUS_CONTINUE_BUTTON_);
-        WaitUtils.wait(1);
-        return this;
-    }
-
-    @Step("Click otp confirm button")
-    public DepositPage clickOtpConfirmButton() {
-        button.btnClick(CONFIRM_SMS_BUTTON);
         return this;
     }
 

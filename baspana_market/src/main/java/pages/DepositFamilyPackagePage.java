@@ -44,7 +44,6 @@ public class DepositFamilyPackagePage extends BasePage {
     private static final By SELECT_FAMILY_PACKAGE_BLOCK = By.cssSelector(".ob__PackageFamily__Block--DepositsMain");
 
 
-
     public DepositFamilyPackagePage(WebDriver driver) {
         super(driver);
     }
