@@ -69,7 +69,7 @@ public class HousingCenterTest extends BaseTest {
     @Test(description = "Статистика => Заявления", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Заявления")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.MINOR)
     public void requestsTab () {
         step("Перейти в подраздел <Статистика>", () -> {
             brManager.navigateTo(envConfig.baseUrl().concat("Housing/HousingStatistics"));
@@ -80,7 +80,7 @@ public class HousingCenterTest extends BaseTest {
     @Test(description = "Статистика => Очередники", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("Очередники")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.MINOR)
     public void waitingListTab () {
         step("Перейти в подраздел <Статистика>", () -> {
             brManager.navigateTo(envConfig.baseUrl().concat("Housing/HousingStatistics"));

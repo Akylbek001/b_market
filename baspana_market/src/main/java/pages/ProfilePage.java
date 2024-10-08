@@ -41,6 +41,7 @@ public class ProfilePage extends BasePage {
     public static final By PASSWORD_CONFIRMATION_ERROR_LOCATOR = By.cssSelector(
             ".ob__bodyM.ob__error.hidden.passwordError"
     );
+    public static final By BECAME_CLIENT_INFO = By.id("errorMessage");
 
     public ProfilePage(WebDriver driver) {
         super(driver);

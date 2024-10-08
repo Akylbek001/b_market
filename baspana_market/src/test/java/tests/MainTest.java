@@ -20,6 +20,18 @@ public class MainTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
+    @Test(description="Баннер <Премия государства>", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Навигация на страницу премии государства")
+    @Severity(SeverityLevel.TRIVIAL)
+    public void navigateToGosPremBanner() {
+        step("Навигация на страницу премии", () -> {
+            mainSteps.navigateToMainBanner();
+        });
+        brManager.switchToLastTab();
+        Assert.assertEquals(brManager.getCurrUrl(), envConfig.gosPremUrl());
+    }
+
     @Test(description="Разместить объявление", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")
     @Description("")

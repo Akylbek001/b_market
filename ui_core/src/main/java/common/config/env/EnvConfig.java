@@ -62,6 +62,9 @@ public interface EnvConfig extends Config{
     @Key("baspanaInfo.path")
     String baspanaInfoPath();
 
+    @Key("gosPrem.url")
+    String gosPremUrl();
+
     @Key("baiterek.url")
     String baiterekUrl();
 

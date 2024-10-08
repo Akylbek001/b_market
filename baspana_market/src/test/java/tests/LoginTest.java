@@ -7,6 +7,7 @@ import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static common.utils.RandomUtils.generatePassword;
@@ -21,6 +22,8 @@ public class LoginTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Авторизация клиента {логин & пароль}", groups = {"automated"})
@@ -49,7 +52,7 @@ public class LoginTest extends BaseTest {
             loginSteps.login(config.clientInvalidLogin(), config.clientPassword());
         });
         Assert.assertEquals(
-                CharacterSetConstants.UNEXPECTED_ERROR,elementsAttributes.getValue(WRONG_CREDENTIALS_TEXT));
+                CharacterSetConstants.UNEXPECTED_ERROR, elementsAttributes.getValue(WRONG_CREDENTIALS_TEXT));
     }
 
     @Test(description="Авторизация клиента => Не корректный пароль", groups = {"automated"})

@@ -10,6 +10,16 @@ public class MainSteps {
         mainPage = new MainPage(driver);
     }
 
+    public void navigateToMainBanner() {
+        mainPage
+                .navigateToMainBanner();
+    }
+
+    public void closeBannerIcon() {
+        mainPage
+                .closeBannerIcon();
+    }
+
     public void loginButton() {
         mainPage
                 .clickLoginButton();

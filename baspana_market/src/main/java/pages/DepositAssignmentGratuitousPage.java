@@ -56,6 +56,7 @@ public class DepositAssignmentGratuitousPage extends BasePage {
     @Step("Input iin")
     public DepositAssignmentGratuitousPage inputIin(String iin) {
         input.inputWithClear(USER_IIN, iin);
+        WaitUtils.wait(3);
         return this;
     }
 

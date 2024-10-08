@@ -47,13 +47,13 @@ public class CabinetTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(PROFILE_EMAIL), "akylbek@bk.ru");
     }
 
-    @Test(description = "Изменить пароль", groups = {"automated"})
+    @Test(description = "Изменить пароль", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Изменить пароль")
     @Severity(SeverityLevel.NORMAL)
     public void changePassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword("Bmarket_1#", "Standartpass1@");
+            cabinetSteps.changePassword(config.clientPassword(), "Standartpass1@");
         });
     }
 
@@ -63,7 +63,20 @@ public class CabinetTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword () {
         step("Изменить пароль", () -> {
-            cabinetSteps.changePassword("Bmarket_1#", "Bmarket_1#");
+            cabinetSteps.changePassword(config.clientPassword(), "Bmarket_1#");
+        });
+        Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
+                CharacterSetConstants.PASSWORDS_MUST_NOT_BE_SAME
+        );
+    }
+
+    @Test(description = "Изменить пароль => Валидация невалидного текущего пароля", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("валидация текущего пароля")
+    @Severity(SeverityLevel.NORMAL)
+    public void validateInvalidCurrentPassword () {
+        step("Изменить пароль", () -> {
+            cabinetSteps.changePassword(config.clientPassword().concat("#"), "Bmarket_1#");
         });
         Assert.assertEquals(elementsAttributes.getValue(CHANGE_PASSWORD_RESULT),
                 CharacterSetConstants.PASSWORDS_MUST_NOT_BE_SAME

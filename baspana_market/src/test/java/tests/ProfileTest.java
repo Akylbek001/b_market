@@ -19,10 +19,6 @@ public class ProfileTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
-
-        mainSteps.loginButton();
-        loginSteps.login("77773811409", "Baspana_1@");
-        brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
     }
 
     //изменить можно раз в 90 дней
@@ -31,6 +27,10 @@ public class ProfileTest extends BaseTest {
     @Description("Изменить номер телефона")
     @Severity(SeverityLevel.NORMAL)
     public void editPhoneNumber() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77773811409", "Baspana_1@");
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Установить новый номер телефона", () -> {
             profileSteps.editPhoneNumber(config.userLogin());
         });
@@ -43,6 +43,10 @@ public class ProfileTest extends BaseTest {
     @Description("Удостоверение личности")
     @Severity(SeverityLevel.NORMAL)
     public void editIdentificationData() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Удостоверение личности", () -> {
             profileSteps.editIdentification();
         });
@@ -55,10 +59,31 @@ public class ProfileTest extends BaseTest {
     @Description("Изменить личные данные")
     @Severity(SeverityLevel.NORMAL)
     public void editPersonalData() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Личные данные", () -> {
             profileSteps.editPersonalData("QA");
         });
         Assert.assertTrue(true);
+    }
+
+    @Test(description="Изменить личные данные => Валидация данных", groups = {"automated"})
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Изменить личные данные")
+    @Severity(SeverityLevel.NORMAL)
+    public void editPersonalData_validateData() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
+        step("Личные данные", () -> {
+            profileSteps.editPersonalDataOperation();
+        });
+        Assert.assertEquals(
+                CharacterSetConstants.BECOME_CLIENT_INFO_TEXT, elementsAttributes.getValue(BECAME_CLIENT_INFO)
+        );
     }
 
     @Test(description="Изменить email", groups = {"automated"})
@@ -66,6 +91,10 @@ public class ProfileTest extends BaseTest {
     @Description("Редактирование email клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changeEmail() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Установить новый email", () -> {
             profileSteps.setNewEmail(config.client_for_newEmail());
         });
@@ -79,6 +108,10 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация некорректного формата email")
     @Severity(SeverityLevel.NORMAL)
     public void validateInvalidNewEmail() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Установить новый email", () -> {
             profileSteps.setNewEmail("invalidEmail");
         });
@@ -89,14 +122,18 @@ public class ProfileTest extends BaseTest {
     }
 
     //нужна учетка - повторно изменить пороль после запуска теста
-    @Test(description="Изменить пароль", groups = {"automated"})
+    @Test(description="Изменить пароль", groups = {"automated"}, enabled = false)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Успешное изменение пароля клиента")
     @Severity(SeverityLevel.NORMAL)
     public void changePassword() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    "Baspana_1@", "Standartpass1@", "Standartpass1@"
+                    config.clientPassword(), "Standartpass1@", "Standartpass1@"
             );
             profileSteps.confirmPasswordChange();
         });
@@ -113,9 +150,13 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация подтверждения пароля")
     @Severity(SeverityLevel.NORMAL)
     public void validateNewPasswordConfirmation() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    "Baspana_1@",
+                    config.clientPassword(),
                     "Barisbekova1@",
                     "Barisbekova1@".concat("@")
             );
@@ -132,9 +173,13 @@ public class ProfileTest extends BaseTest {
     @Description("Валидация текущего пароля")
     @Severity(SeverityLevel.NORMAL)
     public void validateCurrentPassword() {
+        step("Авторизация -> Перейти в раздел <Профиль>", () -> {
+            loginSteps.auth("77750715539", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("profile/info"));
+        });
         step("Ввести текущий и новый пароль", () -> {
             profileSteps.inputCurrentAndNewPassword(
-                    "Baspana_1@", "Baspana_1@", "Baspana_1@"
+                    config.clientPassword().concat("#"), "Baspana_1@", "Baspana_1@"
             );
             profileSteps.confirmPasswordChange();
         });

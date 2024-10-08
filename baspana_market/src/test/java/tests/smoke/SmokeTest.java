@@ -58,6 +58,7 @@ public class SmokeTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     public void mainPage_allGosPrograms() {
         step("Навигация на страницу гос.программ", () -> {
+            WaitUtils.wait(3);
             mainSteps.clickShowAllStateProgramsButton();
         });
         Assert.assertEquals(
@@ -81,6 +82,7 @@ public class SmokeTest extends BaseTest {
     @Description("Посмотреть все вторичое жилье")
     @Severity(SeverityLevel.MINOR)
     public void allSecondaryHousing_fromMainPage() {
+        WaitUtils.wait(2);
         step("Навигация на страницу вторичного жилья", () -> {
             mainSteps.clickShowAllSecondaryHousingButton();
         });

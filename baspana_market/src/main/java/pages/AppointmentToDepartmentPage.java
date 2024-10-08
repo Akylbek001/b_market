@@ -12,7 +12,7 @@ public class AppointmentToDepartmentPage extends BasePage {
     private static final By ODER_TYPE = By.id("MainOperList");
     private static final By VISIT_PURPOSE = By.cssSelector("select#bookingVisitPurpose");
     private static final By PERIOD = By.id("calendar-range");
-    private static final By DATE = By.cssSelector("[aria-label='Сентябрь 24, 2024']");
+    private static final By DATE = By.cssSelector("[aria-label='Октябрь 10, 2024']");
     private static final By TIME = By.id("bookingTime");
     private static final By SUBMIT_BUTTON = By.id("submit_form");
     private static final By CANCEL_BUTTON = By.id("NotificationBookingcancelBookingBtn");

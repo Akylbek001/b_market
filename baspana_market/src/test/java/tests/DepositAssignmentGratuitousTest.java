@@ -20,7 +20,7 @@ public class DepositAssignmentGratuitousTest extends BaseTest {
         WaitUtils.wait(1);
     }
 
-    @Test(description="Уступка безвозмездная => Подача заявки на присоединения", groups = {"automated"}, priority = 0)
+    @Test(description="Заявка на уступку прав и обязательств", groups = {"automated"}, priority = 0)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Уступка безвозмездная")
     @Severity(SeverityLevel.CRITICAL)
@@ -43,6 +43,7 @@ public class DepositAssignmentGratuitousTest extends BaseTest {
             generalSteps.acceptAgreement_startBiometry();
             depositAssignmentGratuitousStep.confirmByOtp(config.smsCode());
         });
+        elementsAttributes.waitUntilVisible(WAITING_FOR_SINGING_STATUS);
         Assert.assertEquals(elementsAttributes.getValue(WAITING_FOR_SINGING_STATUS), "Ожидание подписания");
     }
 
@@ -87,6 +88,7 @@ public class DepositAssignmentGratuitousTest extends BaseTest {
             generalSteps.acceptAgreement_startBiometry();
             depositAssignmentGratuitousStep.confirmByOtp(config.smsCode());
         });
+        elementsAttributes.waitUntilVisible(WAITING_FOR_SINGING_STATUS);
         Assert.assertEquals(elementsAttributes.getValue(WAITING_FOR_SINGING_STATUS), "Ожидание подписания");
     }
 
@@ -108,6 +110,7 @@ public class DepositAssignmentGratuitousTest extends BaseTest {
         step("ОТП", () -> {
             depositAssignmentGratuitousStep.confirmByOTP(config.smsCode());
         });
+        elementsAttributes.waitUntilVisible(ACCEPTED_NOTIFICATION);
         Assert.assertEquals(
                 elementsAttributes.getValue(ACCEPTED_NOTIFICATION), "Родственная связь подтверждена"
         );
@@ -131,6 +134,7 @@ public class DepositAssignmentGratuitousTest extends BaseTest {
         step("ОТП", () -> {
             depositAssignmentGratuitousStep.confirmByOTP(config.smsCode());
         });
+        elementsAttributes.waitUntilVisible(WAITING_FOR_SINGING_STATUS);
         Assert.assertEquals(elementsAttributes.getValue(WAITING_FOR_SINGING_STATUS), "Ожидание подписания");
     }
 
@@ -152,6 +156,7 @@ public class DepositAssignmentGratuitousTest extends BaseTest {
         step("ОТП", () -> {
             depositAssignmentGratuitousStep.confirmByOTP(config.smsCode());
         });
+        elementsAttributes.waitUntilVisible(FINAL_STATUS);
         Assert.assertEquals(
                 elementsAttributes.getValue(FINAL_STATUS),
                 CharacterSetConstants.OPERATION_FINISHED_SUCCESSFULLY_NOTIFICATION

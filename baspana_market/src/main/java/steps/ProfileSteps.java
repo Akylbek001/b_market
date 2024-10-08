@@ -28,6 +28,12 @@ public class ProfileSteps {
                 .inputNewWorkPosition(workPosition);
     }
 
+    public void editPersonalDataOperation() {
+        profilePage
+                .clickPersonalData()
+                .clickEditDataButton();
+    }
+
     public void setNewEmail(String newEmail) {
         profilePage
                 .clickChangeEmail()

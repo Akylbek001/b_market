@@ -50,10 +50,23 @@ public class MainPage extends BasePage {
     public static final By POST_AD_TITLE = By.cssSelector(".title.title-new-i h1");
     private static final By LOGOUT = By.xpath("//div[@class='menu-item'] /form[@id='logoutForm']");
     public static final By LOGIN_BUTTON_ = By.cssSelector("#OBLoginButtDiv span");
+    private static final By MAIN_BANNER_CLOSE_ICON = By.id("banners_onlines--closes");
+    private static final By MAIN_BANNER_DETAILS_BUTTON = By.id("linkToGosRewardButton");
 
 
     public MainPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Step("Close banner icon")
+    public MainPage closeBannerIcon() {
+        button.btnClick(MAIN_BANNER_CLOSE_ICON);
+        return this;
+    }
+    @Step("Navigate to main banner")
+    public MainPage navigateToMainBanner() {
+        button.btnClick(MAIN_BANNER_DETAILS_BUTTON);
+        return this;
     }
 
     @Step("Click login button")

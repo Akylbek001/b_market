@@ -40,7 +40,7 @@ public final class CharacterSetConstants {
     public static final String PASSWORDS_MUST_CONTAIN_AT_LEAST_ONE_CAPITAL_LETTER = "Пароль должен содержать хотябы одну заглавную букву";
     public static final String PASSWORDS_MUST_CONTAIN_AT_LEAST_ONE_CHARACTER = "Пароль должен содержать хотябы один символ";
     public static final String INVALID_EMAIL_FORMAT_TEXT = "Вы ввели некорректный e-mail";
-
+    public static final String BECOME_CLIENT_INFO_TEXT = "Уважаемый клиент! Вы можете перейти в раздел 'Стать клиентом' и открыть депозит в Отбасы банк.";
     public static final String CALLBACK_SUCCESS_TEXT = "Заявка успешно отправлена";
     public static final String CALLBACK_REFUSED_TEXT = "Оставьте свои данные, и мы перезвоним вам в рабочее время";
     public static final String GUEST_LOGIN_ALREADY_EXIST = "Пользователь с номером +77014640909 уже зарегистрирован";
