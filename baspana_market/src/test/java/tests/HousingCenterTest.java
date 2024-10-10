@@ -21,6 +21,7 @@ public class HousingCenterTest extends BaseTest {
         WaitUtils.wait(2);
 
         loginSteps.auth(config.userLogin(), config.userPass());
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description = "Подать заявку => Самостоятельная подача", groups = {"automated"})

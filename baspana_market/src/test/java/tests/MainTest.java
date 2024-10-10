@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import common.consts.CharacterSetConstants;
 import common.utils.RandomUtils;
 import common.utils.WaitUtils;
 import io.qameta.allure.*;
@@ -18,6 +19,8 @@ public class MainTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Баннер <Премия государства>", groups = {"automated"})
@@ -32,7 +35,7 @@ public class MainTest extends BaseTest {
         Assert.assertEquals(brManager.getCurrUrl(), envConfig.gosPremUrl());
     }
 
-    @Test(description="Разместить объявление", groups = {"automated"})
+    @Test(description="Разместить объявление", groups = {"automated"}, priority = 0)
     @Issue("https://jira.kz/browse/QA-")
     @Description("")
     @Severity(SeverityLevel.MINOR)
@@ -47,7 +50,7 @@ public class MainTest extends BaseTest {
                     RandomUtils.randomNumeric(1),
                     "ул.Абылайхана",
                     "91",
-                    "description",
+                    CharacterSetConstants.NOT_IN_TAX_AUTHORITY_DATABASE_TEXT,
                     "17000000"
             );
         });
@@ -72,14 +75,14 @@ public class MainTest extends BaseTest {
                     RandomUtils.randomNumeric(1),
                     "ул.Абылайхана",
                     "91",
-                    "description",
+                    CharacterSetConstants.NOT_IN_TAX_AUTHORITY_DATABASE_TEXT,
                     "17000000"
             );
         });
         Assert.assertEquals(elementsAttributes.getValue(STATUS_OF_AD), "На модерации");
     }
 
-    @Test(description="Удалить объявление", groups = {"automated"})
+    @Test(description="Удалить объявление", groups = {"automated"}, priority = 1)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Удалить объявление")
     @Severity(SeverityLevel.MINOR)

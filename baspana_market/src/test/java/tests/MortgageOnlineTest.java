@@ -16,6 +16,8 @@ import static io.qameta.allure.Allure.step;
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Ипотека онлайн", groups = {"automated"})

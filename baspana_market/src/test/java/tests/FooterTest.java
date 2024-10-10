@@ -17,6 +17,8 @@ public class FooterTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Ссылка <Интернет-Банкинг>", groups = {"automated"})

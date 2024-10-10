@@ -19,6 +19,7 @@ public class RegistrationTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
+        mainSteps.closeBannerIcon();
         mainSteps.loginButton();
         loginSteps.registration();
         registrationSteps.acceptAgreement();

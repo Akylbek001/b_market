@@ -18,6 +18,8 @@ public class AppointmentToDepartmentTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Запись в отделение = забронировать", groups = {"automated"}, priority = 0)

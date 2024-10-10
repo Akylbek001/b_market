@@ -23,6 +23,7 @@ public class BecomeClientTest extends BaseTest {
 
         mainSteps.loginButton();
         loginSteps.becomeClient();
+        mainSteps.closeBannerIcon();
     }
 
     //2factor

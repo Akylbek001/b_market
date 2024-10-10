@@ -18,6 +18,8 @@ public class RentSubsidyTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Подать заявку аренды => Валидация активной заявки", groups = {"automated"})

@@ -19,6 +19,8 @@ public class NauryzTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description = "Подать заявку => Валидация суммы < 1 000 000", groups = {"automated"})

@@ -18,6 +18,8 @@ public class DepositFamilyPackageTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Создать семейный пакет", groups = {"automated"}, priority = 0)

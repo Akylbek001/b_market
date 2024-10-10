@@ -23,6 +23,7 @@ public class CabinetTest extends BaseTest {
 
         loginSteps.auth("77760170303", "Bmarket_1#");
         brManager.navigateTo(envConfig.baseUrl().concat("cabinet"));
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description = "Добавить email", groups = {"automated"})

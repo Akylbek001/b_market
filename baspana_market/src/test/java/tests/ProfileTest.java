@@ -19,6 +19,8 @@ public class ProfileTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     //изменить можно раз в 90 дней

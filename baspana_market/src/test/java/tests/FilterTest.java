@@ -18,6 +18,8 @@ public class FilterTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Квартиры Отау и Наурыз", groups = {"automated"})

@@ -23,6 +23,8 @@ public class SpecAccountSgoTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description = "Полный расчет в Otbasy Bank => По номеру телефона с контарактом", groups = {"automated"})

@@ -16,6 +16,8 @@ public class DigitalMortgageTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Цифровая ипотека", groups = {"automated"})

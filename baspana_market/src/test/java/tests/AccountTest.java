@@ -20,6 +20,8 @@ public class AccountTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Открыть текущий счет => Валидация отсутствия депозита", groups = {"automated"}, priority = 0)

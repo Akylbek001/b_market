@@ -20,6 +20,8 @@ public class GosServicesTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
     @Test(description = "Справка об отсутствии недвижимого имущества", groups = {"automated"})
     @Issue("https://jira.kz/browse/QA-")

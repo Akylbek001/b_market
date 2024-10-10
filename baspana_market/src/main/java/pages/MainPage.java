@@ -37,12 +37,12 @@ public class MainPage extends BasePage {
     private static final By OBJECT_STATE = By.xpath("//*[text()='Хорошее']");
     private static final By REGION = By.cssSelector("select.square-items.adress-items--w");
     private static final By CITY_REGION = By.cssSelector("select.square-items.adress-items--w.sub-opt");
-    private static final By STREET = By.cssSelector(".adress-items .square-items.adress-items--w");
-    private static final By HOUSE = By.xpath("//div[@class='adress-items']// input[@class='square-items']");
+    private static final By STREET = By.cssSelector(".ob_address-street.square-items.adress-items--w");
+    private static final By HOUSE = By.xpath("//input[@class='ob_address-number square-items']");
     private static final By HOUSE_TYPE = By.cssSelector("select.square-items.btn-wb");
-    private static final By DESCRIPTION = By.cssSelector(".item-description");
+    private static final By DESCRIPTION = By.id("editor-block-content");
     private static final By PRICE = By.cssSelector(".square-items.c");
-    private static final By PUBLIC_BUTTON = By.cssSelector(".btn-object");
+    private static final By PUBLIC_BUTTON = By.cssSelector(".btn-object.ob__h__48px");
     public static final By STATUS_OF_AD = By.cssSelector(".house-card-footer--t");
     private static final By REMOVE_AD_BUTTON = By.cssSelector(".btn.u");
     private static final By REMOVE_CONFIRM_BUTTON = By.cssSelector("button.button--r");
@@ -50,9 +50,8 @@ public class MainPage extends BasePage {
     public static final By POST_AD_TITLE = By.cssSelector(".title.title-new-i h1");
     private static final By LOGOUT = By.xpath("//div[@class='menu-item'] /form[@id='logoutForm']");
     public static final By LOGIN_BUTTON_ = By.cssSelector("#OBLoginButtDiv span");
-    private static final By MAIN_BANNER_CLOSE_ICON = By.id("banners_onlines--closes");
+    public static final By MAIN_BANNER_CLOSE_ICON = By.id("banners_onlines--closes");
     private static final By MAIN_BANNER_DETAILS_BUTTON = By.id("linkToGosRewardButton");
-
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -60,6 +59,7 @@ public class MainPage extends BasePage {
 
     @Step("Close banner icon")
     public MainPage closeBannerIcon() {
+        elementsAttributes.waitUntilVisible(MAIN_BANNER_CLOSE_ICON);
         button.btnClick(MAIN_BANNER_CLOSE_ICON);
         return this;
     }
@@ -137,7 +137,7 @@ public class MainPage extends BasePage {
 
     @Step("Input street")
     public MainPage inputStreet(String street) {
-        move.scrollToElement(STREET);
+//        move.scrollToElement(STREET);
         input.inputWithClear(STREET, street);
         return this;
     }
@@ -169,6 +169,7 @@ public class MainPage extends BasePage {
 
     @Step("Click public button")
     public MainPage clickPublicButton() {
+        move.scrollToElement(PUBLIC_BUTTON);
         button.btnClick(PUBLIC_BUTTON);
         return this;
     }

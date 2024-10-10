@@ -19,6 +19,8 @@ public class HeaderTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Программа банка => Свой дом", groups = {"automated"})

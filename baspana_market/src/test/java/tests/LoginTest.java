@@ -7,7 +7,6 @@ import common.utils.WaitUtils;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static common.utils.RandomUtils.generatePassword;

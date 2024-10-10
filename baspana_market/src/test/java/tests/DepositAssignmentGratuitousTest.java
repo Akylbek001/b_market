@@ -18,6 +18,8 @@ public class DepositAssignmentGratuitousTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Заявка на уступку прав и обязательств", groups = {"automated"}, priority = 0)

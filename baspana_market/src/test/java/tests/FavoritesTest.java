@@ -17,6 +17,8 @@ public class FavoritesTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description = "Добавить объявление в избранное", groups = {"automated"})

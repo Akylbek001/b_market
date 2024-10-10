@@ -19,6 +19,8 @@ public class LoansTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     //bug - после ввода суммы пополнения отсутствуют дальнейшие шаги

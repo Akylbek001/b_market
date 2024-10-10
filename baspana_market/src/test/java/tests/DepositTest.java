@@ -19,6 +19,8 @@ public class DepositTest extends BaseTest {
         brManager.clearCache();
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
+
+        mainSteps.closeBannerIcon();
     }
 
     @Test(description="Изменить <гос.премию> текущего депозита => Валидация имеющейся премии", groups = {"automated"})
