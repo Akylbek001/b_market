@@ -21,9 +21,9 @@ public class CertificateTest extends BaseTest {
         navigation.gotoLoginPage();
         WaitUtils.wait(1);
 
+        mainSteps.closeBannerIcon();
         loginSteps.auth(config.loanClient_login(), config.loanClient_password());
         brManager.navigateTo(envConfig.baseUrl().concat("Inquiry"));
-        mainSteps.closeBannerIcon();
     }
 
     @Test(description = "Выписка о наличии всех счетов", groups = {"automated"})

@@ -22,7 +22,7 @@ public class GeneralPage extends BasePage {
     @Step("Click agreement checkbox")
     public GeneralPage clickAgreementCheckbox() {
         button.btnClick(AGREEMENT_CHECKBOX);
-//        WaitUtils.wait(2);
+        WaitUtils.wait(1);
         return this;
     }
 

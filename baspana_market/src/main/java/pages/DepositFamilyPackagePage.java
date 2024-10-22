@@ -30,7 +30,7 @@ public class DepositFamilyPackagePage extends BasePage {
     public static final By REQUEST_REJECTED_NOTIFICATION = By.xpath("//div[@id='modalInviteReject'] //h5");
     public static final By REQUEST_ACCEPTED_NOTIFICATION = By.xpath("//div[@id='modalInviteSuccess'] //h5");
     public static final By REQUEST_HAS_BEEN_SENT = By.cssSelector(".ob__PackageFamily__Block--Texts .ob__bodyL");
-    public static final By DEPOSIT_ALREADY_ADDED_OR_REQUEST_SENT = By.id("error-text");
+    public static final By VALIDATION_NOTIFICATION = By.id("error-text");
     public static final By RELATION_DEGREE_NOT_SELECTED = By.id("relation-error");
     public static final By INVALID_IIN = By.id("iin-error");
     public static final By INVALID_ALT_CODE = By.id("alt-error");

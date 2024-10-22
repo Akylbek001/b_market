@@ -82,6 +82,7 @@ public final class CharacterSetConstants {
     public static final String VISIT_BANK_BRANCH = "Уважаемый клиент! Вам необходимо обратиться в отделение банка";
     public static final String INVALID_INVITED_MEMBER_ALTERNATIVE_CODE = "Введенный Вами альтернативный код некорректный";
     public static final String INVALID_INVITED_MEMBER_IIN = "Введенный Вами ИИН некорректный";
+    public static final String NOT_REGISTERED_NOTIFICATION ="Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Баспана/мобильном приложений, необходимо проверить наличие регистрации.";
     public static final String VALIDATION_OF_REGISTRATION = "Уважаемый клиент! В семейный пакет включаются только зарегистрированные клиенты в Интернет банкинге/мобильном приложений, необходимо проверить наличие регистрации.";
     public static final String NEED_TO_OPEN_CURRENT_ACCOUNT_TEXT = "Для продолжения операции Вам необходимо открыть текущий счет, далее необходимо обеспечить наличии минимального взноса в размере 3 МРП.";
     public static final String CERTIFICATE_HAS_BEEN_GENERATED = "Справка сформирована";

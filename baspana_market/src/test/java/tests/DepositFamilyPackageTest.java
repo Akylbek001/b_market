@@ -86,6 +86,25 @@ public class DepositFamilyPackageTest extends BaseTest {
         Assert.assertEquals(elementsAttributes.getValue(INVALID_IIN), CharacterSetConstants.INVALID_INVITED_MEMBER_IIN);
     }
 
+    @Test(description="Добавить участника семейного пакета => Валидация регистрации", groups = {"automated"}, priority = 2)
+    @Issue("https://jira.kz/browse/QA-")
+    @Description("Валидация регистрации")
+    @Severity(SeverityLevel.NORMAL)
+    public void tryAddFamilyPackageMember_notRegistered() {
+        step("Авторизация -> <Семейный пакет>", () -> {
+            loginSteps.auth("77476230252", config.clientPassword());
+            brManager.navigateTo(envConfig.baseUrl().concat("PackageFamily"));
+        });
+        step("Добавить учестника", () -> {
+            depositFamilyPackageSteps.addMemberToFamilyPackage(
+                    config.clientAlternativeCode(), config.clientInvalidIin()
+            );
+        });
+        Assert.assertEquals(elementsAttributes.getValue(VALIDATION_NOTIFICATION),
+                CharacterSetConstants.NOT_REGISTERED_NOTIFICATION
+        );
+    }
+
     @Test(description="Добавить участника семейного пакета => Валидация альт.кода", groups = {"automated"}, priority = 3)
     @Issue("https://jira.kz/browse/QA-")
     @Description("Валидация альт.кода")
@@ -151,7 +170,7 @@ public class DepositFamilyPackageTest extends BaseTest {
         });
         Assert.assertEquals(
                 CharacterSetConstants.CLIENT_ALREADY_ADDED_TO_THIS_FAMILY_PACKAGE,
-                elementsAttributes.getValue(DEPOSIT_ALREADY_ADDED_OR_REQUEST_SENT)
+                elementsAttributes.getValue(VALIDATION_NOTIFICATION)
         );
     }
 
