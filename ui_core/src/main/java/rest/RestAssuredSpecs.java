@@ -19,7 +19,7 @@ public class RestAssuredSpecs {
     private String baseUri;
     private String API;
 
-    public RestAssuredSpecs(String API) {
+    public RestAssuredSpecs(String API, String api) {
         this.schemasFilePath = config.jsonSchemasFilePath();
         this.baseUri = config.baseUri();
         this.API = API;

@@ -3,7 +3,6 @@ package tests
 import inlines.step
 import io.qameta.allure.*
 import io.restassured.RestAssured.given
-import org.hamcrest.Matchers.*
 import org.testng.annotations.BeforeClass
 import org.testng.annotations.Test
 import rest.RestAssuredSpecs
@@ -23,7 +22,7 @@ class SimpleLoggingRestTest: SimpleLoggingBaseRestTest() {
     @BeforeClass(alwaysRun = true, description = "Инициализация дополнительных переменных")
     fun initVars2() {
         api = "/api/v1/catalog/cities"
-        specs = RestAssuredSpecs(api)
+        specs = RestAssuredSpecs(api, api)
     }
 
     @Test(description = "Пример теста (проверка на соответствие json-схеме, простое логирование)", groups = ["rest", "smoke"])
