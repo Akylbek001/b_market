@@ -13,6 +13,7 @@ import static pages.AccountPage.NO_CURRENT_RENTAL_ACCOUNT;
 import static pages.CertificatesPage.CERTIFICATE_GENERATED_NOTIFICATION;
 import static pages.DepositAssignmentGratuitousPage.ASSIGNMENT_GRATUITOUS_AMOUNT_VALIDATION;
 import static pages.DepositAssignmentGratuitousPage.GOS_PREM_MODAL_TITLE;
+import static pages.DepositFamilyPackagePage.FAMILY_PACKAGE_NAME;
 import static pages.DepositFamilyPackagePage.SELECT_DEPOSIT;
 import static pages.DepositPage.*;
 import static pages.MainPage.*;
@@ -311,7 +312,7 @@ public class SmokeTest extends BaseTest {
         step("Выбрать операцию <Создать семейный пакет>", () -> {
             depositSteps.selectCreateFamilyPackageOperation();
         });
-        elementsAttributes.waitUntilVisible(SELECT_DEPOSIT);
+        elementsAttributes.waitUntilVisible(FAMILY_PACKAGE_NAME);
     }
 
     @Test(description="Депозиты -> Операция <Деление депозита>", groups = {"automated"})

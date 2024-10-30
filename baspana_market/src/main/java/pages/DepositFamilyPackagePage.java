@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 public class DepositFamilyPackagePage extends BasePage {
     public static final By SELECT_DEPOSIT = By.cssSelector(".deposit_consolidation_step1_list_item");
     private static final By CONTINUE_BUTTON = By.id("btnNext");
-    private static final By FAMILY_PACKAGE_NAME = By.id("name-input");
+    public static final By FAMILY_PACKAGE_NAME = By.id("name-input");
     private static final By CREATE_FAMILY_PACKAGE_BUTTON = By.cssSelector(".ob__btn.ob__btn__teal");
     public static final By FAMILY_PACKAGE_CREATED_TEXT = By.cssSelector(".ob__accentL.accentL");
     private static final By NAVIGATE_TO_CREATED_FAMILY_PACKAGE_BUTTON = By.cssSelector(".ob__btn.ob__btn__teal.ob__h__48px");

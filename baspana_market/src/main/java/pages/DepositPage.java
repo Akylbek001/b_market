@@ -63,7 +63,10 @@ public class DepositPage extends BasePage {
     public static final By CHANGE_DETAILS_BUTTON = By.id("changeDetailsButton");
     private static final By SIGN_CHANGE_DETAILS_BUTTON = By.id("signChangeDetailsButton");
     public static final By OPERATION_COMPLETED_SUCCESSFULLY = By.cssSelector(".finishHead .title");
-    private static final By CREATE_FAMILY_PACKAGE_OPERATION = By.xpath("//div[@onclick='onGetDeposits()']");
+//    private static final By CREATE_FAMILY_PACKAGE_OPERATION = By.xpath("//div[@onclick='onGetDeposits()']");
+private static final By CREATE_FAMILY_PACKAGE_OPERATION = By.cssSelector("[href='/PackageFamily/PackageFamilyName?depositId=02118819CE2F35D6055514A5EBE4C042']");
+
+
     private static final By CREATE_FAMILY_PACKAGE_OPERATION_ = By.xpath("//div[@class='operTxt' and text()='Создать семейный пакет']");
     private static final By DEPOSIT_DIVISION_OPERATION = By.xpath("//div[@class='operTxt' and text()='Деление депозита']");
     public static final By DIVIDE_BUTTON = By.cssSelector(".button-sp_div .split.white");
